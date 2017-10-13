@@ -1,0 +1,22 @@
+\documentclass[ 12pt,
+                titlepage,
+                twoside,
+                draft,
+                openright,
+                bibliography=totoc
+              ]{scrreprt}
+
+\sloppy
+\include{packages}
+\include{definitions}
+
+\begin{document}
+\pagestyle{empty}
+\include{titlepage}\cleardoublepage
+\setcounter{page}{1}
+\pagestyle{plain}\renewcommand*{\chapterpagestyle}{empty}\pagenumbering{arabic}
+%\include{introduction}
+
+\end{document}
+
+                
