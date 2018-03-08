@@ -15,6 +15,5 @@
 *.jpg
 *.xml
 *.bcf
-Makefile
-kslj*pdf
-ksljNotes.bib
+*.dvi
+main.pdf
