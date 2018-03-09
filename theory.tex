@@ -3,37 +3,93 @@
 \chapter{Theory}
 \label{sec:theory}
 
+
+\section{An Introduction to Quantum Chemistry}
+\label{sec:IntroductiontoQM}
+
 The following chapters should provide an overview of the theoretical backround
 neccesarry to carry out the presented calculations. Most of it is based on
-standard literature from \textsc{Jensen}\autocite{jensen_introduction_2006}, \textsc{Szabo} and
-\textsc{Ostlund}\autocite{szabo_modern_1996} and \textsc{Holthausen} and
-\textsc{Koch}\autocite{koch_chemists_2001}.
-
-\section{The fundamentals of Quantum Mechanics}
-\label{sec:thefundamentalsofQM}
+standard literature by Jensen\autocite{jensen_introduction_2006},
+Szabo and Ostlund\autocite{szabo_modern_1996} and
+Holthausen and Koch\autocite{koch_chemists_2001}.
 
 \subsection{The Schr\"odinger Equation}
 
 The discovery of the wave-particle duality at the beginning of the 20th
 centuary lead to a complete reformulation of the physical laws governing the
-smallest of particles. \textsc{Erwin Schr\"odinger} established a framework
-based on \textsc{Hamilton}ian mechanics that set the wavefunction $\Psi$ at the
+smallest of particles. Erwin Schr\"odinger established a framework
+based on Hamiltonian mechanics that set the wave function $\Psi$ at the
 center of attention. It contains all information about the system and its
 evolution in time. For ground-state calculations it is usually sufficient to
-look at solutions to the time-independent \textsc{Schr\"odinger} equation.
+look at solutions to the time-independent Schr\"odinger equation.
 
 \begin{equation}
 	\mathbf{H}\Psi=E\Psi
 \end{equation}
 
-In this eigenvalue equation the \textsc{Hamilton} operator $\mathbf{H}$ acts on
-the wavefunction which results in a solution for the total energy of the system
+In this eigenvalue equation the Hamilton operator $\mathbf{H}$ acts on
+the wave function which results in a solution for the total energy of the system
 $E$. For a system of $N$ electrons and $M$ nuclei the non-relativistic
-\textsc{Hamilton} operator takes the form
+Hamilton operator has the form
 
 \begin{align}
-	\mathbf{H}&=\mathbf{T} + \mathbf{V} \\
-	\mathbf{T}&=\sum_{i=1}^N=-\sum_{i=1}^N\frac{1}{2m_i}\nabla_i^2 \\
-	\mathbf{V}&=\sum_{i}^N\mathbf{V}_{ij} \\
-	-\frac{1}{2}\sum_{i=1}^N\nabla_i^2-\frac{1}{2}\sum
+\begin{aligned}
+    \mathbf{H}&=\mathbf{T}_\text{elec} + \mathbf{V}_\text{elec} + \mathbf{T}_\text{nuc} + \mathbf{V}_\text{nuc} + \mathbf{V}_\text{elec,nuc} \\
+    \mathbf{T}_\text{elec}&=\sum_{i=1}^N\mathbf{T}_i=-\sum_{i=1}^N\frac{1}{2m_i}\nabla_i^2 \\
+    \mathbf{V}_\text{elec}&=\sum_{i=1}^N\sum_{j>i}^N\mathbf{V}_{ij} \\
+    \mathbf{T}_\text{nuc}&=\sum_{A=1}^M\mathbf{T}_A=-\sum_{A=1}^M\frac{1}{2m_A}\nabla_i^2 \\
+    \mathbf{V}_\text{nuc}&=\sum_{A=1}^M\sum_{B>A}^M\mathbf{V}_{AB} \\
+    \mathbf{V}_\text{elec,nuc}&=\sum_{i=1}^N\sum_{A=1}^M\mathbf{V}_{iA}.\label{eqn:hamiltonoperator}
+\end{aligned}
 \end{align}
+
+The indices "elec" and "nuc" refer to whether the operator acts upon electrons
+or nuclei, respectively. The Hamilton operator contains all kinetic
+$\mathbf{T}$ and potential energy operators $\mathbf{V}$ to completely describe
+the atomic system.
+
+\subsection{The Born-Oppenheimer Approximation}
+
+For quantum chemical applications the coupling of the movement of the electrons
+and nuclei is usually neglected. This is possible because the atomic mass $m_A$
+is so much greater than the electronic mass $m_i$, resulting in much lower
+velocities for nuclei compared to electrons. Therefore, the electrons can be
+considred to be moving in a static field of nuclei, meaning the nuclear kinetic
+term $\mathbf{T}_\text{nuc}$ can be neglected and the nuclear repulsion term
+$\mathbf{V}_\text{nuc}$ becomes a constant. The resulting electronic Hamilton
+operator $\mathbf{H}_\text{elec}$ describes electrons moving in a field of
+positive point charges.
+
+\begin{align}
+    \mathbf{H}_\text{elec}=\mathbf{T}_\text{elec} + \mathbf{V}_\text{elec} + \mathbf{V}_\text{elec,nuc}
+\end{align}
+
+Solving the Schr\"dinger equation for this operator yields the electronic wave
+function $\Psi_\text{elec}$. It depends explicitly on the electronic
+coordinates, but only parametrically on the nuclear coordinates, therefore
+spanning a potential energy surface upon which the nuclei move.
+
+\subsection{The Hartree-Fock Approximation}
+
+An exact solution to the Schr\"odinger equation in the boundary condition of
+the Born-Oppenheimer approximation ifor systems containing more than one
+electron is not possible. The solution has to be approximated by appropriate
+methods; one possible solution are the Hartree-Fock equations. This set of
+equations determines the energy of a wave function expressed as a Slater
+determinant $\Phi_\text{SD}$.
+
+\begin{equation}
+     \Phi_{SD}=\frac{1}{\sqrt{N!}}
+     \begin{vmatrix}
+         \phi_1(\mathbf{x}_1) & \phi_2(\mathbf{x}_1) & \cdots & \phi_N(\mathbf{x}_1)\\
+         \phi_1(\mathbf{x}_2) & \phi_2 (\mathbf{x}_2) & \cdots & \phi_N(\mathbf{x}_2)\\
+         \vdots & \vdots & \ddots & \vdots\\
+         \phi_1(\mathbf{x}_N) & \phi_2(\mathbf{x}_N) & \cdots & \phi_N(\mathbf{x}_N)
+     \end{vmatrix}
+     \label{eqn:SlaterDet}
+\end{equation}
+
+Here, $\phi_i$ denote one electron spin orbitals and $\mathbf{x}_i$ are
+electron coordinates. A Slater determinant obeys the Pauli exclusion principle,
+which requires the electronic wave function to be anti-symmetric with respect
+to interchanging the coordinates of two electrons.
