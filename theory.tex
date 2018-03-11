@@ -27,7 +27,7 @@ time. For ground-state calculations it is usually sufficient to look at
 solutions to the time-independent Schr\"odinger equation.
 
 \begin{equation}
-	\mathbf{H}\Psi=E\Psi
+	\mathbf{H}\Psi=E\Psi\label{eqn:SchrodingerEquation}
 \end{equation}
 
 In this eigenvalue equation the Hamilton operator $\mathbf{H}$ acts on the wave
@@ -38,7 +38,7 @@ coordinates $\omega$ of all the particles in the system and will be denoted
 $\mathbf{x}$ on the following pages.  
 
 \begin{align}
-    \mathbf{x}=\{\mathbf{r},\omega\}
+	\mathbf{x}=\{\mathbf{r},\omega\}
 \end{align}
 
 The square of the wave function is usually interpreted as a probability density
@@ -46,29 +46,45 @@ which is used to normalise it such that the probability of finding and electron
 anywhere in space is one.
 
 \begin{align}
-    \int |\Psi(\mathbf{x})|^2\dif \mathbf{x}_1\dif \mathbf{x}_2\ldots\dif \mathbf{x}_N=1
+	\int |\Psi(\mathbf{x})|^2\dif \mathbf{x}_1\dif \mathbf{x}_2\ldots\dif \mathbf{x}_Ni=\braket{\Psi(\mathbf{x})|\Psi(\mathbf{x})}=1
 \end{align}
 
+The information contained in the wave function can be accessed by an operator
+$\mathbf{O}$ acting on the wave function and forming a eigenvalue equation. In
+equation~\eqref{eqn:SchrodingerEquation} this operator is the Hamilton
+operator, but it could be any operator connected to a physical observable.
+Generally the eigenvalue of an arbitrary operator $\braket{\mathbf{O}}$ is
+defined as
 
+\begin{equation}
+	\braket{\mathbf{O}}=\frac{\braket{\Psi(\mathbf{x})|\mathbf{O}|\Psi(\mathbf{x})}}{\braket{\Psi(\mathbf{x})|\Psi(\mathbf{x})}}
+\end{equation}
 
-For a system of $N$ electrons and $M$ nuclei the non-relativistic
-Hamilton operator has the form
+and for normalised wave functions this becomes
+
+\begin{align}
+	\braket{\mathbf{O}}=\braket{\Psi(\mathbf{x})|\mathbf{O}|\Psi(\mathbf{x})}.
+\end{align}
+
+For a system of $N$ electrons and $M$ nuclei the non-relativistic Hamilton
+operator in atomic units has the form
 
 \begin{align}
 \begin{aligned}
     \mathbf{H}&=\mathbf{T}_\text{e} + \mathbf{V}_\text{ee} + \mathbf{T}_\text{n} + \mathbf{V}_\text{nn} + \mathbf{V}_\text{en} \\
-    \mathbf{T}_\text{e}&=\sum_{i=1}^N\mathbf{T}_i=-\sum_{i=1}^N\frac{1}{2m_i}\nabla_i^2 \\
-    \mathbf{V}_\text{ee}&=\sum_{i=1}^N\sum_{j>i}^N\mathbf{V}_{ij} \\
-    \mathbf{T}_\text{n}&=\sum_{A=1}^M\mathbf{T}_A=-\sum_{A=1}^M\frac{1}{2m_A}\nabla_i^2 \\
-    \mathbf{V}_\text{nn}&=\sum_{A=1}^M\sum_{B>A}^M\mathbf{V}_{AB} \\
-    \mathbf{V}_\text{en}&=\sum_{i=1}^N\sum_{A=1}^M\mathbf{V}_{iA}.\label{eqn:hamiltonoperator}
+    &=-\sum_{i=1}^N\frac{1}{2}\nabla_i^2
+    + \sum_{i=1}^N\sum_{j>i}^NV_{ij}
+    - \sum_{A=1}^M\frac{1}{2}\nabla_A^2
+    + \sum_{A=1}^M\sum_{B>A}^MV_{AB}
+    + \sum_{i=1}^N\sum_{A=1}^MV_{iA}.\label{eqn:hamiltonoperator}
 \end{aligned}
 \end{align}
 
-The indices "elec" and "nuc" refer to whether the operator acts upon electrons
-or nuclei, respectively. The Hamilton operator contains all kinetic
-$\mathbf{T}$ and potential energy operators $\mathbf{V}$ to completely describe
-the atomic system.
+The operator contains the kinetic energy of the electrons
+$\mathbf{T}_\text{e}$, the electron repulsion $\mathbf{V}_\text{ee}$, the
+kinetic energy of the nuclei $\mathbf{T}_\text{n}$, the nucleon repulsion
+$\mathbf{V}_\text{nn}$ and the electron-nucleon attraction
+$\mathbf{V}_\text{en}$.
 
 \subsection{The Born-Oppenheimer Approximation}
 
@@ -77,9 +93,9 @@ and nuclei is usually neglected. This is possible because the atomic mass $m_A$
 is so much greater than the electronic mass $m_i$, resulting in much lower
 velocities for nuclei compared to electrons. Therefore, the electrons can be
 considred to be moving in a static field of nuclei, meaning the nuclear kinetic
-term $\mathbf{T}_\text{nuc}$ can be neglected and the nuclear repulsion term
-$\mathbf{V}_\text{nuc}$ becomes a constant. The resulting electronic Hamilton
-operator $\mathbf{H}_\text{elec}$ describes electrons moving in a field of
+term $\mathbf{T}_\text{n}$ can be neglected and the nuclear repulsion term
+$\mathbf{V}_\text{nn}$ becomes a constant. The resulting electronic Hamilton
+operator $\mathbf{H}_\text{e}$ describes electrons moving in a field of
 positive point charges.
 
 \begin{align}
@@ -87,11 +103,11 @@ positive point charges.
 \end{align}
 
 Solving the Schr\"dinger equation for this operator yields the electronic wave
-function $\Psi_\text{elec}$. It depends explicitly on the electronic
-coordinates, but only parametrically on the nuclear coordinates, therefore
-spanning a potential energy surface upon which the nuclei move. To get the
-total energy of the system the constant repulsion between the nuclei has to be
-added to the electronic operator.
+function $\Psi_\text{e}$. It depends explicitly on the electronic coordinates,
+but only parametrically on the nuclear coordinates, therefore spanning a
+potential energy surface upon which the nuclei move. To get the total energy of
+the system the constant repulsion between the nuclei has to be added to the
+electronic operator.
 
 \begin{align}
     \mathbf{H}=\mathbf{H}_\text{e}+V_\text{nn}
