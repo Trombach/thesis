@@ -1,10 +1,10 @@
-\documentclass[ 12pt,
+\documentclass[ 11pt,
                 titlepage,
                 twoside,
                 draft,
                 openright,
                 bibliography=totoc
-              ]{scrreprt}
+              ]{scrbook}
 
               
 \sloppy
@@ -21,6 +21,7 @@
 \setcounter{page}{1}
 \pagestyle{plain}\renewcommand*{\chapterpagestyle}{empty}\pagenumbering{arabic}
 \tableofcontents
+\pagestyle{fancy}
 \include{theory}
 
 \printbibliography
