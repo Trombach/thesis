@@ -1,13 +1,17 @@
 \geometry{a4paper,%
           portrait,%
-          inner=3cm, outer=3cm,%
+          inner=5cm, outer=4cm,%
           marginparwidth=0cm, marginparsep=0cm,
           headheight=0.5cm,%
-          headsep=0.3cm,%
+          headsep=0.5cm,%
           footskip=2cm,%
-          top=2cm,%
-          bottom=2cm,%
+          top=3cm,%
+          bottom=3cm,%
           dvips,%
           includeheadfoot}
 
-
+\fancyhead{}
+\fancyhead[LO,RE]{\thepage}
+\fancyhead[RO]{\textit{\nouppercase{\rightmark}}}
+\fancyhead[LE]{\thechapter~\chaptermark}
+\fancyfoot{}
