@@ -10,8 +10,12 @@
           dvips,%
           includeheadfoot}
 
-\fancyhead{}
-\fancyhead[LO,RE]{\thepage}
-\fancyhead[RO]{\textit{\nouppercase{\rightmark}}}
-\fancyhead[LE]{\textit{\nouppercase{\thechapter~\clipbox{{\width - 1.2cm} 0pt 0pt 0pt}{\leftmark}}}}
-\fancyfoot{}
+\newpagestyle{main}[\small]{
+	\setheadrule{.55pt}
+	\sethead[\textit{\thechapter~\chaptertitle}]%even-left
+			[]%even-center
+			[\thepage]%even-right
+			{\thepage}%odd-left
+			{}%odd-center
+			{\textit{\thesection~\sectiontitle}}%odd-right
+}
