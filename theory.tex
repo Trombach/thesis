@@ -46,7 +46,7 @@ which is used to normalise it such that the probability of finding and electron
 anywhere in space is one.
 
 \begin{align}
-	\int |\Psi(\mathbf{x})|^2\dif \mathbf{x}_1\dif \mathbf{x}_2\ldots\dif \mathbf{x}_Ni=\braket{\Psi(\mathbf{x})|\Psi(\mathbf{x})}=1
+	\int |\Psi(\mathbf{x})|^2\dif \mathbf{x}_1\dif \mathbf{x}_2\ldots\dif \mathbf{x}_N=\braket{\Psi(\mathbf{x})|\Psi(\mathbf{x})}=1
 \end{align}
 
 The information contained in the wave function can be accessed by an operator
@@ -57,10 +57,10 @@ Generally the eigenvalue of an arbitrary operator $\braket{\mathbf{O}}$ is
 defined as
 
 \begin{equation}
-	\braket{\mathbf{O}}=\frac{\braket{\Psi(\mathbf{x})|\mathbf{O}|\Psi(\mathbf{x})}}{\braket{\Psi(\mathbf{x})|\Psi(\mathbf{x})}}
+	\braket{\mathbf{O}}=\frac{\braket{\Psi(\mathbf{x})|\mathbf{O}|\Psi(\mathbf{x})}}{\braket{\Psi(\mathbf{x})|\Psi(\mathbf{x})}},
 \end{equation}
 
-and for normalised wave functions this becomes
+or for normalised wave functions
 
 \begin{align}
 	\braket{\mathbf{O}}=\braket{\Psi(\mathbf{x})|\mathbf{O}|\Psi(\mathbf{x})}.
@@ -83,7 +83,7 @@ operator in atomic units has the form
 The operator contains the kinetic energy of the electrons
 $\mathbf{T}_\text{e}$, the electron repulsion $\mathbf{V}_\text{ee}$, the
 kinetic energy of the nuclei $\mathbf{T}_\text{n}$, the nucleon repulsion
-$\mathbf{V}_\text{nn}$ and the electron-nucleon attraction
+$\mathbf{V}_\text{nn}$ and the electron-nucleus attraction
 $\mathbf{V}_\text{en}$.
 
 \subsection{The Born-Oppenheimer Approximation}
@@ -110,13 +110,13 @@ the system the constant repulsion between the nuclei has to be added to the
 electronic operator.
 
 \begin{align}
-    \mathbf{H}=\mathbf{H}_\text{e}+V_\text{nn}
+    \mathbf{H}=\mathbf{H}_\text{e}+V_\text{nn}\label{eqn:hamiltonoperatorfinal}
 \end{align}
 
 \subsection{The Hartree-Fock Approximation}
 
-An exact solution to the Schr\"odinger equation in the boundary condition of
-the Born-Oppenheimer approximation ifor systems containing more than one
+An exact solution to the Schr\"odinger equation in the boundary conditions of
+the Born-Oppenheimer approximation for systems containing more than one
 electron is not possible. The solution has to be approximated by appropriate
 methods; one possible solution are the Hartree-Fock equations. This set of
 equations determines the energy of a wave function expressed as a Slater
@@ -138,3 +138,68 @@ $\mathbf{x}_i=\{\mathbf{r}_i,\omega_i\}$ are spatial ($\mathbf{r}_i$) and spin
 ($\omega_i$) coordinates of the electrons. A Slater determinant obeys the Pauli
 exclusion principle, which requires the electronic wave function to be
 anti-symmetric with respect to interchanging the coordinates of two electrons.
+
+In the Hartree-Fock approximation the energy of a single Slater determinant is
+used as an approximation for the total energy of the system. As explained
+previously, the energy of a wave function can be determined by the action of
+the Hamilton operator on the wave function. The Hamilton operator in the
+Born-Oppenheimer approximation from equation~\eqref{eqn:hamiltonoperatorfinal}
+can be rewritten in terms of one-electron operators $\mathbf{h}_i$.
+
+\begin{align}
+\begin{aligned}
+    \mathbf{H}&=\sum_i^N\left(\mathbf{h}_i + \sum_{j>i}^N\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}\right) + V_\text{nn} \\
+    \mathbf{h}_i&=-\frac{1}{2}\nabla_i^2-\sum_A^M\frac{Z_A}{|\mathbf{r}_A-\mathbf{r}_i|}\label{eqn:hamiltonoperatorhartreefock}
+\end{aligned}
+\end{align}
+
+Here, $Z_A$ denotes the charge of nucleus $A$. $\mathbf{h}_i$ depends only on
+the kinetic energy of electron $i$ and its potential energy in the field of all
+$M$ nuclei. When $\mathbf{h}_i$ acts on a Slater determinant the result is the
+respective matrix element $h_i$. Only parts of the Slater determinant without
+permutation of electron coordinates can give a non-zero contribution to the
+eigenvalue.
+
+\begin{align}
+    \begin{aligned}
+        h_1&=\braket{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)|\mathbf{h}_1|\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}\\
+        &=\braket{\phi_1(\mathbf{x}_1)|\mathbf{h}_1|\phi_1(\mathbf{x}_1)}\braket{\phi_2(\mathbf{x}_2)|\phi_2(\mathbf{x}_2)}\ldots\braket{\phi_N(\mathbf{x}_N)|\phi_N(\mathbf{x}_N)} \\
+        &=\braket{\phi_1(\mathbf{x}_1)|\mathbf{h}_1|\phi_1(\mathbf{x}_1)}
+    \end{aligned}
+\end{align}
+
+The remainder of the Hamilton operator from
+equation~\eqref{eqn:hamiltonoperatorhartreefock} is dependant on two electron
+coordinates. It is convenient to define a two-electron operator $\mathbf{g}_{ij}$
+with the matrix elements $g_{ij}=\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}$. Its
+action on the part of the Slater determinant with no permutation of electron
+coordinates results in the Coulomb integral and the corresponding matrix
+element $J_{ij}$, which can be seen as the classical Coulomb repulsion.
+
+\begin{align}
+    \begin{aligned}
+        J_{12}&=\braket{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)|\mathbf{g}_{12}|\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}\\
+        &=\braket{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)|\mathbf{g}_{12}|\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)}\ldots\braket{\phi_N(\mathbf{x}_N)|\phi_N(\mathbf{x}_N)} \\
+        &=\braket{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)|\mathbf{g}_{12}|\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)}
+    \end{aligned}
+\end{align}
+
+As $\mathbf{g}_{ij}$ depends on the coordinates of two electrons it also yields
+non-zero matrix elements for parts of the Slater determinant, where two
+electron coordinates have been swapped.
+
+\begin{align}
+    \begin{aligned}
+        K_{12}&=\braket{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)|\mathbf{g}_{12}|\phi_2(\mathbf{x}_1)\phi_1(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}\\
+        &=\braket{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)|\mathbf{g}_{12}|\phi_2(\mathbf{x}_1)\phi_1(\mathbf{x}_2)}\ldots\braket{\phi_N(\mathbf{x}_N)|\phi_N(\mathbf{x}_N)} \\
+        &=\braket{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)|\mathbf{g}_{12}|\phi_2(\mathbf{x}_1)\phi_1(\mathbf{x}_2)}
+    \end{aligned}
+\end{align}
+
+$K_{ij}$ is called the exchange integral and has no classical interpretation.
+The total energy of the system is now given by the sum over all integrals
+described above.
+
+\begin{align}
+    E=\sum_{i=1}^Nh_i + \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N(J_{ij}-K_{ij})+V_\text{nn}
+\end{align}
