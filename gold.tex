@@ -8,6 +8,7 @@
 \label{sec:theorygold}
 
 \section{An Introduction to Quantum Chemistry}
+\label{sec:introtoQC}
 
 Parts of this thesis require knowledge of standard methods used in quantum
 chemistry. The following chapters introduce the fundamentals of quantum
@@ -17,6 +18,7 @@ Szabo and Ostlund\autocite{szabo_modern_1996} and Holthausen and
 Koch\autocite{koch_chemists_2001}.
 
 \subsection{The Schr\"odinger Equation}
+\label{sec:schrodingerequation}
 
 The beginning of the 20th centuary was a very important time for modern
 theoretical sciences. Discoveries like Planck's energy quantisation based on
@@ -89,6 +91,7 @@ $\mathbf{V}_\text{nn}$ and the electron-nucleus attraction
 $\mathbf{V}_\text{en}$.
 
 \subsection{The Born-Oppenheimer Approximation}
+\label{sec:bornoppenheimerapproximation}
 
 For quantum chemical applications the coupling of the movement of the electrons
 and nuclei is usually neglected. This is possible because the atomic mass $m_A$
@@ -116,6 +119,7 @@ electronic operator.
 \end{align}
 
 \subsection{The Hartree-Fock Approximation}
+\label{sec:hartreefockapproximation}
 
 An exact solution to the Schr\"odinger equation in the boundary conditions of
 the Born-Oppenheimer approximation for systems containing more than one
@@ -211,10 +215,10 @@ Defining operators $\mathbf{J}_i$ and $\mathbf{K}_i$ for Coulomb and exchange
 integral equation~\eqref{eqn:HFenergy} becomes
 
 \begin{align}
-    \begin{aligned}
     E=\sum_{i=1}^N\braket{\phi_i|\mathbf{h}_i|\phi_i} + \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N \left( \braket{\phi_i|\mathbf{J}_j|\phi_i} - \braket{\phi_i|\mathbf{K}_j|\phi_i} \right) + V_\text{nn}\\
-    \mathbf{J}_i\ket{\phi_j(\mathbf{x}_j)}=\braket{\phi_i(\mathbf{x}_i)|\mathbf{g}_{ij}|\phi_i(\mathbf{x}_i)}\ket{\phi_j(\mathbf{x}_j)}\\
-        \mathbf{K}_i\ket{\phi_j(\mathbf{x}_j)}=\braket{\phi_i(\mathbf{x}_i)|\mathbf{g}_{ij}|\phi_j(\mathbf{x}_i)}\ket{\phi_i(\mathbf{x}_j)}.
+    \begin{aligned}
+		\mathbf{J}_i\ket{\phi_j(\mathbf{x}_j)}&=\braket{\phi_i(\mathbf{x}_i)|\mathbf{g}_{ij}|\phi_i(\mathbf{x}_i)}\ket{\phi_j(\mathbf{x}_j)}\\
+		\mathbf{K}_i\ket{\phi_j(\mathbf{x}_j)}&=\braket{\phi_i(\mathbf{x}_i)|\mathbf{g}_{ij}|\phi_j(\mathbf{x}_i)}\ket{\phi_i(\mathbf{x}_j)}.
     \end{aligned}\label{eqn:HFenergyoperator}
 \end{align}
 
@@ -225,9 +229,28 @@ of keeping the orthonormality condition between spin orbitals. In other words,
 we try to find the derivative of equation~\eqref{eqn:HFenergyoperator}.
 Minimising the energy under external boundary conditions can be solved using
 Lagrange multipliers. With their help it is possible to define the Fock
-operator $\mathbf{f}_i$.
+operator $\mathbf{f}_i$, which is an effective one-electron operator.
 
 \begin{align}
     \mathbf{f}_i=\mathbf{h}_i + \sum_j^N\left( \mathbf{J}_j - \mathbf{K}_j \right)
 \end{align}
 
+The action of the Fock operator on an element of the Slater determinant yields
+the so calles Hartree-Fock equations.
+
+\begin{align}
+	\mathbf{f}_i\ket{\phi_i}=\sum_j^N\lambda_{ij}\ket{\phi_j}
+\end{align}
+
+$\lambda_{ij}$ are Lagrange multipliers remaining from the constrained
+minimisation. They can be written in matrix form and subsequentially
+diagonalised by a unitary transformation. This yields the canonical
+Hartree-Fock equations.
+
+\begin{align}
+	\mathbf{f}_i\ket{\phi'_i}=\sum_j^N\epsilon_i\ket{\phi'_j}
+\end{align}
+
+$\epsilon_i$ are orbital energies of the electrons. According to Koopman's
+theorem they can be interpreted as ionisation energies for occupied and
+electron affinities for unoccupied states.
