@@ -1,11 +1,13 @@
 %theory
 
-\chapter{Theory}
-\label{sec:theory}
+\part{Golden Dual Fullerenes}
+\label{sec:goldendualfullerenes}
 
+
+\chapter{Theory}
+\label{sec:theorygold}
 
 \section{An Introduction to Quantum Chemistry}
-\label{sec:IntroductiontoQM}
 
 Parts of this thesis require knowledge of standard methods used in quantum
 chemistry. The following chapters introduce the fundamentals of quantum
@@ -197,9 +199,35 @@ electron coordinates have been swapped.
 \end{align}
 
 $K_{ij}$ is called the exchange integral and has no classical interpretation.
-The total energy of the system is now given by the sum over all integrals
-described above.
+As swapping coordinates in the Slater determinant changes its sign, the result
+of the exchange integral has a negative sign. The total energy of the system is
+now given by the sum over all integrals described above.
 
 \begin{align}
-    E=\sum_{i=1}^Nh_i + \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N(J_{ij}-K_{ij})+V_\text{nn}
+    E=\sum_{i=1}^Nh_i + \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N(J_{ij}-K_{ij})+V_\text{nn}\label{eqn:HFenergy}
 \end{align}
+
+Defining operators $\mathbf{J}_i$ and $\mathbf{K}_i$ for Coulomb and exchange
+integral equation~\eqref{eqn:HFenergy} becomes
+
+\begin{align}
+    \begin{aligned}
+    E=\sum_{i=1}^N\braket{\phi_i|\mathbf{h}_i|\phi_i} + \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N \left( \braket{\phi_i|\mathbf{J}_j|\phi_i} - \braket{\phi_i|\mathbf{K}_j|\phi_i} \right) + V_\text{nn}\\
+    \mathbf{J}_i\ket{\phi_j(\mathbf{x}_j)}=\braket{\phi_i(\mathbf{x}_i)|\mathbf{g}_{ij}|\phi_i(\mathbf{x}_i)}\ket{\phi_j(\mathbf{x}_j)}\\
+        \mathbf{K}_i\ket{\phi_j(\mathbf{x}_j)}=\braket{\phi_i(\mathbf{x}_i)|\mathbf{g}_{ij}|\phi_j(\mathbf{x}_i)}\ket{\phi_i(\mathbf{x}_j)}.
+    \end{aligned}\label{eqn:HFenergyoperator}
+\end{align}
+
+For the purpose of quantum chemical calculations the energy of an arbitrary
+Slater determinant is usually not useful. More interesting, however, is to find
+the Slater determinant that minimises the energy under the boundary condition
+of keeping the orthonormality condition between spin orbitals. In other words,
+we try to find the derivative of equation~\eqref{eqn:HFenergyoperator}.
+Minimising the energy under external boundary conditions can be solved using
+Lagrange multipliers. With their help it is possible to define the Fock
+operator $\mathbf{f}_i$.
+
+\begin{align}
+    \mathbf{f}_i=\mathbf{h}_i + \sum_j^N\left( \mathbf{J}_j - \mathbf{K}_j \right)
+\end{align}
+

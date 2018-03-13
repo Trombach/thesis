@@ -10,8 +10,8 @@
           dvips,%
           includeheadfoot}
 
-\fancyhead{}
-\fancyhead[LO,RE]{\thepage}
-\fancyhead[RO]{\textit{\nouppercase{\rightmark}}}
-\fancyhead[LE]{\textit{\nouppercase{\thechapter~\clipbox{{\width - 1.2cm} 0pt 0pt 0pt}{\leftmark}}}}
-\fancyfoot{}
+\clearpairofpagestyles
+\ohead{\pagemark}
+\ihead{\headmark}
+
+
