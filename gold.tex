@@ -7,8 +7,8 @@
 \chapter{Theory}
 \label{sec:theorygold}
 
-\section{An Introduction to Quantum Chemistry}
-\label{sec:introtoQC}
+\section{Basics of Quantum Chemistry}
+\label{sec:basicsofQC}
 
 Parts of this thesis require knowledge of standard methods used in quantum
 chemistry. The following chapters introduce the fundamentals of quantum
@@ -118,7 +118,7 @@ electronic operator.
     \mathbf{H}=\mathbf{H}_\text{e}+V_\text{nn}\label{eqn:hamiltonoperatorfinal}
 \end{align}
 
-\subsection{The Hartree-Fock Approximation}
+\section{The Hartree-Fock Approximation}
 \label{sec:hartreefockapproximation}
 
 An exact solution to the Schr\"odinger equation in the boundary conditions of
@@ -239,7 +239,7 @@ The action of the Fock operator on an element of the Slater determinant yields
 the so calles Hartree-Fock equations.
 
 \begin{align}
-	\mathbf{f}_i\ket{\phi_i}=\sum_j^N\lambda_{ij}\ket{\phi_j}
+    \mathbf{f}_i\ket{\phi_i}=\sum_j^N\lambda_{ij}\ket{\phi_j}\label{eqn:HFequations}
 \end{align}
 
 $\lambda_{ij}$ are Lagrange multipliers remaining from the constrained
@@ -248,9 +248,63 @@ diagonalised by a unitary transformation. This yields the canonical
 Hartree-Fock equations.
 
 \begin{align}
-	\mathbf{f}_i\ket{\phi'_i}=\sum_j^N\epsilon_i\ket{\phi'_j}
+    \mathbf{f}_i\ket{\phi'_i}=\sum_j^N\varepsilon_i\ket{\phi'_j}\label{eqn:HFequationscanonical}
 \end{align}
 
-$\epsilon_i$ are orbital energies of the electrons. According to Koopman's
+$\varepsilon_i$ are orbital energies of the electrons. According to Koopman's
 theorem they can be interpreted as ionisation energies for occupied and
-electron affinities for unoccupied states.
+electron affinities for unoccupied states. The Fock operator depends on all
+occupied states, making it a pseudo eigenvalue equation. Hence, solutions have
+to be found iteratively starting from and arbitrary set of orbitals. After a
+set of convergence criteria has been met, the effective potential is said to
+remain unchanged, creating a \ac{SCF} solution.  \\\newline Solving the
+canonical Hartree-Fock equations for larger systems is possible, but costly.
+Usually they are solved using a basis set expansion to approximate the unknown
+molecular orbitals. The basis functions are usually chosen in a way, such that
+they agree withthe underlying physics of the system. For example, periodic
+plane waves are ususally used when perodic boundary conditions are necessary.
+For calculations in the gas phase the basis functions are ususally exponential
+functions centered at the nuclei. In this case the approximation is called
+\ac{LCAO}. Technically, a basis set expansion is not an approximation, but as
+one is limited to a finite amount of basis functions $P$ the expansion does not
+give and exact expression for a molecular orbital $\phi_i$. For a set of
+$\alpha$ basis functions $\chi_\alpha$ the expansion can be expressed as
+follows.
+
+\begin{align}
+    \phi_i=\sum_\alpha^Pc_{\alpha i}\chi_\alpha
+\end{align}
+
+This leads to the Hartree-Fock equations expressed in the basis set
+approximation.
+
+\begin{align}
+    \begin{aligned}
+        \mathbf{f}_i\sum_\alpha^Pc_{\alpha i}\chi_\alpha&=\varepsilon_i\sum_\alpha^Pc_{\alpha i}\chi_\alpha \\
+        \sum_\alpha^Pc_{\alpha i}\underbrace{\braket{\chi_\alpha|\mathbf{f}_i|\chi_\beta}}_{F_{\alpha\beta}}&=\varepsilon_i\sum_\alpha^Pc_{\alpha i}\underbrace{\braket{\chi_\alpha|\chi_\beta}}_{S_{\alpha\beta}}
+    \end{aligned}
+\end{align}
+
+These are the Roothaan-Hall equations which are usually written in matrix form.
+
+\begin{align}
+    \mathbf{FC}=\mathbf{SC\varepsilon}
+\end{align}
+
+$\mathbf{F}$ is the Fock matrix, $\mathbf{S}$ is the overlap matrix and
+$\mathbf{C}$ contains the orbital coefficients. These equations have to be solved iteratively and to reduce computational cost the first step usually involves calculating a density matrix $\mathbf{D}$.
+
+\begin{align}
+    \mathbf{D}=\sum_{i}^\text{occ. MO} c_{\mu i}c_{\nu i}
+\end{align}
+
+$\mathbf{D}$ can be used to generate a Fock matrix, which will be diagonalised
+yielding a new set of orbital coefficients. These will be used to generate a
+next generation of the density matrix. This procedure will be repeated until
+the coefficients of the next generation are equal (up to a certain precision)
+to the ones of the parent generation. This marks the end of the \ac{SCF} cycle.
+
+\section{Density Functional Theory}
+\label{sec:dft}
+
+\subsection{test}
