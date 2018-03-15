@@ -17,21 +17,22 @@
 
 \begin{document}
 \pagestyle{empty}
+\hypersetup{pageanchor=false}
 \include{titlepage}\cleardoublepage
 \setcounter{page}{1}
-\pagestyle{plain}\renewcommand*{\chapterpagestyle}{empty}\pagenumbering{arabic}
+\pagestyle{plain}\pagenumbering{roman}
+\include{acronyms}
 \tableofcontents
 \listoffigures
 \listoftables
 \setcounter{page}{1}
+\hypersetup{pageanchor=true}
+\pagenumbering{arabic}
 \pagestyle{headings}
 \include{introduction}
 \include{gold}
 \include{SHS}
 \include{gregory-newton}
-\begin{appendix}
-\include{acronyms}
-\end{appendix}
 \printbibliography
 \end{document}
 
