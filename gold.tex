@@ -450,3 +450,18 @@ Kohn-Sham matrix $\mathbf{F}_\text{KS}$.
 \begin{align}
     \mathbf{F}_\text{KS}\mathbf{C} = \mathbf{SC\varepsilon}
 \end{align}
+
+\subsection{Exchange and Correlation Functionals}
+\label{sec:exchangecorrelationfunctionals}
+
+The key to solving the Kohn-Sham equations is the exchange-correlation energy
+$E_\text{XC}$. Over the years there have been lots of proposals for its form,
+the oldest being the \ac{LDA}. It is based on the uniform electron gas for
+which analytical functionals for exchange and correlation are known.
+
+\begin{align}
+    E_{XC}^\text{LDA}\left[\rho\right]=\int\rho(\mathbf{r})\varepsilon_{XC}\left[\rho(\mathbf{r})\right]\dif\mathbf{r}
+\end{align}
+
+The exchange-correlation energy $\varepsilon_{XC}\left[\rho(\mathbf{r})\right]$
+is weighted with the probability of finding and electron at this point in space.
