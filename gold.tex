@@ -10,11 +10,12 @@
 \section{Basics of Quantum Chemistry}
 \label{sec:basicsofQC}
 
-Parts of this thesis require knowledge of standard methods used in quantum
-chemistry. The following chapters introduce the fundamentals of quantum
-mechanics and their application to chemistry related questions. Most of it is
-based on standard literature by Jensen\autocite{JensenIntroductionComputationalChemistry2006},
-Szabo and Ostlund\autocite{SzaboModernQuantumChemistry1996} and Holthausen and
+In this part of the thesis knowledge of standard methods used in quantum
+chemistry is required. The following chapters introduce the fundamentals of
+quantum mechanics and their application to chemistry related questions. Most of
+it is based on standard literature by
+Jensen\autocite{JensenIntroductionComputationalChemistry2006}, Szabo and
+Ostlund\autocite{SzaboModernQuantumChemistry1996} and Holthausen and
 Koch\autocite{KochChemistGuideDensity2001}.
 
 \subsection{The Schr\"odinger Equation}
@@ -464,4 +465,77 @@ which analytical functionals for exchange and correlation are known.
 \end{align}
 
 The exchange-correlation energy $\varepsilon_{XC}\left[\rho(\mathbf{r})\right]$
-is weighted with the probability of finding and electron at this point in space.
+is weighted with the probability of finding and electron at this point in
+space. After separation of the the exchange and correlation parts the exchange
+energy can be described by a term developed by Slater.
+
+\begin{align}
+	\varepsilon_{XC}\left[\rho(\mathbf{r})\right] = \varepsilon_{X}\left[\rho(\mathbf{r})\right] + \varepsilon_{C}\left[\rho(\mathbf{r})\right]\\
+	E_{X}^\text{LDA}\left[\rho\right] = -C_X\int\rho(\mathbf{r})^{\frac{4}{3}}\dif\mathbf{r}
+\end{align}
+
+No simple formula for the correlation term is known.
+
+\ac{LDA} describes the inhomogeneus electron density by deviding it up into
+small homogeneus volumes. An improvement over \ac{LDA} can be made if the
+homogeneus electrondensity is expanded in a Taylor series. Truncating after the
+first term gives the \ac{LDA} approximation, including one more term is called
+the \ac{GEA}. Because \ac{GEA} doesn't correctly describe the
+exchange-correlation hole functionit gives worse results that \ac{LDA}.
+
+A break-through for theoretical chemistry has been achieved with the
+introduction of the \ac{GGA}. It uses the \ac{GEA} hole functions and taylors
+them to physically meaningful boundary conditions. 
+
+In this work the PBE functional by Perdew, Burke and Ernzerhof\autocite{PerdewGeneralizedGradientApproximation1996,PerdewGeneralizedGradientApproximation1997},
+which belongs to the group of \ac{GGA} functionals, was used for most
+calculations. They published both, correlation and exchange expressions for
+this functional.
+
+\subsection{Dispersion Corrections}
+\label{sec:dispersioncorrections}
+
+Long-range dispersive effects are part of the correlation energy and most
+\ac{DFT} functionals can only describe these effects to very limited degree.
+Grimme \textit{et al.} developed a method that can be used in conjunction with
+most density functionals. Based on the functional used it calculates a
+dispersive energy contribution $E_\text{disp}$ (and gradient contribution for
+optimisations) that can be added to the \ac{DFT} energy $E_\text{DFT}$. The
+dispersion energy is always of attractive nature and therefore has a negative
+sign by convention.
+
+\begin{align}
+	E = E_\text{DFT} + E_\text{disp}
+\end{align}
+
+In the third generation D3 dispersion correction, that has been used in this
+work, the calculation of $E_\text{disp}$ involves solving a two- and three-body
+term. The two-body term $E^{(2)}$ is more important and is only a function of
+the distance between two nuclei $r_{AB}$.
+
+\begin{align}
+	E^{(2)}=\sum\limits_{AB}s_6\frac{C_6^{AB}}{\left(r_{AB}\right)^6}f_{\text{dmp},6}(r_{AB}) + s_8\frac{C_8^{AB}}{\left(r_{AB}\right)^8}f_{\text{dmp},8}(r_{AB}).\label{eqn:Edisp2}
+\end{align}
+
+Using only the second term in equation~\eqref{eqn:Edisp2} is equal to the
+second generation dispersion correction D2.\footnote{The calculation of $C_6$
+parameters is carried out differently for D2.} $s_6$ and $s_8$ are functional
+specific parameters that need to be adjusted for each different \ac{DFT}
+functional. The damping functions $f_{\text{dmp},6}$ and $f_{\text{dmp},8}$ are
+necessary to cut off the interaction at long distances. The $C_6^{AB}$
+dispersion coefficient is calculated by averaging over the dipol
+polarisabilities $\alpha$ of the hydrides of the elements $A$ and $B$. The
+contributions of the hydrogen atoms have to be corrected for. The value of
+$C_6°^{AB}$ can be used to calculate $C_8^{AB}$ and $C_9^{AB}$, which shows up
+in the three-body term.
+
+Usually, a zero damping approach is used for the damping function.
+
+\begin{align}
+	f_{\text{dmp},n} = \frac{1}{1+6\left( \frac{r_Ar_B}{s_{r,n}r_0^{AB}} \right)^{\alpha_n}}
+\end{align}
+
+The name comes from the limit of the damping function wich approaches zero with
+$r_{AB}$ going to infinity. Alternatively, the Becke-Johnson damping function
+can be used, which approaches a constant value with $r_AB\to\infty$.
+
