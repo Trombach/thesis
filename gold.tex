@@ -39,15 +39,15 @@ In this eigenvalue equation the Hamilton operator $\mathbf{H}$ acts on the wave
 function which results in a solution for the total energyi $E$ of the system. 
 
 The wave function is a function of all spatial $\mathbf{r}$ and spin
-coordinates $\omega$ of all the particles in the system and will be denoted
-$\mathbf{x}$ on the following pages.  
+coordinates $\omega$ of all the particles in the system. The combination of
+these coordinates will be denoted $\mathbf{x}$ on the following pages.  
 
 \begin{align}
 	\mathbf{x}=\{\mathbf{r},\omega\}
 \end{align}
 
 The square of the wave function is usually interpreted as a probability density
-which is used to normalise it such that the probability of finding and electron
+which is used to normalise it such that the probability of finding an electron
 anywhere in space is one.
 
 \begin{align}
@@ -55,10 +55,10 @@ anywhere in space is one.
 \end{align}
 
 The information contained in the wave function can be accessed by an operator
-$\mathbf{O}$ acting on the wave function and forming a eigenvalue equation. In
+$\mathbf{O}$ acting on the wave function and forming an eigenvalue equation. In
 equation~\eqref{eqn:SchrodingerEquation} this operator is the Hamilton
 operator, but it could be any operator connected to a physical observable.
-Generally the eigenvalue of an arbitrary operator $\braket{\mathbf{O}}$ is
+Generally, the eigenvalue of an arbitrary operator $\braket{\mathbf{O}}$ is
 defined as
 
 \begin{equation}
@@ -98,7 +98,7 @@ For quantum chemical applications the coupling of the movement of the electrons
 and nuclei is usually neglected. This is possible because the atomic mass $m_A$
 is so much greater than the electronic mass $m_i$, resulting in much lower
 velocities for nuclei compared to electrons. Therefore, the electrons can be
-considred to be moving in a static field of nuclei, meaning the nuclear kinetic
+considered to be moving in a static field of nuclei, meaning the nuclear kinetic
 term $\mathbf{T}_\text{n}$ can be neglected and the nuclear repulsion term
 $\mathbf{V}_\text{nn}$ becomes a constant. The resulting electronic Hamilton
 operator $\mathbf{H}_\text{e}$ describes electrons moving in a field of
@@ -113,7 +113,7 @@ function $\Psi_\text{e}$. It depends explicitly on the electronic coordinates,
 but only parametrically on the nuclear coordinates, therefore spanning a
 potential energy surface upon which the nuclei move. To get the total energy of
 the system the constant repulsion between the nuclei has to be added to the
-electronic operator.
+electronic operator. 
 
 \begin{align}
     \mathbf{H}=\mathbf{H}_\text{e}+V_\text{nn}\label{eqn:hamiltonoperatorfinal}
@@ -181,7 +181,7 @@ coordinates. It is convenient to define a two-electron operator $\mathbf{g}_{ij}
 with the matrix elements $g_{ij}=\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}$. Its
 action on the part of the Slater determinant with no permutation of electron
 coordinates results in the Coulomb integral and the corresponding matrix
-element $J_{ij}$, which can be seen as the classical Coulomb repulsion.
+element $J_{ij}$, which can be interpreted as the classical Coulomb repulsion.
 
 \begin{align}
     \begin{aligned}
@@ -237,14 +237,14 @@ operator $\mathbf{f}_i$, which is an effective one-electron operator.
 \end{align}
 
 The action of the Fock operator on an element of the Slater determinant yields
-the so calles Hartree-Fock equations.
+the Hartree-Fock equations.
 
 \begin{align}
     \mathbf{f}_i\ket{\phi_i}=\sum_j^N\lambda_{ij}\ket{\phi_j}\label{eqn:HFequations}
 \end{align}
 
 $\lambda_{ij}$ are Lagrange multipliers remaining from the constrained
-minimisation. They can be written in matrix form and subsequentially
+minimisation. They can be re-written in matrix form and subsequently
 diagonalised by a unitary transformation. This yields the canonical
 Hartree-Fock equations.
 
@@ -261,16 +261,15 @@ set of convergence criteria has been met, the effective potential is said to
 remain unchanged, creating a \ac{SCF} solution.  \\\newline Solving the
 canonical Hartree-Fock equations for larger systems is possible, but costly.
 Usually they are solved using a basis set expansion to approximate the unknown
-molecular orbitals. The basis functions are usually chosen in a way, such that
-they agree withthe underlying physics of the system. For example, periodic
-plane waves are ususally used when perodic boundary conditions are necessary.
-For calculations in the gas phase the basis functions are ususally exponential
-functions centered at the nuclei. In this case the approximation is called
-\ac{LCAO}. Technically, a basis set expansion is not an approximation, but as
-one is limited to a finite amount of basis functions $P$ the expansion does not
-give and exact expression for a molecular orbital $\phi_i$. For a set of
-$\alpha$ basis functions $\chi_\alpha$ the expansion can be expressed as
-follows.
+molecular orbitals. The basis functions are usually chosen to agree with the
+underlying physics of the system. For example, periodic plane waves are
+usually used when periodic boundary conditions are required. For calculations
+in the gas phase the basis functions are usually exponential functions
+centered at the nuclei. In this case the approximation is called \ac{LCAO}.
+Technically, a basis set expansion is not an approximation, but as one is
+limited to a finite amount of basis functions $P$ the expansion does not give
+an exact expression for a molecular orbital $\phi_i$. For a set of $\alpha$
+basis functions $\chi_\alpha$ the expansion can be expressed as follows.
 
 \begin{align}
     \phi_i=\sum_\alpha^Pc_{\alpha i}\chi_\alpha
@@ -293,7 +292,9 @@ These are the Roothaan-Hall equations which are usually written in matrix form.
 \end{align}
 
 $\mathbf{F}$ is the Fock matrix, $\mathbf{S}$ is the overlap matrix and
-$\mathbf{C}$ contains the orbital coefficients. These equations have to be solved iteratively and to reduce computational cost the first step usually involves calculating a density matrix $\mathbf{D}$.
+$\mathbf{C}$ contains the orbital coefficients. These equations have to be
+solved iteratively and to reduce computational cost the first step usually
+involves calculating a density matrix $\mathbf{D}$.
 
 \begin{align}
     \mathbf{D}=\sum_{i}^\text{occ. MO} c_{\mu i}c_{\nu i}
@@ -301,8 +302,8 @@ $\mathbf{C}$ contains the orbital coefficients. These equations have to be solve
 
 $\mathbf{D}$ can be used to generate a Fock matrix, which will be diagonalised
 yielding a new set of orbital coefficients. These will be used to generate a
-next generation of the density matrix. This procedure will be repeated until
-the coefficients of the next generation are equal (up to a certain precision)
+new generation of the density matrix. This procedure will be repeated until
+the coefficients of the new generation are equal (up to a certain precision)
 to the ones of the parent generation. This marks the end of the \ac{SCF} cycle.
 
 \section{Density Functional Theory}
@@ -310,34 +311,33 @@ to the ones of the parent generation. This marks the end of the \ac{SCF} cycle.
 
 The Hartree-Fock method belongs to the class of mean field approximations,
 which means the electrons don't interact directly with each other, but each
-electron is moving in a field averaged over all other electrons. The
-Hartree-Fock energy $E_\text{HF}$ is therefore never exact even in the infinite
-basis set limit. The difference to the exact energy $E_0$ was first named
-correlation energy $E_\text{corr}$ by
-L\"owdin\autocite{lowdin_correlation_1958}.
+electron is moving in a field created by all other electrons. The Hartree-Fock
+energy $E_\text{HF}$ is therefore never exact even in the infinite basis set
+limit. The difference to the exact energy $E_0$ was first named correlation
+energy $E_\text{corr}$ by L\"owdin\autocite{lowdin_correlation_1958}.
 
 \begin{align}
     E_\text{corr} = E_0 - E_\text{HF}
 \end{align}
 
 Even though the correlation energy only attributes for about \SI{1}{\percent}
-of the total energy it is an important contribution in chemical systems. A
+of the total energy it is an important contribution in molecular systems. A
 multitude of methods has been developed to treat the correlation energy more
 accurately. They can generally be subdivided into post-Hartree-Fock methods and
 \ac{DFT}. While post-Hartree-Fock methods rely on a Hartree-Fock wave function
 as a starting point, \ac{DFT} is in principle a wave function free method. It
 establishes a connection between the energy of the system and the electron
-density $\rho$ instead of the wave function. The electron density is observable and
-positive quantity, which makes \ac{DFT} easier to grasp than wave function
-based methods. However, the electron density is related to the wave function
-via its square. 
+density $\rho$ instead of the wave function. The electron density is observable
+and a positive quantity, which makes \ac{DFT} easier to grasp than wave
+function based methods. However, the electron density is related to the wave
+function via its square. 
 
 \begin{align}
     \rho(\mathbf{r}_1)=N\int\dots\int|\Psi(\mathbf{x}_1,\mathbf{x}_2,\dots,\mathbf{x}_N)|^2\;\dif\omega_1\dif\mathbf{x}_2\dots\dif\mathbf{x}_N\label{eqn:electrondensity}
 \end{align}
 
-Equation~\eqref{eqn:electrondensity} describes the probability density of one
-of the $N$ electrons can be found in the volume $\dif \mathbf{r}_1$ with
+Equation~\eqref{eqn:electrondensity} describes the probability density of
+finding one of the $N$ electrons in the volume $\dif \mathbf{r}_1$ with
 arbitrary spin. All other $(N-1)$ electrons occupy any volume elements, but
 have opposite spin. As electrons are indistinguishable the probability to find
 any of the $N$ electrons in the volume $\dif\mathbf{r}_1$ is equal to $N$ times
@@ -357,8 +357,8 @@ electron density. From this, the total energy of a system can be expressed as fo
     E_0\left[ \rho_0(\mathbf{r}) \right] = T\left[ \rho_0(\mathbf{r}) \right] + E_\text{ee} \left[ \rho_0(\mathbf{r}) \right] + E_\text{Ne} \left[ \rho_0(\mathbf{r}) \right]\label{eqn:energyDFT}
 \end{align}
 
-The aforementioned external potenital corresponds to $E_\text{Ne} \left[
-    \rho_0(\mathbf{r}) \right]$, which is the only system-dependent term of
+The aforementioned external potential corresponds to $E_\text{Ne} \left[
+	\rho_0(\mathbf{r}) \right]$, which is the only system-dependent term of
 equation~\eqref{eqn:energyDFT}. The system-independent terms for the kinetic
 energy $T\left[ \rho_0(\mathbf{r}) \right]$ and the electron-electron
 interaction $E_\text{ee} \left[ \rho_0(  \mathbf{r}) \right]$ can be combined
@@ -390,7 +390,7 @@ state energy.
 \end{align}
 
 It is equivalent to the variational theorem\footnote{The variational theorem
-sais that no trial wave function can result in a smaller energy than the exact
+states that no trial wave function can result in a smaller energy than the exact
 ground state wave function.} in wave function theory. However, it is only valid
 for the exact Hohenberg-Kohn functional, which is unknown. A solution to this
 problem was given in 1965 by Kohn and Sham.
@@ -408,7 +408,7 @@ one-electron orbitals $\phi_i$ also called Kohn-Sham orbitals.
     T_S=-\frac{1}{2}\sum_i^N\braket{\phi_i|\nabla_i^2|\phi_i}
 \end{align}
 
-The electron density resulting from the Kohn-Sham orbitals is requiered to be
+The electron density resulting from the Kohn-Sham orbitals is required to be
 equal to the density of the real system.
 
 \begin{align}
@@ -419,7 +419,7 @@ For such a system the Coulomb interaction between electrons and nuclei can be
 calculated exactly. The only unknown remaining terms are the non-classical
 contribution to the electron-electron interaction $E_\text{nc}$ and a
 contribution to the kinetic energy because of electron correlation $T_C$. These
-terms can be combined in the exchange-correlation term $E_{XC}$.
+terms can be combined to the exchange-correlation term $E_{XC}$.
 
 \begin{align}
     E\left[\rho\right]=T_S\left[\rho\right] + J\left[\rho\right] + E_{XC}\left[\rho\right] + E_\text{Ne}\left[\rho\right] \\
@@ -466,7 +466,7 @@ which analytical functionals for exchange and correlation are known.
 
 The exchange-correlation energy $\varepsilon_{XC}\left[\rho(\mathbf{r})\right]$
 is weighted with the probability of finding and electron at this point in
-space. After separation of the the exchange and correlation parts the exchange
+space. After separation of the exchange and correlation parts the exchange
 energy can be described by a term developed by Slater.
 
 \begin{align}
@@ -476,21 +476,22 @@ energy can be described by a term developed by Slater.
 
 No simple formula for the correlation term is known.
 
-\ac{LDA} describes the inhomogeneus electron density by deviding it up into
-small homogeneus volumes. An improvement over \ac{LDA} can be made if the
-homogeneus electrondensity is expanded in a Taylor series. Truncating after the
+\ac{LDA} describes the inhomogeneous electron density by dividing it up into
+small homogeneous volumes. An improvement over \ac{LDA} can be made if the
+homogeneous electron density is expanded in a Taylor series. Truncating after the
 first term gives the \ac{LDA} approximation, including one more term is called
 the \ac{GEA}. Because \ac{GEA} doesn't correctly describe the
-exchange-correlation hole functionit gives worse results that \ac{LDA}.
+exchange-correlation hole function it gives worse results that \ac{LDA}.
 
 A break-through for theoretical chemistry has been achieved with the
-introduction of the \ac{GGA}. It uses the \ac{GEA} hole functions and taylors
+introduction of the \ac{GGA}. It uses the \ac{GEA} hole functions and tailors
 them to physically meaningful boundary conditions. 
 
 In this work the PBE functional by Perdew, Burke and Ernzerhof\autocite{PerdewGeneralizedGradientApproximation1996,PerdewGeneralizedGradientApproximation1997},
 which belongs to the group of \ac{GGA} functionals, was used for most
 calculations. They published both, correlation and exchange expressions for
 this functional.
+%%show functional
 
 \subsection{Dispersion Corrections}
 \label{sec:dispersioncorrections}
@@ -508,10 +509,10 @@ sign by convention.
 	E = E_\text{DFT} + E_\text{disp}
 \end{align}
 
-In the third generation D3 dispersion correction, that has been used in this
-work, the calculation of $E_\text{disp}$ involves solving a two- and three-body
-term. The two-body term $E^{(2)}$ is more important and is only a function of
-the distance between two nuclei $r_{AB}$.
+In the third generation D3 dispersion correction, which was used in this work,
+the calculation of $E_\text{disp}$ involves solving a two- and three-body term.
+The two-body term $E^{(2)}$ is more important and is only a function of the
+distance between two nuclei $r_{AB}$.
 
 \begin{align}
 	E^{(2)}=\sum\limits_{AB}s_6\frac{C_6^{AB}}{\left(r_{AB}\right)^6}f_{\text{dmp},6}(r_{AB}) + s_8\frac{C_8^{AB}}{\left(r_{AB}\right)^8}f_{\text{dmp},8}(r_{AB}).\label{eqn:Edisp2}
@@ -523,11 +524,11 @@ parameters is carried out differently for D2.} $s_6$ and $s_8$ are functional
 specific parameters that need to be adjusted for each different \ac{DFT}
 functional. The damping functions $f_{\text{dmp},6}$ and $f_{\text{dmp},8}$ are
 necessary to cut off the interaction at long distances. The $C_6^{AB}$
-dispersion coefficient is calculated by averaging over the dipol
+dispersion coefficient is calculated by averaging over the dipole
 polarisabilities $\alpha$ of the hydrides of the elements $A$ and $B$. The
 contributions of the hydrogen atoms have to be corrected for. The value of
-$C_6°^{AB}$ can be used to calculate $C_8^{AB}$ and $C_9^{AB}$, which shows up
-in the three-body term.
+$C_6°^{AB}$ can be used to calculate $C_8^{AB}$ and $C_9^{AB}$, which is
+contained in the three-body term.
 
 Usually, a zero damping approach is used for the damping function.
 
@@ -535,7 +536,8 @@ Usually, a zero damping approach is used for the damping function.
 	f_{\text{dmp},n} = \frac{1}{1+6\left( \frac{r_Ar_B}{s_{r,n}r_0^{AB}} \right)^{\alpha_n}}
 \end{align}
 
-The name comes from the limit of the damping function wich approaches zero with
+The name comes from the limit of the damping function which approaches zero with
 $r_{AB}$ going to infinity. Alternatively, the Becke-Johnson damping function
-can be used, which approaches a constant value with $r_AB\to\infty$.
+can be used, which approaches a constant value with $r_AB\to\infty$ - a more
+physically meaningful damping.
 
