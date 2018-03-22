@@ -1,0 +1,48 @@
+%methods
+
+\part{Methods}
+\label{sec:methods}
+
+\chapter{Quantum Chemical Programs}
+\label{sec:quantumchemicalprograms}
+
+\chapter{The Program \textsc{Spheres}}
+\label{sec:theprogramspheres}
+
+Chapters~\ref{sec:fromstickyhardspheretoLJtypeclusters} and
+\ref{sec:thegregorynewtonclusters} required methods to optimise and analyse
+arbitrary cluster structures based on a potential depending only on the
+distance between two spheres. For this purpose the program package
+\textsc{Spheres} was developed. The following chapters contain information
+about the most important classes and functions of the program.
+
+\section{General Structure}
+\label{sec:generalstructure}
+
+Most of the functions and classes of the program are contained in header files,
+that can be included in any code file. This allows the package to be quite
+flexible while maintaining readability of the code.
+
+The most basic header file is \texttt{geometry.h} which contains the classes
+responsible for holding triplets of coordinates (\texttt{coord3d}) and to
+perform basic 3x3 matrix algebra (\texttt{matrix3d}).
+
+\section{The \texttt{structure} Class}
+\label{sec:thestructureclass}
+
+
+
+\section{The \texttt{pairPotential} Class}
+\label{sec:thepairpotentialclass}
+
+\section{Optimisation of Input Structures}
+\label{sec:optimisationofinputstructures}
+
+\section{Analysing Results}
+\label{sec:analysingresults}
+
+\section{Matching Structures}
+\label{sec:matchingstructures}
+
+\section{Apps}
+\label{sec:apps}
