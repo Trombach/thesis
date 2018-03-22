@@ -538,6 +538,68 @@ Usually, a zero damping approach is used for the damping function.
 
 The name comes from the limit of the damping function which approaches zero with
 $r_{AB}$ going to infinity. Alternatively, the Becke-Johnson damping function
-can be used, which approaches a constant value with $r_AB\to\infty$ - a more
+can be used, which approaches a constant value with $r_{AB}\to\infty$ - a more
 physically meaningful damping.
 
+\section{Basis Sets}
+\label{sec:basissets}
+
+Both the Hartree-Fock approximation and \ac{DFT} are usually solved in a basis
+set expansion. For molecules in the gas phase a atom-centered approach is
+usually the method of choice. Depending on the nature of the system it can be
+beneficial to use a different approach like plane waves which are often used in
+periodic boundary calculations.
+
+The most commonly type of basis functions used in molecular calculations are
+\acp{GTO} and \acp{STO} and mainly differ by the computational cost associated
+with them. \acp{STO} are derived from the exact solutions to the hydrogen atom
+and therefore depend parametrically on the three quantum numbers $n$,
+$l$, $m$.
+
+\begin{align}
+    \chi_{\zeta_S,n,l,m}(r,\theta,\varphi) = NY_{l,m}(\theta,\varphi)r^{n-1}e^{-\zeta_S r}
+\end{align}
+
+The functions are split up into a radial part only depending on the spherical
+coordinate $r$ and the orbital coefficient $\zeta_S$ and an angular part
+$Y_{l,m}(\theta,\varphi)$ which are spherical harmonics only depending on the
+angles $\theta$ and $\varphi$. \acp{STO} describe the cusp and the exponential
+decay in the core region well, but don't have analytical solutions for three-
+or four-center integrals. They are usually only used when very high precision
+is required.
+
+\acp{GTO} use the same spherical harmonics to describe the angle dependent
+part, but contain a Gaussian function to describe the $r$-dependant term.
+
+\begin{align}
+    \begin{aligned}
+    \chi_{\zeta_G,n,l,m}(r,\theta,\varphi) &= NY_{l,m}(\theta,\varphi)r^{2n-2-l}e^{\zeta_Gr^2}\\
+    \chi_{\zeta_G,l_x,l_y,l_z}(x,y,z) &= N x^{l_x}y^{l_y}z^{l_z}e^{-\zeta r^2}
+    \end{aligned}
+\end{align}
+
+In the core region the function is continuous and its derivative is zero and
+therefore it gives a worse description of the system. However, it is possible
+to combine multiple \acp{GTO} in a linear combination to approximate the shape
+of the \ac{STO}.
+
+\begin{align}
+    \chi^\text{STO} = \sum_ia_i\chi_i^\text{GTO}
+\end{align}
+
+In addition to this expansion it is typical to use more than one
+function per atomic orbital to improve the flexibility of the basis set and
+therefore the description of the orbital. This is done by choosing different
+values for the variable $\zeta$ and combining them to one orbital. Basis sets
+with two basis functions per orbital are called "double zeta" basis sets, three
+basis functions yield a "triple zeta" basis set \textit{etc}.
+
+The inner electrons have the largest contribution to the total energy of a
+molecule. However, for questions about chemical reactivity or catalytic
+activity the valence regions are of far greater importance than the core
+regions. It is therefore beneficial to use split-valence basis sets that use
+more basis functions to describe the valence region and basis set contractions
+in the core regions. This usually leads to a smaller computational cost without
+loosing accuracy. 
+
+%ECP's!!!
