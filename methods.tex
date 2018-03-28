@@ -9,12 +9,15 @@
 \chapter{The Program \textsc{Spheres}}
 \label{sec:theprogramspheres}
 
-Chapters~\ref{sec:fromstickyhardspheretoLJtypeclusters} and
-\ref{sec:thegregorynewtonclusters} required methods to optimise and analyse
-arbitrary cluster structures based on a potential depending only on the
-distance between two spheres. For this purpose the program package
-\textsc{Spheres} was developed in \Cpp. The following chapters contain
-information about the most important classes and functions of the program.
+On the following pages the program package \textsc{Spheres} will be explained
+in detail. It was necessary to develop this code because of the projects in
+chapters~\ref{sec:fromstickyhardspheretoLJtypeclusters} and
+\ref{sec:thegregorynewtonclusters}. These required routines to optimise a given
+starting cluster geometry and analyse the results. The optimisation routine
+needed to be flexible in the way that it would be easy to implement different
+two-body potentials like Lennard-Jones or extended Lennard-Jones. The program
+was written in standard \Cpp and was tested to compile in a Linux environment
+with the \verb|clang++| compiler version 3.8.
 
 \section{General Structure}
 \label{sec:generalstructure}
@@ -23,9 +26,28 @@ Most of the functions and classes of the program are contained in header files,
 that can be included in any code file. This allows the package to be quite
 flexible while maintaining readability of the code.
 
-The most basic header file is \verb|geometry.h| which contains the classes
-responsible for holding triplets of coordinates (\verb|coord3d|) and to
-perform basic 3x3 matrix algebra (\verb|matrix3d|).
+%%%cite coord3d and matrix3d
+The most fundamental functions are contained in the \verb|geometry.h| header
+file which contains the classes responsible for holding triplets of coordinates
+(\verb|coord3d|) and to perform basic 3x3 matrix algebra (\verb|matrix3d|).
+These classes define functions and operators to perform basic vector and matrix
+operations and based on classes developed by ~~~.
+
+Each triplet of coordinates represents a sphere in a cluster and is stored in
+an individual object for each unique cluster. This is the purpose of the
+\verb|structure| class that will be explained in more detail in the next
+section.
+
+The form of the potential is handled in the \verb|pairPotential| class and,
+also, will be explained later in the text.
+
+All these different classes are combined into three main programs:
+\verb|optimize|, \verb|analyze| and \verb|match|. The first one is concerned
+purely with optimising a set of input structures based on a chosen two-body
+potential. The results of this procedure can be analysed with the second
+program to get the number of unique structures after the optimisation. The last
+program matches a set of structures with another set and outputs missing
+structures in either set.
 
 \section{The \texttt{structure} Class}
 \label{sec:thestructureclass}
@@ -57,7 +79,7 @@ hierarchy, which allows to define subclasses that inherit members from a base
 class.
 
 At the core the abstraction works the following. Let $\mathbf{x}_i$ be the
-cartesian coordiantes of sphere $i$ and the collection of all the coordinates
+cartesian coordinates of sphere $i$ and the collection of all the coordinates
 of all $N$ spheres in the system shall be denoted $\mathbf{X}$.
 %
 \begin{align}
@@ -94,7 +116,7 @@ refers to the gradient with respect to each coordinate $x$. The derivative with
 respect to the $m$th coordinate $x_m$ can be expressed as:
 
 \begin{align}
-    \frac{\partial E(\mathbf{X})}{\partial x_m}=\sum_{j>i}^N\frac{\partial\varepsilon(r_{ij})}{\partial r_{ij}}\ \frac{\partial r_{ij}}{\partial\mathbf{r}_{ij}}\ \frac{\partial\mathbf{r}_{ij}}{\partial x_m}.
+    \frac{\partial E(\mathbf{X})}{\partial x_m}=\sum_{j>i}^N\frac{\partial\varepsilon(r_{ij})}{\partial r_{ij}}\ \frac{\partial r_{ij}}{\partial\mathbf{r}_{ij}}\ \frac{\partial\mathbf{r}_{ij}}{\partial x_m}.\label{eq:gradientcomponent}
 \end{align}%
 %
 It is clear, that the terms that contain vectors are separated from the energy
@@ -128,7 +150,7 @@ collects contributions from interactions between spheres that contain the
 coordinate $x_m$. If $m$ was a coordinate present in sphere $j$ the last term
 swaps the sign of the gradient. This is a result of the fact, that the gradient
 at sphere $j$ should be opposite of the gradient at sphere $i$. The final
-gradient is given by calculation all partial derivatives with respect to $x_m$.
+gradient is given by calculating all partial derivatives with respect to $x_m$.
 
 \begin{align}
     \frac{\dif E(\mathbf{X})}{\dif \mathbf{X}}=
@@ -139,6 +161,43 @@ gradient is given by calculation all partial derivatives with respect to $x_m$.
         \nicefrac{\partial E(\mathbf{X})}{\partial x_{3N}}
     \end{pmatrix}
 \end{align}
+
+The separation of the vector and scalar components allows for easy exchange of
+the energy functions as the calculations that take care of the direction of the
+gradient can be completely separated out. In the program, the
+\texttt{pairPotential} base class contains the routines concerned with the last
+to terms of equation~\eqref{eq:gradientcomponent}, while the functions for
+energy and gradient are declared to be \texttt{virtual}. They are only defined
+in the classed derived from the base class.
+
+The same procedure can be applied to the second derivative to calculate a
+Hessian matrix. Again, the important part is to separate the scalar energy
+function from vector parts. This leads to the following equations.
+
+\begin{align}
+    \frac{\partial^2 E(\mathbf{X})}{\partial x_m\partial x_n}=\sum_{j>i}^N\left[  
+    \begin{array}{ll}
+    \frac{\partial^2 \varepsilon(r_{ij})}{\partial {r_{ij}}^2}\  
+    \frac{\partial r_{ij}}{\partial\mathbf{r}_{ij}}\ 
+    \frac{\partial\mathbf{r}_{ij}}{\partial x_m}\ 
+    \frac{\partial r_{ij}}{\partial\mathbf{r}_{ij}}\ 
+    \frac{\partial\mathbf{r}_{ij}}{\partial x_n} \\ 
+    +
+    \frac{\partial \varepsilon(r_{ij})}{\partial r_{ij}}\
+    \frac{\partial^2 r_{ij}}{\partial {\mathbf{r}_{ij}}^2}\ 
+    \frac{\partial\mathbf{r}_{ij}}{\partial x_m}\ 
+    \frac{\partial\mathbf{r}_{ij}}{\partial x_n} 
+    \end{array}
+    \right]\\
+    \frac{\dif E(\mathbf{X})}{\dif\mathbf{X}}=
+    \begin{pmatrix}
+        \nicefrac{\partial^2 E(\mathbf{X})}{{\partial x_1}^2} & \nicefrac{\partial^2 E(\mathbf{X})}{\partial x_1\partial x_2} & \ldots & \nicefrac{\partial^2 E(\mathbf{X})}{\partial x_1\partial x_{3N}}\\
+        \nicefrac{\partial^2 E(\mathbf{X})}{\partial x_2\partial x_1} & \nicefrac{\partial^2 E(\mathbf{X})}{{\partial x_2}^2} & \ldots & \nicefrac{\partial^2 E(\mathbf{X})}{\partial x_2\partial x_{3N}}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        \nicefrac{\partial^2 E(\mathbf{X})}{\partial x_{3N}\partial x_1} & \nicefrac{\partial^2 E(\mathbf{X})}{\partial x_{3N}\partial x_2} & \ldots & \nicefrac{\partial^2 E(\mathbf{X})}{{\partial x_{3N}}^2}
+    \end{pmatrix}
+\end{align}
+
 
 \section{Optimisation of Input Structures}
 \label{sec:optimisationofinputstructures}
