@@ -85,7 +85,7 @@ of all $N$ spheres in the system shall be denoted $\mathbf{X}$.
 \begin{align}
     \begin{aligned}
         \mathbf{X}=(\mathbf{x}_1,\mathbf{x}_2,\ldots,\mathbf{x}_N,)&=(x_1,x_2,\ldots,x_{3N}) \\
-            \mathbf{x}_i &= (x_{3i},x_{3i+1},x_{3i+2})
+            \mathbf{x}_i &= (x_{3i-2},x_{3i-1},x_{3i})
     \end{aligned}
 \end{align}%
 %
@@ -95,11 +95,11 @@ distance vector $\mathbf{r}_{ij}$.
 \begin{align}
     \mathbf{r}_{ij}=\mathbf{x}_i-\mathbf{x}_j=
     \begin{pmatrix}
-        x_{3i} - x_{3j}\\
-        x_{3i+1} - x_{3j+1}\\
-        x_{3i+2} - x_{3j+2}
+        x_{3i-2} - x_{3j-2}\\
+        x_{3i-1} - x_{3j-1}\\
+        x_{3i} - x_{3j}
     \end{pmatrix}\label{eq:distancevector}\\
-    |\mathbf{r}_{ij}|=r_{ij}=\sqrt{(x_{3i} - x_{3j})^2 + (x_{3i+1} - x_{3j+1})^2 + (x_{3i+2} - x_{3j+2})^2}\label{eq:distance}
+    |\mathbf{r}_{ij}|=r_{ij}=\sqrt{(x_{3i-2} - x_{3j-2})^2 + (x_{3i-1} - x_{3j-1})^2 + (x_{3i} - x_{3j})^2}\label{eq:distance}
 \end{align}
 %
 The energy of the system is a function of all sphere coordinates $\mathbf{X}$,
@@ -137,14 +137,14 @@ $i$ nor in $j$ its result is a zero vector making the whole expression vanish.
 Let's assume $m=3i+1$, then the last expression becomes:
 
 \begin{align}
-    \pdv{\mathbf{r}_{ij}}{x_{3i+1}}=
+    \pdv{\mathbf{r}_{ij}}{x_{3i-1}}=
     \begin{pmatrix}
         0\\1\\0
     \end{pmatrix}.
 \end{align}%
 %
 For this example the scalar product of this vector with the normalised distance
-vector $\mathbf{r}_{ij}$ is $\frac{1}{r_{ij}}(x_{3i+1} - x_{3j+1})$. Therefore,
+vector $\mathbf{r}_{ij}$ is $\frac{1}{r_{ij}}(x_{3i-1} - x_{3j-1})$. Therefore,
 the last term ensures that the $m$th component of the gradient vector only
 collects contributions from interactions between spheres that contain the
 coordinate $x_m$. If $m$ was a coordinate present in sphere $j$ the last term
@@ -193,7 +193,7 @@ function from vector parts. This leads to the following equations.
     \dv[2]{E(\mathbf{X})}{\mathbf{X}}=\\
     \begin{pmatrix}
         \pdv*[2]{E(\mathbf{X})}{{x_1}} & \pdv*{E(\mathbf{X})}{x_1}{x_2} & \ldots & \pdv*{E(\mathbf{X})}{x_1}{x_{3N}}\\
-        \pdv*{E(\mathbf{X})}{x_2}{x_1} & \pdv*[2]{E(\mathbf{X})}{{\partial x_2}} & \ldots & \pdv*{E(\mathbf{X})}{x_2}{x_{3N}}\\
+        \pdv*{E(\mathbf{X})}{x_2}{x_1} & \pdv*[2]{E(\mathbf{X})}{{x_2}} & \ldots & \pdv*{E(\mathbf{X})}{x_2}{x_{3N}}\\
         \vdots & \vdots & \ddots & \vdots\\
         \pdv*{E(\mathbf{X})}{x_{3N}}{x_1} & \pdv*{E(\mathbf{X})}{x_{3N}}{x_2} & \ldots & \pdv*[2]{E(\mathbf{X})}{{x_{3N}}}
     \end{pmatrix}
