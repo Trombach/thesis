@@ -50,24 +50,24 @@ which is used to normalise it such that the probability of finding an electron
 anywhere in space is one.
 
 \begin{align}
-	\int |\Psi(\mathbf{x})|^2\dif \mathbf{x}_1\dif \mathbf{x}_2\ldots\dif \mathbf{x}_N=\braket{\Psi(\mathbf{x})|\Psi(\mathbf{x})}=1
+	\int |\Psi(\mathbf{x})|^2\dd \mathbf{x}_1\dd \mathbf{x}_2\ldots\dd \mathbf{x}_N=\braket{\Psi(\mathbf{x})}=1
 \end{align}
 
 The information contained in the wave function can be accessed by an operator
 $\mathbf{O}$ acting on the wave function and forming an eigenvalue equation. In
 equation~\eqref{eqn:SchrodingerEquation} this operator is the Hamilton
 operator, but it could be any operator connected to a physical observable.
-Generally, the eigenvalue of an arbitrary operator $\braket{\mathbf{O}}$ is
+Generally, the expectation value of an arbitrary operator $\expval{\mathbf{O}}$ is
 defined as
 
 \begin{equation}
-	\braket{\mathbf{O}}=\frac{\braket{\Psi(\mathbf{x})|\mathbf{O}|\Psi(\mathbf{x})}}{\braket{\Psi(\mathbf{x})|\Psi(\mathbf{x})}},
+    \expval{\mathbf{O}}=\frac{\expval{\mathbf{O}}{\Psi(\mathbf{x})}}{\braket{\Psi(\mathbf{x})}},
 \end{equation}
 
 or for normalised wave functions
 
 \begin{align}
-	\braket{\mathbf{O}}=\braket{\Psi(\mathbf{x})|\mathbf{O}|\Psi(\mathbf{x})}.
+    \expval{\mathbf{O}}=\expval{\mathbf{O}}{\Psi(\mathbf{x})}.
 \end{align}
 
 For a system of $N$ electrons and $M$ nuclei the non-relativistic Hamilton
@@ -168,9 +168,9 @@ eigenvalue.
 
 \begin{align}
     \begin{aligned}
-        h_1&=\braket{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)|\mathbf{h}_1|\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}\\
-        &=\braket{\phi_1(\mathbf{x}_1)|\mathbf{h}_1|\phi_1(\mathbf{x}_1)}\braket{\phi_2(\mathbf{x}_2)|\phi_2(\mathbf{x}_2)}\ldots\braket{\phi_N(\mathbf{x}_N)|\phi_N(\mathbf{x}_N)} \\
-        &=\braket{\phi_1(\mathbf{x}_1)|\mathbf{h}_1|\phi_1(\mathbf{x}_1)}
+        h_1&=\mel{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}{\mathbf{h}_1}{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}\\
+        &=\mel{\phi_1(\mathbf{x}_1)}{\mathbf{h}_1}{\phi_1(\mathbf{x}_1)}\braket{\phi_2(\mathbf{x}_2)}\ldots\braket{\phi_N(\mathbf{x}_N)} \\
+        &=\mel{\phi_1(\mathbf{x}_1)}{\mathbf{h}_1}{\phi_1(\mathbf{x}_1)}
     \end{aligned}
 \end{align}
 
@@ -184,9 +184,9 @@ element $J_{ij}$, which can be interpreted as the classical Coulomb repulsion.
 
 \begin{align}
     \begin{aligned}
-        J_{12}&=\braket{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)|\mathbf{g}_{12}|\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}\\
-        &=\braket{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)|\mathbf{g}_{12}|\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)}\ldots\braket{\phi_N(\mathbf{x}_N)|\phi_N(\mathbf{x}_N)} \\
-        &=\braket{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)|\mathbf{g}_{12}|\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)}
+        J_{12}&=\mel{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}{\mathbf{g}_{12}}{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}\\
+        &=\mel{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)}{\mathbf{g}_{12}}{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)}\ldots\braket{\phi_N(\mathbf{x}_N)} \\
+        &=\mel{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)}{\mathbf{g}_{12}}{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)}
     \end{aligned}
 \end{align}
 
@@ -196,9 +196,9 @@ electron coordinates have been swapped.
 
 \begin{align}
     \begin{aligned}
-        K_{12}&=\braket{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)|\mathbf{g}_{12}|\phi_2(\mathbf{x}_1)\phi_1(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}\\
-        &=\braket{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)|\mathbf{g}_{12}|\phi_2(\mathbf{x}_1)\phi_1(\mathbf{x}_2)}\ldots\braket{\phi_N(\mathbf{x}_N)|\phi_N(\mathbf{x}_N)} \\
-        &=\braket{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)|\mathbf{g}_{12}|\phi_2(\mathbf{x}_1)\phi_1(\mathbf{x}_2)}
+        K_{12}&=\mel{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}{\mathbf{g}_{12}}{\phi_2(\mathbf{x}_1)\phi_1(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}\\
+        &=\mel{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)}{\mathbf{g}_{12}}{\phi_2(\mathbf{x}_1)\phi_1(\mathbf{x}_2)}\ldots\braket{\phi_N(\mathbf{x}_N)} \\
+        &=\mel{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)}{\mathbf{g}_{12}}{\phi_2(\mathbf{x}_1)\phi_1(\mathbf{x}_2)}
     \end{aligned}
 \end{align}
 
@@ -215,10 +215,10 @@ Defining operators $\mathbf{J}_i$ and $\mathbf{K}_i$ for Coulomb and exchange
 integral equation~\eqref{eqn:HFenergy} becomes
 
 \begin{align}
-    E=\sum_{i=1}^N\braket{\phi_i|\mathbf{h}_i|\phi_i} + \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N \left( \braket{\phi_i|\mathbf{J}_j|\phi_i} - \braket{\phi_i|\mathbf{K}_j|\phi_i} \right) + V_\text{nn}\\
+    E=\sum_{i=1}^N\mel{\phi_i}{\mathbf{h}_i}{\phi_i} + \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N \left( \mel{\phi_i}{\mathbf{J}_j}{\phi_i} - \mel{\phi_i}{\mathbf{K}_j}{\phi_i} \right) + V_\text{nn}\\
     \begin{aligned}
-		\mathbf{J}_i\ket{\phi_j(\mathbf{x}_j)}&=\braket{\phi_i(\mathbf{x}_i)|\mathbf{g}_{ij}|\phi_i(\mathbf{x}_i)}\ket{\phi_j(\mathbf{x}_j)}\\
-		\mathbf{K}_i\ket{\phi_j(\mathbf{x}_j)}&=\braket{\phi_i(\mathbf{x}_i)|\mathbf{g}_{ij}|\phi_j(\mathbf{x}_i)}\ket{\phi_i(\mathbf{x}_j)}.
+        \mathbf{J}_i\ket{\phi_j(\mathbf{x}_j)}&=\mel{\phi_i(\mathbf{x}_i)}{\mathbf{g}_{ij}}{\phi_i(\mathbf{x}_i)}\ket{\phi_j(\mathbf{x}_j)}\\
+        \mathbf{K}_i\ket{\phi_j(\mathbf{x}_j)}&=\mel{\phi_i(\mathbf{x}_i)}{\mathbf{g}_{ij}}{\phi_j(\mathbf{x}_i)}\ket{\phi_i(\mathbf{x}_j)}.
     \end{aligned}\label{eqn:HFenergyoperator}
 \end{align}
 
@@ -280,7 +280,7 @@ approximation.
 \begin{align}
     \begin{aligned}
         \mathbf{f}_i\sum_\alpha^Pc_{\alpha i}\chi_\alpha&=\varepsilon_i\sum_\alpha^Pc_{\alpha i}\chi_\alpha \\
-        \sum_\alpha^Pc_{\alpha i}\underbrace{\braket{\chi_\alpha|\mathbf{f}_i|\chi_\beta}}_{F_{\alpha\beta}}&=\varepsilon_i\sum_\alpha^Pc_{\alpha i}\underbrace{\braket{\chi_\alpha|\chi_\beta}}_{S_{\alpha\beta}}
+        \sum_\alpha^Pc_{\alpha i}\underbrace{\mel{\chi_\alpha}{\mathbf{f}_i}{\chi_\beta}}_{F_{\alpha\beta}}&=\varepsilon_i\sum_\alpha^Pc_{\alpha i}\underbrace{\braket{\chi_\alpha}{\chi_\beta}}_{S_{\alpha\beta}}
     \end{aligned}
 \end{align}
 
@@ -332,14 +332,14 @@ function based methods. However, the electron density is related to the wave
 function via its square. 
 
 \begin{align}
-    \rho(\mathbf{r}_1)=N\int\dots\int|\Psi(\mathbf{x}_1,\mathbf{x}_2,\dots,\mathbf{x}_N)|^2\;\dif\omega_1\dif\mathbf{x}_2\dots\dif\mathbf{x}_N\label{eqn:electrondensity}
+    \rho(\mathbf{r}_1)=N\int\dots\int|\Psi(\mathbf{x}_1,\mathbf{x}_2,\dots,\mathbf{x}_N)|^2\;\dd\omega_1\dd\mathbf{x}_2\dots\dd\mathbf{x}_N\label{eqn:electrondensity}
 \end{align}
 
 Equation~\eqref{eqn:electrondensity} describes the probability density of
-finding one of the $N$ electrons in the volume $\dif \mathbf{r}_1$ with
+finding one of the $N$ electrons in the volume $\dd \mathbf{r}_1$ with
 arbitrary spin. All other $(N-1)$ electrons occupy any volume elements, but
 have opposite spin. As electrons are indistinguishable the probability to find
-any of the $N$ electrons in the volume $\dif\mathbf{r}_1$ is equal to $N$ times
+any of the $N$ electrons in the volume $\dd\mathbf{r}_1$ is equal to $N$ times
 the probability of finding a specific electron in that volume.  A justification
 for using the electron density instead of the wave function was found by
 Hohenberg and Kohn in 1964.
@@ -365,7 +365,7 @@ to the Hohenberg-Kohn functional $F_\text{HK}\left[ \rho_0(
 \mathbf{r})\right]$.
 
 \begin{align}
-    E_0\left[ \rho_0(\mathbf{r}) \right] = \int\dif\mathbf{r}\rho_0(\mathbf{r})V_\text{Ne}+ F_\text{HK}\left[ \rho_0(\mathbf{r})\right]\label{eqn:energyDFTHK}
+    E_0\left[ \rho_0(\mathbf{r}) \right] = \int\dd\mathbf{r}\rho_0(\mathbf{r})V_\text{Ne}+ F_\text{HK}\left[ \rho_0(\mathbf{r})\right]\label{eqn:energyDFTHK}
 \end{align}
 
 Would the exact Hohenberg-Kohn functional be known
@@ -377,7 +377,7 @@ classical Coulomb term $J\left[\rho\right]$ and a non-classical energy contribut
 $E_\text{nc}\left[\rho\right]$.
 
 \begin{align}
-    E_\text{ee} \left[ \rho \right]=J\left[\rho\right]+E_\text{nc}\left[\rho\right]=\frac{1}{2}\iint\frac{\rho(\mathbf{r}_1)\rho(\mathbf{r}_2)}{r_{12}}\dif\mathbf{r}_1\dif\mathbf{r}_2+E_\text{nc}\left[\rho\right]
+    E_\text{ee} \left[ \rho \right]=J\left[\rho\right]+E_\text{nc}\left[\rho\right]=\frac{1}{2}\iint\frac{\rho(\mathbf{r}_1)\rho(\mathbf{r}_2)}{r_{12}}\dd\mathbf{r}_1\dd\mathbf{r}_2+E_\text{nc}\left[\rho\right]
 \end{align}
 
 The second Hohenberg-Kohn theorem warrants that a trial energy density
@@ -404,7 +404,7 @@ energy $T_S$ can be expressed in terms of a Slater determinant consisting of
 one-electron orbitals $\phi_i$ also called Kohn-Sham orbitals.
 
 \begin{align}
-    T_S=-\frac{1}{2}\sum_i^N\braket{\phi_i|\nabla_i^2|\phi_i}
+    T_S=-\frac{1}{2}\sum_i^N\mel{\phi_i}{\nabla_i^2}{\phi_i}
 \end{align}
 
 The electron density resulting from the Kohn-Sham orbitals is required to be
@@ -423,8 +423,8 @@ terms can be combined to the exchange-correlation term $E_{XC}$.
 \begin{align}
     E\left[\rho\right]=T_S\left[\rho\right] + J\left[\rho\right] + E_{XC}\left[\rho\right] + E_\text{Ne}\left[\rho\right] \\
     \begin{aligned}
-    =&-\frac{1}{2}\sum_i^N\braket{\phi_i|\nabla_i^2|\phi_i} + \frac{1}{2}\sum_i^N\sum_j^N\iint \dif\mathbf{r}_1\dif\mathbf{r}_2|\phi_i(\mathbf{r}_1)|^2\frac{1}{r_{12}}|\phi_j(\mathbf{r}_2|^2 \\
-        &+ E_{XC}\left[\rho\right] - \sum_i^N\int\dif\mathbf{r}_1\sum_A^M|\phi_i(\mathbf{r}_1)|^2
+        =&-\frac{1}{2}\sum_i^N\mel{\phi_i}{\nabla_i^2}{\phi_i} + \frac{1}{2}\sum_i^N\sum_j^N\iint \dd\mathbf{r}_1\dd\mathbf{r}_2|\phi_i(\mathbf{r}_1)|^2\frac{1}{r_{12}}|\phi_j(\mathbf{r}_2)|^2 \\
+        &+ E_{XC}\left[\rho\right] - \sum_i^N\int\dd\mathbf{r}_1\sum_A^M|\phi_i(\mathbf{r}_1)|^2
     \end{aligned}\label{eqn:energyKS}
 \end{align}
 
@@ -435,7 +435,7 @@ definition of a Kohn-Sham operator $\mathbf{f}_\text{KS}$ analogous to the Fock
 operator in Hartree-Fock theory.
 
 \begin{align}
-    V_S(\mathbf{r}_1) = \int\dif\mathbf{r}_2\frac{\rho(\mathbf{r}_2i)}{r_{12}} + V_{XC}(\mathbf{r}_1) - \sum_A^M\frac{Z_A}{r_{1A}}\\
+    V_S(\mathbf{r}_1) = \int\dd\mathbf{r}_2\frac{\rho(\mathbf{r}_2)}{r_{12}} + V_{XC}(\mathbf{r}_1) - \sum_A^M\frac{Z_A}{r_{1A}}\\
     \mathbf{f}_\text{KS} = -\frac{1}{2}\nabla^2+V_S(\mathbf{r}_1)\\
     \mathbf{f}_\text{KS}\phi_i=\varepsilon_i\phi_i
 \end{align}
@@ -460,7 +460,7 @@ the oldest being the \ac{LDA}. It is based on the uniform electron gas for
 which analytical functionals for exchange and correlation are known.
 
 \begin{align}
-    E_{XC}^\text{LDA}\left[\rho\right]=\int\rho(\mathbf{r})\varepsilon_{XC}\left[\rho(\mathbf{r})\right]\dif\mathbf{r}
+    E_{XC}^\text{LDA}\left[\rho\right]=\int\rho(\mathbf{r})\varepsilon_{XC}\left[\rho(\mathbf{r})\right]\dd\mathbf{r}
 \end{align}
 
 The exchange-correlation energy $\varepsilon_{XC}\left[\rho(\mathbf{r})\right]$
@@ -470,7 +470,7 @@ energy can be described by a term developed by Slater.
 
 \begin{align}
 	\varepsilon_{XC}\left[\rho(\mathbf{r})\right] = \varepsilon_{X}\left[\rho(\mathbf{r})\right] + \varepsilon_{C}\left[\rho(\mathbf{r})\right]\\
-	E_{X}^\text{LDA}\left[\rho\right] = -C_X\int\rho(\mathbf{r})^{\frac{4}{3}}\dif\mathbf{r}
+	E_{X}^\text{LDA}\left[\rho\right] = -C_X\int\rho(\mathbf{r})^{\frac{4}{3}}\dd\mathbf{r}
 \end{align}
 
 No simple formula for the correlation term is known.
