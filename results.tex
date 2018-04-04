@@ -44,13 +44,13 @@ Cleveland_energeticsstructurenickel_1991, vandewaal96a, Doye-1995,
 vandeWaalTd00}.  For example, Krainyukova experimentally studied the growth of
 argon clusters \autocite{Krainyukova-2012}, and found that small, initially
 icosahedral clusters transform into anti-Mackay clusters for $N>2000$, and
-finally into the closed packed fcc or hcp structures at $N>10^5$ atoms, in
+finally into the \ac{fcc} or hcp structures at $N>10^5$ atoms, in
 qualitative agreement with theoretical predictions using \ac{LJ} type
 potentials \autocite{Martin-1996,
 Schwerdtfeger_ExtensionLennardJonespotential_2006, Krainyukova-2007}.  The
 notorious \textit{ rare gas problem} was solved only very recently by accurate
 relativistic quantum methods, correctly predicting a slight preference of the
-fcc over the hcp phase due to phonon dispersion \autocite{Schwerdtfeger-2016}.
+\ac{fcc} over the hcp phase due to phonon dispersion \autocite{Schwerdtfeger-2016}.
 
 Simple models often have to be used to simulate cluster growth and nucleation
 \autocite{Johnston-1999, Shibuta_Homogeneousnucleationmicrostructure_2015,
@@ -247,7 +247,7 @@ Figure \ref{fig:LJ} (dashed line).
 %Exploring the limits of Lennard-Jones
 \subsection{Exploring the limits of Lennard-Jones}
 
-To study the convergence behavior of the number of distinct (nonisomorphic) LJ minima in
+To study the convergence behaviour of the number of distinct (nonisomorphic) LJ minima in
 the SHS limit, we performed geometry optimisations,
 starting from all nonisomorphic SHS structures.  We will show later that the
 number of unique minima obtained in this procedure $|\mathcal{M}_\mathrm{SHS\to
@@ -422,7 +422,7 @@ It is also clear that (as expected) the distributions narrow with increasing $n$
 
 
 It is well known that the global minimum for rare gas clusters with 13 atoms is
-the ideal Mackay icosahedron \autocite{Hoare_Physicalclustermechanics_1975,Hoare_Statisticalmechanicsmorphology_1976,hoare79}. Simple
+the ideal Mackay icosahedron \autocite{Hoare_Physicalclustermechanics_1975,Hoare_Statisticalmechanicsmorphology_1976,Hoare_StructureDynamicsSimple_2007}. Simple
 geometric considerations imply that such a symmetric cluster is not possible
 for sticky hard spheres; all vertices of a regular icosahedron with unit edge length
 lie on a circumscribing sphere with radius $r_c\approx 0.951$, making it
@@ -605,7 +605,7 @@ Finally, we note that the starting SHS minima in our optimisation procedure are
 not stationary points on the LJ hypersurface, and we therefore optimise to most
 but not all local and available LJ minima. This observation explains why some high-energy
 structures were not found by our optimisation procedure. For a smooth change in the topology of the potential energy surface
-from SHS to LJ type clusters one has to continuously vary the exponents $(n,m)$
+from SHS to LJ type clusters one has to continuously vary the exponents $(m,n)$
 in real space, which is computationally too demanding.
 
 
@@ -618,7 +618,13 @@ in real space, which is computationally too demanding.
 }
 \label{sec:thegregorynewtonclusters}
 
-\section{The Gregory-Newton Problem for Soft Potentials}
+\section{Introduction}
+\label{sec:introductiongregorynewton}
+
+\section{Results}
+\label{sec:resultsgregorynewton}
+
+\subsection{The Gregory-Newton Problem for Soft Potentials}
 \label{sec:thegregorynewtonproblemforsoftpotentials}
 
 The question of the Newton number in three dimensions has been resolved almost
@@ -688,28 +694,77 @@ clusters do not necessarily have longer bonds compared to the solid state,
 where we expect a maximum in interaction energy per atom.
 
 
-\section{The Smallest Gregory-Newton Clusters}
+\subsection{The Smallest Gregory-Newton Clusters}
 \label{sec:themsmallestgregorynewtonclusters}
 
-Ref.~\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016} contains a putatively complete set
-of hard-sphere clusters with $N=13$ and $N=14$.  We find a surprisingly large
-number ($737$) of nonisomorphic $N = 13$ \ac{GN}-\ac{SHS} structures ($\{724,10,1,2\}$
-for $N_c=\{33,34,35,36\}$), that all optimise to the ideal icosahedral
-arrangement ($I_h$ symmetry) if a $(6,12)$-\ac{LJ} potential is applied.
+Ref.~\cite{Holmes-Cerfon_EnumeratingRigidSphere_2016} contains a putatively
+complete set of hard-sphere clusters with $N=13$ and $N=14$.  We find a
+surprisingly large number ($737$) of nonisomorphic $N = 13$ \ac{GN}-\ac{SHS}
+structures ($\{724,10,1,2\}$ for $N_c=\{33,34,35,36\}$), that all optimise to
+the ideal icosahedral arrangement ($I_h$ symmetry) if a $(6,12)$-\ac{LJ}
+potential is applied. This large number results from the fact, that the 12
+spheres surrounding the center sphere can't be arranged in icosahedral
+symmetry; there have to be some gaps. Since all of these structures seem to be
+related to the icosahedron by geometry optimisation we investigated their shell
+structures graph theoretically. We define the shell to be the polyhedron
+created by the 12 spheres surrounding the center sphere. The graphs of the
+shells can now be compared to the ideal icosahedral graph depicted in
+figure~\ref{fig:icograph}.
 
-\section{Adding a 14th Sphere}
+\begin{figure}
+    \centering
+    \includegraphics[width=.8\textwidth]{gregory-newton/ico.pdf}
+    \caption{Two-dimensional projection of the icosahedral graph. Numbers refer
+    to the respective node index.}
+    \label{fig:icograph}
+\end{figure}
+
+We used the \textit{VF2} algorithm\autocite{Cordella_SubGraphIsomorphism_2004}
+as implemented in the \textit{boost} graph library\autocite{_boost_2002} to
+check the graphs of the \ac{GN} shells for subgraph-isomorphism with respect to
+the icosahedral graph. Including edge-induced subgraphs in the search yields all 737
+12-sphere shells to be subgraphs of the icosahedral graph, which means their
+vertices can all be mapped to vertices of the icosahedral graph such that there
+will be no edges not present in the icosahedral graph. The graphs of the
+12-sphere shells can now be described in terms of removed edges with respect to
+the icosahedral graph. An extensive list of all subgraphs is included in
+appendix~\ref{sec:listofgregorynewtonshells} (table~\ref{tab:icosubgraphs}).
+
+The results show, that at least six edges and up to a maximum of nine have to
+be removed from the icosahedral graph to create the graph of one of the \ac{GN}
+cluster shells. There are only two structures with the maximum edge count $E$
+of $24$, which are fragments of the \ac{fcc} and hcp bulk, respectively. They are
+the result from removing 6 edges in such a way, that every vertex in the
+icosahedral graph has exactly one edge removed (figure~\ref{fig:hcpfccgraphs}).
+
+\begin{figure}
+    \centering
+    \subfloat[\ac{fcc}.]{\includegraphics[width=0.4\textwidth]{gregory-newton/fcc.pdf}}\hspace{0.5cm}
+    \subfloat[hcp.]{\includegraphics[width=0.4\textwidth]{gregory-newton/hcp.pdf}}
+    \caption{Graphs of \ac{fcc} and hcp clusters mapped onto the icosahedral graph.
+    Red lines indicate the edges that were removed to create the \ac{GN}
+    cluster shell.}
+    \label{fig:hcpfccgraphs}
+\end{figure}
+
+Removing edges in this way means the resulting graphs only consists of
+triangles and rectangles. The difference between the \ac{fcc} and hcp clusters is in
+the way their square faces are connected. In \ac{fcc} the square faces only connect
+via edges, while in hcp the square faces come in pairs sharing one edge. 
+
+\subsection{Adding a 14th Sphere}
 \label{sec:addinga14thsphere}
 
 
 Most of these $N=14$ clusters are minimally rigid ($N_c=3N-6=36$), while only a
 few are hyperstatic ($N_c > 3N-6$) and none are hypostatic ($N_c < 3N-6$).
 There are $\{14369,144,8,6,2\}$ such clusters with $N_c=\{36,37,38,39,40\}$ and
-$N=14$.  The clusters with $N_c=40$ are hcp and fcc core-shell structures
+$N=14$.  The clusters with $N_c=40$ are hcp and \ac{fcc} core-shell structures
 capped at a square face; these arrangements maximise $N_c$. Most of the
 clusters with $N_c=\{38,39\}$ are deformed versions of the elongated pentagonal
 bipyramid mentioned above, indicating that this arrangement is a favoured route
 to these intermediate-energy structures.  However, $N_c=39$ also contains hcp
-and fcc structures capped at a triangular face.  The first example of a cluster
+and \ac{fcc} structures capped at a triangular face.  The first example of a cluster
 derived from a perfect icosahedral symmetry shows up at lower value $N_c=37$
 (!).  Representative examples for clusters with high contact numbers are
 depicted in Figure~\ref{fig:N14}.  
