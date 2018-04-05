@@ -735,22 +735,60 @@ be removed from the icosahedral graph to create the graph of one of the \ac{GN}
 cluster shells. There are only two structures with the maximum edge count $E$
 of $24$, which are fragments of the \ac{fcc} and hcp bulk, respectively. They are
 the result from removing 6 edges in such a way, that every vertex in the
-icosahedral graph has exactly one edge removed (figure~\ref{fig:hcpfccgraphs}).
+icosahedral graph has exactly one edge removed (figure~\ref{fig:GNshellgraphs}).
 
 \begin{figure}
     \centering
-    \subfloat[\ac{fcc}.]{\includegraphics[width=0.4\textwidth]{gregory-newton/fcc.pdf}}\hspace{0.5cm}
-    \subfloat[hcp.]{\includegraphics[width=0.4\textwidth]{gregory-newton/hcp.pdf}}
-    \caption{Graphs of \ac{fcc} and hcp clusters mapped onto the icosahedral graph.
+    \subfloat[\ac{fcc}, $E=24$.\label{subfig:fccgraph}]{\includegraphics[width=0.3\textwidth]{gregory-newton/fcc.pdf}}\hspace{0.03\textwidth}
+    \subfloat[hcp, $E=24$.\label{subfig:hcpgraph}]{\includegraphics[width=0.3\textwidth]{gregory-newton/hcp.pdf}}\hspace{0.03\textwidth}
+    \subfloat[Johnson solid, $E=23$.\label{subfig:johnsongraph}]{\includegraphics[width=0.3\textwidth]{gregory-newton/johnson.pdf}}
+    \caption{Graphs of some \ac{GN} clusters mapped onto the icosahedral graph.
     Red lines indicate the edges that were removed to create the \ac{GN}
     cluster shell.}
-    \label{fig:hcpfccgraphs}
+    \label{fig:GNshellgraphs}
 \end{figure}
 
 Removing edges in this way means the resulting graphs only consists of
 triangles and rectangles. The difference between the \ac{fcc} and hcp clusters is in
 the way their square faces are connected. In \ac{fcc} the square faces only connect
 via edges, while in hcp the square faces come in pairs sharing one edge. 
+
+These two cluster structures are the only ones possible when removing only six
+edges. The reason for this can be explained by examining the structure of the
+13-sphere Mackay icosahedron with respect to the limitations of the \ac{SHS}
+potential. There are six $C_6$ symmetry axis in the $I_h$ point group. In the
+ideal Mackay icosahedron there are pentagonal bipyramid motifs aligned along
+those axis such that one of the tips coincides with the central atom and the
+other tip becomes part of the 12-sphere shell. The pentagonal bipyramid is a
+structural motif that can't be realised under \ac{SHS} conditions. This can be
+explained by looking at the motif as being composed of five tetrahedra glued
+together at their faces. Ideal tetrahedra can't be combined in this way as two
+vertices of the tetrahedra have to lose
+contact.\autocite{Hayes_ScienceStickySpheres_2012} One can choose to either
+break this connection between the tips of the bipyramid of between two vertices
+of the pentagonal ring. In the \ac{GN} clusters this choice is restricted by
+the fact that the connection between the tips of the bipyramid can't be broken
+as this is one of the 12 \ac{COS} contact points (figure~\ref{fig:icopent}).
+This only leaves the choice of breaking one bond of the pentagonal ring, which
+has to happen once for every $C_6$ axis. The only possible solutions to this
+lead to the two closed-packed clusters.
+
+Removing one more edge yields only one possible \ac{GN} cluster with a shell
+resembling an elongated pentagonal bipyramid
+(figure~\ref{subfig:johnsongraph}). It consists of four edge-connected square
+faces, a hexagonal face connecting the square faces and triangular faces.
+
+There are 10 nonisomorphic structures if eight edges are removed, but the
+majority of \ac{GN} clusters result from the removal of the maximum of nine
+edges.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.5\textwidth]{gregory-newton/icopent.png}
+    \caption{13-sphere Mackay icosahedron. Orange spheres and bonds highlight
+    the pentagonal bipyramid motif.}
+    \label{fig:icopent}
+\end{figure}
 
 \subsection{Adding a 14th Sphere}
 \label{sec:addinga14thsphere}
