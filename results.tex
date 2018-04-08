@@ -703,13 +703,12 @@ surprisingly large number ($737$) of nonisomorphic $N = 13$ \ac{GN}-\ac{SHS}
 structures ($\{724,10,1,2\}$ for $N_c=\{33,34,35,36\}$), that all optimise to
 the ideal icosahedral arrangement ($I_h$ symmetry) if a $(6,12)$-\ac{LJ}
 potential is applied. This large number results from the fact, that the 12
-spheres surrounding the center sphere can't be arranged in icosahedral
-symmetry; there have to be some gaps. Since all of these structures seem to be
-related to the icosahedron by geometry optimisation we investigated their shell
-structures graph theoretically. We define the shell to be the polyhedron
-created by the 12 spheres surrounding the center sphere. The graphs of the
-shells can now be compared to the ideal icosahedral graph depicted in
-figure~\ref{fig:icograph}.
+spheres surrounding the center sphere can't be arranged with icosahedral
+symmetry. Since all of these structures seem to be related to the icosahedron
+by geometry optimisation we investigated their shell structures
+graph-theoretically. We define the shell to be the polyhedron created by the 12
+spheres surrounding the center sphere. The graphs of the shells can now be
+compared to the ideal icosahedral graph depicted in figure~\ref{fig:icograph}.
 
 \begin{figure}
     \centering
@@ -722,7 +721,7 @@ figure~\ref{fig:icograph}.
 We used the \textit{VF2} algorithm\autocite{Cordella_SubGraphIsomorphism_2004}
 as implemented in the \textit{boost} graph library\autocite{_boost_2002} to
 check the graphs of the \ac{GN} shells for subgraph-isomorphism with respect to
-the icosahedral graph. Including edge-induced subgraphs in the search yields all 737
+the icosahedral graph. Including edge-induced subgraphs we find all 737
 12-sphere shells to be subgraphs of the icosahedral graph, which means their
 vertices can all be mapped to vertices of the icosahedral graph such that there
 will be no edges not present in the icosahedral graph. The graphs of the
@@ -749,29 +748,39 @@ icosahedral graph has exactly one edge removed (figure~\ref{fig:GNshellgraphs}).
 \end{figure}
 
 Removing edges in this way means the resulting graphs only consists of
-triangles and rectangles. The difference between the \ac{fcc} and hcp clusters is in
-the way their square faces are connected. In \ac{fcc} the square faces only connect
-via edges, while in hcp the square faces come in pairs sharing one edge. 
+triangles and rectangles. The difference between the \ac{fcc} and hcp clusters
+is in the way their square faces are connected. In \ac{fcc} the square faces
+only connect via edges, while in hcp the square faces come in pairs sharing one
+edge. 
 
-These two cluster structures are the only ones possible when removing only six
+These two cluster structures are the only possible ones when removing only six
 edges. The reason for this can be explained by examining the structure of the
 13-sphere Mackay icosahedron with respect to the limitations of the \ac{SHS}
 potential. There are six $C_6$ symmetry axis in the $I_h$ point group. In the
 ideal Mackay icosahedron there are pentagonal bipyramid motifs aligned along
 those axis such that one of the tips coincides with the central atom and the
-other tip becomes part of the 12-sphere shell. The pentagonal bipyramid is a
-structural motif that can't be realised under \ac{SHS} conditions. This can be
-explained by looking at the motif as being composed of five tetrahedra glued
-together at their faces. Ideal tetrahedra can't be combined in this way as two
-vertices of the tetrahedra have to lose
+other tip becomes part of the 12-sphere shell (figure~\ref{fig:icopent}). 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.4\textwidth]{gregory-newton/icopent.png}
+    \caption{13-sphere Mackay icosahedron. Orange spheres and bonds highlight
+    the pentagonal bipyramid motif.}
+    \label{fig:icopent}
+\end{figure}
+
+The pentagonal bipyramid is a structural motif that can't be realised under
+\ac{SHS} conditions. This can be explained by looking at the motif as being
+composed of five tetrahedra glued together at their faces. Ideal tetrahedra
+can't be combined in this way as two vertices of the tetrahedra have to lose
 contact.\autocite{Hayes_ScienceStickySpheres_2012} One can choose to either
 break this connection between the tips of the bipyramid of between two vertices
 of the pentagonal ring. In the \ac{GN} clusters this choice is restricted by
 the fact that the connection between the tips of the bipyramid can't be broken
-as this is one of the 12 \ac{COS} contact points (figure~\ref{fig:icopent}).
-This only leaves the choice of breaking one bond of the pentagonal ring, which
-has to happen once for every $C_6$ axis. The only possible solutions to this
-lead to the two closed-packed clusters.
+as this is one of the 12 \ac{COS} contact points.  This only leaves the choice
+of breaking one bond of the pentagonal ring, which has to happen once for every
+$C_6$ axis. The only possible solutions to this lead to the two closed-packed
+clusters.
 
 Removing one more edge yields only one possible \ac{GN} cluster with a shell
 resembling an elongated pentagonal bipyramid
@@ -782,17 +791,16 @@ There are 10 nonisomorphic structures if eight edges are removed, but the
 majority of \ac{GN} clusters result from the removal of the maximum of nine
 edges.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=.5\textwidth]{gregory-newton/icopent.png}
-    \caption{13-sphere Mackay icosahedron. Orange spheres and bonds highlight
-    the pentagonal bipyramid motif.}
-    \label{fig:icopent}
-\end{figure}
 
 \subsection{Adding a 14th Sphere}
 \label{sec:addinga14thsphere}
 
+An even larger number of clusters exists for $N=14$ ($14529$), which is
+$\approx 0.016|\mathcal{M}_\mathrm{SHS}(14)|$. All of these structures optimise
+to just one of two possible (6,12)-LJ minima of \ac{GN} type. The first is the
+Mackay icosahedron capped at one of its triangular faces, and the second is an
+elongated pentagonal bipyramid (belonging to the class of Johnson solids) with
+the 14th sphere capping a square face.
 
 Most of these $N=14$ clusters are minimally rigid ($N_c=3N-6=36$), while only a
 few are hyperstatic ($N_c > 3N-6$) and none are hypostatic ($N_c < 3N-6$).

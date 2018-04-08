@@ -6,6 +6,8 @@
                 bibliography=totoc
               ]{scrbook}
 
+%\KOMAoptions{listof=numbered}
+%\setuptoc{toc}{numbered}
               
 \sloppy
 \input{packages}
@@ -23,10 +25,10 @@
 \include{titlepage}\cleardoublepage
 \setcounter{page}{1}
 \pagestyle{plain}\pagenumbering{roman}
-\include{acronyms}
 \tableofcontents
 \listoffigures
 \listoftables
+\include{acronyms}
 \setcounter{page}{1}
 \hypersetup{pageanchor=true}
 \pagenumbering{arabic}
