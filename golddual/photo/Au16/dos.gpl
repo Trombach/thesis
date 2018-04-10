@@ -1,0 +1,18 @@
+set title ""
+#set autoscale x
+set xrange [-14:0]
+set autoscale y 
+set term postscript enhanced color 'Palatino' 28
+set output "dos.ps"
+
+set xlabel "E / eV"
+set ylabel "DOS"
+set key left
+
+
+plot "Au16-Td.dos" using 1:2 title "Au16 Td" with lines lt 1 lc rgb "#7F0000" lw 2,\
+     "Au16-D2.dos" using 1:2 title "Au16 D2" with lines lt 1 lc rgb "#21409A" lw 2,\
+     "Au16--Td.dos" using 1:2 title "Au16- Td" with lines lt 1 lc rgb "#ED1C24" lw 2,\
+     "Au16--D2.dos" using 1:2 title "Au16- D2" with lines lt 1 lc rgb "#47C3D3" lw 2
+
+

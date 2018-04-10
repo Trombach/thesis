@@ -1,0 +1,21 @@
+set title ""
+#set autoscale x
+set xrange [0:6.5]
+set autoscale y 
+set term postscript enhanced color 'Palatino' 28
+set output "photo1.ps"
+
+set xlabel "E / eV"
+#set ylabel "/ a.u."
+unset ytics
+set key left
+
+
+plot '< paste Au16--D2.dos Au16--Td.dos' using 1:((0.5*$2)+(1*$4)) title "Au_{16}^- D_2 + Au_{16}^- T_d" with lines lt -1 lc rgb "#000000" lw 3,\
+	 "Au16--D2.dos" using 1:2 title "Au_{16}^- D_2" with lines lt 1 lc rgb "#6495ED" lw 3,\
+     "Au16--Td.dos" using 1:2 title "Au_{16}^- T_d" with lines lt 1 lc rgb "#DC143C" lw 3
+     #"Au16-PES-BE+Int.txt" using ($1-0.17):($2/20) title "exp" with lines lt 4 lc rgb "#000000" lw 3
+
+
+#plot "Au16--Td.dos" using (abs($1)):2 title "Au_{16}^- Td" with lines lt 1 lc rgb "#DC143C" lw 3,\
+

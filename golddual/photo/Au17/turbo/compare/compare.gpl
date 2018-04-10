@@ -1,0 +1,21 @@
+set title ""
+#set autoscale x
+set xrange [2:6.5]
+set autoscale y 
+set term postscript enhanced color 'Palatino' 28
+set output "compare.ps"
+
+set xlabel "E / eV"
+#set ylabel "/ a.u."
+unset ytics
+set key left box
+set format x "%.1f"
+
+
+plot "Au17-D5h.dos" using 1:2 title "17:1" with lines lt 2 lc rgb "#6495ED" lw 3,\
+     "Au17-C2v-1.dos" using 1:2 title "17:2" with lines lt 2 lc rgb "#DC143C" lw 3,\
+     "Au17-C2v-2.dos" using 1:2 title "17:3" with lines lt 2 lc rgb "#008080" lw 3,\
+     "Au17-exp.txt" using 1:($2/15) title "experiment" with lines lt 1 lc rgb "#000000" lw 3
+
+
+#plot '< paste Au16-D2.dos Au16-Td.dos' using ($1+0.18):(0.5*(1*$2)+(1*$4)) title "D_2 + T_d" with lines     lt -1 lc rgb "#008000" lw 2,\

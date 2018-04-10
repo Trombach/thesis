@@ -1,0 +1,21 @@
+set title ""
+#set autoscale x
+set xrange [0:6.5]
+set autoscale y 
+set term postscript enhanced color 'Palatino' 28
+set output "photo.ps"
+
+set xlabel "E / eV"
+#set ylabel "/ a.u."
+unset ytics
+set key left
+
+
+plot "Au18--C2-1.dos" using 1:2 title "Au_{18}^- C2-1}" with lines lt 1 lc rgb "#6495ED" lw 3,\
+     "Au18--C2-2.dos" using 1:2 title "Au_{18}^- C2-2" with lines lt 1 lc rgb "#DC143C" lw 3,\
+     "Au18--D2.dos" using 1:2 title "Au_{18}^- D2" with lines lt 1 lc rgb "#00008B" lw 3,\
+     "Au18--D3.dos" using 1:2 title "Au_{18}^- D3" with lines lt 1 lc rgb "#000000" lw 3,\
+     "Au18--D3d.dos" using 1:2 title "Au_{18}^- D3d" with lines lt 1 lc rgb "#228B22" lw 3,\
+     "Au18--D3h.dos" using 1:2 title "Au_{18}^- D3h" with lines lt 1 lc rgb "#00FA9A" lw 3
+
+

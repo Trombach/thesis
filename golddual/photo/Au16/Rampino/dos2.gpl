@@ -1,0 +1,14 @@
+set title ""
+set autoscale x
+#set xrange [-20:0]
+#set autoscale y 
+set yrange [0:100]
+set term postscript enhanced color 'Palatino' 28
+set output "dos2.ps"
+
+set xlabel "E / Eh"
+set ylabel "DOS"
+set key left
+
+plot "Au16_Td_BLYP.dos" using 1:2 title "Au_{16} T_d" with lines linetype 1 lc rgb "#00008B" lw 3,\
+     "Au16_D2_BLYP.dos" using 1:2 title "Au_{16} D_2" with lines linetype 2 lc rgb "#6495ED" lw 3

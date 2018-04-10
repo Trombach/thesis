@@ -1,0 +1,19 @@
+set title ""
+#set autoscale x
+set xrange [0:6.5]
+set autoscale y 
+set term postscript enhanced color 'Palatino' 28
+set output "photo.ps"
+
+set xlabel "E / eV"
+#set ylabel "/ a.u."
+unset ytics
+set key left
+
+
+plot "Au17--D5h.dos" using 1:2 title "Au_{17}^- D_{5h}" with lines lt 1 lc rgb "#6495ED" lw 3,\
+     "Au17--C2v-1.dos" using 1:2 title "Au_{17}^- C_{2v}-1" with lines lt 1 lc rgb "#DC143C" lw 3,\
+     "Au17--C2v-2.dos" using 1:2 title "Au_{17}^- C_{2v}-2" with lines lt 1 lc rgb "#0008B" lw 3
+
+
+

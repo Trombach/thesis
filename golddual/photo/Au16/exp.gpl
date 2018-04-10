@@ -1,0 +1,18 @@
+set title ""
+#set autoscale x
+set xrange [0:6.5]
+#set autoscale y 
+set yrange [0:120]
+set term postscript enhanced color 'Palatino' 28
+set output "exp.ps"
+
+set xlabel "E / eV"
+set ylabel "/ a.u."
+set key left
+
+
+plot "Au16-PES-BE+Int.txt" using 1:($2/10) title "exp" with lines lt 1 lc rgb "#000000" lw 3
+
+
+#plot "Au16--Td.dos" using (abs($1)):2 title "Au_{16}^- Td" with lines lt 1 lc rgb "#DC143C" lw 3,\
+
