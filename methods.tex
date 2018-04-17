@@ -204,10 +204,62 @@ function from vector parts. This leads to the following equations.
 \label{sec:optimisationofinputstructures}
 
 The first main program is \verb|optimize|. It reads in coordinates from an
-input file and creates a \verb|structure| object for each cluster.  
+input file and creates a \verb|structure| object for each cluster. The
+structures will be moved to their center of mass and rotated into the principal
+axis system automatically. If a scaling factor is provided in the
+\verb|settings| file the structures will be scaled accordingly.  The
+optimisation is parallelised using simple \ac{OMP} \verb|for|-loop
+parallelisation and can be controlled with the environment variable
+\verb|OMP_NUM_THREADS| in a unix environment.
+
+After each structural optimisation the program checks if the structure is a
+true minimum by calculation the Hessian matrix eigenvalues. If this check fails
+the eigenvectors of the Hessian matrix are calculated and the non-minimum
+structure is displaced according to eigenvector belonging to the first negative
+eigenvalue in the Hessian matrix.
+
+The resulting structures are printed in the file \verb|coord| as plain
+three-dimensional coordinates.
 
 \section{Analysing Results}
 \label{sec:analysingresults}
+
+The optimisation procedure usually lead to the creation of duplicate
+structures. To eliminate the duplicate structures the program \verb|analyze|
+was created. It reads in all structures from the file \verb|coord| and
+calculates their energies using \ac{OMP} parallelisation based on the chosen
+potential model.
+
+Finding equivalent structures is a task far from triviality. The program
+\verb|analyze| relies on two methods using different properties of the
+structures to sort them into groups.
+
+The first method uses four values to uniquely identify a structure. Those are
+the values for energy and the three eigenvalues of the moment of inertia
+tensor. This sorting procedure uses \Cpp's \verb|map| feature, which uses a
+binary search tree as its data structure. This allows the algorithm to scale
+well with the number of optimised structures. The \Cpp \verb|map| object
+contains a \verb|key| and a \verb|value| field and elements of a \verb|map| are
+guaranteed to be stored in
+order.\autocite{Cormen_IntroductionAlgorithms3rd_2009} In this specific case
+the ordering is done by energy first, then smallest moment of inertia tensor
+eigenvalue followed by the two other moment of inertia tensor eigenvalues. The
+advantage of this method is its great scalability with respect to the number of
+optimised structures.  However, over the course of the calculations it was
+noticed that the methods shows deviations for larger exponents. Therefore, a
+second method was implemented.
+
+The second method uses the matrix of all inter-particle distances as the
+differentiation criterion. If at least one inter-particle distance is different
+two structures are said to be not equal. As there is no clear answer to the
+question which distance matrix is ``larger'' than another one the
+implementation could not be handled by using a \verb|map| container. A regular
+two-dimensional \verb|vector| array is used instead. A structure's distance
+matrix is compared to the distance matrix of an already sorted structure and is
+added to the same group if they are equal. If not, the structure is added to
+the array as a new group. The more unique structures the optimisation produced
+the slower this method of sorting becomes, but the results are more reliable
+than the previously discussed ones.
 
 \section{Matching Structures}
 \label{sec:matchingstructures}
