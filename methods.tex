@@ -10,14 +10,14 @@
 \label{sec:theprogramspheres}
 
 On the following pages the program package \textsc{Spheres} will be explained
-in detail. It was necessary to develop this code because of the projects in
+in detail. The projects in
 chapters~\ref{sec:fromstickyhardspheretoLJtypeclusters} and
-\ref{sec:thegregorynewtonclusters}. These required routines to optimise a given
-starting cluster geometry and analyse the results. The optimisation routine
-needed to be flexible in the way that it would be easy to implement different
-two-body potentials like Lennard-Jones or extended Lennard-Jones. The program
-was written in standard \Cpp and was tested to compile in a Linux environment
-with the \verb|clang++| compiler version 3.8.
+\ref{sec:thegregorynewtonclusters} required routines to optimise given starting
+cluster geometrys and analyse the results. The optimisation routine needed to
+be flexible in the way that it would be easy to implement different two-body
+potentials like \ac{LJ} or \ac{eLJ}. The program was written in standard \Cpp
+and was tested to compile in a Linux environment with the \verb|clang++|
+compiler version 3.8.
 
 \section{General Structure}
 \label{sec:generalstructure}
@@ -31,7 +31,7 @@ The most fundamental functions are contained in the \verb|geometry.h| header
 file which contains the classes responsible for holding triplets of coordinates
 (\verb|coord3d|) and to perform basic 3x3 matrix algebra (\verb|matrix3d|).
 These classes define functions and operators to perform basic vector and matrix
-operations and based on classes developed by ~~~.
+operations and are based on classes developed by ~~~.
 
 Each triplet of coordinates represents a sphere in a cluster and is stored in
 an individual object for each unique cluster. This is the purpose of the
@@ -47,7 +47,7 @@ purely with optimising a set of input structures based on a chosen two-body
 potential. The results of this procedure can be analysed with the second
 program to get the number of unique structures after the optimisation. The last
 program matches a set of structures with another set and outputs missing
-structures in either set.
+structures on either set.
 
 \section{The \texttt{structure} Class}
 \label{sec:thestructureclass}
@@ -64,9 +64,9 @@ inter-particle distances will be calculated and stored in the object so that
 they are readily available for analysis.
 
 For graph theoretical analysis the class provides functions to calculate
-adjacency matrices and graphs based on the \textit{boost graph
-library}\autocite{_boost_2002}. These methods take a threshold number that
-defines the distance between two spheres at which they are considered
+adjacency matrices and graphs based on methods implemented in the \textit{boost
+graph library}\autocite{_boost_2002}. These methods take a threshold number
+that defines the distance between two spheres at which they are considered
 connected.
 
 \section{The \texttt{pairPotential} Class}
@@ -78,7 +78,7 @@ two-body potentials. The implementation takes advantage of \Cpp's class
 hierarchy, which allows to define subclasses that inherit members from a base
 class.
 
-At the core the abstraction works the following. Let $\mathbf{x}_i$ be the
+At the core the abstraction works as follows. Let $\mathbf{x}_i$ be the
 cartesian coordinates of sphere $i$ and the collection of all the coordinates
 of all $N$ spheres in the system shall be denoted $\mathbf{X}$.
 %
@@ -90,8 +90,8 @@ of all $N$ spheres in the system shall be denoted $\mathbf{X}$.
 \end{align}%
 %
 The distance between two spheres $i$ and $j$ is now given by the norm of the
-distance vector $\mathbf{r}_{ij}$.
-
+distance vector $\mathbf{r}_{ij}$. %
+%
 \begin{align}
     \mathbf{r}_{ij}=\mathbf{x}_i-\mathbf{x}_j=
     \begin{pmatrix}
@@ -104,13 +104,12 @@ distance vector $\mathbf{r}_{ij}$.
 %
 The energy of the system is a function of all sphere coordinates $\mathbf{X}$,
 but it can be rewritten in terms of an energy function $\varepsilon(r_{ij})$ that only depends on the
-distance between two spheres.
-
+distance between two spheres. %
+%
 \begin{align}
     E(\mathbf{X})=\sum_{j>i}^N\varepsilon(r_{ij})
 \end{align}%
 %
-
 The gradient of the system is a vector of $3N$ numbers, where each component
 refers to the gradient with respect to each coordinate $x$. The derivative with
 respect to the $m$th coordinate $x_m$ can be expressed as:
@@ -143,7 +142,7 @@ Let's assume $m=3i+1$, then the last expression becomes:
     \end{pmatrix}.
 \end{align}%
 %
-For this example the scalar product of this vector with the normalised distance
+For this example the dot product of this vector with the normalised distance
 vector $\mathbf{r}_{ij}$ is $\frac{1}{r_{ij}}(x_{3i-1} - x_{3j-1})$. Therefore,
 the last term ensures that the $m$th component of the gradient vector only
 collects contributions from interactions between spheres that contain the
@@ -240,12 +239,12 @@ tensor. This sorting procedure uses \Cpp's \verb|map| feature, which uses a
 binary search tree as its data structure. This allows the algorithm to scale
 well with the number of optimised structures. The \Cpp \verb|map| object
 contains a \verb|key| and a \verb|value| field and elements of a \verb|map| are
-guaranteed to be stored in
-order.\autocite{Cormen_IntroductionAlgorithms3rd_2009} In this specific case
-the ordering is done by energy first, then smallest moment of inertia tensor
-eigenvalue followed by the two other moment of inertia tensor eigenvalues. The
-advantage of this method is its great scalability with respect to the number of
-optimised structures.  However, over the course of the calculations it was
+guaranteed to be stored in order.\autocite{Stroustrup_programminglanguage_2000}
+In this specific case the ordering is done by energy first, then smallest
+moment of inertia tensor eigenvalue followed by the two other moment of inertia
+tensor eigenvalues. The advantage of this method is its great scalability with
+respect to the number of optimised structures as values can be retrieved
+quickly based on the key.  However, over the course of the calculations it was
 noticed that the methods shows deviations for larger exponents. Therefore, a
 second method was implemented.
 
@@ -264,5 +263,12 @@ than the previously discussed ones.
 \section{Matching Structures}
 \label{sec:matchingstructures}
 
-\section{Apps}
-\label{sec:apps}
+To compare the results from the optimisations procedures to previously
+published sets of clusters the program \verb|match| can be use. It takes two
+files as input that each contain a set of structures of equal of different size
+and compares them based on the inter-particle distance matrix. The number of
+atoms in each set must be equal, otherwise the program will be terminated. If
+both sets are found to be identical no output files are created. In case there
+are unmatched structures they will be printed in xyz format for further
+analysis.
+
