@@ -36,12 +36,14 @@
 \pagenumbering{arabic}
 \pagestyle{headings}
 \cleardoublepage\setcounter{page}{1}
+\begin{refsection}
 \include{introduction}
 \include{theory}
 \include{methods}
 \include{results}
 \include{appendix}
-\printbibliography
+    \printbibliography[section=2]
+\end{refsection}
 \end{document}
 
                 
