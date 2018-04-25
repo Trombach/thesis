@@ -28,51 +28,51 @@ smallest of particles. Erwin Schr\"odinger established a framework based on
 Hamiltonian mechanics that set the wave function $\Psi$ at the center of
 attention. It contains all information about the system and its evolution in
 time. For ground-state calculations it is usually sufficient to look at
-solutions to the time-independent Schr\"odinger equation.
-
+solutions to the time-independent Schr\"odinger equation.%
+%
 \begin{equation}
 	\mathbf{H}\Psi=E\Psi\label{eqn:SchrodingerEquation}
-\end{equation}
-
+\end{equation}%
+%
 In this eigenvalue equation the Hamilton operator $\mathbf{H}$ acts on the wave
 function which results in a solution for the total energyi $E$ of the system. 
 
 The wave function is a function of all spatial $\mathbf{r}$ and spin
 coordinates $\omega$ of all the particles in the system. The combination of
 these coordinates will be denoted $\mathbf{x}$ on the following pages.  
-
+%
 \begin{align}
 	\mathbf{x}=\{\mathbf{r},\omega\}
 \end{align}
-
+%
 The square of the wave function is usually interpreted as a probability density
 which is used to normalise it such that the probability of finding an electron
 anywhere in space is one.
-
+%
 \begin{align}
 	\int |\Psi(\mathbf{x})|^2\dd \mathbf{x}_1\dd \mathbf{x}_2\ldots\dd \mathbf{x}_N=\braket{\Psi(\mathbf{x})}=1
 \end{align}
-
+%
 The information contained in the wave function can be accessed by an operator
 $\mathbf{O}$ acting on the wave function and forming an eigenvalue equation. In
 equation~\eqref{eqn:SchrodingerEquation} this operator is the Hamilton
 operator, but it could be any operator connected to a physical observable.
 Generally, the expectation value of an arbitrary operator $\expval{\mathbf{O}}$ is
 defined as
-
+%
 \begin{equation}
     \expval{\mathbf{O}}=\frac{\expval{\mathbf{O}}{\Psi(\mathbf{x})}}{\braket{\Psi(\mathbf{x})}},
 \end{equation}
-
+%
 or for normalised wave functions
-
+%
 \begin{align}
     \expval{\mathbf{O}}=\expval{\mathbf{O}}{\Psi(\mathbf{x})}.
 \end{align}
-
+%
 For a system of $N$ electrons and $M$ nuclei the non-relativistic Hamilton
 operator in atomic units has the form
-
+%
 \begin{align}
 \begin{aligned}
     \mathbf{H}&=\mathbf{T}_\text{e} + \mathbf{V}_\text{ee} + \mathbf{T}_\text{n} + \mathbf{V}_\text{nn} + \mathbf{V}_\text{en} \\
@@ -83,7 +83,7 @@ operator in atomic units has the form
     + \sum_{i=1}^N\sum_{A=1}^MV_{iA}.\label{eqn:hamiltonoperator}
 \end{aligned}
 \end{align}
-
+%
 The operator contains the kinetic energy of the electrons
 $\mathbf{T}_\text{e}$, the electron repulsion $\mathbf{V}_\text{ee}$, the
 kinetic energy of the nuclei $\mathbf{T}_\text{n}$, the nucleon repulsion
@@ -102,22 +102,22 @@ term $\mathbf{T}_\text{n}$ can be neglected and the nuclear repulsion term
 $\mathbf{V}_\text{nn}$ becomes a constant. The resulting electronic Hamilton
 operator $\mathbf{H}_\text{e}$ describes electrons moving in a field of
 positive point charges.
-
+%
 \begin{align}
     \mathbf{H}_\text{e}=\mathbf{T}_\text{e} + \mathbf{V}_\text{ee} + \mathbf{V}_\text{en}
 \end{align}
-
+%
 Solving the Schr\"dinger equation for this operator yields the electronic wave
 function $\Psi_\text{e}$. It depends explicitly on the electronic coordinates,
 but only parametrically on the nuclear coordinates, therefore spanning a
 potential energy surface upon which the nuclei move. To get the total energy of
 the system the constant repulsion between the nuclei has to be added to the
 electronic operator. 
-
+%
 \begin{align}
     \mathbf{H}=\mathbf{H}_\text{e}+V_\text{nn}\label{eqn:hamiltonoperatorfinal}
 \end{align}
-
+%
 \section{The Hartree-Fock Approximation}
 \label{sec:hartreefockapproximation}
 
@@ -127,7 +127,7 @@ electron is not possible. The solution has to be approximated by appropriate
 methods; one possible solution are the Hartree-Fock equations. This set of
 equations determines the energy of a wave function expressed as a Slater
 determinant $\Phi_\text{SD}$.
-
+%
 \begin{equation}
      \Phi_{SD}=\frac{1}{\sqrt{N!}}
      \begin{vmatrix}
@@ -138,7 +138,7 @@ determinant $\Phi_\text{SD}$.
      \end{vmatrix}
      \label{eqn:SlaterDet}
 \end{equation}
-
+%
 Here, the $\phi_i$ denote one electron spin orbitals and
 $\mathbf{x}_i=\{\mathbf{r}_i,\omega_i\}$ are spatial ($\mathbf{r}_i$) and spin
 ($\omega_i$) coordinates of the electrons. A Slater determinant obeys the Pauli
@@ -151,21 +151,21 @@ previously, the energy of a wave function can be determined by the action of
 the Hamilton operator on the wave function. The Hamilton operator in the
 Born-Oppenheimer approximation from equation~\eqref{eqn:hamiltonoperatorfinal}
 can be rewritten in terms of one-electron operators $\mathbf{h}_i$.
-
+%
 \begin{align}
 \begin{aligned}
     \mathbf{H}&=\sum_i^N\left(\mathbf{h}_i + \sum_{j>i}^N\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}\right) + V_\text{nn} \\
     \mathbf{h}_i&=-\frac{1}{2}\nabla_i^2-\sum_A^M\frac{Z_A}{|\mathbf{r}_A-\mathbf{r}_i|}\label{eqn:hamiltonoperatorhartreefock}
 \end{aligned}
 \end{align}
-
+%
 Here, $Z_A$ denotes the charge of nucleus $A$. $\mathbf{h}_i$ depends only on
 the kinetic energy of electron $i$ and its potential energy in the field of all
 $M$ nuclei. When $\mathbf{h}_i$ acts on a Slater determinant the result is the
 respective matrix element $h_i$. Only parts of the Slater determinant without
 permutation of electron coordinates can give a non-zero contribution to the
 eigenvalue.
-
+%
 \begin{align}
     \begin{aligned}
         h_1&=\mel{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}{\mathbf{h}_1}{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}\\
@@ -173,7 +173,7 @@ eigenvalue.
         &=\mel{\phi_1(\mathbf{x}_1)}{\mathbf{h}_1}{\phi_1(\mathbf{x}_1)}
     \end{aligned}
 \end{align}
-
+%
 The remainder of the Hamilton operator from
 equation~\eqref{eqn:hamiltonoperatorhartreefock} is dependant on two electron
 coordinates. It is convenient to define a two-electron operator $\mathbf{g}_{ij}$
@@ -181,7 +181,7 @@ with the matrix elements $g_{ij}=\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}$. Its
 action on the part of the Slater determinant with no permutation of electron
 coordinates results in the Coulomb integral and the corresponding matrix
 element $J_{ij}$, which can be interpreted as the classical Coulomb repulsion.
-
+%
 \begin{align}
     \begin{aligned}
         J_{12}&=\mel{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}{\mathbf{g}_{12}}{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}\\
@@ -189,11 +189,11 @@ element $J_{ij}$, which can be interpreted as the classical Coulomb repulsion.
         &=\mel{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)}{\mathbf{g}_{12}}{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)}
     \end{aligned}
 \end{align}
-
+%
 As $\mathbf{g}_{ij}$ depends on the coordinates of two electrons it also yields
 non-zero matrix elements for parts of the Slater determinant, where two
 electron coordinates have been swapped.
-
+%
 \begin{align}
     \begin{aligned}
         K_{12}&=\mel{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}{\mathbf{g}_{12}}{\phi_2(\mathbf{x}_1)\phi_1(\mathbf{x}_2)\ldots\phi_N(\mathbf{x}_N)}\\
@@ -201,19 +201,19 @@ electron coordinates have been swapped.
         &=\mel{\phi_1(\mathbf{x}_1)\phi_2(\mathbf{x}_2)}{\mathbf{g}_{12}}{\phi_2(\mathbf{x}_1)\phi_1(\mathbf{x}_2)}
     \end{aligned}
 \end{align}
-
+%
 $K_{ij}$ is called the exchange integral and has no classical interpretation.
 As swapping coordinates in the Slater determinant changes its sign, the result
 of the exchange integral has a negative sign. The total energy of the system is
 now given by the sum over all integrals described above.
-
+%
 \begin{align}
     E=\sum_{i=1}^Nh_i + \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N(J_{ij}-K_{ij})+V_\text{nn}\label{eqn:HFenergy}
 \end{align}
-
+%
 Defining operators $\mathbf{J}_i$ and $\mathbf{K}_i$ for Coulomb and exchange
 integral equation~\eqref{eqn:HFenergy} becomes
-
+%
 \begin{align}
     E=\sum_{i=1}^N\mel{\phi_i}{\mathbf{h}_i}{\phi_i} + \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N \left( \mel{\phi_i}{\mathbf{J}_j}{\phi_i} - \mel{\phi_i}{\mathbf{K}_j}{\phi_i} \right) + V_\text{nn}\\
     \begin{aligned}
@@ -221,7 +221,7 @@ integral equation~\eqref{eqn:HFenergy} becomes
         \mathbf{K}_i\ket{\phi_j(\mathbf{x}_j)}&=\mel{\phi_i(\mathbf{x}_i)}{\mathbf{g}_{ij}}{\phi_j(\mathbf{x}_i)}\ket{\phi_i(\mathbf{x}_j)}.
     \end{aligned}\label{eqn:HFenergyoperator}
 \end{align}
-
+%
 For the purpose of quantum chemical calculations the energy of an arbitrary
 Slater determinant is usually not useful. More interesting, however, is to find
 the Slater determinant that minimises the energy under the boundary condition
@@ -230,27 +230,27 @@ we try to find the derivative of equation~\eqref{eqn:HFenergyoperator}.
 Minimising the energy under external boundary conditions can be solved using
 Lagrange multipliers. With their help it is possible to define the Fock
 operator $\mathbf{f}_i$, which is an effective one-electron operator.
-
+%
 \begin{align}
     \mathbf{f}_i=\mathbf{h}_i + \sum_j^N\left( \mathbf{J}_j - \mathbf{K}_j \right)
 \end{align}
-
+%
 The action of the Fock operator on an element of the Slater determinant yields
 the Hartree-Fock equations.
-
+%
 \begin{align}
     \mathbf{f}_i\ket{\phi_i}=\sum_j^N\lambda_{ij}\ket{\phi_j}\label{eqn:HFequations}
 \end{align}
-
+%
 $\lambda_{ij}$ are Lagrange multipliers remaining from the constrained
 minimisation. They can be re-written in matrix form and subsequently
 diagonalised by a unitary transformation. This yields the canonical
 Hartree-Fock equations.
-
+%
 \begin{align}
     \mathbf{f}_i\ket{\phi'_i}=\sum_j^N\varepsilon_i\ket{\phi'_j}\label{eqn:HFequationscanonical}
 \end{align}
-
+%
 $\varepsilon_i$ are orbital energies of the electrons. According to Koopman's
 theorem they can be interpreted as ionisation energies for occupied and
 electron affinities for unoccupied states. The Fock operator depends on all
@@ -269,36 +269,36 @@ Technically, a basis set expansion is not an approximation, but as one is
 limited to a finite amount of basis functions $P$ the expansion does not give
 an exact expression for a molecular orbital $\phi_i$. For a set of $\alpha$
 basis functions $\chi_\alpha$ the expansion can be expressed as follows.
-
+%
 \begin{align}
     \phi_i=\sum_\alpha^Pc_{\alpha i}\chi_\alpha
 \end{align}
-
+%
 This leads to the Hartree-Fock equations expressed in the basis set
 approximation.
-
+%
 \begin{align}
     \begin{aligned}
         \mathbf{f}_i\sum_\alpha^Pc_{\alpha i}\chi_\alpha&=\varepsilon_i\sum_\alpha^Pc_{\alpha i}\chi_\alpha \\
         \sum_\alpha^Pc_{\alpha i}\underbrace{\mel{\chi_\alpha}{\mathbf{f}_i}{\chi_\beta}}_{F_{\alpha\beta}}&=\varepsilon_i\sum_\alpha^Pc_{\alpha i}\underbrace{\braket{\chi_\alpha}{\chi_\beta}}_{S_{\alpha\beta}}
     \end{aligned}
 \end{align}
-
+%
 These are the Roothaan-Hall equations which are usually written in matrix form.
-
+%
 \begin{align}
     \mathbf{FC}=\mathbf{SC\varepsilon}
 \end{align}
-
+%
 $\mathbf{F}$ is the Fock matrix, $\mathbf{S}$ is the overlap matrix and
 $\mathbf{C}$ contains the orbital coefficients. These equations have to be
 solved iteratively and to reduce computational cost the first step usually
 involves calculating a density matrix $\mathbf{D}$.
-
+%
 \begin{align}
     \mathbf{D}=\sum_{i}^\text{occ. MO} c_{\mu i}c_{\nu i}
 \end{align}
-
+%
 $\mathbf{D}$ can be used to generate a Fock matrix, which will be diagonalised
 yielding a new set of orbital coefficients. These will be used to generate a
 new generation of the density matrix. This procedure will be repeated until
@@ -314,11 +314,11 @@ electron is moving in a field created by all other electrons. The Hartree-Fock
 energy $E_\text{HF}$ is therefore never exact even in the infinite basis set
 limit. The difference to the exact energy $E_0$ was first named correlation
 energy $E_\text{corr}$ by L\"owdin\autocite{Lowdin_CorrelationProblemManyElectron_1958}.
-
+%
 \begin{align}
     E_\text{corr} = E_0 - E_\text{HF}
 \end{align}
-
+%
 Even though the correlation energy only attributes for about \SI{1}{\percent}
 of the total energy it is an important contribution in molecular systems. A
 multitude of methods has been developed to treat the correlation energy more
@@ -330,11 +330,11 @@ density $\rho$ instead of the wave function. The electron density is observable
 and a positive quantity, which makes \ac{DFT} easier to grasp than wave
 function based methods. However, the electron density is related to the wave
 function via its square. 
-
+%
 \begin{align}
     \rho(\mathbf{r}_1)=N\int\dots\int|\Psi(\mathbf{x}_1,\mathbf{x}_2,\dots,\mathbf{x}_N)|^2\;\dd\omega_1\dd\mathbf{x}_2\dots\dd\mathbf{x}_N\label{eqn:electrondensity}
 \end{align}
-
+%
 Equation~\eqref{eqn:electrondensity} describes the probability density of
 finding one of the $N$ electrons in the volume $\dd \mathbf{r}_1$ with
 arbitrary spin. All other $(N-1)$ electrons occupy any volume elements, but
@@ -351,11 +351,11 @@ The first Hohenberg-Kohn theorem implies that the electron density defines a
 unique external potential that contains all information about the system. If
 two external potentials are different they cannot lead to the same ground state
 electron density. From this, the total energy of a system can be expressed as follows.
-
+%
 \begin{align}
     E_0\left[ \rho_0(\mathbf{r}) \right] = T\left[ \rho_0(\mathbf{r}) \right] + E_\text{ee} \left[ \rho_0(\mathbf{r}) \right] + E_\text{Ne} \left[ \rho_0(\mathbf{r}) \right]\label{eqn:energyDFT}
 \end{align}
-
+%
 The aforementioned external potential corresponds to $E_\text{Ne} \left[
 	\rho_0(\mathbf{r}) \right]$, which is the only system-dependent term of
 equation~\eqref{eqn:energyDFT}. The system-independent terms for the kinetic
@@ -363,11 +363,11 @@ energy $T\left[ \rho_0(\mathbf{r}) \right]$ and the electron-electron
 interaction $E_\text{ee} \left[ \rho_0(  \mathbf{r}) \right]$ can be combined
 to the Hohenberg-Kohn functional $F_\text{HK}\left[ \rho_0(
 \mathbf{r})\right]$.
-
+%
 \begin{align}
     E_0\left[ \rho_0(\mathbf{r}) \right] = \int\dd\mathbf{r}\rho_0(\mathbf{r})V_\text{Ne}+ F_\text{HK}\left[ \rho_0(\mathbf{r})\right]\label{eqn:energyDFTHK}
 \end{align}
-
+%
 Would the exact Hohenberg-Kohn functional be known
 equation~\eqref{eqn:energyDFTHK} would be an exact solution to the
 Schr\"odinger equation. In practice, there are no exact expressions for
@@ -375,19 +375,19 @@ $T\left[ \rho_0(\mathbf{r}) \right]$ or $E_\text{ee} \left[ \rho_0(
 \mathbf{r}) \right]$ knwon. However, the latter can be expressed in terms of a
 classical Coulomb term $J\left[\rho\right]$ and a non-classical energy contribution
 $E_\text{nc}\left[\rho\right]$.
-
+%
 \begin{align}
     E_\text{ee} \left[ \rho \right]=J\left[\rho\right]+E_\text{nc}\left[\rho\right]=\frac{1}{2}\iint\frac{\rho(\mathbf{r}_1)\rho(\mathbf{r}_2)}{r_{12}}\dd\mathbf{r}_1\dd\mathbf{r}_2+E_\text{nc}\left[\rho\right]
 \end{align}
-
+%
 The second Hohenberg-Kohn theorem warrants that a trial energy density
 $\widetilde{\rho}$ always yields an energy greater or equal to the exact ground
 state energy.
-
+%
 \begin{align}
     E_0 \leq E\left[\widetilde{\rho}\right]
 \end{align}
-
+%
 It is equivalent to the variational theorem\footnote{The variational theorem
 states that no trial wave function can result in a smaller energy than the exact
 ground state wave function.} in wave function theory. However, it is only valid
@@ -402,24 +402,24 @@ the kinetic energy term. Kohn and Sham realised it would be easier to describe
 it in terms of a reference system of non-interacting electrons. Their kinetic
 energy $T_S$ can be expressed in terms of a Slater determinant consisting of
 one-electron orbitals $\phi_i$ also called Kohn-Sham orbitals.
-
+%
 \begin{align}
     T_S=-\frac{1}{2}\sum_i^N\mel{\phi_i}{\nabla_i^2}{\phi_i}
 \end{align}
-
+%
 The electron density resulting from the Kohn-Sham orbitals is required to be
 equal to the density of the real system.
-
+%
 \begin{align}
     \rho_S(\mathbf{r}) = \rho_0(\mathbf{r})
 \end{align}
-
+%
 For such a system the Coulomb interaction between electrons and nuclei can be
 calculated exactly. The only unknown remaining terms are the non-classical
 contribution to the electron-electron interaction $E_\text{nc}$ and a
 contribution to the kinetic energy because of electron correlation $T_C$. These
 terms can be combined to the exchange-correlation term $E_{XC}$.
-
+%
 \begin{align}
     E\left[\rho\right]=T_S\left[\rho\right] + J\left[\rho\right] + E_{XC}\left[\rho\right] + E_\text{Ne}\left[\rho\right] \\
     \begin{aligned}
@@ -427,30 +427,30 @@ terms can be combined to the exchange-correlation term $E_{XC}$.
         &+ E_{XC}\left[\rho\right] - \sum_i^N\int\dd\mathbf{r}_1\sum_A^M|\phi_i(\mathbf{r}_1)|^2
     \end{aligned}\label{eqn:energyKS}
 \end{align}
-
+%
 Similar to Hartree-Fock theory, the minimal energy can be calculated using
 Lagrange multipliers. The potential terms from equation~\eqref{eqn:energyKS}
 can be combined to an effective potential $V_S$, which allows for the
 definition of a Kohn-Sham operator $\mathbf{f}_\text{KS}$ analogous to the Fock
 operator in Hartree-Fock theory.
-
+%
 \begin{align}
     V_S(\mathbf{r}_1) = \int\dd\mathbf{r}_2\frac{\rho(\mathbf{r}_2)}{r_{12}} + V_{XC}(\mathbf{r}_1) - \sum_A^M\frac{Z_A}{r_{1A}}\\
     \mathbf{f}_\text{KS} = -\frac{1}{2}\nabla^2+V_S(\mathbf{r}_1)\\
     \mathbf{f}_\text{KS}\phi_i=\varepsilon_i\phi_i
 \end{align}
-
+%
 These are the Kohn-Sham equations and they have to be solved in an iterative
 procedure, because of the Kohn-Sham operator depending on the occupied
 orbitals.  The unknown Kohn-Sham orbitals are usually expanded in terms of
 basis functions such that the equations can be expressed in matrix form,
 similar to the Roothaan-Hall equations. The Fock matrix is replaced by the
 Kohn-Sham matrix $\mathbf{F}_\text{KS}$.
-
+%
 \begin{align}
     \mathbf{F}_\text{KS}\mathbf{C} = \mathbf{SC\varepsilon}
 \end{align}
-
+%
 \subsection{Exchange and Correlation Functionals}
 \label{sec:exchangecorrelationfunctionals}
 
@@ -458,21 +458,21 @@ The key to solving the Kohn-Sham equations is the exchange-correlation energy
 $E_\text{XC}$. Over the years there have been lots of proposals for its form,
 the oldest being the \ac{LDA}. It is based on the uniform electron gas for
 which analytical functionals for exchange and correlation are known.
-
+%
 \begin{align}
     E_{XC}^\text{LDA}\left[\rho\right]=\int\rho(\mathbf{r})\varepsilon_{XC}\left[\rho(\mathbf{r})\right]\dd\mathbf{r}
 \end{align}
-
+%
 The exchange-correlation energy $\varepsilon_{XC}\left[\rho(\mathbf{r})\right]$
 is weighted with the probability of finding and electron at this point in
 space. After separation of the exchange and correlation parts the exchange
 energy can be described by a term developed by Slater.
-
+%
 \begin{align}
 	\varepsilon_{XC}\left[\rho(\mathbf{r})\right] = \varepsilon_{X}\left[\rho(\mathbf{r})\right] + \varepsilon_{C}\left[\rho(\mathbf{r})\right]\\
 	E_{X}^\text{LDA}\left[\rho\right] = -C_X\int\rho(\mathbf{r})^{\frac{4}{3}}\dd\mathbf{r}
 \end{align}
-
+%
 No simple formula for the correlation term is known.
 
 \ac{LDA} describes the inhomogeneous electron density by dividing it up into
@@ -503,20 +503,20 @@ dispersive energy contribution $E_\text{disp}$ (and gradient contribution for
 optimisations) that can be added to the \ac{DFT} energy $E_\text{DFT}$. The
 dispersion energy is always of attractive nature and therefore has a negative
 sign by convention.
-
+%
 \begin{align}
 	E = E_\text{DFT} + E_\text{disp}
 \end{align}
-
+%
 In the third generation D3 dispersion correction, which was used in this work,
 the calculation of $E_\text{disp}$ involves solving a two- and three-body term.
 The two-body term $E^{(2)}$ is more important and is only a function of the
 distance between two nuclei $r_{AB}$.
-
+%
 \begin{align}
 	E^{(2)}=\sum\limits_{AB}s_6\frac{C_6^{AB}}{\left(r_{AB}\right)^6}f_{\text{dmp},6}(r_{AB}) + s_8\frac{C_8^{AB}}{\left(r_{AB}\right)^8}f_{\text{dmp},8}(r_{AB}).\label{eqn:Edisp2}
 \end{align}
-
+%
 Using only the second term in equation~\eqref{eqn:Edisp2} is equal to the
 second generation dispersion correction D2.\footnote{The calculation of $C_6$
 parameters is carried out differently for D2.} $s_6$ and $s_8$ are functional
@@ -530,11 +530,11 @@ $C_6°^{AB}$ can be used to calculate $C_8^{AB}$ and $C_9^{AB}$, which is
 contained in the three-body term.
 
 Usually, a zero damping approach is used for the damping function.
-
+%
 \begin{align}
 	f_{\text{dmp},n} = \frac{1}{1+6\left( \frac{r_Ar_B}{s_{r,n}r_0^{AB}} \right)^{\alpha_n}}
 \end{align}
-
+%
 The name comes from the limit of the damping function which approaches zero with
 $r_{AB}$ going to infinity. Alternatively, the Becke-Johnson damping function
 can be used, which approaches a constant value with $r_{AB}\to\infty$ - a more
@@ -554,11 +554,11 @@ The most commonly type of basis functions used in molecular calculations are
 with them. \acp{STO} are derived from the exact solutions to the hydrogen atom
 and therefore depend parametrically on the three quantum numbers $n$,
 $l$, $m$.
-
+%
 \begin{align}
     \chi_{\zeta_S,n,l,m}(r,\theta,\varphi) = NY_{l,m}(\theta,\varphi)r^{n-1}e^{-\zeta_S r}
 \end{align}
-
+%
 The functions are split up into a radial part only depending on the spherical
 coordinate $r$ and the orbital coefficient $\zeta_S$ and an angular part
 $Y_{l,m}(\theta,\varphi)$ which are spherical harmonics only depending on the
@@ -569,23 +569,23 @@ is required.
 
 \acp{GTO} use the same spherical harmonics to describe the angle dependent
 part, but contain a Gaussian function to describe the $r$-dependant term.
-
+%
 \begin{align}
     \begin{aligned}
     \chi_{\zeta_G,n,l,m}(r,\theta,\varphi) &= NY_{l,m}(\theta,\varphi)r^{2n-2-l}e^{\zeta_Gr^2}\\
     \chi_{\zeta_G,l_x,l_y,l_z}(x,y,z) &= N x^{l_x}y^{l_y}z^{l_z}e^{-\zeta r^2}
     \end{aligned}
 \end{align}
-
+%
 In the core region the function is continuous and its derivative is zero and
 therefore it gives a worse description of the system. However, it is possible
 to combine multiple \acp{GTO} in a linear combination to approximate the shape
 of the \ac{STO}.
-
+%
 \begin{align}
     \chi^\text{STO} = \sum_ia_i\chi_i^\text{GTO}
 \end{align}
-
+%
 In addition to this expansion it is typical to use more than one
 function per atomic orbital to improve the flexibility of the basis set and
 therefore the description of the orbital. This is done by choosing different
