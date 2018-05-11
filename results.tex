@@ -317,9 +317,9 @@ isomer & ideal  & actual  & $\Delta E_n$ &$\Delta E_g$ & \multicolumn{1}{c}{$N_4
 
 \begin{table}[ht!]
 	\centering
-	\caption{binding energy per atom (in eV) for investigated neutral and anionic compact cluster compounds. For the definition of
+	\caption{Binding energy per atom (in eV) for investigated neutral and anionic compact cluster compounds. For the definition of
 	the binding energy see Tables \ref{tab:neutral} and \ref{tab:anion}, and for the definition of the isomer 1 and 10 for Au$_{32}$
-	see Jalbout et al.\autocite{Jalbout_LowSymmetryStructuresAu_2008}.}
+	see Jalbout et al. \cite{Jalbout_LowSymmetryStructuresAu_2008}.}
 	\begin{tabular}{llr|llr|llr}
 		\toprule
 		$N$  & symmetry  & $\Delta E_n$(neutral) & $N$  & symmetry  & $\Delta E_n$(neutral) & $N$  & symmetry  & $\Delta E_n$(anion) \\
@@ -1323,9 +1323,11 @@ structures into six seeds for clusters up to $N=13$.
 
 \chapter[The Gregory-Newton Clusters]{
     The Gregory-Newton Clusters\footnote{This chapter is partly composed of
-    sections previously published in the article ``From sticky-hard-sphere to
+    sections previously published in the articles ``From sticky-hard-sphere to
     Lennard-Jones-type
     clusters''\autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018}
+    and ``Symmetry Breaking of the Icosahedral Gregory-Newton Cluster in the
+    Rigid Sticky-Hard-Sphere Limit of the Lennard-Jones Potential''\autocite{}
     and is reproduced with kind permission from the authors and APS
     (\textcopyright 2018 American Physical Society).}
 }
@@ -1334,6 +1336,116 @@ structures into six seeds for clusters up to $N=13$.
 \section{Introduction}
 \label{sec:introductiongregorynewton}
 
+The arrangement of $N$ points on the surface of a sphere corresponding to the
+placement of $N$ identical spheres around a central sphere is called a
+spherical packing. To achieve optimal packings for spheres is known as the
+Tammes problem, originally posed in 1930 to study the distribution of pores on
+pollen grains \autocite{Tammes_originnumberarrangement_1930}: It is to
+determine the largest diameter and distribution that $N$ equal spheres may have
+when packed onto the surface of a sphere of radius 1 (unit sphere), without
+allowing for any overlap of these spheres. Alternatively, if the centre of each
+sphere is considered as the vertex of a polyhedron, the graph theoretical
+problem is to find the polyhedron that maximizes the shortest edge lengths with
+fixed distance to the central vertex.
+
+Newton and Gregory argued about the maximum possible number $N_k(d)$ (the
+\textit{maximum kissing number} or \textit{Newton number}) of three-dimensional
+unit spheres ($d$=3) that could be brought into contact with a central sphere
+\autocite{Pfender_KissingNumbersSphere_2004}. Sch\"utte and van der Waerden
+provided the first proof in 1953 that max$\{N_k(3)\}=12$
+\autocite{Schutte_ProblemdreizehnKugeln_1952}. Such a cluster of 12 unit
+spheres kissing a central unit sphere is called a \ac{GNC}, and is shown in its
+most symmetric icosahedral form in Figure \ref{fig:GN}. Exact Newton numbers
+for unit spheres in lattice packings are known for dimensions $d=1$ to 9 and
+$d=24$, and for non-lattice packings for $d=1-3$, 8 and 24
+\autocite{conway-2013book,Musin_proof24cellconjecture_2017}.  Lower and upper
+bounds for max$\{N_k(d)\}$ are also available
+\autocite{Mittelmann_Highaccuracysemidefiniteprogramming_2010,conway-2013book}. 
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.4\textwidth]{gregory-newton/Kissing-3d.png} \quad
+    \includegraphics[width=.45\textwidth]{gregory-newton/ico.pdf}
+    \caption{Left: Symmetric realization of $N_k(3)=12$ for unit hard spheres
+    (icosahedral symmetry, $I_h$).  The minimum distance between the outer
+    spheres is $r=$sin$^{-1}\left(\frac{2\pi}{5}\right)$=1.05146222$\dots$,
+    hence they do not touch. Right: The corresponding icosahedral graph.
+    Numbering refers to the respective node index.}
+    \label{fig:GN}
+\end{figure}
+
+The Tammes, Thomson  or related models employ repulsive forces between points
+or spheres \autocite{Wales_Structuredynamicsspherical_2006,Wales_Defectmotifsspherical_2009} and, for the
+three-dimensional problem with 12 kissing spheres, lead to ideal icosahedral
+symmetry (Figure \ref{fig:GN}). We may however pose the question of what
+happens if we let the outer kissing spheres of a \ac{GNC} touch each other to
+enforce rigidity? We could try to find the global and all local minima for the
+12 kissing hard spheres interacting through an attractive instead of a
+repulsive potential. For example, we can place the central hard sphere in a
+gravitational field of strength $F_G=Gm_im_jr_{ij}^{-2}$ and relax all
+positions $r_{ij}\ge (R_i+R_j)$ between the kissing hard spheres $i$ and $j$,
+in the most general case having sphere radii $R_i$ and masses $m_i$. It is
+clear that such a procedure leads to a less flexible and more rigid sphere
+packing. In Euclidian space, this problem is well known to
+crystallization/sedimentation phenomena modelled by hard spheres in a
+gravitational field \autocite{Levin_Crystallizationhardspheres_2000,Pusey_Hardspherescrystallization_2009}.
+
+The most widely used interaction potential in chemical and physical sciences is
+the so-called Lennard-Jones (LJ) potential
+\autocite{Jones_DeterminationMolecularFields_1924,Lennard-Jones_Cohesion_1931},
+which is attractive in the long range and repulsive in the short range. In
+reduced units the LJ$(a,b)$ potential takes the form, 
+\begin{equation}
+V_{a,b}^\mathrm{LJ}(r)=\frac{ar^{-b}-br^{-a}}{b-a} \quad ({\mathrm with} \ \ r,a,b \in \mathbb{R}^+ \ \ {\mathrm and} \ \ b>a).
+\label{eqn:abpot}
+\end{equation}
+Such a potential maximizes the number of contacts between spheres, and for the
+famous LJ(6,12) case leads to one and only one minimum for the \ac{GNC}
+\autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018} -- the ideal icosahedron (shown in Figure \ref{fig:GN}) as
+in the case of the Tammes problem. The icosahedral motif originally proposed by
+Mackay \autocite{Mackay-1962} plays a very important role in cluster physics and
+chemistry
+\autocite{Hoare_Physicalclustermechanics_1975,Klots90,Uppenbrink-1991,vandewaal93,Wales_Whatcancalculations_1996,Wales_ChangesMorphologyCapping_1996,Wales_Structuredynamicsspherical_2006}.
+
+For large exponents $(a,b)$ the LJ potential approaches the sticky hard-sphere
+(SHS) limit originally introduced by Baxter \autocite{baxter68,Gazzillo_AnalyticsolutionsBaxter_2004},
+\begin{align}
+    \lim_{a,b\rightarrow \infty} V_{a,b}^\mathrm{LJ}(r) \rightarrow V_\mathrm{SHS}(r)=
+    \begin{cases}
+        \infty   & r < 1\\
+        -1  \quad {\mathrm for} & r = 1\\
+        0       & r > 1.
+    \end{cases}
+\label{eqn:KS1}
+\end{align}
+SHS models have been used intensively in many areas, such as crystallization,
+flocculation, colloidal suspensions, micelles, protein solutions, or in the
+exact enumeration of rigid SHS clusters
+\autocite{Stell_Stickyspheresrelated_1991,Jamnik_Spatialcorrelationssolvation_1996,Santos_Radialdistributionfunctions_1998,Gazzillo_AnalyticsolutionsBaxter_2004,Hoy_MinimalEnergyPackings_2010,Arkus_Minimalenergyclusters_2009,Arkus-2010,Arkus_DerivingFiniteSphere_2011,Hoy_Structurefinitesphere_2012,Hayes_ScienceStickySpheres_2012,Holmes-Cerfon_geometricalapproachcomputing_2013,Holmes-Cerfon_EnumeratingRigidSphere_2016,Holmes-Cerfon_StickySphereClusters_2017,Kallus_Freeenergysingular_2017}.
+The SHS model has the advantage that an adjacency matrix $A$ can be introduced
+with entries $A_{ij}=1$ if spheres $i$ and $j$ touch, and 0 otherwise. The
+number of contacts between spheres then simply becomes $N_c=\sum_{i<j}^N
+A_{ij}$. It also opens the way for graph-theoretical treatments of cluster
+structures as we shall see.
+
+A complete set of non-isomorphic rigid SHS clusters has recently been
+determined for cluster size $N \leq 14$ via exact enumeration studies employing
+geometric rejection
+\autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016}
+and rigidity rules \autocite{Holmes-Cerfon_StickySphereClusters_2017}. These
+include the rigid \acp{GNC} as a subset. Recently, Trombach et al. determined
+that the number of non-isomorphic rigid \acp{GNC} $n_{\mathrm GNC}$ is
+surprisingly large ($n_{\mathrm GNC}=737$) \autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018}. An explanation for
+this has not been given yet. Moreover, the condition $\lim_{a,b\rightarrow
+\infty} V_{a,b}^\mathrm{LJ}(r) \rightarrow V_\mathrm{SHS}(r)$ implies that at
+certain $a,b$ values symmetry broken solutions away from the ideal icosahedral
+structure appear. Where exactly this happens, and when the icosahedral
+structure does not survive anymore, is not known. In order to close this gap,
+we decided to analyze the rigid \acp{GNC} and corresponding symmetry breaking
+effects in more detail. This is much in the spirit of Wales who already pointed
+out that the global characteristics of the energy landscape can be quite
+sensitive to the nature of the interatomic potential applied
+\autocite{Wales_MicroscopicBasisGlobal_2001}.
+
 \section{Results}
 \label{sec:resultsgregorynewton}
 
@@ -1341,22 +1453,24 @@ structures into six seeds for clusters up to $N=13$.
 \label{sec:thegregorynewtonproblemforsoftpotentials}
 
 The question of the Newton number in three dimensions has been resolved almost
-70 years ago\autocite{Schutte_ProblemdreizehnKugeln_1952}. The proof is valid for hard-sphere
-short-range potentials, but little is known about the behaviour of such
-clusters under long-range potentials such as the Kratzer
-potential\autocite{Kratzer_ultrarotenRotationsspektrenHalogenwasserstoffe_1920}. We used the optimisation
-procedures explained in chapter~\ref{sec:theprogramspheres} to minimise the
-energy of a starting structure consisting of 13 spheres surrounding a center
-sphere with a fixed distance of one. Generating such a starting structure where
-all surrounding spheres are evenly spaced is impossible since there exists no
-triangulation of a sphere with 13 vertices, where every vertex has degree five
-or six\autocite{Schwerdtfeger_topologyfullerenes_2015}. To generate an approximate
+70 years ago\autocite{Schutte_ProblemdreizehnKugeln_1952}. The proof is valid
+for hard-sphere short-range potentials, but little is known about the behaviour
+of such clusters under long-range potentials such as the Kratzer
+potential\autocite{Kratzer_ultrarotenRotationsspektrenHalogenwasserstoffe_1920}.
+We used the optimisation procedures explained in
+chapter~\ref{sec:theprogramspheres} to minimise the energy of a starting
+structure consisting of 13 spheres surrounding a center sphere with a fixed
+distance of one. Generating such a starting structure where all surrounding
+spheres are evenly spaced is impossible since there exists no triangulation of
+a sphere with 13 vertices, where every vertex has degree five or
+six\autocite{Schwerdtfeger_topologyfullerenes_2015}. To generate an approximate
 distribution we used the Fibonacci sphere
-algorithm\autocite{Gonzalez_MeasurementAreasSphere_2010,Keinert_SphericalFibonacciMapping_2015} and used
-this structure as a starting point for optimisations with \ac{LJ} potentials
-with small exponents. The difference between the largest and smallest \ac{COS}
-distance was used as a measure for whether the 13th sphere enters the first
-coordination shell. A value of zero would be expected for this to be true.
+algorithm\autocite{Gonzalez_MeasurementAreasSphere_2010,Keinert_SphericalFibonacciMapping_2015}
+and used this structure as a starting point for optimisations with \ac{LJ}
+potentials with small exponents. The difference between the largest and
+smallest \ac{COS} distance was used as a measure for whether the 13th sphere
+enters the first coordination shell. A value of zero would be expected for this
+to be true.
 
 \begin{figure}
     \centering
