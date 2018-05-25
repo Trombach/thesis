@@ -608,6 +608,11 @@ loosing accuracy.
 \chapter{Energy Landscapes}
 \label{sec:energylandscapes}
 
+\section{Lennard-Jones}
+\label{sec:LennardJones}
+
+\section{Sticky-Hard-Sphere}
+\label{sec:SHS}
 
 \chapter{Geometry Optimisation}
 \label{sec:geometryoptimisation}
@@ -620,3 +625,109 @@ and will therefore be explained in detail in the following chapters. If not
 mentioned otherwise the theory is based on
 Fletcher's\autocite{Fletcher_Practicalmethodsoptimization_1987} introductory
 book.
+
+Finding the set of coordinates $\mathbf{x}$ that minimise a given energy
+function is an optimisation problem. There are a multitude of methods available
+that are all suited for different types of problems. In the following sections
+the theory of local minimisation will be discussed in terms of a general
+objective function $f$ that can be replaced with any energy function.
+
+\section{General Considerations about Minima}
+\label{sec:GeneralRemarksAboutMinima}
+
+The \textit{objective function} $f$ is said to have a minimum value (or simply
+\textit{minimum}) at the set of coordinates $\mathbf{x^*}$, which is called a
+\textit{minimiser} of the objective function $f$. Usually, optimisation
+procedures locate local minimisers, while the problem of finding global
+minimisers is considerably more difficult and requires clever algorithms.
+General definitions of local minimisers can be formulated in form of
+\textit{strict local minimisers} ($f(\mathbf{x})>f(\mathbf{x^*})$) or
+\textit{isolated local minimisers} ($\mathbf{x^*}$ is the only local minimiser
+in its neighbourhood).
+
+The definition becomes simpler when one only considers smooth functions as the
+minimisers can be characterised in terms of first and second derivatives. A
+smooth function needs to be continuous and continuously differentiable,
+therefore, a vector of first partial derivatives $\nabla
+f(\mathbf{x})=\mathbf{g}(\mathbf{x})$ must exist for any $\mathbf{x}$.
+%
+\begin{equation}
+    \nabla f(\mathbf{x})=
+    \begin{pmatrix}
+        \pdv*{f}{x_1}\\
+        \pdv*{f}{x_2}\\
+        \vdots\\
+        \pdv*{f}{x_n}
+    \end{pmatrix}
+\end{equation}
+%
+A twice continuously differentiable function additionally allows for the
+definition of a matrix of second partial derivatives $\nabla^2
+f(\mathbf{x})=\mathbf{G}(\mathbf{x})$ also called a Hessian matrix.
+%
+\begin{equation}
+    \nabla^2 f(\mathbf{x})=
+    \begin{pmatrix}
+        \pdv*[2]{f(\mathbf{x})}{{x_1}} & \pdv*{f(\mathbf{x})}{x_1}{x_2} & \ldots & \pdv*{f(\mathbf{x})}{x_1}{x_{n}}\\
+        \pdv*{f(\mathbf{x})}{x_2}{x_1} & \pdv*[2]{f(\mathbf{x})}{{x_2}} & \ldots & \pdv*{f(\mathbf{x})}{x_2}{x_{n}}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        \pdv*{f(\mathbf{x})}{x_{n}}{x_1} & \pdv*{f(\mathbf{x})}{x_{n}}{x_2} & \ldots & \pdv*[2]{f(\mathbf{x})}{{x_{n}}}
+    \end{pmatrix}
+\end{equation}
+%
+Most interatomic potentials have smooth potential energy landscapes, which
+justifies this simplification. 
+
+To derive conditions for a point to be a local minimiser consider any line
+through the minimiser $\mathbf{x^*}$
+%
+\begin{equation}
+    \mathbf{x}(\alpha)=\mathbf{x^*}+\alpha\mathbf{s}.
+\end{equation}
+%
+Using the chain rule the derivative $\dv{f}{\alpha}$ can be expressed as
+$\dv{f}{\alpha}=\mathbf{s^\text{T}}\nabla
+f$\footnote{$\dv{\alpha}=\sum_i\dv{\alpha}x_i(\alpha)\pdv{x_i}=\sum_i
+s_i\pdv{x_i}=\mathbf{s^\text{T}}\nabla$}. At $\mathbf{x^*}$ ($\alpha=0$) this
+line has a slope of zero and a non-negative curvature, which means
+$\mathbf{s^\text{T}}\nabla f(\mathbf{x^*})=0$. Following the same argument for
+the second derivative a second condition $\mathbf{s^\text{T}}\nabla^2
+f(\mathbf{x^*})\mathbf{s}\geq 0$ can be derived. As these conditions must be
+true for all $\mathbf{s}$ we can for example consider the case
+$\mathbf{s}=\mathbf{e_1}$, with $\mathbf{e_1}$ being a unit vector, to see that
+%
+\begin{align}
+    \mathbf{g}(\mathbf{x^*})&=0\label{eqn:firstordernecessary}\\
+    \mathbf{s^\text{T}}\mathbf{G}(\mathbf{x^*})\mathbf{s}&\geq 0.\label{eqn:secondordernecessary}
+\end{align}
+Equations~\eqref{eqn:firstordernecessary} and \eqref{eqn:secondordernecessary}
+are necessary (but not sufficient) conditions for local minimisers. In fact, as
+equation~\eqref{eqn:firstordernecessary} is derived from first order variations
+in $f$ it is considered a first order necessary condition, while
+equation~\eqref{eqn:secondordernecessary} is considered a second order
+necessary condition. It can be shown that sufficient conditions for local
+minimisers are equation~\eqref{eqn:firstordernecessary} and
+$\mathbf{s^\text{T}}\mathbf{G}(\mathbf{x^*})\mathbf{s}>
+0$.\autocite{Fletcher_Practicalmethodsoptimization_1987} The reason for this
+minor change for the second order condition is that
+equation~\eqref{eqn:secondordernecessary} also holds true for points of zero
+curvature. In other words the sufficient conditions for a local minimiser are
+the gradient to be zero and the Hessian matrix to be positive definite at
+$\mathbf{x^*}$.
+
+In practice, minimisation schemes usually locate $\mathbf{x^*}$ that only
+fulfil the first condition $\mathbf{g}(\mathbf{x^*})=0$. As those points can
+either refer to minima, maxima or saddle points they are called stationary
+points. A located stationary point has to be checked for his character, but it
+is usually not feasible to check equation~\eqref{eqn:secondordernecessary} as
+it can't be checked numerically. In this work the eigenvalues of
+$\mathbf{G}(\mathbf{x})$ are used to verify local minimisers, which have to be
+positive.
+
+\section{Properties of Optimisation Algorithms}
+\label{sec:PropertiesOfOptimisationAlgorithms}
+
+
+
+\section{Optimisation Schemes}
+\label{sec:OptimisationSchemes}
