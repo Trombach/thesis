@@ -727,6 +727,46 @@ positive.
 \section{Properties of Optimisation Algorithms}
 \label{sec:PropertiesOfOptimisationAlgorithms}
 
+To have any practical usefulness an iterative optimisation algorithm should
+obey a few requirements. For instance, the algorithm should move steadily
+towards the local minimiser $\mathbf{x^*}$ and converge quickly to a
+user-defined convergence criterion. The rate of convergence, decisive for the
+performance of the algorithm, can be quantified by defining the error
+%
+\begin{equation}
+    \Delta\mathbf{x}^{(k)}=\mathbf{x}^{(k)}-\mathbf{x^*}.
+\end{equation}
+%
+Here, $\mathbf{x}^{(k)}$ denotes the $k$th iterate with $\mathbf{x}^{(1)}$
+referring to the starting point of the iterative procedure. The local
+convergence rate can then be given as the fraction of the Euclidean norm of the
+errors of consecutive steps.
+%
+\begin{equation}
+    \frac{||\Delta\mathbf{x}^{(k+1)}||}{||\Delta\mathbf{x}^{(k)}||^{p}}\leq a, \,a>0
+\end{equation}
+%
+The rate of convergence $a$ must be positive and $p$ defines the order of
+convergence, most importantly linear convergence ($p=1$) and quadratic
+convergence ($p=2$). An algorithm is generally desired to convergence
+quadratically towards $\mathbf{x^*}$, however, linear convergence can be
+acceptable in case the rate constant is low.
+
+An optimisation algorithm is usually based on a model, that approximates the
+objective function and allows for the prediction of the location of
+$\mathbf{x^*}$. The methods used in this work belong to the group of quadratic
+models and use a line search approach to locate the local minimiser. Focus will
+therefore be put on this kind of approach. The idea of a line search relies on
+a user-defined starting point $\mathbf{x}^{(1)}$ and is restricted to search
+for a minimiser along coordinate directions. In a line search procedure the
+$k$th iteration requires (1) to determine the search direction
+$\mathbf{s}^{(k)}$, (2) minimise $f(\mathbf{x}^{(k)}+\alpha\mathbf{s}^{(k)})$
+with respect to $\alpha$ and (3) to set the new iterate
+$\mathbf{x}^{(k+1)}=\mathbf{x}^{(k)}+\alpha^{(k)}\mathbf{s}^{(k)}$. Step (1)
+depends on the chosen method, while step (2) is independent of the chosen
+method and corresponds to the line search step. The latter is solved by
+sampling $f(\mathbf{x})$ along the line $\mathbf{s}^{(k)}$.
+
 
 
 \section{Optimisation Schemes}
