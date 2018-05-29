@@ -697,9 +697,16 @@ true for all $\mathbf{s}$ we can for example consider the case
 $\mathbf{s}=\mathbf{e_1}$, with $\mathbf{e_1}$ being a unit vector, to see that
 %
 \begin{align}
-    \mathbf{g}(\mathbf{x^*})&=0\label{eqn:firstordernecessary}\\
-    \mathbf{s^\text{T}}\mathbf{G}(\mathbf{x^*})\mathbf{s}&\geq 0.\label{eqn:secondordernecessary}
+    \mathbf{g^*}&=0\label{eqn:firstordernecessary}\\
+    \mathbf{s^\text{T}}\mathbf{G^*}\mathbf{s}&\geq 0.\label{eqn:secondordernecessary}
 \end{align}
+%
+Note that $\mathbf{g^*}=\mathbf{g}(\mathbf{x^*})$ and
+$\mathbf{G^*}=\mathbf{G}(\mathbf{x^*})$ are used to simplify the notation. In
+the following sections this short hand notation will also be extended to the
+objective function $f$ and general points $\mathbf{x}^{(k)}$, i.e.
+$f^{(k)},\mathbf{g}^{(k)},\mathbf{G}^{(k)},\dots=f\left(\mathbf{x}^{(k)}\right),\mathbf{g}\left(\mathbf{x}^{(k)}\right),\mathbf{G}\left(\mathbf{x}^{(k)}\right),\dots$.
+
 Equations~\eqref{eqn:firstordernecessary} and \eqref{eqn:secondordernecessary}
 are necessary (but not sufficient) conditions for local minimisers. In fact, as
 equation~\eqref{eqn:firstordernecessary} is derived from first order variations
@@ -707,7 +714,7 @@ in $f$ it is considered a first order necessary condition, while
 equation~\eqref{eqn:secondordernecessary} is considered a second order
 necessary condition. It can be shown that sufficient conditions for local
 minimisers are equation~\eqref{eqn:firstordernecessary} and
-$\mathbf{s^\text{T}}\mathbf{G}(\mathbf{x^*})\mathbf{s}>
+$\mathbf{s^\text{T}}\mathbf{G^*}\mathbf{s}>
 0$.\autocite{Fletcher_Practicalmethodsoptimization_1987} The reason for this
 minor change for the second order condition is that
 equation~\eqref{eqn:secondordernecessary} also holds true for points of zero
@@ -716,12 +723,12 @@ the gradient to be zero and the Hessian matrix to be positive definite at
 $\mathbf{x^*}$.
 
 In practice, minimisation schemes usually locate $\mathbf{x^*}$ that only
-fulfil the first condition $\mathbf{g}(\mathbf{x^*})=0$. As those points can
+fulfil the first condition $\mathbf{g^*}=0$. As those points can
 either refer to minima, maxima or saddle points they are called stationary
 points. A located stationary point has to be checked for his character, but it
 is usually not feasible to check equation~\eqref{eqn:secondordernecessary} as
 it can't be checked numerically. In this work the eigenvalues of
-$\mathbf{G}(\mathbf{x})$ are used to verify local minimisers, which have to be
+$\mathbf{G^*}$ are used to verify local minimisers, which have to be
 positive.
 
 \section{Properties of Optimisation Algorithms}
@@ -743,7 +750,7 @@ convergence rate can then be given as the fraction of the Euclidean norm of the
 errors of consecutive steps.
 %
 \begin{equation}
-    \frac{||\Delta\mathbf{x}^{(k+1)}||}{||\Delta\mathbf{x}^{(k)}||^{p}}\leq a, \,a>0
+    \frac{\left|\left|\Delta\mathbf{x}^{(k+1)}\right|\right|}{\left|\left|\Delta\mathbf{x}^{(k)}\right|\right|^{p}}\leq a, \,a>0
 \end{equation}
 %
 The rate of convergence $a$ must be positive and $p$ defines the order of
@@ -759,15 +766,103 @@ models and use a line search approach to locate the local minimiser. Focus will
 therefore be put on this kind of approach. The idea of a line search relies on
 a user-defined starting point $\mathbf{x}^{(1)}$ and is restricted to search
 for a minimiser along coordinate directions. In a line search procedure the
-$k$th iteration requires (1) to determine the search direction
-$\mathbf{s}^{(k)}$, (2) minimise $f(\mathbf{x}^{(k)}+\alpha\mathbf{s}^{(k)})$
-with respect to $\alpha$ and (3) to set the new iterate
-$\mathbf{x}^{(k+1)}=\mathbf{x}^{(k)}+\alpha^{(k)}\mathbf{s}^{(k)}$. Step (1)
-depends on the chosen method, while step (2) is independent of the chosen
-method and corresponds to the line search step. The latter is solved by
-sampling $f(\mathbf{x})$ along the line $\mathbf{s}^{(k)}$.
+$k$th iteration requires 
+\begin{enumerate}
+        \item to determine the search direction $\mathbf{s}^{(k)}$, 
+        \item minimise $f\left(\mathbf{x}^{(k)}+\alpha\mathbf{s}^{(k)}\right)$ with respect to $\alpha$ and 
+        \item to set the new iterate $\mathbf{x}^{(k+1)}=\mathbf{x}^{(k)}+\alpha^{(k)}\mathbf{s}^{(k)}$.
+\end{enumerate}            
+Step 1 depends on the chosen method, while step 2 is independent of the chosen
+method and corresponds to the line search step. Step 2 is solved by sampling
+$f(\mathbf{x})$ along the line $\mathbf{s}^{(k)}$ and, in practice, needs to be
+terminated when a convergence criterion is met. This is because an exact
+line-search, which corresponds to sampling
+$f\left(\mathbf{x}^{(k)}+\alpha\mathbf{s}^{(k)}\right)$ until the true minimum
+has been found, is not possible to be implemented with a finite amount of
+steps.  Especially for points far from $\mathbf{x^*}$ it is sensible to choose
+loose convergence criteria and tighten them around $\mathbf{x^*}$.
 
+The line-search convergence criterion is usually not a user-defined value,
+however, the termination criterion $\varepsilon$ of the optimisation procedure
+needs to be supplied by the user. There are several possibilities of choosing a
+convergence test with the most obvious approach being to test for convergence
+in the minimum value $f^{(k)}-f^*\leq\varepsilon$ or the minimiser itself
+$\left|x^{(k)}_i-x^*_i\right|\leq\varepsilon_i$. However, these criteria
+require knowledge of exact minimiser or minimum value of the objective function
+and it is easy to see, that this is paradoxical. A more useful criterion can be
+based on the Euclidean norm of the gradient at the $k$th iterate
+%
+\begin{equation}
+    \left|\left|\mathbf{g}^{(k)}\right|\right|\leq \varepsilon.
+\end{equation}
+%
 
+\section{Quadratic Models}
+\label{sec:QuadraticModels}
 
-\section{Optimisation Schemes}
-\label{sec:OptimisationSchemes}
+An optimisation method is said to be derived from a quadratic model if the
+method approximates the objective function by a quadratic function around the
+minimiser. A quadratic model has to be applied iteratively to a general
+function to lead to convergence. Applied to a quadratic function it can be
+shown that it should locate the minimiser in a finite amount of steps. The use
+of a quadratic model has several advantages and most successful methods are
+based on it. The most obvious way to derive a quadratic model is probably by
+using information from both the gradient and the second derivatives, which
+gives rise to the Newton-Raphson method (or quasi-Newton-Raphson if second
+derivatives are estimated). However, it is possible to build a quadratic method
+without using second derivatives and one such example is the conjugate gradient
+method. 
+
+\subsection{Newton-like Methods}
+\label{sec:NewtonlikeMethods}
+
+As mentioned above, a quadratic model can be derived by including information
+from the second derivatives, which in the case of Newton-like methods is
+achieved by truncating a Taylor expansion of the objective function around the
+iterate minimiser $\mathbf{x}^{(k)}$.
+%
+\begin{equation}
+    f\left(\mathbf{x}^{(k)}+\bm{\delta}\right)\approx 
+        q^{(k)}(\bm{\delta})=
+        f^{(k)} + {\mathbf{g}^{(k)}}^\mathbf{T}\bm{\delta}
+        + \frac{1}{2}\bm{\delta^T}\mathbf{G}^{(k)}\bm{\delta}\label{eqn:TaylorNewton}
+\end{equation}
+% 
+Here, $\bm{\delta}=\mathbf{x}-\mathbf{x}^{(k)}$ and $q^{(k)}(\bm{\delta})$ is
+the quadratic approximation of the objective function around $\mathbf{x^*}$.
+The next step in the optimisation $\mathbf{x}^{(k+1)}$ is then chosen based on
+$\bm{\delta}=\bm{\delta}^{(k)}$ which minimises $q^{(k)}(\bm{\delta})$. It can
+be shown, that the derivative $\nabla q^{(k)}(\bm{\delta})$ can be
+expressed as
+%
+\begin{align}
+    \nabla q^{(k)}(\bm{\delta})=\mathbf{G}^{(k)}\bm{\delta}+\mathbf{g}^{(k)},
+\end{align}
+%
+and is said to be $0$ at $\bm{\delta}=\bm{\delta}^{(k)}$. The last conditions
+results in $n\times n$ linear equations that can be solved programmatically,
+and the result can be used to construct the next iterate
+$\mathbf{x}^{(k+1)}=\mathbf{x}^{(k)}+\bm{\delta}^{(k)}$.
+
+In practice Newton's method is usually implemented in combination with a
+line-search algorithm. Because it is not guaranteed that the iterates
+$\left\{f^{(k)}\right\}$ decrease towards the minimum value it can be useful to
+define the direction of search as
+%
+\begin{align}
+    \mathbf{s}^{(k)}=-{\mathbf{G}^{(k)}}^{-1}\mathbf{g}^{(k)}.
+\end{align}
+%
+If $\mathbf{G}$ is positive definite so is $\mathbf{G}^{-1}$ and $\mathbf{s}$ is
+a descent direction.
+
+Problems arise if $\mathbf{G}$ is not positive definite, which can happen if
+the current iterator is far from the local minimiser. In that case it is still
+possible to calculate a search direction and search along positive and negative
+direction to find a lower $f^{(k)}$. This means, however, the approximate
+quadratic function does not yield a minimum objective function values
+minimising point. One possible solution proposed by Goldstein and
+Price\autocite{Goldstein_effectivealgorithmminimization_1967} is to iterate in
+a steepest descent direction $\mathbf{s}^{(k)}=-\mathbf{g}^{(k)}$ in case the
+Hessian matrix is not positive definite. Nonetheless, this method is prone to
+oscillatory behaviour that would be introduced into the optimisation iteration.
