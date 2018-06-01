@@ -13,7 +13,7 @@ In this part of the thesis knowledge of standard methods used in quantum
 chemistry is required. The following chapters introduce the fundamentals of
 quantum mechanics and their application to chemistry related questions. Most of
 it is based on standard literature by
-Jensen\autocite{Jensen_IntroductionComputationalChemistry_2006}, Szabo and
+Jensen\autocite{Jensen_IntroductionComputationalChemistry_2007}, Szabo and
 Ostlund\autocite{Szabo_ModernQuantumChemistry_1996} and Holthausen and
 Koch\autocite{Koch_ChemistGuideDensity_2001}.
 
@@ -605,14 +605,6 @@ loosing accuracy.
 \label{sec:ECP}
 
 
-\chapter{Energy Landscapes}
-\label{sec:energylandscapes}
-
-\section{Lennard-Jones}
-\label{sec:LennardJones}
-
-\section{Sticky-Hard-Sphere}
-\label{sec:SHS}
 
 \chapter{Geometry Optimisation}
 \label{sec:geometryoptimisation}
@@ -836,7 +828,7 @@ be shown, that the derivative $\nabla q^{(k)}(\bm{\delta})$ can be
 expressed as
 %
 \begin{align}
-    \nabla q^{(k)}(\bm{\delta})=\mathbf{G}^{(k)}\bm{\delta}+\mathbf{g}^{(k)},
+    \nabla q^{(k)}(\bm{\delta})=\mathbf{G}^{(k)}\bm{\delta}+\mathbf{g}^{(k)},\label{eqn:QuadraticAprroximationDerivative}
 \end{align}
 %
 and is said to be $0$ at $\bm{\delta}=\bm{\delta}^{(k)}$. The last conditions
@@ -866,3 +858,178 @@ Price\autocite{Goldstein_effectivealgorithmminimization_1967} is to iterate in
 a steepest descent direction $\mathbf{s}^{(k)}=-\mathbf{g}^{(k)}$ in case the
 Hessian matrix is not positive definite. Nonetheless, this method is prone to
 oscillatory behaviour that would be introduced into the optimisation iteration.
+
+If the Hessian matrix is almost positive definite a feasible approach might be
+to modify $\mathbf{G}^{(k)}$ to make it positive definite. A better search
+direction can be defined by adding a small multiple $\nu$ of a unit matrix
+$\mathbf{I}$.
+\autocite{Levenberg_methodsolutioncertain_1944,Marquardt_AlgorithmLeastSquaresEstimation_1963,Goldfeld_MaximizationQuadraticHillClimbing_1966}
+%
+\begin{align}
+\mathbf{s}^{(k)}=-\left(\mathbf{G}^{(k)}+\nu\mathbf{I}\right)^{-1}\mathbf{g}^{(k)}
+\end{align}
+%
+In this approach the quadratic information is still used, but no oscillatory
+behaviour is being introduced. Instead of modifying the Hessian matrix with
+multiples of the unit matrix it can also be modified more generally with a
+diagonal matrix $\mathbf{D}$, which is advantageous in case the Hessian matrix
+is indefinite.
+\autocite{Murray_Secondderivativemethods_1972,Hebden_algorithmminimizationusing_1973}
+
+Finally, the problem can be solved by computing a negative curvature descent
+direction by solving
+%
+\begin{align}
+    {\mathbf{s}^{(k)}}^\mathbf{T}\mathbf{G}^{(k)}\mathbf{s}^{(k)}<0\\
+    {\mathbf{s}^{(k)}}^\mathbf{T}\mathbf{g}^{(k)}\leq0
+\end{align}
+for $\mathbf{s}^{(k)}$.\autocite{Fiacco_NonlinearProgramming_1990}
+
+
+\subsection{Quasi-Newton Methods}
+\label{sec:QuasiNewtonMethods}
+
+Especially for quantum chemical potentials like Hartree-Fock or density
+functional theory potentials the evaluation of a full Hessian matrix can be
+very computationally expensive. It can therefore be useful to just use an
+approximation for the Hessian matrix. n the most simple case this results in a
+finite difference Newton method where $\mathbf{G}^{(k)}$ is approximated in
+terms of differences of the gradient vector with respect to each coordinate
+direction $\mathbf{e_i}$.
+%
+\begin{align}
+    {\bm{\Delta}\mathbf{g}}_\mathbf{i}^{(k)}=\frac{1}{h_i}\left[\mathbf{g}\left(\mathbf{x}^{(k)}+h_i\mathbf{e_i}\right)-\mathbf{g}^{(k)}\right]\\
+    \mathbf{G}^{(k)}\approx \mathbf{\bar{G}}=
+    \begin{pmatrix}
+        \bm{\Delta}\mathbf{g}_\mathbf{1}^{(k)} & \bm{\Delta}\mathbf{g}_\mathbf{2}^{(k)} & \cdots & \bm{\Delta}\mathbf{g}_\mathbf{n}^{(k)}
+    \end{pmatrix}
+\end{align}
+%
+The approximated matrix needs to be symmetrised by calculating
+$\frac{1}{2}\left(\mathbf{\bar{G}}+\mathbf{\bar{G}^T}\right)$. However, this
+approach has some disadvantages, e.g. the symmetrised matrix is not guaranteed
+to be positive definite and for the calculation of $\mathbf{\bar{G}}$ the
+gradient has to be evaluated $n$ times making this approximation potentially as
+expensive as the exact Hessian calculation.
+
+The class of quasi-Newton methods tries to avoid these problems by
+approximating ${\mathbf{G}^{(k)}}^{-1}$ with a symmetric positive definite
+matrix $\mathbf{H}^{(k)}$, which can then be updated each iteration. The $k$th
+iteration of a quasi-Newton optimisation requires to
+%
+\begin{enumerate}
+    \item determine the search direction $\mathbf{s}^{(k)}=-\mathbf{H}^{(k)}\mathbf{g}^{(k)}$,
+    \item minimise $f\left(\mathbf{x}^{(k)}+\alpha\mathbf{s}^{(k)}\right)$ in a line-search procedure,
+    \item set the new iterate $\mathbf{x}^{(k+1)}=\mathbf{x}^{(k)}+\alpha^{(k)}\mathbf{s}^{(k)}$ and
+    \item update $\mathbf{H}^{(k)}$.
+\end{enumerate}
+%
+The initial choice of $\mathbf{H}^{(1)}$ is not important as long as the matrix
+is symmetric positive definite. Simply choosing a unit matrix is sufficient,
+which turns the first step of the optimisation into a steepest descent step as
+$\mathbf{s}^{(k)}=-\mathbf{g}^{(k)}$.
+
+The method is practically identical with a line-search Newton-like method, with
+the difference being the representation of the matrix of second derivatives.
+The step in the procedure that defines and updates $\mathbf{H}^{(k)}$ is
+therefore very important for quasi-Newton methods. The goal is that updating
+$\mathbf{H}^{(k)}$ in each iteration to $\mathbf{H}^{(k+1)}$ results in a good
+approximation for ${\mathbf{G}^{(k)}}^{-1}$. Using
+equation~\eqref{eqn:QuadraticAprroximationDerivative} and choosing
+$\mathbf{x}=\mathbf{x}^{(k+1)}$ such that
+$\bm{\delta}^{(k)}=\mathbf{x}^{(k+1)}-\mathbf{x}^{(k)}$ it is easy to see that
+in the quadratic approximation the difference between the gradient vectors
+$\bm{\gamma}^{(k)}=\mathbf{g}^{(k+1)}-\mathbf{g}^{(k)}$ is mapped to the
+distance vector between the points by the Hessian matrix.
+%
+\begin{align}
+    \bm{\gamma}^{(k)}=\mathbf{G}^{(k)}\bm{\delta}^{(k)}
+\end{align}
+%
+However, $\mathbf{x}^{(k)}$ is only known after the line-search completed,
+which means that $\mathbf{H}^{(k)}$ (the inverse of $\mathbf{G}^{(k)}$) does
+not map them properly. Yet, this relation can be used to improve the
+approximated inverse Hessian matrix for the next step $\mathbf{H}^{(k+1)}$.
+%
+\begin{align}
+    \mathbf{H}^{(k+1)}\bm{\gamma}^{(k)}=\bm{\delta}^{(k)}\label{eqn:QuasiNewtonCondition}
+\end{align}
+%
+This is the so-called quasi-Newton condition and the differences in different
+quasi-Newton methods lie within the way this condition is fulfilled
+computationally.
+
+One way to generate $\mathbf{H}^{(k+1)}$ is to update $\mathbf{H}^{(k)}$ by
+adding a symmetric rank one matrix $\mathbf{E}^{(k)}=a\mathbf{uu^T}$.
+%
+\begin{align}
+    \mathbf{H}^{(k+1)}=\mathbf{H}^{(k)}+a\mathbf{uu^T}
+\end{align}
+%
+Using equation~\eqref{eqn:QuasiNewtonCondition} it can be seen that
+$\mathbf{u}$ is proportional to
+$\bm{\delta}^{(k)}-\mathbf{H}^{(k)}\bm{\gamma}^{(k)}$ with a proportionality
+constant of $a\mathbf{u^T}\bm{\gamma}^{(k)}$. Since the proportionality can
+just be chosen to be one by changing $a$, it follows that
+$\mathbf{u}=\bm{\delta}^{(k)}-\mathbf{H}^{(k)}\bm{\gamma}^{(k)}$ and hence the
+formula for updating $\mathbf{H}^{(k)}$ can be expressed as
+%
+\begin{align}
+    \mathbf{H}^{(k+1)}=\mathbf{H}+\frac{(\bm{\delta}-\mathbf{H}\bm{\gamma})(\bm{\delta}-\mathbf{H}\bm{\gamma})^\mathbf{T}}{(\bm{\delta}-\mathbf{H}\bm{\gamma})^\mathbf{T}\bm{\gamma}}.\label{eqn:RankOneQuasiNewton}
+\end{align}
+%
+The superscript $(k)$ has been omitted on the right sight to improve
+readability and this notation will be adopted for following update formulae as well.
+Originally, this formula was proposed by multiple people independently.
+\autocite{Broyden_QuasiNewtonMethodstheir_1967,Davidon_VarianceAlgorithmMinimization_1968,Fiacco_NonlinearProgramming_1990}
+It is natural to assume that this formula could be improved by introducing a
+second independent change to $\mathbf{H}^{(k)}$.
+%
+\begin{align}
+    \mathbf{H}^{(k+1)}=\mathbf{H}^{(k)}+a\mathbf{uu^T}+b\mathbf{vv^T}
+\end{align}
+%
+Unfortunately, the expressions for $\mathbf{u}$ and $\mathbf{v}$ can not be
+established as easily as before. However, $\mathbf{u}=\bm{\delta}^{(k)}$ and
+$\mathbf{v}=\mathbf{H}^{(k)}\bm{\gamma}^{(k)}$ have shown to be sensible
+choices and give rise to the \ac{DFP}
+formula.\autocite{Davidon_VariableMetricMethod_1991,Fletcher_RapidlyConvergentDescent_1963}
+%
+\begin{align}
+    \mathbf{H}_\mathbf{DFP}^{(k+1)}=\mathbf{H}+\frac{\bm{\delta\delta}^\mathbf{T}}{\bm{\delta}^\mathbf{T}\bm{\gamma}}-\frac{\mathbf{H}\bm{\gamma\gamma}^\mathbf{T}\mathbf{H}}{\bm{\gamma}^\mathbf{T}\mathbf{H}\bm{\gamma}}\label{eqn:DFPQuasiNewton}
+\end{align}
+%
+The probably most successful quasi-Newton method is based on the \ac{BFGS}
+formula,\autocite{Broyden_ConvergenceClassDoublerank_1970,Broyden_ConvergenceClassDoublerank_1970a,Fletcher_newapproachvariable_1970,Goldfarb_familyvariablemetricmethods_1970,Shanno_ConditioningquasiNewtonmethods_1970}
+which is closely related to the \ac{DFP} formula.
+%
+\begin{align}
+    \mathbf{H}_\mathbf{BFGS}^{(k+1)}=\mathbf{H}
+    +\left(1+\frac{\bm{\gamma}^\mathbf{T}\mathbf{H}\bm{\gamma}}{\bm{\delta}^\mathbf{T}\bm{\gamma}}\right)
+    \frac{\bm{\delta\delta}^\mathbf{T}}{\bm{\delta}^\mathbf{T}\bm{\gamma}}
+    -\left(\frac{\bm{\delta\gamma}^\mathbf{T}\mathbf{H}+\mathbf{H}\bm{\gamma\delta}^\mathbf{T}}{\bm{\delta}^\mathbf{T}\bm{\gamma}}\right)\label{eqn:BFGSQuasiNewton}
+\end{align}
+%
+The relation can be illustrated by denoting $\mathbf{H}^{-1}$ as $\mathbf{B}$
+and substitute in in equation~\eqref{eqn:BFGSQuasiNewton}.
+%
+\begin{align}
+    \mathbf{B}_\mathbf{BFGS}^{(k+1)}=\mathbf{B}+\frac{\bm{\gamma\gamma}^\mathbf{T}}{\bm{\gamma}^\mathbf{T}\bm{\delta}}
+    -\frac{\mathbf{B}\bm{\delta\delta}^\mathbf{T}\mathbf{B}}{\bm{\delta}^\mathbf{T}\mathbf{H}\bm{\delta}}
+\end{align}
+%
+The similiarity to equation~\eqref{eqn:DFPQuasiNewton} is obvious. Because both
+formulae are related by exchanging $\bm{\gamma}\leftrightarrow\bm{\delta}$ and
+$\mathbf{B}\leftrightarrow\mathbf{H}$ they are called dual or complementary.
+
+
+
+
+\chapter{Energy Landscapes}
+\label{sec:energylandscapes}
+
+\section{Lennard-Jones}
+\label{sec:LennardJones}
+
+\section{Sticky-Hard-Sphere}
+\label{sec:SHS}
