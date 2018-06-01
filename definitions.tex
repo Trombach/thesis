@@ -26,3 +26,20 @@
 
 
 \captionsetup{format=plain,labelfont=bf,labelsep=space}
+
+\DeclareCiteCommand{\supercite}[\mkbibsuperscript]
+{%
+\usebibmacro{cite:init}%
+\let\multicitedelim=\supercitedelim%
+\bibopenbracket%
+}%
+{%
+\usebibmacro{citeindex}%
+\usebibmacro{cite:comp}%
+}%
+{}%
+{%
+\usebibmacro{cite:dump}%
+\bibclosebracket%
+}%
+
