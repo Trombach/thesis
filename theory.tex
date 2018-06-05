@@ -1021,7 +1021,216 @@ and substitute in in equation~\eqref{eqn:BFGSQuasiNewton}.
 The similiarity to equation~\eqref{eqn:DFPQuasiNewton} is obvious. Because both
 formulae are related by exchanging $\bm{\gamma}\leftrightarrow\bm{\delta}$ and
 $\mathbf{B}\leftrightarrow\mathbf{H}$ they are called dual or complementary.
+%maybe talk about BFGS/DFP being invariant under affine transformation?
 
+\subsection{Conjugate Gradient Methods}
+\label{sec:ConjugateGradientMethods}
+
+The origin of the Newton-like and quasi-Newton methods being the quadratic
+model is conceptually obvious. There are however methods that belong into this
+group, but don't rely on calculating or approximating a matrix of second
+derivatives. One of those methods is the conjugate gradient method.  As the
+name suggests, they take advantage of the concept of conjugacy of the search
+vectors $\mathbf{s}^{(1)},\mathbf{s}^{(2)},\dots,\mathbf{s}^{(n)}$ the Hessian
+matrix $\mathbf{G}$, i.e.
+%
+\begin{align}
+    {\mathbf{s}^{(i)}}^\mathbf{T}\mathbf{G}\mathbf{s}^{(j)}=0,\,\forall i\neq j.\label{eqn:ConjugacyCondition}
+\end{align}
+%
+It should be noted that quadratic termination is only guaranteed for exact line
+searches. The conjugate gradient method tries to combine the conjugacy property
+with the steepest descent method, therefore the first step is equal to
+%
+\begin{align}
+    \mathbf{s}^{(1)}=-\mathbf{g}^{(k)}
+\end{align}
+%
+and for successive iterations
+%
+\begin{align}
+    \mathbf{s}^{(k+1)}=\text{component of }-\mathbf{g}^{(k+1)}\text{conjugate to }\mathbf{s}^{(1)},\mathbf{s}^{(2)},\dots,\mathbf{s}^{(n)}.
+\end{align}
+%
+From the conjugacy condition \eqref{eqn:ConjugacyCondition} it follows that $\mathbf{s}^{(k+1)}$ can be calculated from a Gram-Schmidt orthonormalisation.
+%
+\begin{align}
+    \mathbf{s}^{(k+1)}=-\mathbf{g}^{(k+1)}+\beta^{(k)}\mathbf{s}^{(k)}\\
+    \beta^{(k)}=\frac{{\mathbf{g}^{(k+1)}}^\mathbf{T}\mathbf{g}^{(k+1)}}{{\mathbf{g}^{(k)}}^\mathbf{T}\mathbf{g}^{(k)}}\label{eqn:FletcherReevesBeta}
+\end{align}
+%
+This is also known as the \ac{FR}
+method.\autocite{Fletcher_Functionminimizationconjugate_1964} One advantage of
+the \ac{FR} method over the quasi-Newton methods is that it doesn't need any
+matrix calculation, which can be seen in
+equation~\eqref{eqn:FletcherReevesBeta}. However, the procedure is not
+guaranteed to terminate for non-quadratic functions. There are several ways
+that try to solve this disadvantage, one of which is a simple reset of the
+search direction to the steepest descent direction. If the iterates converge
+towards a region that is approximated well by a quadratic function, then the
+reset of the search direction may improve the overall convergence of the
+method.
+
+Another solution to the aforementioned problem is to use a different expression
+for $\beta^{(k)}$. One possible modification is
+%
+\begin{align}
+    \beta^{(k)}=-\frac{{\mathbf{g}^{(k+1)}}^\mathbf{T}\mathbf{g}^{(k+1)}}{{\mathbf{g}^{(k)}}^\mathbf{T}\mathbf{s}^{(k)}}\label{eqn:DescentBeta},
+\end{align}
+%
+which results in a stronger descent property
+${\mathbf{s}^{(k)}}^\mathbf{T}\mathbf{g}^{(k)} < 0$. Another notable mention is
+the formula by Polak and
+Ribiere\autocite{Polak_ComputationalMethodsOptimization_1971} shown in
+equation~\eqref{eqn:PolakRibiereBeta}.
+%
+\begin{align}
+    \beta^{(k)}=\frac{\left(\mathbf{g}^{(k+1)}-\mathbf{g}^{(k)}\right)^\mathbf{T}\mathbf{g}^{(k+1)}}{{\mathbf{g}^{(k)}}^\mathbf{T}\mathbf{g}^{(k)}}\label{eqn:PolakRibiereBeta}
+\end{align}
+
+\section{Practical Implementation for Potentials Depending on Pair Distances}
+\label{sec:PracticalImplementationForPotentialsDependingOnPairDistances}
+
+In the special case of optimising the geometry of a collection of objects in
+three-dimensional space that interact via a given potential some modifications
+have to be made to use the previously described methods. In the following
+paragraphs the mathematical background for the implementation of potentials
+that only depend on the distance between two objects like \ac{LJ} and \ac{eLJ}
+for the program \textsc{Spheres} (chapter~\ref{sec:theprogramspheres}) is
+explained. The physical objects in this case are called spheres and the
+optimisation procedure tries to locate the minimiser corresponding to the
+lowest total energy of the system.
+
+Let $\mathbf{x}_i$ be the Cartesian coordinates of sphere $i$ and the
+collection of all the coordinates of all $N$ spheres in the system shall be
+denoted $\mathbf{X}$.
+%
+\begin{align}
+    \begin{aligned}
+        \mathbf{X}=
+        \begin{pmatrix}
+            \mathbf{x}_1 & \mathbf{x}_2 & \cdots & \mathbf{x}_N
+        \end{pmatrix}&=
+        \begin{pmatrix}
+            x_1 & x_4 & \cdots & x_{3N-2}\\
+            x_2 & x_5 & \cdots & x_{3N-1}\\
+            x_3 & x_6 & \cdots & x_{3N}
+        \end{pmatrix}\\
+            \mathbf{x}_i &= 
+            \begin{pmatrix}
+                x_{3i-2}\\
+                x_{3i-1}\\
+                x_{3i}
+            \end{pmatrix}
+    \end{aligned}
+\end{align}%
+%
+The distance between two spheres $i$ and $j$ is now given by the norm of the
+distance vector $\mathbf{r}_{ij}$. %
+%
+\begin{align}
+    \mathbf{r}_{ij}=\mathbf{x}_i-\mathbf{x}_j=
+    \begin{pmatrix}
+        x_{3i-2} - x_{3j-2}\\
+        x_{3i-1} - x_{3j-1}\\
+        x_{3i} - x_{3j}
+    \end{pmatrix}\label{eq:distancevector}\\
+    |\mathbf{r}_{ij}|=r_{ij}=\sqrt{(x_{3i-2} - x_{3j-2})^2 + (x_{3i-1} - x_{3j-1})^2 + (x_{3i} - x_{3j})^2}\label{eq:distance}
+\end{align}
+%
+The energy of the system is a function of all sphere coordinates $\mathbf{X}$,
+but it can be rewritten in terms of an energy function $\varepsilon(r_{ij})$ that only depends on the
+distance between two spheres. %
+%
+\begin{align}
+    E(\mathbf{X})=\sum_{j>i}^N\varepsilon(r_{ij})
+\end{align}%
+%
+The gradient of the system is a vector of $3N$ scalars, where each component
+refers to the gradient with respect to each coordinate $x$. The derivative with
+respect to the $m$th coordinate $x_m$ can be expressed as in
+equation~\eqref{eqn:gradientcomponent} by using the chain rule for derivatives.
+%
+\begin{align}
+    \pdv{E(\mathbf{X})}{x_m}=\sum_{j>i}^N\pdv{\varepsilon(r_{ij})}{r_{ij}}\ \pdv{r_{ij}}{\mathbf{r}_{ij}}\ \pdv{\mathbf{r}_{ij}}{x_m}\label{eqn:gradientcomponent}
+\end{align}%
+%
+It is clear, that the terms that contain vectors are separated from the energy
+function. This means that the energy term can be exchanged easily without
+having to change all parts of the routine. The first term represents the
+derivative of the energy function with respect to the distance between two
+spheres. The second term can be rewritten in terms of the normalised form of
+the distance vector $\mathbf{r_{ij}}$, which follows directly from
+equations~\eqref{eq:distancevector} and \eqref{eq:distance}.
+%
+\begin{align}
+    \pdv{r_{ij}}{\mathbf{r}_{ij}}=\frac{\mathbf{r}_{ij}}{r_{ij}}
+\end{align}%
+%
+The last term is responsible for the right sign of the gradient component and
+is best explained by giving an example. Firstly, if $x_m$ is neither in sphere
+$i$ nor in $j$ its result is a zero vector making the whole expression vanish.
+Let's assume $m=3i+1$, then the last expression becomes:
+%
+\begin{align}
+    \pdv{\mathbf{r}_{ij}}{x_{3i-1}}=
+    \begin{pmatrix}
+        0\\1\\0
+    \end{pmatrix}.
+\end{align}%
+%
+For this example the inner product of this vector with the normalised distance
+vector $\mathbf{r}_{ij}$ is $\frac{1}{r_{ij}}(x_{3i-1} - x_{3j-1})$. Therefore,
+the last term ensures that the $m$th component of the gradient vector only
+collects contributions from interactions between spheres that contain the
+coordinate $x_m$. If $m$ was a coordinate present in sphere $j$ the last term
+swaps the sign of the gradient. This is a result of the fact, that the gradient
+at sphere $j$ should be opposite of the gradient at sphere $i$. The final
+gradient is given by calculating all partial derivatives with respect to $x_m$.
+%
+\begin{align}
+    \dv{E(\mathbf{X})}{\mathbf{X}}=
+    \begin{pmatrix}
+        \pdv*{E(\mathbf{X})}{x_1}\\
+        \pdv*{E(\mathbf{X})}{x_2}\\
+        \vdots\\
+        \pdv*{E(\mathbf{X})}{x_{3N}}
+    \end{pmatrix}
+\end{align}
+%
+The separation of the vector and scalar components allows for easy exchange of
+the energy functions as the calculations that take care of the direction of the
+gradient can be completely separated out. 
+
+The same procedure can be applied to the second derivative to calculate a
+Hessian matrix. Again, the important part is to separate the scalar energy
+function from vector parts. This leads to the following equations.
+%
+\begin{align}
+    \pdv{E(\mathbf{X})}{x_m}{x_n}=\sum_{j>i}^N\left[  
+    \begin{array}{ll}
+    \pdv[2]{\varepsilon(r_{ij})}{{r_{ij}}}\  
+    \pdv{r_{ij}}{\mathbf{r}_{ij}}\ 
+    \pdv{\mathbf{r}_{ij}}{x_m}\ 
+    \pdv{r_{ij}}{\mathbf{r}_{ij}}\ 
+    \pdv{\mathbf{r}_{ij}}{x_n} \\ 
+    +
+    \pdv{\varepsilon(r_{ij})}{r_{ij}}\
+        \pdv[2]{r_{ij}}{{\mathbf{r}_{ij}}}\ 
+    \pdv{\mathbf{r}_{ij}}{x_m}\ 
+    \pdv{\mathbf{r}_{ij}}{x_n} 
+    \end{array}
+    \right]\\
+    \begin{aligned}
+    \dv[2]{E(\mathbf{X})}{\mathbf{X}}=\\
+    \begin{pmatrix}
+        \pdv*[2]{E(\mathbf{X})}{{x_1}} & \pdv*{E(\mathbf{X})}{x_1}{x_2} & \ldots & \pdv*{E(\mathbf{X})}{x_1}{x_{3N}}\\
+        \pdv*{E(\mathbf{X})}{x_2}{x_1} & \pdv*[2]{E(\mathbf{X})}{{x_2}} & \ldots & \pdv*{E(\mathbf{X})}{x_2}{x_{3N}}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        \pdv*{E(\mathbf{X})}{x_{3N}}{x_1} & \pdv*{E(\mathbf{X})}{x_{3N}}{x_2} & \ldots & \pdv*[2]{E(\mathbf{X})}{{x_{3N}}}
+    \end{pmatrix}
+    \end{aligned}
+\end{align}
 
 
 
