@@ -13,92 +13,123 @@ On the following pages the program package \textsc{Spheres} will be explained
 in detail. The projects in
 chapters~\ref{sec:fromstickyhardspheretoLJtypeclusters} and
 \ref{sec:thegregorynewtonclusters} required routines to optimise given starting
-cluster geometrys and analyse the results. The optimisation routine needed to
+cluster geometries and analyse the results. The optimisation routine needed to
 be flexible in the way that it would be easy to implement different two-body
-potentials like \ac{LJ} or \ac{eLJ}. The program was written in standard \Cpp
-and was tested to compile in a Linux environment with the \verb|clang++|
+potentials like \ac{LJ} or \ac{eLJ}. The program was written in \Cpp
+and was tested to compile in a Linux environment with the \texttt{clang++}
 compiler version 3.8.
 
 \section{General Structure}
 \label{sec:generalstructure}
 
-Most of the functions and classes of the program are contained in header files,
-that can be included in any code file. This allows the package to be quite
-flexible while maintaining readability of the code.
+The main functions of the program are implemented in three different
+executables. Each carries out a different task, i.e optimising given input
+structures and output the results, removing duplicate structures from a set of
+input structures and finding differences of two sets of input structures. The
+respective output of these programs is set up such that they can be used as
+input files for the other executables. This allows the programs to be used
+consecutively while retaining the flexibility of using each executable
+separately. This chain-like execution is depicted in
+figure~\ref{fig:OptimisationAnalyseScheme}. 
+%
+\begin{figure}\centering
+    \begin{tikzpicture}[node distance = 3.5cm, scale=0.7, auto, transform shape]%, every node/.style={scale=0.8}]
+    \node [cloud] (Input1) {Input structures};
+    \node [block, right of=Input1] (Optimise) {Optimise};
+    \node [decision, right of=Optimise] (Hessian) {Negative values in Hessian?};
+    \node [block, below of=Optimise] (reopt) {Displace geometry};
+    \node [cloud, right of=Hessian] (print) {Optimised Structures};
+    \node [block, below of=print] (Analyse) {Analyse $\{r_{ij}\}$};
+    \node [cloud, below of=Analyse] (Analysed) {Duplicates removed};
+    \node [block, left of=Analysed] (Match) {Match sets};
+    \node [cloud, left of=Match] (Input2) {Input structures};
+    \node [cloud, below of=Match] (missing) {Missing clusters};
 
-%%%cite coord3d and matrix3d
-The most fundamental functions are contained in the \verb|geometry.h| header
-file which contains the classes responsible for holding triplets of coordinates
-(\verb|coord3d|) and to perform basic 3x3 matrix algebra (\verb|matrix3d|).
-These classes define functions and operators to perform basic vector and matrix
-operations and are based on classes developed by ~~~.
+    \path [line] (Input1) -- (Optimise);
+    \path [line] (Optimise) -- (Hessian);
+    \path [line] (Hessian) |- node {yes} (reopt);
+    \path [line] (reopt) -- (Optimise);
+    \path [line] (Hessian) -- node {no} (print);
+    \path [line] (print) -- (Analyse);
+    \path [line] (Analyse) -- (Analysed);
+    \path [line] (Analysed) -- (Match);
+    \path [line] (Input2) -- (Match);
+    \path [line] (Match) -- (missing);
 
-Each triplet of coordinates represents a sphere in a cluster and is stored in
-an individual object for each unique cluster. This is the purpose of the
-\verb|structure| class that will be explained in more detail in the next
-section.
+    \node (OptProg) [transform shape=false,draw, color=blue, dashed, thick, %
+        fit=(Optimise) (Hessian) (reopt)] {};
+    %\node [above=0.1cm of OptProg] {\texttt{Optimize}};
 
-The form of the potential is handled in the \verb|pairPotential| class and,
-also, will be explained later in the text.
+    \node (InputBox1) [draw,color=gray,thick,transform shape=false, fit=(Input1)] {}; 
+    \node (InputBox2) [draw,color=gray,thick,transform shape=false, fit=(Input2)] {}; 
+    \node (OutputBox1) [draw,color=gray,thick,dashed,transform shape=false, fit=(print)] {}; 
+    \node (OutputBox2) [draw,color=gray,thick,dashed,transform shape=false, fit=(Analysed)] {}; 
+    \node (OutputBox3) [draw,color=gray,thick,dashed,transform shape=false, fit=(missing)] {}; 
+    \node [above=0.1cm of InputBox1] {Input 1};
+    \node [below=0.1cm of InputBox2] {Input 2};
+    \node [above=0.1cm of OutputBox1] {Output 1};
+    \node [below=0.1cm of OutputBox2] {Output 2};
+    \node [below=0.1cm of OutputBox3] {Output 3};
 
-All these different classes are combined into three main programs:
-\verb|optimize|, \verb|analyze| and \verb|match|. The first one is concerned
-purely with optimising a set of input structures based on a chosen two-body
-potential. The results of this procedure can be analysed with the second
-program to get the number of unique structures after the optimisation. The last
-program matches a set of structures with another set and outputs missing
-structures on either set.
-
-\section{The \texttt{structure} Class}
-\label{sec:thestructureclass}
-
-The \verb|structure| class provides methods to store coordinates of cluster
-geometries and holds functions to calculate properties like energy and moment
-of inertia and store them together with the coordinates in the same object. The
-class relies on the \verb|coord3d| class for the storage of the coordinates of
-the individual spheres.  When an object of this class is created by providing a
-set of cartesian coordinates the center of the structure will be moved to the
-center of mass of the system and the structure will be rotated such that the
-main axis align with the principal axis of the structure. Additionally, all
-inter-particle distances will be calculated and stored in the object so that
-they are readily available for analysis.
-
-For graph theoretical analysis the class provides functions to calculate
-adjacency matrices and graphs based on methods implemented in the \textit{boost
-graph library}\autocite{_boost_2002}. These methods take a threshold number
-that defines the distance between two spheres at which they are considered
-connected.
-
-\section{The \texttt{pairPotential} Class}
-\label{sec:thepairpotentialclass}
-
-The \texttt{pairPotential} class provides an easy method to implement arbitrary
-potential forms that only depend on the distance between two spheres, so called
-two-body potentials. The implementation takes advantage of \Cpp's class
-hierarchy, which allows to define subclasses that inherit members from a base
-class.
-
+\end{tikzpicture}
+    \caption{Schematic representation of the optimisation, analysis and
+    matching procedure. Red circles: program input or output, blue squares:
+    program functions.}
+    \label{fig:OptimisationAnalyseScheme}
+\end{figure}
+%
+A set of input structures (Input 1) is provided to the first executable
+\texttt{optimize}, which optimises the structures and generates Output 1, which
+is a list of optimised coordinates in the same format as the input. This can be
+used as input for the second executable \texttt{analyze}, which uses the
+distance matrix to identify duplicate structures and outputs a list of
+optimised structures with no duplicates (Output 2). In combination with a
+secondary set of structures (Input 2) the third executable \texttt{match} can
+be used to compare both sets of structures and output coordinates of structures
+that are missing from either set 1 or 2 (Output 3). 
 
 \section{Optimisation of Input Structures}
 \label{sec:optimisationofinputstructures}
 
-The first main program is \verb|optimize|. It reads in coordinates from an
-input file and creates a \verb|structure| object for each cluster. The
-structures will be moved to their center of mass and rotated into the principal
-axis system automatically. If a scaling factor is provided in the
-\verb|settings| file the structures will be scaled accordingly.  The
-optimisation is parallelised using simple \ac{OMP} \verb|for|-loop
-parallelisation and can be controlled with the environment variable
-\verb|OMP_NUM_THREADS| in a unix environment.
+The optimisation of input structures with a chosen potential can be carried out
+with the program \texttt{optimize}. The coordinates of the input structures
+have to be provided in a single file where each line contains three numbers
+representing the position of on sphere. Multiple structures can be included by
+separating the list of coordinates by single blank lines. The program
+automatically moves the input structures to their respective centres of mass,
+and rotates them into the principal axis system. To speed up the optimisation
+the Unix variable \texttt{OMP\_NUM\_THREADS} can be set to a value
+greater than one to enable \ac{OMP} parallelisation.
 
+The optimisation can be controlled by parameters set in the \texttt{settings}
+file using the \texttt{opt} keyword. The form of the optimisation potential can
+be chosen with the \texttt{name} tag, which currently can be set to either
+\texttt{BFGS} for the \ac{BFGS} algorithm or \texttt{CG} for the conjugate
+gradient method. The energy termination criterion is defined using the
+\texttt{dforce} tag.Furthermore, the maximum number of steps can be set with
+the \texttt{nsteps} tag. An example is given in the \texttt{opt tag} box below.
+%
+\begin{Verbatim}[frame=lines,label=opt tag]
+opt: {
+    name = "BFGS";
+    dforce = 1e-10;
+    nsteps = 100;
+};
+\end{Verbatim}
+%
 After each structural optimisation the program checks if the structure is a
 true minimum by calculation the Hessian matrix eigenvalues. If this check fails
 the eigenvectors of the Hessian matrix are calculated and the non-minimum
 structure is displaced according to eigenvector belonging to the first negative
-eigenvalue in the Hessian matrix.
+eigenvalue in the Hessian matrix. The algorithm tries to re-optimise until
+there are no negative eigenvalues in the Hessian matrix or until a maximum
+number of five re-optimisations is reached.
 
-The resulting structures are printed in the file \verb|coord| as plain
-three-dimensional coordinates.
+The resulting structures are printed in the file \verb|coord| in the same
+format as the input. To analyse the optimisation procedure the additional files
+\verb|opt| and \verb|reopt| are printed, which contain the intermediate steps
+of the optimisation and re-optimisation procedures for each individual input
+structure.
 
 \section{Analysing Results}
 \label{sec:analysingresults}
@@ -151,4 +182,34 @@ atoms in each set must be equal, otherwise the program will be terminated. If
 both sets are found to be identical no output files are created. In case there
 are unmatched structures they will be printed in xyz format for further
 analysis.
+\section{The \texttt{structure} Class}
+\label{sec:thestructureclass}
+
+The \verb|structure| class provides methods to store coordinates of cluster
+geometries and holds functions to calculate properties like energy and moment
+of inertia and store them together with the coordinates in the same object. The
+class relies on the \verb|coord3d| class for the storage of the coordinates of
+the individual spheres.  When an object of this class is created by providing a
+set of Cartesian coordinates the center of the structure will be moved to the
+center of mass of the system and the structure will be rotated such that the
+main axis align with the principal axis of the structure. Additionally, all
+inter-particle distances will be calculated and stored in the object so that
+they are readily available for analysis.
+
+For graph theoretical analysis the class provides functions to calculate
+adjacency matrices and graphs based on methods implemented in the \textit{boost
+graph library}\autocite{_boost_2002}. These methods take a threshold number
+that defines the distance between two spheres at which they are considered
+connected.
+
+\section{The \texttt{pairPotential} Class}
+\label{sec:thepairpotentialclass}
+
+The \texttt{pairPotential} class provides an easy method to implement arbitrary
+potential forms that only depend on the distance between two spheres, so called
+two-body potentials. The implementation takes advantage of \Cpp's class
+hierarchy, which allows to define subclasses that inherit members from a base
+class.
+
+
 
