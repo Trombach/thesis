@@ -6,7 +6,7 @@
 \chapter{Quantum Chemical Programs}
 \label{sec:quantumchemicalprograms}
 
-\chapter{The Program \textsc{Spheres}}
+\chapter{Program \textsc{Spheres}}
 \label{sec:theprogramspheres}
 
 On the following pages the program package \textsc{Spheres} will be explained
@@ -19,7 +19,7 @@ potentials like \ac{LJ} or \ac{eLJ}. The program was written in \Cpp
 and was tested to compile in a Linux environment with the \texttt{clang++}
 compiler version 3.8.
 
-\section{General Structure}
+\section{Main Features}
 \label{sec:generalstructure}
 
 The main functions of the program are implemented in three different
@@ -32,8 +32,8 @@ consecutively while retaining the flexibility of using each executable
 separately. This chain-like execution is depicted in
 figure~\ref{fig:OptimisationAnalyseScheme}. 
 %
-\begin{figure}\centering
-    \begin{tikzpicture}[node distance = 3.5cm, scale=0.7, auto, transform shape]%, every node/.style={scale=0.8}]
+\begin{figure}[htb]\centering
+    \begin{tikzpicture}[node distance = 3.5cm, scale=0.8, auto, transform shape]%, every node/.style={scale=0.8}]
     \node [cloud] (Input1) {Input structures};
     \node [block, right of=Input1] (Optimise) {Optimise};
     \node [decision, right of=Optimise] (Hessian) {Negative values in Hessian?};
@@ -88,7 +88,7 @@ secondary set of structures (Input 2) the third executable \texttt{match} can
 be used to compare both sets of structures and output coordinates of structures
 that are missing from either set 1 or 2 (Output 3). 
 
-\section{Optimisation of Input Structures}
+\subsection{Optimisation of Input Structures}
 \label{sec:optimisationofinputstructures}
 
 The optimisation of input structures with a chosen potential can be carried out
@@ -107,9 +107,9 @@ be chosen with the \texttt{name} tag, which currently can be set to either
 \texttt{BFGS} for the \ac{BFGS} algorithm or \texttt{CG} for the conjugate
 gradient method. The energy termination criterion is defined using the
 \texttt{dforce} tag.Furthermore, the maximum number of steps can be set with
-the \texttt{nsteps} tag. An example is given in the \texttt{opt tag} box below.
-%
-\begin{Verbatim}[frame=lines,label=opt tag]
+the \texttt{nsteps} tag. An example is given in the box below.
+\newline
+\begin{Verbatim}[frame=single,label=settings file - opt tag]
 opt: {
     name = "BFGS";
     dforce = 1e-10;
@@ -117,6 +117,32 @@ opt: {
 };
 \end{Verbatim}
 %
+A potential model has to be chosen for the optimisation procedure. Custom
+models can be defined easily, which will be explained later. The current
+implementation allows the selection of two pair potentials, namely \ac{LJ} and
+\ac{eLJ}. For the \ac{LJ} potential four parameters have to be given to the
+\texttt{potential} tag as seen in the box below.
+%
+\begin{Verbatim}[frame=single,label=settings file - potential tag]
+potential: {
+    name = "LJ";
+    epsilon = 1.0;
+    rm =  1.0;
+    exp1 = 12.0;
+    exp2 = 6.0;
+};
+\end{Verbatim}
+%
+The \texttt{name} tag enables the \ac{LJ} potential to be used and the four
+parameters \texttt{epsilon}, \texttt{rm}, \texttt{exp1} and \texttt{exp2}
+define the potential. The values shown in the example are the default values,
+which the program will fall back to if no values are provided by the user. The
+\ac{eLJ} potential can be chosen by setting the \texttt{name} tag to
+\texttt{ELJ}. The $c_n$ coefficients have to be provided in a separate file
+named \texttt{ext}, where each line contains two numbers. The first integer
+represents $n$ and the second floating point number defines the corresponding
+coefficient.
+
 After each structural optimisation the program checks if the structure is a
 true minimum by calculation the Hessian matrix eigenvalues. If this check fails
 the eigenvectors of the Hessian matrix are calculated and the non-minimum
@@ -131,47 +157,47 @@ format as the input. To analyse the optimisation procedure the additional files
 of the optimisation and re-optimisation procedures for each individual input
 structure.
 
-\section{Analysing Results}
+\subsection{Removing Duplicate Structures}
 \label{sec:analysingresults}
 
-The optimisation procedure usually lead to the creation of duplicate
-structures. To eliminate the duplicate structures the program \verb|analyze|
-was created. It reads in all structures from the file \verb|coord| and
-calculates their energies using \ac{OMP} parallelisation based on the chosen
-potential model.
-
-Finding equivalent structures is a task far from triviality. The program
-\verb|analyze| relies on two methods using different properties of the
-structures to sort them into groups.
+Duplicated geometries in a set of input structures can be identified using the
+second sub-program \texttt{analyze}. The input has to be provided in the same
+format as for the \texttt{optimize} program. The read-in procedure is
+equivalent to the on in the \texttt{optimize} program. The program uses two
+methods to identify unique structures, one of which uses the energy of the
+cluster as a criterion, therefore the \texttt{potential} tag has to be set in
+the \texttt{settings} file.
 
 The first method uses four values to uniquely identify a structure. Those are
 the values for energy and the three eigenvalues of the moment of inertia
-tensor. This sorting procedure uses \Cpp's \verb|map| feature, which uses a
-binary search tree as its data structure. This allows the algorithm to scale
-well with the number of optimised structures. The \Cpp \verb|map| object
-contains a \verb|key| and a \verb|value| field and elements of a \verb|map| are
-guaranteed to be stored in order.\autocite{Stroustrup_programminglanguage_2000}
-In this specific case the ordering is done by energy first, then smallest
-moment of inertia tensor eigenvalue followed by the two other moment of inertia
-tensor eigenvalues. The advantage of this method is its great scalability with
-respect to the number of optimised structures as values can be retrieved
-quickly based on the key.  However, over the course of the calculations it was
-noticed that the methods shows deviations for larger exponents. Therefore, a
-second method was implemented.
+tensor. This sorting procedure uses a \verb|map| container, which is an
+implementation of a binary search tree. This allows the algorithm to scale well
+with the number of structures to be analysed. The \verb|map| container contains a
+\verb|key| and a \verb|value| field and elements of a \verb|map| are guaranteed
+to be stored in order.\autocite{Stroustrup_programminglanguage_2000} In this
+specific case the ordering is done by energy first, then smallest moment of
+inertia tensor eigenvalue followed by the two other moment of inertia tensor
+eigenvalues. The \texttt{map} container maps the \texttt{key}, which is the
+combination of energy and moment of inertia eigenvalues, to a \texttt{value},
+which is simply the number of structures in this case. 
+
+The advantage of this method is its great scalability with respect to the
+number of input structures as values can be retrieved quickly based on the
+key.
 
 The second method uses the matrix of all inter-particle distances as the
 differentiation criterion. If at least one inter-particle distance is different
 two structures are said to be not equal. As there is no clear answer to the
 question which distance matrix is ``larger'' than another one the
-implementation could not be handled by using a \verb|map| container. A regular
+implementation could not be executed using a \verb|map| container. A regular
 two-dimensional \verb|vector| array is used instead. A structure's distance
 matrix is compared to the distance matrix of an already sorted structure and is
-added to the same group if they are equal. If not, the structure is added to
-the array as a new group. The more unique structures the optimisation produced
-the slower this method of sorting becomes, but the results are more reliable
-than the previously discussed ones.
+added to the same group if they are equal up to a set threshold. If not, the
+structure is added to the array as a new group. The more unique structures the
+optimisation produced the slower this method of sorting becomes, but the
+results are more reliable than the previously discussed ones.
 
-\section{Matching Structures}
+\subsection{Matching Structures}
 \label{sec:matchingstructures}
 
 To compare the results from the optimisations procedures to previously
@@ -182,7 +208,46 @@ atoms in each set must be equal, otherwise the program will be terminated. If
 both sets are found to be identical no output files are created. In case there
 are unmatched structures they will be printed in xyz format for further
 analysis.
-\section{The \texttt{structure} Class}
+
+\section{Graph-Theoretical Analysis}
+\label{sec:GraphTheoreticalAnalysis}
+
+
+
+\section{Additional Functions}
+\label{sec:AdditionalFunctions}
+
+Besides the main parts of the program that have been described on the previous
+pages some script-like executables are provided. These were used to calculate
+various different properties of the investigated clusters and will be briefly
+explained in the following.
+
+\paragraph{Analyse Bond Lengths}%app-bondvariance app-shortestbond (app-N14?)
+The bond variance in optimised structures can be calculated with
+\texttt{app-bondvariance}. The bond variance is simply defined as the
+difference between the shortest and longest bond of a cluster structure. In
+clusters optimised by soft potentials a bond is not as well defined as for a
+\ac{SHS} cluster. Therefore, it has to be determined by a user-provided
+threshold value and the variance of the bond lengths can not be larger than
+this threshold. This application has been used in
+chapter~\ref{sec:612LennardJonesClustersfromBasinHopping} to calculate the bond
+variance of the optimised $(6,12)$-\ac{LJ} structures. A more specialised
+version called \texttt{app-shortestbond} is also provided that can be used to
+find the cluster with the shortest bond distance.
+
+\paragraph{Sort Structures by $N_c$}%app-GN and app-Nc
+
+Analysing the total contact numbers $N_c$ or specific kissing numbers can be
+done with the programs \texttt{app-Nc} and \texttt{app-GN}. The letter looks
+for clusters with a central atom that has exactly 12 spheres arranged around
+it, so called Gregory-Newton clusters.
+
+
+
+\section{Implementations in Detail}
+\label{sec:ImplementationsinDetail}
+
+\subsection{The \texttt{structure} Class}
 \label{sec:thestructureclass}
 
 The \verb|structure| class provides methods to store coordinates of cluster
@@ -202,7 +267,7 @@ graph library}\autocite{_boost_2002}. These methods take a threshold number
 that defines the distance between two spheres at which they are considered
 connected.
 
-\section{The \texttt{pairPotential} Class}
+\subsection{The \texttt{pairPotential} Class}
 \label{sec:thepairpotentialclass}
 
 The \texttt{pairPotential} class provides an easy method to implement arbitrary
@@ -210,6 +275,5 @@ potential forms that only depend on the distance between two spheres, so called
 two-body potentials. The implementation takes advantage of \Cpp's class
 hierarchy, which allows to define subclasses that inherit members from a base
 class.
-
 
 
