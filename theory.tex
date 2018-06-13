@@ -680,8 +680,8 @@ through the minimiser $\mathbf{x^*}$
 %
 Using the chain rule the derivative $\dv{f}{\alpha}$ can be expressed as
 $\dv{f}{\alpha}=\mathbf{s^\text{T}}\nabla
-f$\footnote{$\dv{\alpha}=\sum_i\dv{\alpha}x_i(\alpha)\pdv{x_i}=\sum_i
-s_i\pdv{x_i}=\mathbf{s^\text{T}}\nabla$}. At $\mathbf{x^*}$ ($\alpha=0$) this
+f$.\footnote{$\dv{\alpha}=\sum_i\dv{\alpha}x_i(\alpha)\pdv{x_i}=\sum_i
+s_i\pdv{x_i}=\mathbf{s^\text{T}}\nabla$} At $\mathbf{x^*}$ ($\alpha=0$) this
 line has a slope of zero and a non-negative curvature, which means
 $\mathbf{s^\text{T}}\nabla f(\mathbf{x^*})=0$. Following the same argument for
 the second derivative a second condition $\mathbf{s^\text{T}}\nabla^2
@@ -739,8 +739,8 @@ performance of the algorithm, can be quantified by defining the error
 %
 Here, $\mathbf{x}^{(k)}$ denotes the $k$th iterate with $\mathbf{x}^{(1)}$
 referring to the starting point of the iterative procedure. The local
-convergence rate can then be given as the fraction of the Euclidean norm of the
-errors of consecutive steps.
+convergence rate can then be given as the fraction of the Euclidean norm
+$||\cdot||$ of the errors of consecutive steps.
 %
 \begin{equation}
     \frac{\left|\left|\Delta\mathbf{x}^{(k+1)}\right|\right|}{\left|\left|\Delta\mathbf{x}^{(k)}\right|\right|^{p}}\leq a, \,a>0
