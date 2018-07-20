@@ -1,2 +1,2 @@
-@default_files = ('main.tex');
+@default_files = ('LT_thesis.tex');
 $pdf_mode = 1;

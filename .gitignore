@@ -16,5 +16,5 @@
 *.xml
 *.bcf
 *.dvi
-main.pdf
+LT_thesis.pdf
 *.lo*
