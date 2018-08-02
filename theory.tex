@@ -22,13 +22,16 @@ Koch\autocite{Koch_ChemistGuideDensity_2001}.
 
 The beginning of the 20th centuary was a very important time for modern
 theoretical sciences. Discoveries like Planck's energy quantisation based on
-black body radiation or the discovery of the wave particle dualism by de
-Broglie lead to a complete reformulation of the physical laws governing the
-smallest of particles. Erwin Schr\"odinger established a framework based on
-Hamiltonian mechanics that set the wave function $\Psi$ at the center of
-attention. It contains all information about the system and its evolution in
-time. For ground-state calculations it is usually sufficient to look at
-solutions to the time-independent Schr\"odinger equation.%
+black body radiation\autocite{Planck_UeberGesetzEnergieverteilung_1901} or the
+discovery of the wave particle dualism by de
+Broglie\autocite{Broglie_RecherchestheorieQuanta_1925} lead to a complete
+reformulation of the physical laws governing the smallest of particles. Erwin
+Schr\"odinger established a framework based on Hamiltonian mechanics that set
+the wave function $\Psi$ at the center of
+attention.\autocite{Schrodinger_QuantisierungalsEigenwertproblem_1926} It
+contains all information about the system and its evolution in time. For
+ground-state calculations it is usually sufficient to look at solutions to the
+time-independent Schr\"odinger equation.%
 %
 \begin{equation}
 	\mathbf{H}\Psi=E\Psi\label{eqn:SchrodingerEquation}
@@ -47,7 +50,9 @@ these coordinates will be denoted $\mathbf{x}$ on the following pages.
 %
 The square of the wave function is usually interpreted as a probability density
 which is used to normalise it such that the probability of finding an electron
-anywhere in space is one.
+anywhere in space is one. This interpretation is also referred to as Born's
+interpretation of the wave
+function.\autocite{Born_ZurQuantenmechanikStossvorgaenge_1926,Born_AdiabatenprinzipQuantenmechanik_1927}
 %
 \begin{align}
 	\int |\Psi(\mathbf{x})|^2\dd \mathbf{x}_1\dd \mathbf{x}_2\ldots\dd \mathbf{x}_N=\braket{\Psi(\mathbf{x})}=1
@@ -96,12 +101,13 @@ $\mathbf{V}_\text{en}$.
 For quantum chemical applications the coupling of the movement of the electrons
 and nuclei is usually neglected. This is possible because the atomic mass $m_A$
 is so much greater than the electronic mass $m_i$, resulting in much lower
-velocities for nuclei compared to electrons. Therefore, the electrons can be
-considered to be moving in a static field of nuclei, meaning the nuclear kinetic
-term $\mathbf{T}_\text{n}$ can be neglected and the nuclear repulsion term
-$\mathbf{V}_\text{nn}$ becomes a constant. The resulting electronic Hamilton
-operator $\mathbf{H}_\text{e}$ describes electrons moving in a field of
-positive point charges.
+velocities for nuclei compared to
+electrons.\autocite{Born_ZurQuantentheorieMolekeln_1927} Therefore, the
+electrons can be considered to be moving in a static field of nuclei, meaning
+the nuclear kinetic term $\mathbf{T}_\text{n}$ can be neglected and the nuclear
+repulsion term $\mathbf{V}_\text{nn}$ becomes a constant. The resulting
+electronic Hamilton operator $\mathbf{H}_\text{e}$ describes electrons moving
+in a field of positive point charges.
 %
 \begin{align}
     \mathbf{H}_\text{e}=\mathbf{T}_\text{e} + \mathbf{V}_\text{ee} + \mathbf{V}_\text{en}
