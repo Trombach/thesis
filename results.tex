@@ -1522,100 +1522,265 @@ where we expect a maximum in interaction energy per atom.
 \subsection{The Smallest Gregory-Newton Clusters}
 \label{sec:themsmallestgregorynewtonclusters}
 
-Ref.~\cite{Holmes-Cerfon_EnumeratingRigidSphere_2016} contains a putatively
-complete set of hard-sphere clusters with $N=13$ and $N=14$.  We find a
-surprisingly large number ($737$) of nonisomorphic $N = 13$ \ac{GN}-\ac{SHS}
-structures ($\{724,10,1,2\}$ for $N_c=\{33,34,35,36\}$), that all optimise to
-the ideal icosahedral arrangement ($I_h$ symmetry) if a $(6,12)$-\ac{LJ}
-potential is applied. This large number results from the fact, that the 12
-spheres surrounding the center sphere can't be arranged with icosahedral
-symmetry. Since all of these structures seem to be related to the icosahedron
-by geometry optimisation we investigated their shell structures
-graph-theoretically. We define the shell to be the polyhedron created by the 12
-spheres surrounding the center sphere. The graphs of the shells can now be
-compared to the ideal icosahedral graph depicted in figure~\ref{fig:icograph}.
 
-\begin{figure}
+\subsubsection{Rigid Gregory-Newton Clusters and Corresponding Graphs}
+
+The recent results by Holmes-Cerfon contain a putatively complete set of
+(semi)rigid {(\color{red} What do we mean by (semi)rigid)} SHS clusters of size $N=13$ and $N=14$
+\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}. The rigid GNCs can easily be
+identified as a subset of the set of all non-isomorphic rigid SHS clusters,
+i.e. $\{ S_\mathrm{GN}\}\subset \{ S_\mathrm{SHS}\}$; these have adjacency matrices
+$A$ with exactly one column and row containing twelve "1" entries due to 12
+spheres kissing the central sphere. A surprisingly large number of 737
+non-isomorphic $N = 13$ GNCs out of 98,540 rigid SHS clusters can be found
+\autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018}. There are four different possible contact numbers $N_c$
+with $\{724,10,1,2\}$ rigid GNCs corresponding to $N_c=\{33,34,35,36\}$
+\autocite{Robinson_Arrangement24points_1961}, therefore, non of those clusters are hypostatic.
+
+For further analysis and without loss of generality we delete the central
+sphere and analyse the remaining non-isomorphic shell of spheres (note that
+rigidity requires the presence of the central sphere), also called contact
+graphs according to Sch{\"u}tte, van der Waerden and Habicht
+\autocite{Schuette_AufwelcherKugel_1951}. This has the advantage that these shells are related to
+planar connected graphs. In the following we call the corresponding connected,
+planar graph of such a shell of spheres with the central sphere missing a
+\textit{GN graph}. The question arises if all 737 non-isomorphic GN graphs are
+subgraphs to the icosahedral graph, as shown in Figure~\ref{fig:GN}. This would
+make sense as it is impossible to increase the degree of any vertex beyond 5 in
+the GN graph. Note that the icosahedral cluster is completely unjammed and its
+space of (infinitesimal) deformations has dimension 24 (for details see
+Ref. \cite{Kusner_ConfigurationSpacesEqual_2016}).
+
+Employing the \textit{VF2} algorithm \autocite{Cordella_SubGraphIsomorphism_2004}
+as implemented in the \textit{boost graph library} \autocite{_boost_2002} we find
+all 737 non-isomorphic GN graphs $G_\mathrm{GN}(V,E')$ (vertex count $|V|=12$,
+edge count $|E'|<30$) to be (edge-induced) subgraphs of the icosahedral graph
+$G_\mathrm{ico}(V,E)$ ($|V|=12$, $|E|=30$), which implies that their vertices can
+all be mapped to vertices of the icosahedral graph with certain edges deleted
+such that the subgraph remains connected ($V_\mathrm{GN} = V_\mathrm{ico}$ and
+$E_\mathrm{GN}\subset E_\mathrm{ico}$). An extensive list of all subgraphs is
+included in the Supporting Information (Tables S1 and S2). Note, not all GN
+graphs are 3-connected and therefore are not strictly polyhedral according to
+Steinitz's theorem \autocite{Steinitz_PolyederundRaumeinteilungen_1916}. These are the graphs which have
+vertices of degree 2, i.e. $|V_2|>0$, and there are 304 of them, Table~S1. As
+the many non-isomorphic graphs listed in the SI are obtained from a certain
+combination of edge deletions under the constraint of maintaining rigidity, it
+is not surprising at all that the number of non-isomorphic GN graphs is so
+large.
+
+The results show, that at least six and up to a maximum of nine edges have to
+be removed from the icosahedral graph to create a GN graph. Removing six edges
+from the icosahedral graph results in 24 edges, or $N_c=36$ if we include the
+central sphere. For $N=13$ this is exactly equal to $3N-3$ which is the maximum
+contact number observed for this cluster size
+\autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016}.
+Consequently, removing nine edges gives $N_c=33=3N-6$, meaning that rigid GNCs
+cannot be hypostatic (i.e. $N_c < 3N-6$). Interestingly, there are only two
+graphs with maximum edge count of $|E|=24$, which are exactly the fragments of
+the face-centered cubic (fcc, ABCABC... layers) and hexagonal closed packed
+(hcp, ABAB... layers) bulk structures, respectively. These are the result from
+removing 6 edges in such a way, that exactly one edge is removed from every
+vertex in the icosahedral graph (thus the degree of every vertex is 4), see
+Figure~\ref{fig:GNshellgraphs}.
+\begin{figure}[htb]
     \centering
-    \includegraphics[width=.8\textwidth]{gregory-newton/ico.pdf}
-    \caption{Two-dimensional projection of the icosahedral graph. Numbers refer
-    to the respective node index.}
-    \label{fig:icograph}
-\end{figure}
-
-We used the \textit{VF2} algorithm\autocite{Cordella_SubGraphIsomorphism_2004}
-as implemented in the \textit{boost} graph library\autocite{_boost_2002} to
-check the graphs of the \ac{GN} shells for subgraph-isomorphism with respect to
-the icosahedral graph. Including edge-induced subgraphs we find all 737
-12-sphere shells to be subgraphs of the icosahedral graph, which means their
-vertices can all be mapped to vertices of the icosahedral graph such that there
-will be no edges not present in the icosahedral graph. The graphs of the
-12-sphere shells can now be described in terms of removed edges with respect to
-the icosahedral graph. An extensive list of all subgraphs is included in
-appendix~\ref{sec:listofgregorynewtonshells} (table~\ref{tab:icosubgraphs}).
-
-The results show, that at least six edges and up to a maximum of nine have to
-be removed from the icosahedral graph to create the graph of one of the \ac{GN}
-cluster shells. There are only two structures with the maximum edge count $E$
-of $24$, which are fragments of the \ac{fcc} and hcp bulk, respectively. They are
-the result from removing 6 edges in such a way, that every vertex in the
-icosahedral graph has exactly one edge removed (figure~\ref{fig:GNshellgraphs}).
-
-\begin{figure}
-    \centering
-    \subfloat[\ac{fcc}, $E=24$.\label{subfig:fccgraph}]{\includegraphics[width=0.3\textwidth]{gregory-newton/fcc.pdf}}\hspace{0.03\textwidth}
-    \subfloat[hcp, $E=24$.\label{subfig:hcpgraph}]{\includegraphics[width=0.3\textwidth]{gregory-newton/hcp.pdf}}\hspace{0.03\textwidth}
-    \subfloat[Johnson solid, $E=23$.\label{subfig:johnsongraph}]{\includegraphics[width=0.3\textwidth]{gregory-newton/johnson.pdf}}
-    \caption{Graphs of some \acs{GN} clusters mapped onto the icosahedral graph.
-    Red lines indicate the edges that were removed to create the \acs{GN}
-    cluster shell.}
+    \subfloat[hcp, $|E|=24, \omega =1$.\label{subfig:hcpgraph}]{\includegraphics[width=0.43\columnwidth]{gregory-newton/hcp-new.pdf}\hspace{0.03\textwidth}\includegraphics[width=.37\columnwidth]{gregory-newton/hcp.png}}\\
+    \subfloat[fcc, $|E|=24, \omega =2$.\label{subfig:fccgraph}]{\includegraphics[width=0.43\columnwidth]{gregory-newton/fcc-new.pdf}\hspace{0.03\textwidth}\includegraphics[width=.37\columnwidth]{gregory-newton/fcc.png}}
+    \caption{GN hcp (triangular orthobicupola) and fcc (cuboctahedron) graphs
+    (central sphere removed) as subgraphs of the icosahedral graph and
+    corresponding rigid GNCs.  Red lines indicate the edges that were removed
+    to create the GN graph. The ordinal numbers $\omega$ refer to Table~S2 in
+    the SI.}
     \label{fig:GNshellgraphs}
 \end{figure}
+Removing edges in this way implies that the resulting two graphs consist of
+triangles and rectangles only. The difference between the fcc and hcp clusters
+is in the way their square faces are connected; in the fcc case the square
+faces only connect via edges (cuboctahedron), while in hcp case the square
+faces come in pairs sharing one edge (triangular orthobicupola or Johnson solid
+$J_{27}$)\autocite{Kusner_ConfigurationSpacesEqual_2016}.
 
-Removing edges in this way means the resulting graphs only consists of
-triangles and rectangles. The difference between the \ac{fcc} and hcp clusters
-is in the way their square faces are connected. In \ac{fcc} the square faces
-only connect via edges, while in hcp the square faces come in pairs sharing one
-edge. 
-
-These two cluster structures are the only possible ones when removing only six
-edges. The reason for this can be explained by examining the structure of the
-13-sphere Mackay icosahedron with respect to the limitations of the \ac{SHS}
-potential. There are six $C_6$ symmetry axis in the $I_h$ point group. In the
-ideal Mackay icosahedron there are pentagonal bipyramid motifs aligned along
-those axis such that one of the tips coincides with the central atom and the
-other tip becomes part of the 12-sphere shell (figure~\ref{fig:icopent}). 
-
-\begin{figure}
+The construction of hcp and fcc structures by a continuous deformation of an
+icosahedron has been described in detail by Kusner et al.
+\autocite{Kusner_ConfigurationSpacesEqual_2016} and goes back to Conway and Sloane
+in 1988 \autocite{conway-2013book}. We note that hcp and fcc can both be obtained
+from a rearrangement of the spheres in an icosahedron by forming a (zig-zag)
+cycle (closed path) through six vertices, and arranging those spheres on the
+path such that they are in-plane with the central sphere, which becomes part of
+the hexagonal plane as in the bulk fcc and hcp packing
+(Figure~\ref{fig:ico-fcc-trans}).
+\begin{figure}[htb]
     \centering
-    \includegraphics[width=.4\textwidth]{gregory-newton/icopent.png}
-    \caption{13-sphere Mackay icosahedron. Orange spheres and bonds highlight
-    the pentagonal bipyramid motif.}
-    \label{fig:icopent}
+    \includegraphics[width=.8\columnwidth]{gregory-newton/plane.png}
+    \caption{Illustration of one zig-zag path (light blue spheres) that needs
+    to be deformed such that it aligns with the triangular plane (shown in
+    grey) of the fcc crystal.}
+    \label{fig:ico-fcc-trans}
+\end{figure}
+Additionally, the plane has to be rotated by $\pi/6$ to create the fcc
+structure. The hcp structure can be constructed by also rotating either the top
+or the bottom plane by the same amount in either direction parallel to the
+hexagonal plane. Kusner noted that a smooth deformation from the icosahedral
+configuration to hcp requires 9 moving spheres
+\autocite{Kusner_ConfigurationSpacesEqual_2016}. This interesting transition path
+may be the key for the icosahedral to closed-packed rearrangements in larger
+clusters, which has previously been described in terms of catastrophe theory as
+a cusp catastrophe \autocite{Wales_MicroscopicBasisGlobal_2001}. 
+
+Even though the rearrangement from the icosahedral to either the fcc or hcp
+cluster structure can easily be realized for the GNC, there should be clusters
+where the icosahedral motif is still clearly visible, i.e. only small
+rearrangements of the spheres are necessary to break icosahedral symmetry and form
+a rigid cluster. These are, for example, the ones with maximum count of
+triangles, i.e. according to Table~S1 (SI) the GN graphs with $|F_3|=10$ with
+edge counts of $|E|=$ 22 or 21. Two of these are shown with their corresponding
+graphs in Figure \ref{fig:GNicographs}.
+\begin{figure}[htb]
+    \centering
+    \subfloat[icosahedral motif, $|E|=22, \omega =4$.\label{subfig:ico4graph}]{\includegraphics[width=0.47\columnwidth]{gregory-newton/4-22-new.pdf}\hspace{0.03\textwidth}\includegraphics[width=.3\columnwidth]{gregory-newton/GNico4-22}}\\
+    \subfloat[icosahedral motif, $|E|=22, \omega =7$.\label{subfig:ico7graph}]{\includegraphics[width=0.47\columnwidth]{gregory-newton/7-22-new.pdf}\hspace{0.03\textwidth}\includegraphics[width=.3\columnwidth]{gregory-newton/GNico7-22.png}}
+    \caption{Representative GN graphs (central sphere removed) with $|F_3|=10$
+    as subgraphs of the icosahedral graph and corresponding rigid GNCs. The
+    icosahedral motif in the 3D embedding is clearly visible.  Red lines
+    indicate the edges that were removed to create the GN graph. The ordinal
+    numbers $\omega$ refer to Table~S2 in the Supporting Information.}
+    \label{fig:GNicographs}
 \end{figure}
 
-The pentagonal bipyramid is a structural motif that can't be realised under
-\ac{SHS} conditions. This can be explained by looking at the motif as being
-composed of five tetrahedra glued together at their faces. Ideal tetrahedra
-can't be combined in this way as two vertices of the tetrahedra have to lose
-contact.\autocite{Hayes_ScienceStickySpheres_2012} One can choose to either
-break this connection between the tips of the bipyramid of between two vertices
-of the pentagonal ring. In the \ac{GN} clusters this choice is restricted by
-the fact that the connection between the tips of the bipyramid can't be broken
-as this is one of the 12 \ac{COS} contact points.  This only leaves the choice
-of breaking one bond of the pentagonal ring, which has to happen once for every
-$C_6$ axis. The only possible solutions to this lead to the two closed-packed
-clusters.
+Figure \ref{fig:GNJohnsongraph} shows the graph with the next highest edge
+count after the fcc and hcp packings. The motif of a distorted elongated
+pentagonal bipyramid (Johnson solid $J_{16}$) is clearly visible. Note that the
+Johnson solid can be obtained by deleting five edges and rotating the two
+opposite pentagonal pyramids by $2\pi /5$. One of the resulting square faces
+has to be stretched to obey the SHS conditions, which is achieved by removing
+two additional edges. In the graph this implies that a hexagonal face is
+formed. Note that this GNC is also the cluster with the largest distance
+$r_\mathrm{max}^\mathrm{RE}= 1.47823719$ that corresponds to a removed edge
+(RE) in the GN graph. Capping this cluster with one more sphere over the
+distorted square face with $r_\mathrm{max}^\mathrm{RE}$ leads to the structure
+with the shortest distance a sphere in the second coordination shell can have
+to the central sphere ($r^\mathrm{COS}=1.347150628$) out of all 895,478 GN
+clusters with $N=14$ \autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018}.
 
-Removing one more edge yields only one possible \ac{GN} cluster with a shell
-resembling an elongated pentagonal bipyramid
-(figure~\ref{subfig:johnsongraph}). It consists of four edge-connected square
-faces, a hexagonal face connecting the square faces and triangular faces.
+If more edges are removed from the icosahedral graph we see the appearance of
+larger $n$-gonal faces with the largest face being a 12-gon.
+\begin{figure}[htb]
+    \centering
+    \subfloat[Distorted elongated pentagonal bipyramid (Johnson solid $J_{16}$), $|E|=23, \omega =3$.\label{subfig:johnsongraph}]{\includegraphics[width=0.47\columnwidth]{gregory-newton/johnson-new.pdf}\hspace{0.03\textwidth}\includegraphics[width=.3\columnwidth]{gregory-newton/johnson.png}}
+    \caption{GN graph (central sphere removed) as subgraphs of the icosahedral graph and corresponding 
+    GN Johnson-like solid (with edges removed). Red lines indicate the edges that were removed 
+    from the icosahedral graph to create the GN graph.
+    The ordinal number $\omega$ refers to Table~S2 in the Supporting Information.}
+    \label{fig:GNJohnsongraph}
+\end{figure}
 
-There are 10 nonisomorphic structures if eight edges are removed, but the
-majority of \ac{GN} clusters result from the removal of the maximum of nine
-edges.
+\subsubsection{Symmetry-Broken Lennard-Jones Gregory-Newton Clusters}
 
+All 737 non-isomorphic rigid GNCs optimise to the ideal icosahedral symmetry if
+a LJ(6,12) potential is applied
+\autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018} (however, for
+larger sized icosahedral structures many more minima appear, see Refs.
+\cite{Doye-1995,Wales_TheoreticalPredictionsStructure_1996,Doye_effectrangepotential_1996,Doye_Structuralconsequencesrange_1997}).
+As mentioned in the introduction, for equally sized hard spheres a cluster with
+icosahedral symmetry leaves gaps between the spheres on the outer shell, i.e.
+they do not touch, and is therefore not considered rigid under SHS conditions.
+Hence, at certain $(a,b)$ combinations a phase transition must occur in the
+LJ$(a,b)$ energy landscape where local minima appear, which do not have
+icosahedral symmetry anymore. In order to determine those $(a,b)$ combinations,
+we optimised all 3D cluster geometries with varying exponents $(6\leq a \leq
+34$ and $7\leq b\leq 35)$ with $(b>a)$ and analysed the number of resulting
+minimum structures. The results are shown schematically in
+Figure~\ref{fig:ico-2d}.
+%
+\begin{figure}[htb]\centering
+    \includegraphics[width=.8\columnwidth]{gregory-newton/ico-2d.pdf}
+    \caption{Number of unique structures resulting from an optimisation with a
+    LJ$(a,b)$ potential. The lowest contour line shows the point where more
+    than one structure results from the optimisation and the distance between
+    contour lines is 1.}
+    \label{fig:ico-2d}
+\end{figure}
+%
+Figure~\ref{fig:no-ico} contains additional information showing three major
+phase transitions in the topology of the energy landscape going from low to
+high $(a,b)$ exponents. In the blue shaded area (1), the Mackay icosahedron is
+the sole minimum in the potential energy landscape. The first transition occurs
+when this symmetry can be broken, and other local minima are supported by the
+LJ$(a,b)$ potential besides the icosahedron. This is indicated in
+Figure~\ref{fig:no-ico} by the smallest, orange region (2), which still
+contains the perfect icosahedron as the global minimum. At slightly higher
+exponents, other structures become energetically more favourable and replace
+the icosahedron as the global minimum, region (3). However, the icosahedron
+remains as a local minimum in the potential energy surface. The last transition
+occurs when the LJ potential becomes SHS-like, and the icosahedral cluster
+completely disappears from the potential energy surface, region (4). The three
+transition lines are generally smooth with the exception of line
+(3)$\rightarrow$(4) around $a=11$. Those variations are too large to be
+explained by the resolution of the data points. {\color{red} (Referee: Could the variations be explained, because somehow the optimisation method is missing certain minima? i.e., maybe this bum is an artifact of the minimisation method and not a property of the landscape.)}
+
+\begin{figure}[htb]\centering
+    \includegraphics[width=.8\columnwidth]{gregory-newton/no-ico.pdf}
+    \caption{Different types of energy landscapes arising from combinations of
+    the LJ $(a,b)$ exponents. (1) One single (icosahedral) minimum, (2) more
+    than one minimum with the icosahedron as the global minimum, (3) more than
+    one minimum with the icosahedron becoming a local (and not global) minimum,
+    (4) the icosahedral motif disappears completely. The unshaded small area
+    in the bottom right corner corresponds to $a>b$, which is excluded. The
+    resolution for $a$ is 1.0 and for $b$ 0.25.}
+    \label{fig:no-ico}
+\end{figure}
+
+Figure~\ref{fig:compareLJ} shows representative LJ potentials for combinations
+of the $(a,b)$ exponents (with low and high $a$ values) on the phase transition
+lines drawn in figure~\ref{fig:no-ico}. At these phase transition lines, the
+corresponding LJ potentials show narrow and steep repulsive potentials compared
+to the LJ$(6,12)$ potential.  While in the short range ($r<1$) these all look
+very similar, they differ substantially in the long range ($r>1$).
+{\color{red} (Referee: I'm not convinced that Fig 8 is described properly here - the solid lines look pretty similar for all r, although they differ a little for $r<1$, which is the opposite of what is stated in the paragraph. Also, the authors may wish to point out how similar the solid-line potentials are to each other, but yet how different their landscapes are - why is it that such a small difference in the repulsive part of the potential, causes the icosahedron to appear or disappear from the landscape?)
+}
+{\color{blue}Lukas: I don't think he understood that section at all. We maybe have to explain a bit better.}
+\begin{figure}[htb]\centering
+    \includegraphics[width=.8\columnwidth]{gregory-newton/compareLJ.pdf}
+    \caption{Comparison of different shapes of LJ potentials at the phase
+    transition lines shown in fig.~\ref{fig:no-ico} with the traditional
+    LJ(6,12) potential (black solid line). Dashed lines refer to potentials
+    with low $a$ values (left side of fig.~\ref{fig:no-ico}), while solid lines
+    refer to potentials with high $a$ values (right side of
+    fig.~\ref{fig:no-ico}).}
+    \label{fig:compareLJ}
+\end{figure}
+
+The $(a,b)$ parameters can be related to the so-called LJ hard-sphere radius $\sigma$ (given by the
+intersection with the abscissa) through equation~\eqref{eqn:nmpot}, 
+\begin{equation}
+    \sigma=\left(\frac{b}{a}\right)^{\frac{1}{a-b}}.
+\end{equation}
+and we only have to consider the $(a,\sigma)$ combinations shown in  
+Figure~\ref{fig:hardsphere} along the phase transition lines.
+
+The variation in $\sigma$ along the phase transitions lines for (2)$\rightarrow$(3)
+and (3)$\rightarrow$(4) are rather small. However, all three
+transitions clearly show different ranges for $\sigma$ and thus can be
+characterized by the LJ hard-sphere radius. These are also
+much larger compared to the LJ(6,12) hard-sphere radius of $\sigma=0.891$,
+and close to the ideal hard sphere radius of 1 within the SHS model. 
+This demonstrates that the shape of the LJ potential in the
+repulsive region has a significant influence on the position of the transition lines, 
+and therefore on the topology of the energy landscape. In contrast, these 
+transitions seem to be far less affected by the shape of the potential in the attractive region. 
+Only for the transition (1)$\rightarrow$(2) we see a larger variation in $\sigma$.
+\begin{figure}[htb]\centering
+    \includegraphics[width=.8\columnwidth]{gregory-newton/sigma.pdf}
+    \caption{Hard-sphere radii $\sigma$ in reduced units for the LJ$(a,b)$
+    potentials on the transition lines shown in fig.~\ref{fig:no-ico}.}
+    \label{fig:hardsphere}
+\end{figure}
+
+Of course, symmetry breaking (such as Jahn-Teller distortions) in icosahedral
+clusters is well known in cluster chemistry and physics
+\autocite{deHeer_physicssimplemetal_1993}, which, however, requires the
+introduction of many-body forces beyond the usual two-body interaction, or a
+correct quantum theoretical treatment containing all many-body forces. 
 
 \subsection{Adding a 14th Sphere}
 \label{sec:addinga14thsphere}
