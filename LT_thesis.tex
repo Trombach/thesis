@@ -23,22 +23,19 @@
 %\AtEveryCitekey{\clearfield{month}}
 
 \begin{document}
-\pagestyle{empty}
+\pagestyle{empty}\pagenumbering{gobble}
 \hypersetup{pageanchor=false}
-\include{titlepage}
-\cleardoublepage\setcounter{page}{1}
+\include{titlepage}\cleardoublepage
 \pagestyle{plain}\pagenumbering{roman}
 \setcounter{tocdepth}{1}
 \tableofcontents
 \include{publications}
 \include{acronyms}
 \begin{refsection}
-\listoffigures
-\listoftables
+\listoffigures\cleardoublepage
+\listoftables\cleardoublepage
+\pagestyle{headings}\pagenumbering{arabic}
 \hypersetup{pageanchor=true}
-\pagenumbering{arabic}
-\pagestyle{headings}
-\cleardoublepage\setcounter{page}{1}
 \include{introduction}
 \include{theory}
 \include{methods}
