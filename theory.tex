@@ -906,16 +906,16 @@ direction $\mathbf{e_i}$.
 %
 \begin{align}
     {\bm{\Delta}\mathbf{g}}_\mathbf{i}^{(k)}=\frac{1}{h_i}\left[\mathbf{g}\left(\mathbf{x}^{(k)}+h_i\mathbf{e_i}\right)-\mathbf{g}^{(k)}\right]\\
-    \mathbf{G}^{(k)}\approx \mathbf{\bar{G}}=
+    \mathbf{G}^{(k)}\approx \mathbf{\overline{G}}=
     \begin{pmatrix}
         \bm{\Delta}\mathbf{g}_\mathbf{1}^{(k)} & \bm{\Delta}\mathbf{g}_\mathbf{2}^{(k)} & \cdots & \bm{\Delta}\mathbf{g}_\mathbf{n}^{(k)}
     \end{pmatrix}
 \end{align}
 %
 The approximated matrix needs to be symmetrised by calculating
-$\frac{1}{2}\left(\mathbf{\bar{G}}+\mathbf{\bar{G}^T}\right)$. However, this
+$\frac{1}{2}\left(\mathbf{\overline{G}}+\mathbf{\overline{G}^T}\right)$. However, this
 approach has some disadvantages, e.g. the symmetrised matrix is not guaranteed
-to be positive definite and for the calculation of $\mathbf{\bar{G}}$ the
+to be positive definite and for the calculation of $\mathbf{\overline{G}}$ the
 gradient has to be evaluated $n$ times making this approximation potentially as
 expensive as the exact Hessian calculation.
 
