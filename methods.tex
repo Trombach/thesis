@@ -23,12 +23,12 @@ compiler version 3.8.
 \label{sec:generalstructure}
 
 The main functions of the program are implemented in three different
-executables. Each carries out a different task, i.e optimising given input
+executable programs. Each carries out a different task, i.e optimising given input
 structures and output the results, removing duplicate structures from a set of
 input structures and finding differences of two sets of input structures. The
 respective output of these programs is set up such that they can be used as
-input files for the other executables. This allows the programs to be used
-consecutively while retaining the flexibility of using each executable
+input files for the other executable programs. This allows the programs to be used
+consecutively while retaining the flexibility of using each executable program
 separately. This chain-like execution is depicted in
 figure~\ref{fig:OptimisationAnalyseScheme}. 
 %
@@ -78,15 +78,15 @@ figure~\ref{fig:OptimisationAnalyseScheme}.
     \label{fig:OptimisationAnalyseScheme}
 \end{figure}
 %
-A set of input structures (Input 1) is provided to the first executable
+A set of input structures (Input 1) is provided to the first executable program
 \texttt{optimize}, which optimises the structures and generates Output 1, which
 is a list of optimised coordinates in the same format as the input. This can be
-used as input for the second executable \texttt{analyze}, which uses the
-distance matrix to identify duplicate structures and outputs a list of
+used as input for the second executable program \texttt{analyze}, which uses
+the distance matrix to identify duplicate structures and outputs a list of
 optimised structures with no duplicates (Output 2). In combination with a
-secondary set of structures (Input 2) the third executable \texttt{match} can
-be used to compare both sets of structures and output coordinates of structures
-that are missing from either set 1 or 2 (Output 3). 
+secondary set of structures (Input 2) the third executable program
+\texttt{match} can be used to compare both sets of structures and output
+coordinates of structures that are missing from either set 1 or 2 (Output 3). 
 
 \subsection{Optimisation of Input Structures}
 \label{sec:optimisationofinputstructures}
@@ -218,7 +218,7 @@ analysis.
 \label{sec:AdditionalFunctions}
 
 Besides the main parts of the program that have been described on the previous
-pages some script-like executables are provided. These were used to calculate
+pages some script-like executable programs are provided. These were used to calculate
 various different properties of the investigated clusters and will be briefly
 explained in the following.
 

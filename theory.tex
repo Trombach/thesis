@@ -62,7 +62,7 @@ The information contained in the wave function can be accessed by an operator
 $\mathbf{O}$ acting on the wave function and forming an eigenvalue equation. In
 equation~\eqref{eqn:SchrodingerEquation} this operator is the Hamilton
 operator, but it could be any operator connected to a physical observable.
-Generally, the expectation value of an arbitrary operator $\expval{\mathbf{O}}$ is
+Generally, the expectation value of any operator $\expval{\mathbf{O}}$ is
 defined as
 %
 \begin{equation}
@@ -1030,7 +1030,7 @@ and substitute in in equation~\eqref{eqn:BFGSQuasiNewton}.
     -\frac{\mathbf{B}\bm{\delta\delta}^\mathbf{T}\mathbf{B}}{\bm{\delta}^\mathbf{T}\mathbf{H}\bm{\delta}}
 \end{align}
 %
-The similiarity to equation~\eqref{eqn:DFPQuasiNewton} is obvious. Because both
+The similarity to equation~\eqref{eqn:DFPQuasiNewton} is obvious. Because both
 formulae are related by exchanging $\bm{\gamma}\leftrightarrow\bm{\delta}$ and
 $\mathbf{B}\leftrightarrow\mathbf{H}$ they are called dual or complementary.
 %maybe talk about BFGS/DFP being invariant under affine transformation?
@@ -1064,7 +1064,8 @@ and for successive iterations
     \mathbf{s}^{(k+1)}=\text{component of }-\mathbf{g}^{(k+1)}\text{conjugate to }\mathbf{s}^{(1)},\mathbf{s}^{(2)},\dots,\mathbf{s}^{(n)}.
 \end{align}
 %
-From the conjugacy condition \eqref{eqn:ConjugacyCondition} it follows that $\mathbf{s}^{(k+1)}$ can be calculated from a Gram-Schmidt orthonormalisation.
+From the conjugacy condition \eqref{eqn:ConjugacyCondition} it follows that
+$\mathbf{s}^{(k+1)}$ can be calculated from a Gram-Schmidt orthonormalisation.
 %
 \begin{align}
     \mathbf{s}^{(k+1)}=-\mathbf{g}^{(k+1)}+\beta^{(k)}\mathbf{s}^{(k)}\\
