@@ -6,6 +6,66 @@
 \chapter{Graph Theory}
 \label{sec:graphtheory}
 
+Graph theory is a powerful mathematical tool to describe relations between
+pairs of objects. It's biggest advantage is probably the broad range of
+applicability in fields like computer science, biology, social sciences and of
+course physics and chemistry. In the following sections the focus will lie on
+introducing graph theory in general and demonstrating its usefulness in the
+scope of this thesis. I not mentioned otherwise the chapter is mainly based on
+a book by
+\citeauthor{West_Introductiongraphtheory_2001}\autocite{West_Introductiongraphtheory_2001}.
+
+\section{The Definition of a Graph}
+\label{sec:DefinitionGraph}
+
+The foundations for graph theory were laid out by Euler in his famous solution
+to the K\"onigsberg Bridge Problem\autocite{Euler_Solutioproblematisad_1741}.
+The problem at hand was concerned with a specific bridge layout that connected
+the island of Kneiphopf with the rest of the mainlands via seven bridges.
+%
+\begin{figure}[htb]
+    \centering
+    \subfloat[\label{subfig:koenigsberg-scheme}]{
+        \begin{tikzpicture}
+            i\node[anchor=south west, inner sep=0] at (0,0) {\includegraphics[width=.39\textwidth]{other-pics/koenigsberg-scheme.pdf}};
+            \node at (1.2,1.8) {A};
+            \node at (4,1.8) {B};
+            \node at (1.7,3) {C};
+            \node at (1.7,0.5) {D};
+        \end{tikzpicture}
+    }\hspace{0.05\textwidth}
+    \subfloat[\label{subfig:koenigsberg-graph}]{
+        \begin{tikzpicture}
+            \node[main node,scale=0.75] (A) {A};
+            \node[main node,scale=0.75] (B) [right = 2cm of A] {B};
+            \node[right = 1cm of A] (dummy)  {};
+            \node[main node,scale=0.75] (C) [above = 1cm of dummy] {C};
+            \node[main node,scale=0.75] (D) [below = 1cm of dummy] {D};
+
+            \path[draw,thick]
+            (A) edge node {} (B)            
+            (C) edge node {} (B)            
+            (D) edge node {} (B)            
+            (A) edge[bend right] node {} (C)            
+            (A) edge[bend right=60] node {} (D)            
+            (A) edge[bend left=60] node {} (C)            
+            (A) edge[bend left] node {} (D)            
+            ;
+
+        \end{tikzpicture}
+    }
+    \caption{The K\"onigsberg Bridge Problem. (a) Schematic representation of
+    the bridge layout of K\"onigsberg with the river Pregel (blue), land and
+    island (green) and bridges (red), and (b) graph representation.}
+    \label{fig:KoenigsbergBridgeProblem}
+\end{figure}
+%
+The bridge layout is schematically depicted in
+figure~\ref{subfig:koenigsberg-scheme}. Is it possible for a citizen of
+K\"onigsberg to leave home, cross each bridge exactly once and return? The
+answer is no and it was proven by Euler using a reduction of the problem as
+shown in figure~\ref{subfig:koenigsberg-graph}.
+
 \chapter{Basics of Quantum Chemistry}
 \label{sec:basicsofQC}
 
