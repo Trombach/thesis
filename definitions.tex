@@ -44,14 +44,16 @@
 \bibclosebracket%
 }%
 
+\tikzstyle{every picture}+=[remember picture]
+\tikzset{main node/.style={circle,fill=blue!20,draw,minimum size=.75cm,inner sep=0pt}}
+\usetikzlibrary{shapes.arrows,positioning,matrix,shapes,backgrounds,arrows,calc,fit,decorations.markings,decorations}
+
 \tikzstyle{decision} = [diamond, draw, fill=blue!20, text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]                                   
 \tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=5em, text centered, rounded corners, minimum height=2em]                                        
 \tikzstyle{line} = [draw, -latex']                                                                      
 \tikzstyle{cloud} = [draw, circle, text centered, text width=5em, fill=red!20, node distance=3cm, minimum height=2em, inner sep=0]                                                                           
-\tikzset{main node/.style={circle,fill=blue!20,draw,minimum size=.75cm,inner sep=0pt}}
-\usetikzlibrary{shapes.arrows,positioning,matrix,shapes,backgrounds,arrows,calc,fit}
-\tikzstyle{every picture}+=[remember picture]
-\tikzset{main node/.style={circle,fill=blue!20,draw,minimum size=.75cm,inner sep=0pt}}
+\tikzstyle{directed} = [postaction={decorate,decoration={markings,
+    mark=at position .65 with {\arrow[scale=1]{stealth}}}}]
 
 \fvset{gobble=0}
 
@@ -60,6 +62,7 @@
 \pgfornament[width=.8\textwidth]{88}%
 \par\nobreak\vspace*{\baselineskip}%
 }
+
 
 \hypersetup{linktocpage=true,pdfborderstyle={/S/U/W 1}}
 

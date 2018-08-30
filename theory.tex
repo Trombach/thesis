@@ -21,13 +21,14 @@ a book by
 The foundations for graph theory were laid out by Euler in his famous solution
 to the K\"onigsberg Bridge Problem\autocite{Euler_Solutioproblematisad_1741}.
 The problem at hand was concerned with a specific bridge layout that connected
-the island of Kneiphopf with the rest of the mainlands via seven bridges.
+the island Kneiphopf with the rest of the mainlands of the city of K\"onigsberg
+via seven bridges.
 %
 \begin{figure}[htb]
     \centering
     \subfloat[\label{subfig:koenigsberg-scheme}]{
         \begin{tikzpicture}
-            i\node[anchor=south west, inner sep=0] at (0,0) {\includegraphics[width=.39\textwidth]{other-pics/koenigsberg-scheme.pdf}};
+            \node[anchor=south west, inner sep=0] at (0,0) {\includegraphics[width=.39\textwidth]{other-pics/koenigsberg-scheme.pdf}};
             \node at (1.2,1.8) {A};
             \node at (4,1.8) {B};
             \node at (1.7,3) {C};
@@ -54,9 +55,11 @@ the island of Kneiphopf with the rest of the mainlands via seven bridges.
 
         \end{tikzpicture}
     }
-    \caption{The K\"onigsberg Bridge Problem. (a) Schematic representation of
-    the bridge layout of K\"onigsberg with the river Pregel (blue), land and
-    island (green) and bridges (red), and (b) graph representation.}
+    \caption{The K\"onigsberg Bridge Problem.
+    \protect\subref{subfig:koenigsberg-scheme} Schematic representation of the
+    bridge layout of K\"onigsberg with the river Pregel (blue), landmasses
+    (green) and bridges (red), and \protect\subref{subfig:koenigsberg-graph}
+    respective graph drawing.}
     \label{fig:KoenigsbergBridgeProblem}
 \end{figure}
 %
@@ -64,9 +67,104 @@ The bridge layout is schematically depicted in
 figure~\ref{subfig:koenigsberg-scheme}. Is it possible for a citizen of
 K\"onigsberg to leave home, cross each bridge exactly once and return? The
 answer is no and it was proven by Euler using a reduction of the problem as
-shown in figure~\ref{subfig:koenigsberg-graph}.
+shown in figure~\ref{subfig:koenigsberg-graph}. Landmasses are reduced to
+circles and their connections via bridges is shown as lines between them. This
+simplification makes it easy to realise why the answer to the formerly posed
+question is no. It is clear that the landmasses would need to be connected by
+and even number of bridges for the desired traversal to exist.
 
-\chapter{Basics of Quantum Chemistry}
+Mathematically, a graph $G$ is a triple that contains a vertex set $V(G)$ and
+an edge set $E(G)$ that connects pairs of vertices via their endpoints. Edges
+can form a loop by having both endpoints on the same vertex and multiple edges
+can connect the same vertices. However, simple graphs don't contain loops and
+multiple edges and are more important for most practical applications. A simple
+graph can now be defined by a set of unordered pairs of vertices by defining
+each edge as $e=uv$ or $e=vu$ with $u$ and $v$ being the endpoints (or
+vertices) of the edges. Then, neighbouring or adjacent vertices are those that
+share an edge.
+
+Graphs are often just represented as a graph drawing such as
+figure~\ref{subfig:koenigsberg-graph}, however, sometimes it can be useful to
+introduce a matrix representation. A simple graph $G$ with vertex set
+$V(G)=\{v_1,v_2,\dots,v_n\}$ and edge set $E(G)=\{e_1,e_2,\dots,e_m\}$ can be
+defined by writing an adjacency matrix $\mathbf{A}$ that encodes the
+edge-connectivity of the vertex set, i.e. $A$ is a $n\cross n$ matrix where
+each matrix element $a_{ij}$ represents the number of edges that connect $v_i$
+and $v_j$. For the K\"onigsberg Bridge problem one possible adjacency matrix
+that corresponds to ordering the vertices alphabetically by their label is:
+%
+\begin{equation}
+    \mathbf{A}=
+    \begin{pmatrix}
+         0 & 1 & 2 & 2\\
+         1 & 0 & 1 & 1\\
+         2 & 1 & 0 & 0\\
+         2 & 1 & 0 & 0
+    \end{pmatrix}.
+\end{equation}
+%
+And adjacency matrix is always symmetric and it can be used to easily determine
+the vertex degree, that is the number of edges connected to a particular
+vertex, by calculating the sum over all entries in the corresponding row or
+column. 
+
+Alternatively, the incidence matrix $M$ is an $n \cross m$ matrix where each
+matrix element $m_{ij}$ is either $1$ or $0$ depending on whether $v_i$ is an
+endpoint of $e_j$. If the matrix element $m_{ij}$ is $1$ the vertex $v_i$ and
+edge $e_j$ are said to be incident.
+
+The labelling of the vertices in figure~\ref{subfig:koenigsberg-graph} is
+arbitrary and so is the ordering of the rows and columns in the adjacency
+matrix. It is clear that a different ordering still describes the same graph
+object and should therefore have no influence on the properties of the graph.
+Permutation of the vertex labelling for a given simple graph $G$ that turns the
+vertex set $V(G)$ into the vertex set $V(H)$ is called a bijection. If such a
+bijection exists the graphs $G$ and $H$ are isomorphic to each other.
+
+If it is possible to order the vertices of a simple graph in such a way that
+only two consecutively listed vertices are adjacent, the graph can be called a
+path. An extension of this concept is the cycle, that requires an equal number
+of vertices and edges so that the graph can be drawn as a circle of
+consecutively listed vertices. Consequently, removing an edge from a cycle
+always yields a path. In many applications (e.g. road networks) it is not
+necessary for the whole graph to represent a path or a cycle, but it is only
+important whether the graph contains a path or a cycle. If the graph $G$
+contains the graph $H$, $H$ is called a subgraph of $G$. This requires the
+vertex set of $H$ to be contained in $V(G)$ ($V(H)\subseteq V(G)$) as well as
+the edge set $E(H)$ ($E(H)\subseteq E(G)$) as well as the assignment of the
+endpoints to be the same.
+
+The K\"onigsberg Bridge Problem is not only concerned with the nature of the
+bridging network, but moreso with how to traverse over it. In graph theoretical
+terms the solution is called a trail, which is a a special case a walk, where
+no edge can be repeated. A walk describes a way to traverse over a graph by
+defining a list of vertices and edges $v_0,e_1,v_1,\dots,e_k,v_k$ where the
+endpoints for each edge $e_i$ have to be $v_{i-1}$ and $v_i$ ($1\leq i\leq k$).
+%
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \node[main node,scale=0.75] (A) {A};
+        \node[main node,scale=0.75] (B) [right = 2cm of A] {B};
+        \node[right = 1cm of A] (dummy)  {};
+        \node[main node,scale=0.75] (C) [above = 1cm of dummy] {C};
+        \node[main node,scale=0.75] (D) [below = 1cm of dummy] {D};
+    
+        \draw[blue,directed,thick] (A) -- (B);
+        \draw[blue,directed,thick] (A) to [out=100,in=170] (C);    
+        \draw[blue,directed,thick] (C) to [out=260,in=10] (A);    
+        \draw[blue,directed,thick] (D) to [out=100,in=350] (A);    
+        \draw[blue,directed,thick] (A) to [out=260,in=190] (D);    
+        \draw[blue,directed,thick] (B) -- (D);    
+        \draw[red,thick] (B) -- (C);    
+    \end{tikzpicture}
+    \caption{Example of one possible trail over the bridges of K\"onigsberg.
+    Including the red edge requires reusing some bridges and is therefore a
+    walk.}
+    \label{fig:walkkoenigsberg}
+\end{figure}
+
+\chapter{Quantum Chemistry}
 \label{sec:basicsofQC}
 
 In this part of the thesis knowledge of standard methods used in quantum
@@ -80,7 +178,7 @@ Koch\autocite{Koch_ChemistGuideDensity_2001}.
 \section{The Schr\"odinger Equation}
 \label{sec:schrodingerequation}
 
-The beginning of the 20th centuary was a very important time for modern
+The beginning of the 20th century was a very important time for modern
 theoretical sciences. Discoveries like Planck's energy quantisation based on
 black body radiation\autocite{Planck_UeberGesetzEnergieverteilung_1901} or the
 discovery of the wave particle dualism by de
@@ -1307,7 +1405,7 @@ function from vector parts. This leads to the following equations.
 
 
 
-\chapter{Energy Landscapes}
+\chapter{Potentials for Nucleation Problems}
 \label{sec:energylandscapes}
 
 \section{Lennard-Jones}
