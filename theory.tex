@@ -159,7 +159,7 @@ bridge) is shown in figure~\ref{subfig:adtrail}.
             \draw[blue,directed,thick] (D) to [out=100,in=350] (A);    
             \draw[blue,directed,thick] (A) to [out=260,in=190] (D);    
             \draw[blue,directed,thick] (B) -- (D);    
-            \draw[red,thick] (B) -- (C);    
+            \draw[red,crossed,thick] (B) -- (C);    
         \end{tikzpicture}
     }\hspace{0.5cm}
     \subfloat[C,A-walk\label{subfig:cawalk}]{
@@ -172,12 +172,11 @@ bridge) is shown in figure~\ref{subfig:adtrail}.
 
             \draw[blue,directed,thick] (C) to [in=100,out=170] (A);
             \draw[blue,directed,thick] (A) to [out=260,in=190] (D);    
-            \draw[blue,directed,thick] (D) -- (B);    
+            \draw[blue,bidirected,thick] (D) -- (B);    
             \draw[blue,directed,thick] (B) -- (C);    
             \draw[blue,directed,thick] (C) to [out=260,in=10] (A);    
             \draw[blue,directed,thick] (D) to [out=100,in=350] (A);    
             \draw[blue,directed,thick] (A) -- (B);
-            \draw[blue,directed,thick] (B) -- (D);    
         \end{tikzpicture}
     }\hspace{0.5cm}
     \subfloat[A,C-path\label{subfig:acpath}]{
@@ -188,10 +187,10 @@ bridge) is shown in figure~\ref{subfig:adtrail}.
             \node[main node,scale=0.75] (C) [above = 1cm of dummy] {C};
             \node[main node,scale=0.75] (D) [below = 1cm of dummy] {D};
 
-            \draw[red,thick] (A) -- (B);
-            \draw[red,thick] (A) to [out=100,in=170] (C);    
-            \draw[red,thick] (C) to [out=260,in=10] (A);    
-            \draw[red,thick] (D) to [out=100,in=350] (A);    
+            \draw[red,crossed,thick] (A) -- (B);
+            \draw[red,crossed,thick] (A) to [out=100,in=170] (C);    
+            \draw[red,crossed,thick] (C) to [out=260,in=10] (A);    
+            \draw[red,crossed,thick] (D) to [out=100,in=350] (A);    
             \draw[blue,directed,thick] (A) to [out=260,in=190] (D);    
             \draw[blue,directed,thick] (D) -- (B);    
             \draw[blue,directed,thick] (B) -- (C);    

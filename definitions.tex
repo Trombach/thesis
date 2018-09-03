@@ -54,6 +54,16 @@
 \tikzstyle{cloud} = [draw, circle, text centered, text width=5em, fill=red!20, node distance=3cm, minimum height=2em, inner sep=0]                                                                           
 \tikzstyle{directed} = [postaction={decorate,decoration={markings,
     mark=at position .65 with {\arrow[scale=1]{stealth}}}}]
+\tikzstyle{bidirected} = [postaction={decorate,decoration={markings,
+    mark=at position .65 with {\arrow[scale=1]{stealth}},
+    mark=at position .35 with {\arrowreversed[scale=1]{stealth}}}}]
+\tikzstyle{reversed} = [postaction={decorate,decoration={markings,
+    mark=at position .35 with {\arrowreversed[scale=1]{stealth}}}}]
+\tikzstyle{crossed} = [postaction={decorate,decoration={markings,
+    mark=at position .5 with {
+        \draw (-2pt,-2pt) -- (2pt,2pt);
+        \draw (2pt,-2pt) -- (-2pt,2pt);
+    }}}]
 
 \fvset{gobble=0}
 
