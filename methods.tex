@@ -33,12 +33,12 @@ separately. This chain-like execution is depicted in
 figure~\ref{fig:OptimisationAnalyseScheme}. 
 %
 \begin{figure}[htb]\centering
-    \begin{tikzpicture}[node distance = 3.5cm, scale=0.8, auto, transform shape]%, every node/.style={scale=0.8}]
+    \begin{tikzpicture}[node distance = 3cm, scale=0.8, auto, transform shape]%, every node/.style={scale=0.8}]
     \node [cloud] (Input1) {Input structures};
     \node [block, right of=Input1] (Optimise) {Optimise};
     \node [decision, right of=Optimise] (Hessian) {Negative values in Hessian?};
     \node [block, below of=Optimise] (reopt) {Displace geometry};
-    \node [cloud, right of=Hessian] (print) {Optimised Structures};
+    \node [cloud, right=1.5cm of Hessian] (print) {Optimised Structures};
     \node [block, below of=print] (Analyse) {Analyse $\{r_{ij}\}$};
     \node [cloud, below of=Analyse] (Analysed) {Duplicates removed};
     \node [block, left of=Analysed] (Match) {Match sets};
