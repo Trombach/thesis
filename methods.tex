@@ -185,29 +185,39 @@ The advantage of this method is its great scalability with respect to the
 number of input structures as values can be retrieved quickly based on the
 key.
 
-The second method uses the matrix of all inter-particle distances as the
-differentiation criterion. If at least one inter-particle distance is different
-two structures are said to be not equal. As there is no clear answer to the
-question which distance matrix is ``larger'' than another one the
-implementation could not be executed using a \verb|map| container. A regular
-two-dimensional \verb|vector| array is used instead. A structure's distance
-matrix is compared to the distance matrix of an already sorted structure and is
-added to the same group if they are equal up to a set threshold. If not, the
-structure is added to the array as a new group. The more unique structures the
-optimisation produced the slower this method of sorting becomes, but the
-results are more reliable than the previously discussed ones.
+The second method uses the \ac{EDM} as the differentiation criterion. The
+\ac{EDM} is the matrix of all inter-particle distances $d_{ij}$ where each
+entry is defined as the Euclidean norm $||\cdot||$ between to spheres.
+%
+\begin{align}
+    d_{ij}=||\mathbf{x}_i-\mathbf{x}_j||^2
+\end{align}
+%
+The \ac{EDM} represents a unique embedding of the cluster in space, however
+information about the absolute position and orientation are lost on creation.
+That means rigid transformations of clusters (translations, rotations,
+reflections) don't affect the \ac{EDM} as they don't change fixed distances
+between points in space.\autocite{Dokmanic_EuclideanDistanceMatrices_2015} If
+at least one inter-particle distance is different two structures are said to be
+not equal. The algorithm is implemented such that a structure's distance matrix
+is compared to the distance matrix of all other already sorted structures and
+is added to the matching group if they are equal up to a set threshold. If not,
+the structure is added to the array as a new group. The more unique structures
+the optimisation produced the slower this method of sorting becomes, as each
+trial structure has to be compared to all other already sorted structure
+groups.
 
 \subsection{Matching Structures}
 \label{sec:matchingstructures}
 
 To compare the results from the optimisations procedures to previously
-published sets of clusters the program \verb|match| can be use. It takes two
+published sets of clusters the program \verb|match| can be used. It takes two
 files as input that each contain a set of structures of equal of different size
-and compares them based on the inter-particle distance matrix. The number of
-atoms in each set must be equal, otherwise the program will be terminated. If
-both sets are found to be identical no output files are created. In case there
-are unmatched structures they will be printed in xyz format for further
-analysis.
+and compares them based on the \ac{EDM}. The number of atoms in each set must
+be equal, otherwise the program will be terminated. If both sets are found to
+be identical no output files are created. In case there are unmatched
+structures they will be printed in \verb|xyz| format in the \verb|output|
+directory for further analysis.
 
 \section{Graph-Theoretical Analysis}
 \label{sec:GraphTheoreticalAnalysis}
