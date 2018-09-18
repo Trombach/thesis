@@ -11,9 +11,11 @@ pairs of objects. It's biggest advantage is probably the broad range of
 applicability in fields like computer science, biology, social sciences and of
 course physics and chemistry. In the following sections the focus will lie on
 introducing graph theory in general and demonstrating its usefulness in the
-scope of this thesis. I not mentioned otherwise the chapter is mainly based on
-a book by
-\citeauthor{West_Introductiongraphtheory_2001}\autocite{West_Introductiongraphtheory_2001}.
+scope of this thesis. If not mentioned otherwise the chapter is mainly based on
+standard books on graph theory by
+\citeauthor{West_Introductiongraphtheory_2001}\autocite{West_Introductiongraphtheory_2001}
+and
+\citeauthor{Balakrishnan_Schaumoutlinetheory_1997}\autocite{Balakrishnan_Schaumoutlinetheory_1997}.
 
 \section{The Definition of a Graph}
 \label{sec:DefinitionGraph}
@@ -136,12 +138,15 @@ endpoints to be the same.
 
 The K\"onigsberg Bridge Problem is not only concerned with the nature of the
 bridging network, but moreso with how to traverse over it. In graph theoretical
-terms the desired solution is called a trail, which is a a special case a walk,
-where no edge can be repeated (i.e. no bridge can be crossed twice). A walk
-describes a way to traverse over a graph by defining a list of vertices and
-edges $v_0,e_1,v_1,\dots,e_k,v_k$ where the endpoints for each edge $e_i$ have
-to be $v_{i-1}$ and $v_i$ ($1\leq i\leq k$). One possible trail (excluding one
-bridge) is shown in figure~\ref{subfig:adtrail}.
+terms the desired solution is called a closed trail, which is a a special case
+a walk, where no edge can be repeated (i.e. no bridge can be crossed twice) and
+the endpoints have to be the same vertex.\footnote{A graph that contains such a
+closed tail traversing all edges is also called Eulerian in honor of of Euler's
+significant contribution to solve this long-standing problem.} A walk describes
+a way to traverse over a graph by defining a list of vertices and edges
+$v_0,e_1,v_1,\dots,e_k,v_k$ where the endpoints for each edge $e_i$ have to be
+$v_{i-1}$ and $v_i$ ($1\leq i\leq k$). One possible trail (excluding one
+bridge) is shown in figure~\ref{subfig:adtrail}. 
 %
 \begin{figure}[htb]
     \centering
@@ -213,7 +218,221 @@ edge, paths require all vertex traversals to be distinct.
 The definition of a path can also be used to define whether a graph is
 connected. In simple terms a graph is connected if there is a path leading from
 each vertex to each other one, hence, for all $u,v\in V(G)$ there must be a
-$u,v$-path for $G$ to be connected.
+$u,v$-path for $G$ to be connected. An example of a disconnected graph is shown
+in figure~\ref{fig:disconnectedgraph}.
+%
+\begin{figure}[htb]
+    \centering
+    \begin{tikzpicture}
+        \node[main node,scale=0.75] (A) {A};
+        \node[main node,scale=0.75] (B) [right = 2cm of A] {B};
+        \node[right = 1cm of A] (dummy)  {};
+        \node[main node,scale=0.75] (C) [above = 1cm of dummy] {C};
+        \node[main node,scale=0.75] (D) [below = 1cm of dummy] {D};
+        \node (Comp1) [transform shape=false, draw, color=black, dashed, thick,%
+            fit= (A) (C) (D)] {};
+        \node (Comp1) [transform shape=false, draw, color=black, dashed, thick,%
+            fit= (B)] {};
+
+        \path[draw,thick] (A) edge[bend right] node {} (C) (A) edge[bend right=60] node {} (D) (A) edge[bend left=60] node {} (C)(A) edge[bend left] node {} (D);
+    \end{tikzpicture} 
+    \caption{Example of a disconnected graph with two components. The vertex B
+    has no path to any of the other vertices, therefore the graph is
+    disconnected. Adding one edge from B to any other vertex would make this
+    graph connected. As a result from being disconnected the graph consists of
+    two components (dashed lines; one contains only the vertex B and the other
+    one contains the other three vertices.} \label{fig:disconnectedgraph}
+\end{figure}
+%
+The maximally connected subgraphs of a graph are called its components. In
+figure~\ref{fig:disconnectedgraph} the vertex B forms one component, while the
+rest of the vertices form a second one. The vertex B is an isolated vertex as
+it is of degree zero. A graph consisting of only isolated vertices is called a
+trivial graph with each vertex forming its own trivial component.
+
+Adding edges to any graph either reduces the number of components by 1 or 0,
+and therefore the minimum number of components is at least $n-m$. This can be
+seen by considering a trivial graph of $n$ vertices and adding $m$ edges such
+that the number of components $k$ changes by one with each of the $m$ edges. An
+edge that increases the number of components upon deletion is also called a
+\textit{cut-edge}.
+
+An important concept utilised in the last chapter of this thesis is that of
+induced subgraphs. If we remove a list of vertices $T$ from a graph $G$ the
+vertex-induced subgraph $H$ with the vertex set $V(H)=V(G)-T$ is obtained. All
+edges incident to one of the removed edges need to be removed as well. Removing
+the edge set $S$ results in the edge-induced subgraph $I$ with the edge set
+$E(I)=E(G)-S$, which leaves the vertex set unchanged.
+
+\section{Planar Graphs}
+\label{sec:PlanarGraphs}
+
+\textit{Planar graphs} are of particular importance in chemistry and physics,
+especially when studying clusters and complexes that are related to polyhedral
+arrangements.  A planar graph $G$ is defined as a graph that can be drawn such
+that none of its edges cross each other except at vertices to which both edges
+are incident. If a planar graph is drawn in that way it's called a
+i\textit{plane graph}, while any way of drawing that graph in the 2D plane may
+be referred to as a \textit{planar embedding}.
+%
+\begin{figure}[htb]
+    \centering
+    \tdplotsetmaincoords{60}{0}
+    \def \ico {1.618}
+    \subfloat[\label{subfig:icopoly}]{
+    \begin{tikzpicture}[tdplot_main_coords,
+        every node/.style = {circle, fill = blue!20, inner sep = 0pt, minimum size = 0.5cm},
+        rotate = 0,
+        line join=bevel]
+
+        %\draw[red,->] (0,0,0) -- (0,0,1) node {$z$};
+        %\draw[red,->] (0,0,0) -- (0,1,0) node {$y$};
+        %\draw[red,->] (0,0,0) -- (1,0,0) node {$x$};
+
+        \coordinate (1) at (0, 1, \ico);
+        \coordinate (2) at (0, 1, -\ico);
+        \coordinate (3) at (0, -1, \ico);
+        \coordinate (4) at (0, -1, -\ico);
+        \coordinate (5) at (1, \ico, 0);
+        \coordinate (6) at (1, -\ico, 0);
+        \coordinate (7) at (-1, \ico, 0);
+        \coordinate (8) at (-1, -\ico, 0);
+        \coordinate (9) at (\ico, 0, 1);
+        \coordinate (10) at (\ico, 0, -1);
+        \coordinate (11) at (-\ico, 0, 1);
+        \coordinate (12) at (-\ico, 0, -1);
+
+        
+        %\foreach \n in {1,...,12}
+        %    \node at (\n) {\n};
+
+        \draw[thick, fill=blue!50, opacity=0.75] (3) -- (6) -- (8) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (3) -- (6) -- (9) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (6) -- (10) -- (9) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (1) -- (9) -- (3) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (3) -- (8) -- (11) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (1) -- (11) -- (3) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (1) -- (11) -- (7) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (8) -- (6) -- (4) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (10) -- (6) -- (4) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (12) -- (8) -- (4) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (12) -- (8) -- (11) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (12) -- (7) -- (11) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (12) -- (7) -- (2) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (12) -- (2) -- (4) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (10) -- (2) -- (4) -- cycle;
+        \draw[thick, fill=white, opacity=0.5] (5) -- (7) -- (2) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (5) -- (10) -- (9) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (1) -- (7) -- (5) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (5) -- (10) -- (2) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (1) -- (9) -- (5) -- cycle;
+    \end{tikzpicture}
+    }
+    \subfloat[\label{subfig:icostretch1}]{
+    \begin{tikzpicture}[tdplot_main_coords,
+        every node/.style = {circle, fill = blue!20, inner sep = 0pt, minimum size = 0.5cm},
+        rotate = 0,
+        line join=bevel]
+
+        %\draw[red,->] (0,0,0) -- (0,0,1) node {$z$};
+        %\draw[red,->] (0,0,0) -- (0,1,0) node {$y$};
+        %\draw[red,->] (0,0,0) -- (1,0,0) node {$x$};
+
+        \coordinate (1) at (0, 1, \ico);
+        \coordinate (2) at (0, -0.4142, -\ico);
+        \coordinate (3) at (0, -1, \ico);
+        \coordinate (4) at (0, -1, -\ico);
+        \coordinate (5) at (2, 2.618, 0);
+        \coordinate (6) at (1, -\ico, 0);
+        \coordinate (7) at (-2, 2.618, 0);
+        \coordinate (8) at (-1, -\ico, 0);
+        \coordinate (9) at (\ico, 0, 1);
+        \coordinate (10) at (\ico, 0, -1);
+        \coordinate (11) at (-\ico, 0, 1);
+        \coordinate (12) at (-\ico, 0, -1);
+
+        
+        %\foreach \n in {1,...,12}
+        %    \node at (\n) {\n};
+
+        \draw[thick, fill=blue!50, opacity=0.75] (3) -- (6) -- (8) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (3) -- (6) -- (9) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (6) -- (10) -- (9) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (1) -- (9) -- (3) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (3) -- (8) -- (11) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (1) -- (11) -- (3) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (1) -- (11) -- (7) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (8) -- (6) -- (4) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (10) -- (6) -- (4) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (12) -- (8) -- (4) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (12) -- (8) -- (11) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (12) -- (7) -- (11) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (12) -- (7) -- (2) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (12) -- (2) -- (4) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (10) -- (2) -- (4) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (5) -- (10) -- (9) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (5) -- (10) -- (2) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (1) -- (9) -- (5) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (1) -- (7) -- (5) -- cycle;
+        \draw[thick, fill=white, opacity=0.5] (5) -- (7) -- (2) -- cycle;
+    \end{tikzpicture}
+    }\\
+    \subfloat[\label{subfig:icostretch2}]{
+    \begin{tikzpicture}[tdplot_main_coords,
+        every node/.style = {circle, fill = blue!20, inner sep = 0pt, minimum size = 0.5cm},
+        rotate = 0,
+        line join=bevel]
+
+        %\draw[red,->] (0,0,0) -- (0,0,1) node {$z$};
+        %\draw[red,->] (0,0,0) -- (0,1,0) node {$y$};
+        %\draw[red,->] (0,0,0) -- (1,0,0) node {$x$};
+
+        \coordinate (1) at (0, 1, \ico);
+        \coordinate (2) at (0, -5, -\ico);
+        \coordinate (3) at (0, -1, \ico);
+        \coordinate (4) at (0, -1, -\ico);
+        \coordinate (5) at (4, 4.5, 0);
+        \coordinate (6) at (1, -\ico, 0);
+        \coordinate (7) at (-4, 4.5, 0);
+        \coordinate (8) at (-1, -\ico, 0);
+        \coordinate (9) at (\ico, 0, 1);
+        \coordinate (10) at (\ico, 0, -1);
+        \coordinate (11) at (-\ico, 0, 1);
+        \coordinate (12) at (-\ico, 0, -1);
+
+        
+        %\foreach \n in {1,...,12}
+        %    \node at (\n) {\n};
+
+        \draw[thick, fill=blue!50, opacity=0.75] (12) -- (2) -- (4) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (3) -- (6) -- (8) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (3) -- (6) -- (9) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (6) -- (10) -- (9) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (1) -- (9) -- (3) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (3) -- (8) -- (11) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (1) -- (11) -- (3) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (1) -- (11) -- (7) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (8) -- (6) -- (4) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (10) -- (6) -- (4) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (12) -- (8) -- (4) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (12) -- (8) -- (11) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (12) -- (7) -- (11) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (12) -- (7) -- (2) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (10) -- (2) -- (4) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (5) -- (10) -- (9) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (5) -- (10) -- (2) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (1) -- (9) -- (5) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0.75] (1) -- (7) -- (5) -- cycle;
+        \draw[thick, fill=blue!50, opacity=0] (5) -- (7) -- (2) -- cycle;
+    \end{tikzpicture}
+}
+\caption{Stretching and flattening of a icosahedron surface with one removed
+face. \protect\subref{subfig:icopoly} Icosahedron with on removed face in the
+centre, \protect\subref{subfig:icostretch1} stretching of the hole in the
+surface, \protect\subref{subfig:icostretch2} fully flattened surface shows a
+plane graph.}
+\label{fig:icographtransform}
+\end{figure}
 
 \chapter{Quantum Chemistry}
 \label{sec:basicsofQC}
