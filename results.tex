@@ -6,7 +6,7 @@
 \chapter[Golden Dual Fullerenes]{
     Golden Dual Fullerenes\footnote{This chapter is partly composed of sections
     previously published in the article
-    \citetitle*{Trombach_HollowGoldCages_2016a}\autocite{Trombach_HollowGoldCages_2016a}
+    \citetitle*{Trombach_HollowGoldCages_2016}\autocite{Trombach_HollowGoldCages_2016}
     and is reproduced with kind permission from the authors and John Wiley and
     Sons (\textcopyright John Wiley and Sons).}
 }
@@ -54,7 +54,7 @@ icosahedral symmetry.\autocite{Johansson_Au3224CaratGolden_2004} More recently,
 Karttunen et al. predicted a chiral $I-$Au$_{72}$ cage which is spherically
 aromatic.\autocite{Karttunen_IcosahedralAu72_2008} For both copper and silver
 such a hollow cage becomes rather
-unstable.\autocite{Johansson_Au3224CaratGolden_2004,Fernandez-2006a} A number
+unstable.\autocite{Johansson_Au3224CaratGolden_2004,FERNANDEZ_DENSITYFUNCTIONALSTUDIES_2006} A number
 of such golden fullerenes, i.e. $I_\mathrm{h}-$Au$_{32}^-$, $T_\mathrm{d}-$Au$_{16}^-$,
 $C_\mathrm{2v}-$Au$_\mathrm{17}^-$ and $C_\mathrm{2v}-$Au$_{18}^-$, have been identified by
 photoelectron spectroscopy by Lai-Sheng Wang and
@@ -328,7 +328,7 @@ $C_\mathrm{2}-$Au$_{20}$(2), $C_\mathrm{1}-$Au$_{20}$(2) and
 $I_\mathrm{h}-$Au$_{32}$. The initial force-field optimized structures scaled
 to an approximate internuclear distance were then refined by using the
 Perdew-Becke-Ernzerhofer generalized gradient
-functional\autocite{Perdew_GeneralizedGradientApproximation_1996,PerdewGeneralizedGradientApproximation1997}
+functional\autocite{Perdew_GeneralizedGradientApproximation_1996,Perdew_GeneralizedGradientApproximation_1997}
 corrected for dispersion interactions using Grimme's method
 (PBE-D3)\autocite{Grimme_consistentaccurateinitio_2010,Grimme_Effectdampingfunction_2011}
 together with a Los-Alamos scalar relativistic effective core potential for
@@ -1002,7 +1002,7 @@ therefore only surjective.
 
 From the Gregory-Newton kissing-number argument proved in 1953 by Sch\"utte and
 van der Waerden \autocite{Schutte_ProblemdreizehnKugeln_1952}, no sphere can be
-surrounded by more than 12 spheres of equal radius \autocite{conway-2013book}.  For
+surrounded by more than 12 spheres of equal radius \autocite{Conway_SpherePackingsLattices_1999}.  For
 small clusters, graph-theoretic arguments dictate $\mathrm{max}(N_c)\le
 N(N-1)/2$.  Thus a loose bound on the maximum contact number $N_c(N)$ is
 %
@@ -1612,9 +1612,9 @@ spheres kissing a central unit sphere is called a \ac{GNC}, and is shown in its
 most symmetric icosahedral form in figure~\ref{fig:GN}. Exact Newton numbers
 for unit spheres in lattice packings are known for dimensions $d=1$ to 9 and
 $d=24$, and for non-lattice packings for $d=1-3$, 8 and 24
-\autocite{conway-2013book,Musin_proof24cellconjecture_2018}.  Lower and upper
+\autocite{Conway_SpherePackingsLattices_1999,Musin_proof24cellconjecture_2018}.  Lower and upper
 bounds for max$\{N_k(d)\}$ are also available
-\autocite{Mittelmann_Highaccuracysemidefiniteprogramming_2010,conway-2013book}. 
+\autocite{Mittelmann_Highaccuracysemidefiniteprogramming_2010,Conway_SpherePackingsLattices_1999}. 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=.4\textwidth]{gregory-newton/Kissing-3d.png} \quad
@@ -1709,7 +1709,7 @@ matrices of the results for $N=13$ from \citeauthor{Holmes-Cerfon_EnumeratingRig
 \autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016} with one row or column
 containing twelve ``1'' entries. Sub-graph isomorphism was verified using the
 \textit{VF2} algorithm \autocite{Cordella_SubGraphIsomorphism_2004} as implemented
-in the \textit{boost graph library} \autocite{_boost_2002}. Structural
+in the \textit{boost graph library} \autocite{Siek_BoostGraphLibrary_2002}. Structural
 optimisations with LJ potentials have been carried out using the
 multidimensional function minimiser from the \Cpp library \textit{dlib}
 \autocite{King_DlibmlMachineLearning_2009} and an energy convergence criterion of
@@ -1826,7 +1826,7 @@ space of (infinitesimal) deformations has dimension 24 (for details see
 \citeauthor{Kusner_ConfigurationSpacesEqual_2016}\autocite{Kusner_ConfigurationSpacesEqual_2016}).
 
 Employing the \textit{VF2} algorithm \autocite{Cordella_SubGraphIsomorphism_2004}
-as implemented in the \textit{boost graph library} \autocite{_boost_2002} we find
+as implemented in the \textit{boost graph library} \autocite{Siek_BoostGraphLibrary_2002} we find
 all 737 non-isomorphic GN graphs $G_\mathrm{GN}(V,E')$ (vertex count $|V|=12$,
 edge count $|E'|<30$) to be (edge-induced) subgraphs of the icosahedral graph
 $G_\mathrm{ico}(V,E)$ ($|V|=12$, $|E|=30$), which implies that their vertices can
@@ -1877,7 +1877,7 @@ $J_{27}$)\autocite{Kusner_ConfigurationSpacesEqual_2016}.
 The construction of hcp and fcc structures by a continuous deformation of an
 icosahedron has been described in detail by Kusner et al.
 \autocite{Kusner_ConfigurationSpacesEqual_2016} and goes back to Conway and Sloane
-in 1988 \autocite{conway-2013book}. We note that hcp and fcc can both be obtained
+in 1988 \autocite{Conway_SpherePackingsLattices_1999}. We note that hcp and fcc can both be obtained
 from a rearrangement of the spheres in an icosahedron by forming a (zig-zag)
 cycle (closed path) through six vertices, and arranging those spheres on the
 path such that they are in-plane with the central sphere, which becomes part of
