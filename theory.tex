@@ -1180,7 +1180,7 @@ electrons and the increasing importance of relativistic effects.
 \subsection{Effective Core Potentials}
 \label{sec:ECP}
 
-An \ac{ECP}, or sometimes called a pseudopotential, is an approximation that
+An \ac{ECP}, or sometimes called a pseudo potential, is an approximation that
 allows to compute accurate properties of atoms at a much lower cost by not
 treating core electrons explicitly. The quality of such a potential is assessed
 by the number of electrons that make up the \ac{ECP}. This gives rise to the
@@ -1191,7 +1191,37 @@ valence shell, while the small-core approximation includes additional
 small-core potential can improve the quality of energetic and other property
 calculations.
 
+Ann \ac{ECP} has to be based on an all-electron calculation that describes the
+system to the desired accuracy (for example including or excluding scalar
+relativistic effects). It also requires the valence functions to be replaced by
+a set of pseudo-functions that show the correct behaviour in the valence
+region, but don't contain any radial nodes in the core region. The core
+electrons are not treated explicitly and are replaced by the effective
+function, that is parametrised to model the correct interaction potential
+between the valence and the core region. Different potential forms for
+different angular momenta can be included. The parameters for the effective
+potential must be fitted to all-electron function such that the valence
+pseudo-orbitals match those of the all-electron calculation.
 
+As atomic orbitals are usually described by Gaussian functions it is common
+practice to use the same type of functions to generate the effective potential.
+For example, the Stuttgardt-K\"oln pseudo-potentials use Gaussian functions in
+a semi-local ansatz to describe the core region.\autocite{Figgen_Energyconsistentpseudopotentialsgroup_2005}
+%
+\begin{align}
+    \begin{aligned}
+        V_\text{ECP}(\mathbf{r})&=-\frac{Q}{r} + \sum_{lj}V_{lj}(r)\mathscr{P}_{lj}\\
+        V_{lj}(r)&=\sum_kB_{lj,k}\exp\left\{-\beta_{lj,k}r^2\right\}
+    \end{aligned}
+\end{align}
+%
+For each combination of orbital $l$ and total angular momentum quantum number
+$j=l\pm 1/2$ a local potential $V_{lj}(r)$ expanded in terms of Gaussian
+functions is defined. The parameters $B_{lj,k}$ and $\beta_{lj,k}$ have to be
+adjusted such that they give the correct results for the valence orbitals with
+respect to the all-electron calculation. For large $r$ the local potential
+approaches zero and the $-\frac{Q}{r}$ term, with the charge of the core $Q$,
+becomes dominant. 
 
 \subsection{Projector-Augmented Wave Method}
 \label{sec:PAW}
@@ -1200,7 +1230,10 @@ The \ac{PAW} method was developed by
 \citeauthor{Blochl_Projectoraugmentedwavemethod_1994}\autocite{Blochl_Projectoraugmentedwavemethod_1994}
 and is used in conjunction with a plane wave basis set. The method uses a
 projection scheme to project the all-electron wave function $\ket{\Psi}$ into a
-pseudo Hilbert space by utilising pseudo wave functions $\ket*{\widetilde{\Psi}}$.
+pseudo Hilbert space by utilising pseudo wave functions
+$\ket*{\widetilde{\Psi}}$. Often considered a pseudo potential method, it is
+technically not part of this group as all electrons are still treated
+explicitly.
 
 The valence region is described by the plane wave basis set, while the core
 region is approximated by partial wave functions $\phi_i$ that can be derived
