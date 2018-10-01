@@ -17,17 +17,20 @@
 \cfoot[\pagemark]{}
 \renewcommand*{\partpagestyle}{empty}
 
-
+%cpp makro
 \def\Cpp{C{}\texttt{++}\ }
 
+%footnote style letters
 \renewcommand*{\thefootnote}{\alph{footnote}}
 
+%custom colours
 \definecolor{mygreen}{RGB}{0,203,0}
 \definecolor{myorange}{RGB}{255,165,0}
 
-
+%captions
 \captionsetup{format=plain,labelfont=bf,labelsep=space}
 
+%redefine supercite command with square brackets
 \DeclareCiteCommand{\supercite}[\mkbibsuperscript]
 {%
 \usebibmacro{cite:init}%
@@ -44,6 +47,7 @@
 \bibclosebracket%
 }%
 
+%tikz setups
 \tikzstyle{every picture}+=[remember picture]
 \tikzset{main node/.style={circle,fill=blue!20,draw,minimum size=.75cm,inner sep=0pt}}
 \usetikzlibrary{shapes.arrows,positioning,matrix,shapes,backgrounds,arrows,calc,fit,decorations.markings,decorations}
@@ -65,17 +69,20 @@
         \draw (2pt,-2pt) -- (-2pt,2pt);
     }}}]
 
+%setup for verbatim
 \fvset{gobble=0}
 
+%setup for part pages
 \renewcommand\partheadmidvskip{%
 \par\nobreak\vspace*{\baselineskip}%
 \pgfornament[width=.8\textwidth]{88}%
 \par\nobreak\vspace*{\baselineskip}%
 }
 
-
+%hyperlink style
 \hypersetup{linktocpage=true,pdfborderstyle={/S/U/W 1}}
 
+%ThreePartTable footnote settings
 \appto\TPTnoteSettings{\footnotesize}
 
 %\DeclareTOCStyleEntry[dynnumwidth]{tocline}{figure}
