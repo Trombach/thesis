@@ -1673,6 +1673,29 @@ formulae are related by exchanging $\bm{\gamma}\leftrightarrow\bm{\delta}$ and
 $\mathbf{B}\leftrightarrow\mathbf{H}$ they are called dual or complementary.
 %maybe talk about BFGS/DFP being invariant under affine transformation?
 
+In quantum chemistry an improvement of the \ac{BFGS} method (or any
+optimisation method) can be achieved by defining internal redundant coordinates
+$\mathbf{q}$ based on bond lengths, angles and dihedral
+angles.\autocite{Pulay_Systematicinitiogradient_1979,Pulay_Geometryoptimizationredundant_1992,Fogarasi_calculationinitiomolecular_1992}
+The transformation from the cartesian to the internal redundant coordinate
+space can be carried out using the Wilson $\mathbf{W}$ matrix, which is defined
+in terms of the displacements in internal redundant $\Delta \mathbf{q}$ and
+cartesian coordinates $\Delta\mathbf{x}$.\autocite{Peng_Usingredundantinternal_1996}
+%
+\begin{align}
+    \Delta \mathbf{q} = \mathbf{W} \Delta \mathbf{x}
+\end{align}
+%
+This can be used to transform the gradient vector and Hessian matrix into
+internal redundant coordinates.
+%
+\begin{align}
+    \mathbf{W^T}\mathbf{g}_q &= \mathbf{g}_x\\
+    \mathbf{W^T}\mathbf{H}_q\mathbf{W} + \mathbf{W'^{T}}\mathbf{g}_q &= \mathbf{H}_x 
+\end{align}
+%
+The first derivative of the Wilson matrix $\mathbf{W}'$ is calculated analytically.
+
 \subsection{Conjugate Gradient Methods}
 \label{sec:ConjugateGradientMethods}
 
@@ -1685,7 +1708,7 @@ vectors $\mathbf{s}^{(1)},\mathbf{s}^{(2)},\dots,\mathbf{s}^{(n)}$ the Hessian
 matrix $\mathbf{G}$, i.e.
 %
 \begin{align}
-    {\mathbf{s}^{(i)}}^\mathbf{T}\mathbf{G}\mathbf{s}^{(j)}=0,\,\forall i\neq j.\label{eqn:ConjugacyCondition}
+    {\mathbf{s}^{(i)}}^\mathbf{T}\mathbf{G}\mathbf{s}^{(j)}=0,\,\forall i \neq j.\label{eqn:ConjugacyCondition}
 \end{align}
 %
 It should be noted that quadratic termination is only guaranteed for exact line
