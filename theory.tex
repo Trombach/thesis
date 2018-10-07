@@ -131,17 +131,17 @@ consecutively listed vertices. Consequently, removing an edge from a cycle
 always yields a path. In many applications (e.g. road networks) it is not
 necessary for the whole graph to represent a path or a cycle, but it is only
 important whether the graph contains a path or a cycle. If the graph $G$
-contains the graph $H$, $H$ is called a subgraph of $G$. This requires the
+contains the graph $H$, $H$ is called a sub-graph of $G$. This requires the
 vertex set of $H$ to be contained in $V(G)$ ($V(H)\subseteq V(G)$) as well as
 the edge set $E(H)$ ($E(H)\subseteq E(G)$) as well as the assignment of the
 endpoints to be the same.
 
 The K\"onigsberg Bridge Problem is not only concerned with the nature of the
-bridging network, but moreso with how to traverse over it. In graph theoretical
-terms the desired solution is called a closed trail, which is a a special case
+bridging network, but more so with how to traverse over it. In graph theoretical
+terms the desired solution is called a closed trail, which is a special case
 a walk, where no edge can be repeated (i.e. no bridge can be crossed twice) and
 the endpoints have to be the same vertex.\footnote{A graph that contains such a
-closed tail traversing all edges is also called Eulerian in honor of of Euler's
+closed tail traversing all edges is also called Eulerian in honour of of Euler's
 significant contribution to solve this long-standing problem.} A walk describes
 a way to traverse over a graph by defining a list of vertices and edges
 $v_0,e_1,v_1,\dots,e_k,v_k$ where the endpoints for each edge $e_i$ have to be
@@ -244,7 +244,7 @@ in figure~\ref{fig:disconnectedgraph}.
     one contains the other three vertices.} \label{fig:disconnectedgraph}
 \end{figure}
 %
-The maximally connected subgraphs of a graph are called its components. In
+The maximally connected sub-graphs of a graph are called its components. In
 figure~\ref{fig:disconnectedgraph} the vertex B forms one component, while the
 rest of the vertices form a second one. The vertex B is an isolated vertex as
 it is of degree zero. A graph consisting of only isolated vertices is called a
@@ -258,10 +258,10 @@ edge that increases the number of components upon deletion is also called a
 \textit{cut-edge}.
 
 An important concept utilised in the last chapter of this thesis is that of
-induced subgraphs. If we remove a list of vertices $T$ from a graph $G$ the
-vertex-induced subgraph $H$ with the vertex set $V(H)=V(G)-T$ is obtained. All
+induced sub-graphs. If we remove a list of vertices $T$ from a graph $G$ the
+vertex-induced sub-graph $H$ with the vertex set $V(H)=V(G)-T$ is obtained. All
 edges incident to one of the removed edges need to be removed as well. Removing
-the edge set $S$ results in the edge-induced subgraph $I$ with the edge set
+the edge set $S$ results in the edge-induced sub-graph $I$ with the edge set
 $E(I)=E(G)-S$, which leaves the vertex set unchanged.
 
 \section{Planar Graphs}
@@ -280,7 +280,7 @@ they are related to convex polyhedra. Take a convex polyhedron like the
 icosahedron and remove one face (figure~\ref{subfig:icopoly}). Imagine the rest
 of the polyhedron being made of a rubber material such that it is deformable
 and stretchable. Take the area of the removed face and stretch it such that the
-rest of the polyhedron can sit inside the streched face
+rest of the polyhedron can sit inside the stretched face
 (figure~\ref{subfig:icostretch1}). After flattening the object we are left with
 what looks like a planar embedding of a graph.
 %
@@ -446,10 +446,11 @@ plane graph.}
 \chapter{Quantum Chemistry}
 \label{sec:basicsofQC}
 
-In this part of the thesis knowledge of standard methods used in quantum
-chemistry is required. The following chapters introduce the fundamentals of
-quantum mechanics and their application to chemistry related questions. Most of
-it is based on standard literature by
+A sufficiently accurate description of atoms and molecules is given by the
+Schr\"odinger equation. The following chapters introduces the fundamentals of
+quantum mechanics and their application to chemistry in terms of approximate
+solutions to the Schr\"odinger equation. If not noted otherwise the content is
+based on standard books by
 Jensen\autocite{Jensen_IntroductionComputationalChemistry_2007}, Szabo and
 Ostlund\autocite{Szabo_ModernQuantumChemistry_1996} and Holthausen and
 Koch\autocite{Koch_ChemistGuideDensity_2001}.
@@ -457,25 +458,27 @@ Koch\autocite{Koch_ChemistGuideDensity_2001}.
 \section{The Schr\"odinger Equation}
 \label{sec:schrodingerequation}
 
-The beginning of the 20th century was a very important time for modern
-theoretical sciences. Discoveries like Planck's energy quantisation based on
-black body radiation\autocite{Planck_UeberGesetzEnergieverteilung_1901} or the
-discovery of the wave particle dualism by de
+The beginning of the 20th century marked a very important stepping stone for
+modern theoretical sciences. Discoveries like Planck's energy quantisation
+based on black body
+radiation\autocite{Planck_UeberGesetzEnergieverteilung_1901} or the discovery
+of the wave particle dualism by de
 Broglie\autocite{Broglie_RecherchestheorieQuanta_1925} lead to a complete
 reformulation of the physical laws governing the smallest of particles. Erwin
 Schr\"odinger established a framework based on Hamiltonian mechanics that set
-the wave function $\Psi$ at the center of
+the \textit{wave function} $\Psi$ at the centre of
 attention.\autocite{Schrodinger_QuantisierungalsEigenwertproblem_1926} It
 contains all information about the system and its evolution in time. For
 ground-state calculations it is usually sufficient to look at solutions to the
-time-independent Schr\"odinger equation.%
+\textit{time-independent Schr\"odinger equation}.
 %
 \begin{equation}
 	\mathbf{H}\Psi=E\Psi\label{eqn:SchrodingerEquation}
 \end{equation}%
 %
-In this eigenvalue equation the Hamilton operator $\mathbf{H}$ acts on the wave
-function which results in a solution for the total energyi $E$ of the system. 
+In this eigenvalue equation the \textit{Hamilton operator} $\mathbf{H}$ acts on
+the wave function which results in a solution for the total energy $E$ of the
+system. 
 
 The wave function is a function of all spatial $\mathbf{r}$ and spin
 coordinates $\omega$ of all the particles in the system. The combination of
@@ -485,17 +488,17 @@ these coordinates will be denoted $\mathbf{x}$ on the following pages.
 	\mathbf{x}=\{\mathbf{r},\omega\}
 \end{align}
 %
-The square of the wave function is usually interpreted as a probability density
-which is used to normalise it such that the probability of finding an electron
-anywhere in space is one. This interpretation is also referred to as Born's
-interpretation of the wave
+The square of the wave function is usually interpreted as a \textit{probability
+density} which is used to normalise it such that the probability of finding an
+electron anywhere in space is one. This interpretation is also referred to as
+\textit{Born's interpretation} of the wave
 function.\autocite{Born_ZurQuantenmechanikStossvorgaenge_1926,Born_AdiabatenprinzipQuantenmechanik_1927}
 %
 \begin{align}
 	\int |\Psi(\mathbf{x})|^2\dd \mathbf{x}_1\dd \mathbf{x}_2\ldots\dd \mathbf{x}_N=\braket{\Psi(\mathbf{x})}=1
 \end{align}
 %
-The information contained in the wave function can be accessed by an operator
+The information contained in the wave function can be accessed by an \textit{operator}
 $\mathbf{O}$ acting on the wave function and forming an eigenvalue equation. In
 equation~\eqref{eqn:SchrodingerEquation} this operator is the Hamilton
 operator, but it could be any operator connected to a physical observable.
@@ -550,7 +553,7 @@ in a field of positive point charges.
     \mathbf{H}_\text{e}=\mathbf{T}_\text{e} + \mathbf{V}_\text{ee} + \mathbf{V}_\text{en}
 \end{align}
 %
-Solving the Schr\"dinger equation for this operator yields the electronic wave
+Solving the Schr\"odinger equation for this operator yields the electronic wave
 function $\Psi_\text{e}$. It depends explicitly on the electronic coordinates,
 but only parametrically on the nuclear coordinates, therefore spanning a
 potential energy surface upon which the nuclei move. To get the total energy of
@@ -619,12 +622,13 @@ eigenvalue.
 \end{align}
 %
 The remainder of the Hamilton operator from
-equation~\eqref{eqn:hamiltonoperatorhartreefock} is dependant on two electron
-coordinates. It is convenient to define a two-electron operator $\mathbf{g}_{ij}$
-with the matrix elements $g_{ij}=\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}$. Its
-action on the part of the Slater determinant with no permutation of electron
-coordinates results in the Coulomb integral and the corresponding matrix
-element $J_{ij}$, which can be interpreted as the classical Coulomb repulsion.
+equation~\eqref{eqn:hamiltonoperatorhartreefock} depends on two electron
+coordinates, therefore, it is convenient to define a two-electron operator
+$\mathbf{g}_{ij}$ with the matrix elements
+$g_{ij}=\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}$. Its action on the part of the
+Slater determinant with no permutation of electron coordinates results in the
+Coulomb integral and the corresponding matrix element $J_{ij}$, which can be
+interpreted as the classical Coulomb repulsion.
 %
 \begin{align}
     \begin{aligned}
@@ -701,18 +705,20 @@ electron affinities for unoccupied states. The Fock operator depends on all
 occupied states, making it a pseudo eigenvalue equation. Hence, solutions have
 to be found iteratively starting from and arbitrary set of orbitals. After a
 set of convergence criteria has been met, the effective potential is said to
-remain unchanged, creating a \ac{SCF} solution.  \\\newline Solving the
-canonical Hartree-Fock equations for larger systems is possible, but costly.
-Usually they are solved using a basis set expansion to approximate the unknown
-molecular orbitals. The basis functions are usually chosen to agree with the
-underlying physics of the system. For example, periodic plane waves are
-usually used when periodic boundary conditions are required. For calculations
-in the gas phase the basis functions are usually exponential functions
-centered at the nuclei. In this case the approximation is called \ac{LCAO}.
-Technically, a basis set expansion is not an approximation, but as one is
-limited to a finite amount of basis functions $P$ the expansion does not give
-an exact expression for a molecular orbital $\phi_i$. For a set of $\alpha$
-basis functions $\chi_\alpha$ the expansion can be expressed as follows.
+remain unchanged, creating a \ac{SCF} solution.  \\ 
+
+Solving the canonical Hartree-Fock equations numerically for larger systems is
+possible, but costly.  Usually they are solved using a basis set expansion to
+approximate the unknown molecular orbitals. The basis functions are usually
+chosen to agree with the underlying physics of the system. For example,
+periodic plane waves are usually used when periodic boundary conditions are
+required. For calculations in the gas phase the basis functions are usually
+exponential functions centred at the nuclei. In this case the approximation is
+called \ac{LCAO}.  Technically, a basis set expansion is not an approximation,
+but as one is limited to a finite amount of basis functions $P$ the expansion
+does not give an exact expression for a molecular orbital $\phi_i$. For a set
+of $\alpha$ basis functions $\chi_\alpha$ the expansion can be expressed as
+follows.
 %
 \begin{align}
     \phi_i=\sum_\alpha^Pc_{\alpha i}\chi_\alpha
@@ -784,7 +790,7 @@ function via its square.
 Equation~\eqref{eqn:electrondensity} describes the probability density of
 finding one of the $N$ electrons in the volume $\dd \mathbf{r}_1$ with
 arbitrary spin. All other $(N-1)$ electrons occupy any volume elements, but
-have opposite spin. As electrons are indistinguishable the probability to find
+have opposite spin. As electrons are indistinguishable the probability of finding
 any of the $N$ electrons in the volume $\dd\mathbf{r}_1$ is equal to $N$ times
 the probability of finding a specific electron in that volume.  A justification
 for using the electron density instead of the wave function was found by
@@ -803,7 +809,7 @@ electron density. From this, the total energy of a system can be expressed as fo
 \end{align}
 %
 The aforementioned external potential corresponds to $E_\text{Ne} \left[
-	\rho_0(\mathbf{r}) \right]$, which is the only system-dependent term of
+    \rho_0(\mathbf{r}) \right]$, which is the only system-dependent term of
 equation~\eqref{eqn:energyDFT}. The system-independent terms for the kinetic
 energy $T\left[ \rho_0(\mathbf{r}) \right]$ and the electron-electron
 interaction $E_\text{ee} \left[ \rho_0(  \mathbf{r}) \right]$ can be combined
@@ -814,11 +820,11 @@ to the Hohenberg-Kohn functional $F_\text{HK}\left[ \rho_0(
     E_0\left[ \rho_0(\mathbf{r}) \right] = \int\dd\mathbf{r}\rho_0(\mathbf{r})V_\text{Ne}+ F_\text{HK}\left[ \rho_0(\mathbf{r})\right]\label{eqn:energyDFTHK}
 \end{align}
 %
-Would the exact Hohenberg-Kohn functional be known
+If the exact Hohenberg-Kohn functional would known,
 equation~\eqref{eqn:energyDFTHK} would be an exact solution to the
 Schr\"odinger equation. In practice, there are no exact expressions for
 $T\left[ \rho_0(\mathbf{r}) \right]$ or $E_\text{ee} \left[ \rho_0(
-\mathbf{r}) \right]$ knwon. However, the latter can be expressed in terms of a
+\mathbf{r}) \right]$ known. However, the latter can be expressed in terms of a
 classical Coulomb term $J\left[\rho\right]$ and a non-classical energy contribution
 $E_\text{nc}\left[\rho\right]$.
 %
@@ -844,7 +850,7 @@ Sham.\autocite{Kohn_SelfConsistentEquationsIncluding_1965}
 \subsection{Kohn-Sham Theory}
 \label{sec:kohnshamtheory}
 
-One of the biggest flaws in orbital free \ac{DFT} ist the poor description of
+One of the biggest flaws in orbital free \ac{DFT} is the poor description of
 the kinetic energy term. Kohn and Sham realised it would be easier to describe
 it in terms of a reference system of non-interacting electrons. Their kinetic
 energy $T_S$ can be expressed in terms of a Slater determinant consisting of
@@ -862,7 +868,7 @@ equal to the density of the real system.
 \end{align}
 %
 For such a system the Coulomb interaction between electrons and nuclei can be
-calculated exactly. The only unknown remaining terms are the non-classical
+calculated exactly. The only terms remaining unknown are the non-classical
 contribution to the electron-electron interaction $E_\text{nc}$ and a
 contribution to the kinetic energy because of electron correlation $T_C$. These
 terms can be combined to the exchange-correlation term $E_{XC}$.
@@ -927,7 +933,7 @@ small homogeneous volumes. An improvement over \ac{LDA} can be made if the
 homogeneous electron density is expanded in a Taylor series. Truncating after the
 first term gives the \ac{LDA} approximation, including one more term is called
 the \ac{GEA}. Because \ac{GEA} doesn't correctly describe the
-exchange-correlation hole function it gives worse results that \ac{LDA}.
+exchange-correlation hole function it gives worse results than \ac{LDA}.
 
 A break-through for theoretical chemistry has been achieved with the
 introduction of the \ac{GGA}. It uses the \ac{GEA} hole functions and tailors
@@ -944,12 +950,13 @@ this functional.
 
 Long-range dispersive effects are part of the correlation energy and most
 \ac{DFT} functionals can only describe these effects to very limited degree.
-Grimme \textit{et al.} developed a method that can be used in conjunction with
-most density functionals.\autocite{Grimme_consistentaccurateinitio_2010} Based
-on the functional used it calculates a dispersive energy contribution
-$E_\text{disp}$ (and gradient contribution for optimisations) that can be added
-to the \ac{DFT} energy $E_\text{DFT}$. The dispersion energy is always of
-attractive nature and therefore has a negative sign by convention.
+\citeauthor{Grimme_consistentaccurateinitio_2010} developed a method that can
+be used in conjunction with most density
+functionals.\autocite{Grimme_consistentaccurateinitio_2010} It relies on the
+calculation of a dispersive energy contribution $E_\text{disp}$ (and gradient
+contribution for optimisations) that can be added to the \ac{DFT} energy
+$E_\text{DFT}$. The dispersion energy is always of attractive nature and
+therefore has a negative sign by convention.
 %
 \begin{align}
 	E = E_\text{DFT} + E_\text{disp}
@@ -972,7 +979,7 @@ functional. The damping functions $f_{\text{dmp},6}$ and $f_{\text{dmp},8}$ are
 necessary to cut off the interaction at long distances. The $C_6^{AB}$
 dispersion coefficient is calculated by averaging over the dipole
 polarisabilities $\alpha$ of the hydrides of the elements $A$ and $B$. The
-contributions of the hydrogen atoms have to be corrected for. The value of
+contributions of the hydrogen atoms have to be substracted. The value of
 $C_6^{AB}$ can be used to calculate $C_8^{AB}$ and $C_9^{AB}$, which is
 contained in the three-body term.
 
@@ -994,14 +1001,14 @@ meaningful damping.
 When dealing with the electronic description of solids and crystals the
 periodic symmetry needs to be taken into consideration. This is done by
 describing the solid state system with an infinite three-dimensional grid. In
-the following sections the concept of inverse space and its application to
+the following sections the concept of reciprocal space and its application to
 problems involving periodic boundary conditions is explained.
 
 \subsection{Spatial and Electronic Structure}
 \label{sec:SpatialandElectronicStructure}
 
-The geometry of a crystal can be described in real and inverse space. In real
-space the crystal lattice can be produce by the lattice vector
+The geometry of a crystal can be described in real and reciprocal space. In real
+space the crystal lattice can be created by the lattice vector
 $\mathbf{R}$ acting on the atoms contained in the primitive unit cell.
 %
 \begin{align}
@@ -1010,14 +1017,14 @@ $\mathbf{R}$ acting on the atoms contained in the primitive unit cell.
 %
 Here, $\mathbf{a}_i$ are basis vectors of the lattice and $n_i$ are integers.
 As the number of atoms in this system is infinite the total energy is also
-going to be infinite. Only the energy per unit cell is meaningful. To solve
-this problem the electronic structure is usually solved in inverse space.
-Instead of solving an infinitely large problem, inverse space allows to
+going to be infinite, only the energy per unit cell is meaningful. To solve
+this problem the electronic structure is usually solved in reciprocal space.
+Instead of solving an infinitely large problem, reciprocal space allows to
 transform the system into infinitely many sub-systems, with each sub-system
 having a finite solution. 
 
-Real and inverse space are connected by a Fourier transformation, which leads
-to the inverse lattice parameters $\mathbf{b}_i$, that relate to the real space
+Real and reciprocal space are connected by a Fourier transformation, which leads
+to the reciprocal lattice parameters $\mathbf{b}_i$, that relate to the real space
 lattice vectors via the vector cross product $\cdot\cross\cdot$ normalised with
 respect to the volume of the primitive unit cell $V_p$.
 %
@@ -1025,7 +1032,7 @@ respect to the volume of the primitive unit cell $V_p$.
     \mathbf{b}_1=\frac{2\pi}{V_p}(\mathbf{a}_2\cross \mathbf{a}_3),\,\mathbf{b}_2=\frac{2\pi}{V_p}(\mathbf{a}_3\cross \mathbf{a}_1),\,\mathbf{b}_3=\frac{2\pi}{V_p}(\mathbf{a}_1\cross \mathbf{a}_2)
 \end{align}
 %
-Translation in inverse space is therefore defined as:
+Translation in reciprocal space is therefore defined as:
 %
 \begin{align}
     \mathbf{K}=k_1\mathbf{b}_1+k_2\mathbf{b}_2+k_3\mathbf{b}_3,
@@ -1033,12 +1040,12 @@ Translation in inverse space is therefore defined as:
 %
 where $k_i$ are integer values and can be combined into the wave vector $\mathbf{k}$.
 
-The lattice vector in inverse space $\mathbf{K}$ is related to $\mathbf{R}$ via
+The lattice vector in reciprocal space $\mathbf{K}$ is related to $\mathbf{R}$ via
 $\exp\{i\mathbf{KR}\}=1$ and the corresponding basis vectors in real and
-inverse space must satisfy the condition
+reciprocal space must satisfy the condition
 $\mathbf{a}_i\mathbf{b}_i=2\pi\delta_{ij}$.
 
-In inverse space the primitive unit cell is also called the Brillouin zone and
+In reciprocal space the primitive unit cell is also called the Brillouin zone and
 can be constructed by applying a Wigner-Seitz construction to the real space
 primitive unit cell.
 
@@ -1046,7 +1053,7 @@ primitive unit cell.
 \label{sec:BlochConditions}
 
 As the same structural motif is repeated periodically throughout the infinite
-system, the same must apply to the interatomic potential $V$.
+system, the same must apply to the inter atomic potential $V$.
 %
 \begin{align}
     V(\mathbf{r}+\mathbf{R}) \equiv V(\mathbf{r})
@@ -1084,8 +1091,8 @@ periodic boundary calculations.
 \subsection{Atom-Centred Basis Functions}
 \label{sec:AtomCentredBasisFunctions}
 
-The most commonly type of basis functions used in molecular calculations are
-\acp{GTO} and \acp{STO} and mainly differ by the computational cost associated
+The most common type of basis functions used in molecular calculations are
+\acp{GTO} and \acp{STO} which mainly differ by the computational cost associated
 with them. \acp{STO} are derived from the exact solutions to the hydrogen atom
 and therefore depend parametrically on the three quantum numbers $n$,
 $l$, $m$.
@@ -1099,7 +1106,7 @@ coordinate $r$ and the orbital coefficient $\zeta_S$ and an angular part
 $Y_{l,m}(\theta,\varphi)$ which are spherical harmonics only depending on the
 angles $\theta$ and $\varphi$. \acp{STO} describe the cusp and the exponential
 decay in the core region well, but don't have analytical solutions for three-
-or four-center integrals. They are usually only used when very high precision
+or four-centre integrals. They are usually only used when very high accuracy
 is required.
 
 \acp{GTO} use the same spherical harmonics to describe the angle dependent
@@ -1191,7 +1198,7 @@ valence shell, while the small-core approximation includes additional
 small-core potential can improve the quality of energetic and other property
 calculations.
 
-Ann \ac{ECP} has to be based on an all-electron calculation that describes the
+An \ac{ECP} has to be based on an all-electron calculation that describes the
 system to the desired accuracy (for example including or excluding scalar
 relativistic effects). It also requires the valence functions to be replaced by
 a set of pseudo-functions that show the correct behaviour in the valence
@@ -1205,7 +1212,7 @@ pseudo-orbitals match those of the all-electron calculation.
 
 As atomic orbitals are usually described by Gaussian functions it is common
 practice to use the same type of functions to generate the effective potential.
-For example, the Stuttgardt-K\"oln pseudo-potentials use Gaussian functions in
+For example, the Stuttgart-K\"oln pseudo-potentials use Gaussian functions in
 a semi-local ansatz to describe the core region.\autocite{Figgen_Energyconsistentpseudopotentialsgroup_2005}
 %
 \begin{align}
@@ -1261,10 +1268,10 @@ partial wave functions $\widetilde{\phi}_i$.
 
 Whether one uses quantum chemical methods or simple two-body potentials to
 investigate the properties of molecules and clusters, finding the coordinates
-of all atoms that minimise the chosen energy function is always of importance.
-Methods for geometry optimisation have been used in all parts of this thesis
-and will therefore be explained in detail in the following chapters. If not
-mentioned otherwise the theory is based on
+of all atoms that minimise the chosen energy function is almost always the
+starting point of all calculations.  Methods for geometry optimisation have
+been used in all parts of this thesis and will therefore be explained in detail
+in the following chapters. If not mentioned otherwise the theory is based on
 Fletcher's\autocite{Fletcher_Practicalmethodsoptimization_1987} introductory
 book.
 
@@ -1272,7 +1279,8 @@ Finding the set of coordinates $\mathbf{x}$ that minimise a given energy
 function is an optimisation problem. There are a multitude of methods available
 that are all suited for different types of problems. In the following sections
 the theory of local minimisation will be discussed in terms of a general
-objective function $f$ that can be replaced with any energy function.
+objective function $f$ that can be replaced with any continuous energy
+function.
 
 \section{General Considerations about Minima}
 \label{sec:GeneralRemarksAboutMinima}
@@ -1317,11 +1325,11 @@ f(\mathbf{x})=\mathbf{G}(\mathbf{x})$ also called a Hessian matrix.
     \end{pmatrix}
 \end{equation}
 %
-Most interatomic potentials have smooth potential energy landscapes, which
+Most inter atomic potentials have smooth potential energy landscapes, which
 justifies this simplification. 
 
 To derive conditions for a point to be a local minimiser consider any line
-through the minimiser $\mathbf{x^*}$
+through the minimiser $\mathbf{x^*}$:
 %
 \begin{equation}
     \mathbf{x}(\alpha)=\mathbf{x^*}+\alpha\mathbf{s}.
@@ -1330,13 +1338,14 @@ through the minimiser $\mathbf{x^*}$
 Using the chain rule the derivative $\dv{f}{\alpha}$ can be expressed as
 $\dv{f}{\alpha}=\mathbf{s^\text{T}}\nabla
 f$.\footnote{$\dv{\alpha}=\sum_i\dv{\alpha}x_i(\alpha)\pdv{x_i}=\sum_i
-s_i\pdv{x_i}=\mathbf{s^\text{T}}\nabla$} At $\mathbf{x^*}$ ($\alpha=0$) this
-line has a slope of zero and a non-negative curvature, which means
-$\mathbf{s^\text{T}}\nabla f(\mathbf{x^*})=0$. Following the same argument for
-the second derivative a second condition $\mathbf{s^\text{T}}\nabla^2
-f(\mathbf{x^*})\mathbf{s}\geq 0$ can be derived. As these conditions must be
-true for all $\mathbf{s}$ we can for example consider the case
-$\mathbf{s}=\mathbf{e_1}$, with $\mathbf{e_1}$ being a unit vector, to see that
+s_i\pdv{x_i}=\mathbf{s^\text{T}}\nabla$} At $\mathbf{x^*}$ ($\alpha=0$) the
+objective function $f$ has a slope of zero and a non-negative curvature, which
+means $\mathbf{s^\text{T}}\nabla f(\mathbf{x^*})=0$. Following the same
+argument for the second derivative a second condition
+$\mathbf{s^\text{T}}\nabla^2 f(\mathbf{x^*})\mathbf{s}\geq 0$ can be derived.
+As these conditions must be true for all $\mathbf{s}$ we can for example
+consider the case $\mathbf{s}=\mathbf{e_1}$, with $\mathbf{e_1}$ being a unit
+vector, to see that
 %
 \begin{align}
     \mathbf{g^*}&=0\label{eqn:firstordernecessary}\\
@@ -1501,9 +1510,9 @@ a descent direction.
 Problems arise if $\mathbf{G}$ is not positive definite, which can happen if
 the current iterator is far from the local minimiser. In that case it is still
 possible to calculate a search direction and search along positive and negative
-direction to find a lower $f^{(k)}$. This means, however, the approximate
-quadratic function does not yield a minimum objective function values
-minimising point. One possible solution proposed by Goldstein and
+direction to find a lower $f^{(k)}$. This means, however, that the
+approximating quadratic function doesn't necessarily posess the same minimum
+as the objective function. One possible solution proposed by Goldstein and
 Price\autocite{Goldstein_effectivealgorithmminimization_1967} is to iterate in
 a steepest descent direction $\mathbf{s}^{(k)}=-\mathbf{g}^{(k)}$ in case the
 Hessian matrix is not positive definite. Nonetheless, this method is prone to
@@ -1542,7 +1551,7 @@ for $\mathbf{s}^{(k)}$.\autocite{Fiacco_NonlinearProgramming_1990}
 Especially for quantum chemical potentials like Hartree-Fock or density
 functional theory potentials the evaluation of a full Hessian matrix can be
 very computationally expensive. It can therefore be useful to just use an
-approximation for the Hessian matrix. n the most simple case this results in a
+approximation for the Hessian matrix. In the most simple case this results in a
 finite difference Newton method where $\mathbf{G}^{(k)}$ is approximated in
 terms of differences of the gradient vector with respect to each coordinate
 direction $\mathbf{e_i}$.
@@ -1680,7 +1689,7 @@ angles.\autocite{Pulay_Systematicinitiogradient_1979,Pulay_Geometryoptimizationr
 The transformation from the cartesian to the internal redundant coordinate
 space can be carried out using the Wilson $\mathbf{W}$ matrix, which is defined
 in terms of the displacements in internal redundant $\Delta \mathbf{q}$ and
-cartesian coordinates $\Delta\mathbf{x}$.\autocite{Peng_Usingredundantinternal_1996}
+cartesian coordinates $\Delta\mathbf{x}$.
 %
 \begin{align}
     \Delta \mathbf{q} = \mathbf{W} \Delta \mathbf{x}
@@ -1696,13 +1705,13 @@ internal redundant coordinates.
 %
 The first derivative of the Wilson matrix $\mathbf{W}'$ is calculated
 analytically. It could be shown that this approach can significantly reduce the
-number of steps needed to optimise various organic molecules.
+number of steps needed to optimise various organic molecules.\autocite{Peng_Usingredundantinternal_1996}
 
 \subsection{Conjugate Gradient Methods}
 \label{sec:ConjugateGradientMethods}
 
 The origin of the Newton-like and quasi-Newton methods being the quadratic
-model is conceptually obvious. There are however methods that belong into this
+model is conceptually obvious. There are however methods that belong to this
 group, but don't rely on calculating or approximating a matrix of second
 derivatives. One of those methods is the conjugate gradient method.  As the
 name suggests, they take advantage of the concept of conjugacy of the search
@@ -1743,7 +1752,7 @@ equation~\eqref{eqn:FletcherReevesBeta}. However, the procedure is not
 guaranteed to terminate for non-quadratic functions. There are several ways
 that try to solve this disadvantage, one of which is a simple reset of the
 search direction to the steepest descent direction. If the iterates converge
-towards a region that is approximated well by a quadratic function, then the
+towards a region that is approximated well by a quadratic function, then a
 reset of the search direction may improve the overall convergence of the
 method.
 
@@ -1801,8 +1810,8 @@ denoted $\mathbf{X}$.
     \end{aligned}
 \end{align}%
 %
-The distance between two spheres $i$ and $j$ is now given by the norm of the
-distance vector $\mathbf{r}_{ij}$. %
+The distance between two spheres $i$ and $j$ is now given by the norm $r_{ij}$
+of the distance vector $\mathbf{r}_{ij}$. %
 %
 \begin{align}
     \mathbf{r}_{ij}=\mathbf{x}_i-\mathbf{x}_j=
