@@ -257,7 +257,10 @@ it, so called Gregory-Newton clusters.
 \section{Implementations in Detail}
 \label{sec:ImplementationsinDetail}
 
-\subsection{The \texttt{structure} Class}
+In the following sections some of the more important implementations will be
+explained in detail.
+
+\subsection{Treating Cluster Structures}
 \label{sec:thestructureclass}
 
 The \verb|structure| class provides methods to store coordinates of cluster
@@ -277,13 +280,12 @@ graph library}\autocite{Siek_BoostGraphLibrary_2002}. These methods take a thres
 that defines the distance between two spheres at which they are considered
 connected.
 
-\subsection{The \texttt{pairPotential} Class}
+\subsection{Treating Two-Body Potentials}
 \label{sec:thepairpotentialclass}
 
-The \texttt{pairPotential} class provides an easy method to implement arbitrary
-potential forms that only depend on the distance between two spheres, so called
-two-body potentials. The implementation takes advantage of \Cpp's class
-hierarchy, which allows to define subclasses that inherit members from a base
-class.
-
+As shown in
+section~\ref{sec:PracticalImplementationForPotentialsDependingOnPairDistances}
+the scalar energy part can be completely separated from the vector part. This
+was used to implement energy, gradient and Hessian calculations in a generic
+way such that the energy function can be exchanged easily.
 
