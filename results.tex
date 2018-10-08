@@ -304,110 +304,6 @@ dual triangulated surface. We are now turning to a detailed analysis of all
 possible golden dual fullerenes from $I_\mathrm{h}-$Au$_{12}$, Au$_{14}$ to Au$_{20}$
 and $I_\mathrm{h}-$Au$_{32}$ by quantum chemical calculations.
 
-%Computational Details
-\section{\label{sec:CompDet}Computational Details}
-
-Program FULLERENE\autocite{Schwerdtfeger_Programfullerenesoftware_2013} has
-been used to construct initial structures of all isomers of the golden dual
-fullerenes from Au$_{12}$ to Au$_{20}$ using a recently developed force-field
-for fullerenes\autocite{Wirz_smallfullerenesgraphene_2015} (as already
-mentioned the golden dual fullerene Au$_{13}$ does not exist). The following
-isomers need to be considered according to the isomer list for the fullerenes
-(number in parenthesis gives the number of different isomers of same
-symmetry):\autocite{Brinkmann_HouseGraphsdatabase_2013,Schwerdtfeger_Programfullerenesoftware_2013}
-$I_\mathrm{h}-$Au$_{12}$, $D_\mathrm{6d}-$Au$_{14}$, $D_\mathrm{3h}-$Au$_{15}$,
-$D_\mathrm{2}-$Au$_{16}$, $T_\mathrm{d}-$Au$_{16}$, $D_\mathrm{5h}-$Au$_{17}$,
-$C_\mathrm{2v}-$Au$_{17}$(2), $D_\mathrm{3h}-$Au$_{18}$,
-$D_\mathrm{3d}-$Au$_{18}$, $D_\mathrm{3}-$Au$_{18}$, $D_\mathrm{2}-$Au$_{18}$,
-$C_\mathrm{3}-$Au$_{18}$(2), $C_\mathrm{3v}-$Au$_{19}$,
-$C_\mathrm{2}-$Au$_{19}$(3), $C_\mathrm{s}-$Au$_{19}$(2),
-$D_\mathrm{6h}-$Au$_{20}$, $D_\mathrm{3h}-$Au$_{20}$,
-$D_\mathrm{2d}-$Au$_{20}$(2), $C_\mathrm{2v}-$Au$_{20}$,
-$D_\mathrm{2}-$Au$_{20}$(2), $C_\mathrm{2}-$Au$_{20}$(3),
-$C_\mathrm{2}-$Au$_{20}$(2), $C_\mathrm{1}-$Au$_{20}$(2) and
-$I_\mathrm{h}-$Au$_{32}$. The initial force-field optimized structures scaled
-to an approximate internuclear distance were then refined by using the
-Perdew-Becke-Ernzerhofer generalized gradient
-functional\autocite{Perdew_GeneralizedGradientApproximation_1996,Perdew_GeneralizedGradientApproximation_1997}
-corrected for dispersion interactions using Grimme's method
-(PBE-D3)\autocite{Grimme_consistentaccurateinitio_2010,Grimme_Effectdampingfunction_2011}
-together with a Los-Alamos scalar relativistic effective core potential for
-gold and the accompanying double-zeta basis sets.\autocite{Wadt1985} Note that
-the PBE functional was recently considered to perform well for gold
-clusters.\autocite{Mancera_alternativemethodologyassess_2015} For several
-selected clusters we checked that the geometries obtained were accurate by
-performing calculations using a small core scalar relativistic Stuttgart
-pseudopotential\autocite{Figgen_Energyconsistentpseudopotentialsgroup_2005}
-together with an augmented valence double-zeta basis set of Peterson and
-Puzzarini.\autocite{Peterson-2005} In comparison, we also calculated the
-compact global minimum cluster structures which were recently published for the
-neutral compounds by our
-group\autocite{Assadollahzadeh_systematicsearchminimum_2009} and for the
-negatively charged species by Kappes and
-co-workers.\autocite{Schooss_Determiningsizedependentstructure_2010,Lechtken_Structuredeterminationgold_2009}
-
-The simulation of the photoelectron spectra has been carried out by artificial
-broadening the spectrum of orbital energies with Gaussian functions. The
-standard deviation $\sigma$ for these functions was chosen to be 0.035~eV in
-qualitative agreement with the experimental spectra. The orbital energies were
-calculated using the PBE density functional with the
-def2-SVP\autocite{Weigend_Balancedbasissets_2005} double zeta basis implemented
-in TURBOMOLE 7.0.\autocite{_TURBOMOLEV72015_} The core region was described
-using an effective core potential including scalar relativistic effects.  The
-calculated electron affinities were used as the onset value for simulating the
-photoelectron spectra. 
-
-
-For the calculation of the (111) fcc sheet and the fcc bulk structure of gold
-we used the program package VASP5\autocite{Kresse_Efficiencyabinitiototal_1996}
-utilizing a plane-wave basis set (cutoff energy $E_c=350$~eV) and the standard
-projector-augmented wave (PAW) datasets for the elements to model the
-electron-ion
-interaction\autocite{Blochl_Projectoraugmentedwavemethod_1994,Kresse_ultrasoftpseudopotentialsprojector_1999}.
-The electron-electron interaction was modelled within the generalised gradient
-approximation to the exchange-correlation energy functional as described above
-and dispersive effects were taken into account by employing Grimme's D3
-dispersion correction with Becke-Johnson
-damping.\autocite{Grimme_consistentaccurateinitio_2010,Grimme_Effectdampingfunction_2011}
-Brillouin zone integrations were performed on $\Gamma$-centered Monkhorst-Pack
-grids of $k$-points with a distance of 0.2~\AA$^{-1}$.  The cohesive energy is
-defined as the atomization energy per atom keeping in mind that one gold atom
-is negatively charged for the anionic clusters.
-
-In order to discuss how much the gold cages deviate from sphericity compared to
-the dual fullerene structure we use the previously introduced definition of a
-minimum distance sphere
-(MDS),\autocite{Schwerdtfeger_Programfullerenesoftware_2013}
-%
-\begin{equation} 
-\min\limits_{c_\mathrm{MDS} \in \mathrm{CH}(S)} \frac{1}{N} \sum _{i} \left|R_\mathrm{MDS} -\| \vec{p}_{i}-\vec{c}_\mathrm{MDS} \| \right|  
-\end{equation}
-with the MDS radius defined as
-\begin{equation} 
-	R_{\mathrm{MDS}} =\frac{1}{N} \sum _{i}\| \vec{p}_{i} -\vec{c}_{\mathrm{MDS}} \|   
-	\label{eq:RMDS}
-\end{equation}
-%
-Here $S$ is the set of $n$ points $\vec{p}_i$ ($i=1,\ldots ,N$) in
-$3$-dimensional space, CH($S$) its convex hull, $\|\cdot\| $ the Euclidean
-norm, and $\vec{c}_\mathrm{MDS}$ is the barycenter of the MDS with radius
-$R_\mathrm{MDS}$. In other words, we look for a sphere with the vertices lying
-inside or outside the sphere, but closest to it. We now define a measure for
-distortion from spherical symmetry through the
-MDS,\autocite{Schwerdtfeger_Programfullerenesoftware_2013}
-%
-\begin{equation}
-  \label{eq:DMDS}
-  D_{\mathrm{MDS}} = \frac{100}{N R_\mathrm{min}} \sum_{i=1}^N \left|R_{\mathrm{MDS}} - \|\vec{p}_i - \vec{c}_{\mathrm{MDS}}\| \right|
-\end{equation}
-where $R_\mathrm{min}$ is the smallest bond distance found in the cluster. The pentagon index $N_p$ is defined as
-\begin{equation}
-  \label{pentindex}
-  N_p = \frac{1}{2}\sum_{k=1}^{5} kp_k \quad \text{ with } \quad  \sum_{k=0}^{5} p_k = 12
-\end{equation}
-%
-where the pentagon indices $(p_i | i=0, \dots , 5)$ define the number of
-pentagons attached to another pentagon.\autocite{Fowler-atlas-2006}
 
 
 \section{\label{sec:ResDis}Results and Discussion}
@@ -1095,73 +991,6 @@ Gregory and Newton in the 1600s in the context of the kissing number problem
 been shown to accurately model rare-gas clusters \autocite{Schwerdtfeger_ExtensionLennardJonespotential_2006}.
 
 
-%Computational Method
-\section{Computational Methods}
-
-The \textit{pele} program~\autocite{_pelePythonenergy_2017} was used to generate putatively
-complete sets of local minima for $(m,n)$-Lennard-Jones potentials 
-$V_{mn}^{\mathrm LJ}(r)$ as defined in equation~\eqref{eqn:nmpot}.
-This program  applies a basin-hopping algorithm that divides the potential energy
-surface into basins of attraction, effectively mapping each point in
-configuration space to a local minimum structure
-\autocite{lis87,waless99,Wales_GlobalOptimizationBasinHopping_1997}.  The results confirmed the
-number of local minima reported in previous work \autocite{Doye_Saddlepointsdynamics_2002}.
-Finite computer time limited our search to clusters of size $N \leq 13$.
-
-Starting from the sticky hard sphere packings up to $N=14$, with Cartesian
-coordinates given by the exact enumeration algorithm \autocite{Hoy_Structurefinitesphere_2012}
-including rigid hypostatic clusters ($N_c<3N-6$) \autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}, we carried out geometry
-optimisations with $(m,n)$-Lennard-Jones potentials using the multidimensional function minimiser from the
-\Cpp library \textit{dlib} \autocite{King_DlibmlMachineLearning_2009}. The optimisation scheme
-was either the Broyden-Fletcher-Goldfarb-Shanno (BFGS) or the conjugate
-gradient (CG) algorithm.  The optimisations were terminated when the change in
-energy (in reduced units) over the course of one optimization cycle was smaller
-than $10^{-15}$. 
-Subsequently, the eigenvalues of the Hessian were checked
-for all stationary points. If negative eigenvalues were found, the affected
-structures were reoptimized following displacements in both directions along
-the corresponding eigenvectors to locate true local minima. This procedure assures
-that the floppy \ac{SHS} packings are successfully mapped into LJ minima.
-
-As the optimisations often result in many duplicates, especially for small
-values of $n$ and $m$ where we have
-$|\mathcal{M}_{(m,n)\mathrm{-LJ}}| \ll |\mathcal{M}_\mathrm{SHS}|$, the final
-structures were further analysed and sorted. Nonisomorphic \ac{SHS} clusters can be
-distinguished (apart from permutation of the particles) by their different
-adjacency matrices for $N \leq 13$ \autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}.  This is not the case for
-soft potentials like the LJ potential since drawing edges (bonds) between the
-vertices (atoms) becomes a matter of defining the distance cutoff criterion
-for a bond to be drawn. Therefore, we compare the interparticle distances $\{r_{ij}\}$
-instead: two clusters are isomorphic (structurally identical) if they have the same ordered
-set of inter-particle distances $\{r_{ij}\}$.  While enantiomers cannot be
-separated using this methodology, permutation-inversion isomers are usually
-lumped together, since the number of distinct minima is analytically related to
-the order of the corresponding point group \autocite{wales04}.  To verify the
-number of distinct structures we introduced a second ordering scheme using the
-energy and moment of inertia tensor eigenvalues. 
-
-Two sets of structures are obtained from our optimization procedure: the first
-set contains all possible LJ minima $\mathcal{M}_\mathrm{LJ}$ from the basin-hopping
-algorithm, while the second set $\mathcal{M}_\mathrm{SHS\to LJ}$ contains the
-LJ minima obtained using only the $\mathcal{M}_\mathrm{SHS}$ sticky-hard-sphere cluster structures as starting points for the geometry optimization.
-To compare and identify corresponding structures between the two sets, the
-$N(N-1)/2$ inter-particle distances $\{r_{ij}\}$ were again used as an identifying fingerprint.
-
-Two-body ``extended Lennard-Jones'' (ELJ) potentials that accurately model two-body interactions in rare-gas clusters can be written as expansions of inverse-power-law terms \autocite{Schwerdtfeger_ExtensionLennardJonespotential_2006}:
-\begin{equation} \label{eq:ELJ}
-V_{\mathrm ELJ}(r)=\sum_{n} c_nr^{-n},
-\end{equation}
-where in reduced units the condition $\sum_{n} c_n=-1$ holds.
-For comparison to the simple (6,12)-LJ potential, we used the ELJ potential
-derived from relativistic coupled-cluster theory applied to the xenon dimer,
-with the following coefficients for the ELJ potential (in reduced units):
-$c_6=-1.0760222355$; $c_8=-1.4078314494$; $c_9=-185.6149933139$;
-$c_{10}=+1951.8264493941$; $c_{11}=-8734.2286559729$;
-$c_{12}=+22273.3203327203$; $c_{13}=-35826.8689874832$;
-$c_{14}=+37676.9744744424$; $c_{15}=-25859.2842295062$;
-$c_{16}=+11157.4331408911$; $c_{17}=-2745.9740079192$; $c_{18}=+293.9003309498$
-\autocite{Jerabek_relativisticcoupledclusterinteraction_2017}. The ELJ potential for xenon is shown in
-figure~\ref{fig:LJ} (dashed line).
 
 
 
@@ -1702,21 +1531,6 @@ out that the global characteristics of the energy landscape can be quite
 sensitive to the nature of the interatomic potential applied
 \autocite{Wales_MicroscopicBasisGlobal_2001}.
 
-\section{Computational Methods}
-
-Coordinates for \ac{GNC} structures have been obtained by searching for adjacency
-matrices of the results for $N=13$ from \citeauthor{Holmes-Cerfon_EnumeratingRigidSphere_2016}
-\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016} with one row or column
-containing twelve ``1'' entries. Sub-graph isomorphism was verified using the
-\textit{VF2} algorithm \autocite{Cordella_SubGraphIsomorphism_2004} as implemented
-in the \textit{boost graph library} \autocite{Siek_BoostGraphLibrary_2002}. Structural
-optimisations with LJ potentials have been carried out using the
-multidimensional function minimiser from the \Cpp library \textit{dlib}
-\autocite{King_DlibmlMachineLearning_2009} and an energy convergence criterion of
-$10^{-15}$. Results from the optimisation procedure were analysed based on the
-Euclidean distance matrix, which is unique for non-isomorphic structures apart
-from permutation, translation, rotation and inversion. For this we sorted the
-distances lexicographically.
 
 \section{Results}
 \label{sec:resultsgregorynewton}
