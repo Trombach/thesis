@@ -287,5 +287,64 @@ As shown in
 section~\ref{sec:PracticalImplementationForPotentialsDependingOnPairDistances}
 the scalar energy part can be completely separated from the vector part. This
 was used to implement energy, gradient and Hessian calculations in a generic
-way such that the energy function can be exchanged easily.
+way such that the energy function can be exchanged easily. 
 
+For this, a base class called \verb|pairPotential| was defined. Its private
+section holds virtual definitions of the functions that calculate energy, first
+and second derivative of the energy. They are virtual, because they will be
+overridden with the respective functions in the derived classes of the actual
+potentials. The public block contains the class constructor as well as the user
+accessible functions for calculating energy, gradient vector and Hessian matrix
+as well as the optimiser.
+
+As an example, the calculation of the energy of a structure as implemented in
+the base class is shown in algorithm~\ref{algo:EnergyCalculation}.
+%
+\begin{algorithm}
+    \caption{Energy calculation.}
+    \label{algo:EnergyCalculation}
+    \begin{algorithmic}[1]
+        \Procedure{calculateEnergy}{Structure}
+        \ForAll{Unique Pairs of Spheres in Structure}
+                \State $E\gets E +$ Energy(Sphere1, Sphere2);\label{algo:virtualEnergy}
+        \EndFor
+        \State \textbf{return} $E$;
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+%
+The procedure takes a \verb|structure| object as input and uses the virtual
+energy function to calculate the energy contributions of all pairs of spheres
+without double counting in line~\ref{algo:virtualEnergy}. In the declaration of
+the base class the energy function is a dummy function that doesn't actually
+calculate any meaningful energy. Only after a proper potential has been defined
+the return value of this procedure will be useful.
+
+To define a potential a derived class that overrides the virtual function
+definitions needs to be provided. The private block re-defines the previously
+declared virtual functions to be non-virtual and a proper definition has to be
+given for the potential to function. Additionally, any parameters that the
+potential form depends on should be declared in the private block. In the
+public section constructor functions for the respective potential as well as a
+function that reads the potentials parameters from a user provided file need to
+be declared. The last function is important as it also creates the potential
+object on heap memory, which is necessary, because the exact nature of the
+potential is not known at compile time. A pseudo-code example for the \ac{LJ}
+potential in reduced units with arbitrary exponents $a$ and $b$ is given in
+algorithm~\ref{algo:LJEnergyFunction}.
+%
+\begin{algorithm}
+    \caption{Lennard-Jones energy function.}
+    \label{algo:LJEnergyFunction}
+    \begin{algorithmic}[1]
+        \Procedure{Energy}{Sphere1, Sphere2}
+            \State $r \gets$ Distance(Sphere1, Sphere2);
+            \State $E \gets \frac{1}{b-a}\left[ar^{-b}-br^{-a}\right]$;
+            \State \textbf{return} $E$;
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+%
+To define a new potential the only line that has to be changed is the third
+line containing the evaluation of the \ac{LJ} energy and a method for reading
+the parameters for the new potential from an external file.
