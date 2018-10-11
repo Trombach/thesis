@@ -219,7 +219,10 @@ directory for further analysis.
 \section{Graph-Theoretical Analysis}
 \label{sec:GraphTheoreticalAnalysis}
 
-
+Graph theoretical analysis of cluster structures can be done with
+\verb|ico-subgraph|, which is a very specialised program designed to compare
+contact graphs of \ac{GN} clusters to the icosahedral graph. The input format
+for the structures to be compared is remaining unchanged. 
 
 \section{Additional Functions}
 \label{sec:AdditionalFunctions}
@@ -260,22 +263,60 @@ explained in detail.
 \subsection{Treating Cluster Structures}
 \label{sec:thestructureclass}
 
-The \verb|structure| class provides methods to store coordinates of cluster
-geometries and holds functions to calculate properties like energy and moment
-of inertia and store them together with the coordinates in the same object. The
-class relies on the \verb|coord3d| class for the storage of the coordinates of
-the individual spheres.  When an object of this class is created by providing a
-set of Cartesian coordinates the center of the structure will be moved to the
-center of mass of the system and the structure will be rotated such that the
-main axis align with the principal axis of the structure. Additionally, all
-inter-particle distances will be calculated and stored in the object so that
-they are readily available for analysis.
+The main purpose of program \textsc{Spheres} was to optimise an input set of
+structures with given Cartesian coordinates and analyse the results of the
+optimisation based on properties of the resulting structures. The handling of
+those structures and respective properties was therefore crucial to the
+function of the program.
 
-For graph theoretical analysis the class provides functions to calculate
-adjacency matrices and graphs based on methods implemented in the \textit{boost
-graph library}\autocite{Siek_BoostGraphLibrary_2002}. These methods take a threshold number
-that defines the distance between two spheres at which they are considered
-connected.
+The Cartesian coordinates are read from a file and for each individual set of
+coordinates a \verb|structure| object is created. The \verb|structure| class,
+however, holds much more functionality than storing 3D coordinates. In fact, it
+serves as a complex data type storing properties besides coordinates as well as
+functions to calculate those properties. Those properties are stored in
+variables defined in the private block, such that they can only be manipulated
+by functions owned by the \verb|structure| class. Alongside Cartesian
+coordinates the \verb|structure| class is designed to hold values for energy
+(depending on the chosen potential), an integer number for labelling, moment of
+inertia, the \ac{EDM} and adjacency matrix representations and an
+\verb|undirectedGraph| that contains the connectivity information.
+
+The Cartesian coordinates are stored in a \verb|std::vector| container, while
+each individual sphere is represented by a \verb|coord3d| object. The latter is
+a modified version of the \verb|coord3d| implementation used in program
+FULLERENE.\autocite{Schwerdtfeger_Programfullerenesoftware_2013} 
+
+The moment of inertia tensor determines the force needed to accelerate a rigid
+body to spin around a rotational axis. It is therefore equivalent to mass in
+case of linear, translational acceleration. For cluster structures the tensor
+is equal to the sum over the moments of inertia of all constituent particles.
+As the clusters investigated in this thesis are only made up of one type of
+particle the mass term was set to unity. The inertia tensor $\mathbf{I}$ can
+then be calculated via the equations below.
+%
+\begin{align}
+    \begin{aligned}
+    \mathbf{I}=
+    \begin{pmatrix}
+        I_{xx} & I_{xy} & I_{xz}\\
+        I_{yx} & I_{yy} & I_{yz}\\
+        I_{zx} & I_{zy} & I_{zz}
+    \end{pmatrix}\\
+    I_{xx}=\sum_i(y_i^2+z_i^2) \quad I_{yy}=\sum_i(x_i^2+z_i^2) \quad I_{xx}=\sum_i(y_i^2+x_i^2)\\
+    I_{xy} = I_{yx} = -\sum_ix_iy_i \quad I_{xz} = I_{zx} = -\sum_ix_iz_i \quad I_{yz} = I_{zy} = -\sum_iy_iz_i\\
+    \end{aligned}
+\end{align}
+%
+Here, $x_i$, $y_i$ and $z_i$ denote the respective coordinate of sphere $i$.
+Diagonalising the inertia tensor yields a set of eigenvalues and eigenvectors,
+with the latter representing the principal axis system. Upon creation of a
+\verb|structure| object the coordinates are transformed, such that the
+coordinate origin lies at the centre of mass and the structures principal axis
+are aligned with the basis vectors of the Cartesian coordinate system.
+
+The class is designed to ensure the stored coordinates always match the stored
+properties.
+
 
 \subsection{Treating Two-Body Potentials}
 \label{sec:thepairpotentialclass}
@@ -287,12 +328,14 @@ was used to implement energy, gradient and Hessian calculations in a generic
 way such that the energy function can be exchanged easily. 
 
 For this, a base class called \verb|pairPotential| was defined. Its private
-section holds virtual definitions of the functions that calculate energy, first
-and second derivative of the energy. They are virtual, because they will be
+block holds virtual definitions of the functions that calculate energy $E(r)$,
+first derivative $\dv*{E}{r}$ and second derivative $\dv*[2]{E}{r}$ based on
+particle distance $r$. They are declared virtual, because they will be
 overridden with the respective functions in the derived classes of the actual
-potentials. The public block contains the class constructor as well as the user
-accessible functions for calculating energy, gradient vector and Hessian matrix
-as well as the optimiser.
+potentials. In the bare \verb|pairPotential| class those functions are not
+returning a meaningful energy. The public block contains the class constructor
+as well as the user accessible functions for calculating energy, gradient
+vector and Hessian matrix as well as the optimiser.
 
 As an example, the calculation of the energy of a structure as implemented in
 the base class is shown in algorithm~\ref{algo:EnergyCalculation}.
@@ -344,7 +387,21 @@ algorithm~\ref{algo:LJEnergyFunction}.
 %
 To define a new potential the only line that has to be changed is the third
 line containing the evaluation of the \ac{LJ} energy and a method for reading
-the parameters for the new potential from an external file.
+the parameters for the new potential from an external file has to be
+implemented. The function that reads in the parameters has to be written such
+that its return value is a pointer to an instantiation of that class on the
+heap memory. An example for the \ac{LJ} potential is given below.
+%
+\begin{verbatim}
+    LJ *potential = new LJ(epsilon, rm, exp1, exp2);
+\end{verbatim}
+%
+The first line declares the pointer \verb|potential| to be an instantiation of
+the \verb|LJ| class and is created by the previously defined constructor
+\verb|LJ(epsilon, rm, exp1, exp2)| and the \verb|new| keyword, that ensures the
+creation of the pointer on heap memory. Because memory on heap has to be
+managed by the user, the pointer is used in conjunction with \verb|unique_ptr|
+to ensure destruction of the object upon exiting the scope.
 
 \chapter{Computational Details}
 \label{sec:ComputationalDetails}
