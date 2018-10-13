@@ -446,8 +446,8 @@ plane graph.}
 \chapter{Quantum Chemistry}
 \label{sec:basicsofQC}
 
-A sufficiently accurate description of atoms and molecules is given by the
-Schr\"odinger equation. The following chapters introduces the fundamentals of
+An accurate description of atoms and molecules is given by the
+Schr\"odinger equation and its relativistic extensions. The following chapters introduces the fundamentals of
 quantum mechanics and their application to chemistry in terms of approximate
 solutions to the Schr\"odinger equation. If not noted otherwise the content is
 based on standard books by
@@ -466,7 +466,7 @@ of the wave particle dualism by de
 Broglie\autocite{Broglie_RecherchestheorieQuanta_1925} lead to a complete
 reformulation of the physical laws governing the smallest of particles. Erwin
 Schr\"odinger established a framework based on Hamiltonian mechanics that set
-the \textit{wave function} $\Psi$ at the centre of
+the \textit{wave function} $\Psi(\mathbf{x},t)$ at the centre of
 attention.\autocite{Schrodinger_QuantisierungalsEigenwertproblem_1926} It
 contains all information about the system and its evolution in time. For
 ground-state calculations it is usually sufficient to look at solutions to the
@@ -477,11 +477,12 @@ ground-state calculations it is usually sufficient to look at solutions to the
 \end{equation}%
 %
 In this eigenvalue equation the \textit{Hamilton operator} $\mathbf{H}$ acts on
-the wave function which results in a solution for the total energy $E$ of the
+the wave function $\Psi$ resulting in a solution for the total energy $E$ of the
 system. 
 
 The wave function is a function of all spatial $\mathbf{r}$ and spin
-coordinates $\omega$ of all the particles in the system. The combination of
+coordinates $\omega$ of all the particles in the system (NB: the spin
+is treated in a more consistent way by the Dirac equation). The combination of
 these coordinates will be denoted $\mathbf{x}$ on the following pages.  
 %
 \begin{align}
@@ -489,8 +490,8 @@ these coordinates will be denoted $\mathbf{x}$ on the following pages.
 \end{align}
 %
 The square of the wave function is usually interpreted as a \textit{probability
-density} which is used to normalise it such that the probability of finding an
-electron anywhere in space is one. This interpretation is also referred to as
+density}, i.e. the probability of finding an
+electron anywhere in space is set to one (\textit{normalization condition}). This interpretation is also referred to as
 \textit{Born's interpretation} of the wave
 function.\autocite{Born_ZurQuantenmechanikStossvorgaenge_1926,Born_AdiabatenprinzipQuantenmechanik_1927}
 %
@@ -501,7 +502,7 @@ function.\autocite{Born_ZurQuantenmechanikStossvorgaenge_1926,Born_Adiabatenprin
 The information contained in the wave function can be accessed by an \textit{operator}
 $\mathbf{O}$ acting on the wave function and forming an eigenvalue equation. In
 equation~\eqref{eqn:SchrodingerEquation} this operator is the Hamilton
-operator, but it could be any operator connected to a physical observable.
+operator, but it could be any (self-adjoint) operator connected to a physical observable.
 Generally, the expectation value of any operator $\expval{\mathbf{O}}$ is
 defined as
 %
@@ -522,10 +523,10 @@ operator in atomic units has the form
 \begin{aligned}
     \mathbf{H}&=\mathbf{T}_\text{e} + \mathbf{V}_\text{ee} + \mathbf{T}_\text{n} + \mathbf{V}_\text{nn} + \mathbf{V}_\text{en} \\
     &=-\sum_{i=1}^N\frac{1}{2}\nabla_i^2
-    + \sum_{i=1}^N\sum_{j>i}^NV_{ij}
+    + \sum_{i=1}^N\sum_{j>i}^Nr_{ij}^{-1}
     - \sum_{A=1}^M\frac{1}{2}\nabla_A^2
-    + \sum_{A=1}^M\sum_{B>A}^MV_{AB}
-    + \sum_{i=1}^N\sum_{A=1}^MV_{iA}.\label{eqn:hamiltonoperator}
+    + \sum_{A=1}^M\sum_{B>A}^Mr_{AB}^{-1}
+    + \sum_{i=1}^N\sum_{A=1}^Mr_{iA}^{-1}.\label{eqn:hamiltonoperator}
 \end{aligned}
 \end{align}
 %
@@ -533,7 +534,7 @@ The operator contains the kinetic energy of the electrons
 $\mathbf{T}_\text{e}$, the electron repulsion $\mathbf{V}_\text{ee}$, the
 kinetic energy of the nuclei $\mathbf{T}_\text{n}$, the nucleon repulsion
 $\mathbf{V}_\text{nn}$ and the electron-nucleus attraction
-$\mathbf{V}_\text{en}$.
+$\mathbf{V}_\text{en}$. Additional operators may be added due to external field perturbations.
 
 \section{The Born-Oppenheimer Approximation}
 \label{sec:bornoppenheimerapproximation}
