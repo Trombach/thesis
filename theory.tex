@@ -522,26 +522,27 @@ operator in atomic units has the form
 \begin{align}
 \begin{aligned}
     \mathbf{H}&=\mathbf{T}_\text{e} + \mathbf{V}_\text{ee} + \mathbf{T}_\text{n} + \mathbf{V}_\text{nn} + \mathbf{V}_\text{en} \\
-    &=-\sum_{i=1}^N\frac{1}{2}\nabla_i^2
+    &=-\frac{1}{2}\sum_{i=1}^N\nabla_i^2
     + \sum_{i=1}^N\sum_{j>i}^Nr_{ij}^{-1}
-    - \sum_{A=1}^M\frac{1}{2}\nabla_A^2
+    -\frac{1}{2} \sum_{A=1}^M\frac{\nabla_A^2}{m_A}
     + \sum_{A=1}^M\sum_{B>A}^Mr_{AB}^{-1}
     + \sum_{i=1}^N\sum_{A=1}^Mr_{iA}^{-1}.\label{eqn:hamiltonoperator}
 \end{aligned}
 \end{align}
 %
+$r_{iA}$ denotes the distance between particles $i$ (electron and $A$ (nucleus), and $m_A$ is the mass of nucleus $A$. 
 The operator contains the kinetic energy of the electrons
 $\mathbf{T}_\text{e}$, the electron repulsion $\mathbf{V}_\text{ee}$, the
 kinetic energy of the nuclei $\mathbf{T}_\text{n}$, the nucleon repulsion
 $\mathbf{V}_\text{nn}$ and the electron-nucleus attraction
-$\mathbf{V}_\text{en}$. Additional operators may be added due to external field perturbations.
+$\mathbf{V}_\text{en}$. Additional operators may be added for external field perturbations.
 
 \section{The Born-Oppenheimer Approximation}
 \label{sec:bornoppenheimerapproximation}
 
 For quantum chemical applications the coupling of the movement of the electrons
 and nuclei is usually neglected. This is possible because the atomic mass $m_A$
-is so much greater than the electronic mass $m_i$, resulting in much lower
+is so much greater than the electronic mass $m_i$, resulting in much smaller
 velocities for nuclei compared to
 electrons.\autocite{Born_ZurQuantentheorieMolekeln_1927} Therefore, the
 electrons can be considered to be moving in a static field of nuclei, meaning
@@ -555,10 +556,10 @@ in a field of positive point charges.
 \end{align}
 %
 Solving the Schr\"odinger equation for this operator yields the electronic wave
-function $\Psi_\text{e}$. It depends explicitly on the electronic coordinates,
+function $\Psi_\text{e}$. It depends explicitly on the electronic coordinates and spin,
 but only parametrically on the nuclear coordinates, therefore spanning a
 potential energy surface upon which the nuclei move. To get the total energy of
-the system the constant repulsion between the nuclei has to be added to the
+the system, the constant repulsion between the nuclei has to be added to the
 electronic operator. 
 %
 \begin{align}
@@ -568,11 +569,11 @@ electronic operator.
 \section{The Hartree-Fock Approximation}
 \label{sec:hartreefockapproximation}
 
-An exact solution to the Schr\"odinger equation in the boundary conditions of
+An analytical solution to the Schr\"odinger equation in the framework of
 the Born-Oppenheimer approximation for systems containing more than one
-electron is not possible. The solution has to be approximated by appropriate
-methods; one possible solution are the Hartree-Fock equations. This set of
-equations determines the energy of a wave function expressed as a Slater
+electron is not attainable. The solution has to be obtained approximately by appropriate
+methods; one such approximation is given by the Hartree-Fock equations. This set of
+equations determines the energy variationally from a wave function expressed as a Slater
 determinant
 $\Phi_\text{SD}$.\autocite{Slater_TheoryComplexSpectra_1929,Fock_NaeherungsmethodezurLoesung_1930}
 %
@@ -587,11 +588,13 @@ $\Phi_\text{SD}$.\autocite{Slater_TheoryComplexSpectra_1929,Fock_Naeherungsmetho
      \label{eqn:SlaterDet}
 \end{equation}
 %
-Here, the $\phi_i$ denote one electron spin orbitals and
+Here, the $\phi_i$ denote one-electron spin-orbitals and
 $\mathbf{x}_i=\{\mathbf{r}_i,\omega_i\}$ are spatial ($\mathbf{r}_i$) and spin
 ($\omega_i$) coordinates of the electrons. A Slater determinant obeys the Pauli
-exclusion principle, which requires the electronic wave function to be
-anti-symmetric with respect to interchanging the coordinates of two electrons.
+exclusion principle for fermions, which requires the electronic wave function to \begin{equation}
+•
+\end{equation}•
+anti-symmetric with respect to interchanging the coordinates of any two electrons.
 
 In the Hartree-Fock approximation the energy of a single Slater determinant is
 used as an approximation for the total energy of the system. As explained
@@ -626,7 +629,9 @@ The remainder of the Hamilton operator from
 equation~\eqref{eqn:hamiltonoperatorhartreefock} depends on two electron
 coordinates, therefore, it is convenient to define a two-electron operator
 $\mathbf{g}_{ij}$ with the matrix elements
-$g_{ij}=\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}$. Its action on the part of the
+$g_{ij}=r_{ij}^{-1}
+%\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}
+$. Its action on the part of the
 Slater determinant with no permutation of electron coordinates results in the
 Coulomb integral and the corresponding matrix element $J_{ij}$, which can be
 interpreted as the classical Coulomb repulsion.
