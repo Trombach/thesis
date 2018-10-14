@@ -1931,7 +1931,7 @@ employed.
 \section{Lennard-Jones Potential}
 \label{sec:LennardJones}
 
-One of the most commonly used interaction potentials nowadays is the \ac{LJ}
+One of the most widely used interaction potentials today is the \ac{LJ}
 potential. It was first introduced by
 \citeauthor{Jones_DeterminationMolecularFields_1924} (later Lennard-Jones) on
 April 22, 1924\autocite{Jones_DeterminationMolecularFields_1924}, however, the
@@ -1941,7 +1941,7 @@ later.\autocite{Simon_KristallstrukturArgons_1924} The potential introduced by
 Lennard-Jones depending on the distance $r$ between two objects was of the form
 %
 \begin{align}
-    V_{m,n}(r)=\frac{B}{r^n}-\frac{A}{r^m},\, m<n,
+    V_{m,n}(r)=\frac{B}{r^n}-\frac{A}{r^m},\, m<n,\label{eqn:LJgeneral}
 \end{align}
 %
 with $m$ and $n$ not being set at that time. However, even though this general
@@ -1958,6 +1958,28 @@ combined such that the resulting potential energy function has a minimum value
 at some equilibrium distance. For distances larger than the equilibrium
 distance the potentials approach zero asymptotically from below, while they
 diverge towards $+\infty$ for distances close to zero.
+
+Equation~\ref{eqn:LJgeneral} can be redefined in terms of parameters for the
+depth of the potential energy well $\varepsilon$ and equilibrium distance
+$r_e$. Under the constraint of $V_{m,n}(r_e)=\varepsilon$ and
+$\dv{V_{m,n}(r_e)}{r}=0$ a more common notation of the \ac{LJ} potential can be
+derived from equation~\ref{eqn:LJgeneral}.
+%
+\begin{align}
+    V_{m,n}(r)=\frac{\varepsilon}{n-m} \left[ m \left(\frac{r_e}{r}\right)^n  - n\left(\frac{r_e}{r}\right)^m \right]
+\end{align}
+%
+Both parameters $\varepsilon$ and $r_e$ can be determined by the size of the
+interaction atoms and the interaction strength. The evaluation of the exponents
+$m$ and $n$, however, is more complicated. The exponent $m$ is mainly important
+for the correct long range behaviour, while $n$ dominates for distances smaller
+than $r_e$. First attempts at deriving correct long range behaviour have been
+made by considering two hydrogen
+atoms.\autocite{Wang_gegenseitigeEinwirkungzweier_1927} The attractive force
+was shown to scale with $r^{-7}$, which could not be confirmed by other
+investigations. Works by other authors showed the behaviour to be on the order
+of
+$r^{-6}$.\autocite{Eisenschitz_UeberVerhaeltnisvan_1930,Lennard-Jones_Perturbationproblemsquantum_1930,Hasse_calculationvanWaal_1931,Slater_VanWaalsForces_1931}
 
 
 \section{Sticky-Hard-Sphere Potential}
