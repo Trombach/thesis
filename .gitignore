@@ -16,5 +16,7 @@
 *.xml
 *.bcf
 *.dvi
+*.gpl
 LT_thesis.pdf
 *.lo*
+build
