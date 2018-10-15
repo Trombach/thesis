@@ -701,15 +701,16 @@ Hartree-Fock equations.
 \end{align}
 %
 $\varepsilon_i$ are orbital energies of the electrons. According to Koopman's
-theorem they can be interpreted as ionisation energies for occupied and
-electron affinities for unoccupied states. The Fock operator depends on all
+theorem they can be interpreted as ionisation energies for occupied (and
+sometimes electron affinities for unoccupied) states. The Fock operator depends on all
 occupied states, making it a pseudo eigenvalue equation. Hence, solutions have
 to be found iteratively starting from and arbitrary set of orbitals. After a
 set of convergence criteria has been met, the effective potential is said to
 remain unchanged, creating a \ac{SCF} solution.  \\ 
 
-Solving the canonical Hartree-Fock equations numerically for larger systems is
-possible, but costly.  Usually they are solved using a basis set expansion to
+Solving the canonical Hartree-Fock equations numerically for larger systems will
+be possible in future, but currently too costly with the algorithms available.  
+Instead, they are solved using an analytical basis set expansion to
 approximate the unknown molecular orbitals. The basis functions are usually
 chosen to agree with the underlying physics of the system. For example,
 periodic plane waves are usually used when periodic boundary conditions are
@@ -762,10 +763,10 @@ to the ones of the parent generation. This marks the end of the \ac{SCF} cycle.
 \label{sec:dft}
 
 The Hartree-Fock method belongs to the class of mean field approximations,
-which means the electrons don't interact directly with each other, but each
-electron is moving in a field created by all other electrons. The Hartree-Fock
-energy $E_\text{HF}$ is therefore never exact even in the infinite basis set
-limit. The difference to the exact energy $E_0$ was first named correlation
+which implies the electrons do not interact directly with each other, but each
+electron is moving in a mean field created by all the other electrons. The Hartree-Fock
+energy $E_\text{HF}$ is therefore never exact for a multi-electron system even in the infinite basis set
+limit. The difference to the exact energy $E_0$ was first named electron correlation
 energy $E_\text{corr}$ by L\"owdin\autocite{Lowdin_CorrelationProblemManyElectron_1958}.
 %
 \begin{align}
@@ -773,14 +774,16 @@ energy $E_\text{corr}$ by L\"owdin\autocite{Lowdin_CorrelationProblemManyElectro
 \end{align}
 %
 Even though the correlation energy only attributes for about \SI{1}{\percent}
-of the total energy it is an important contribution in molecular systems. A
-multitude of methods has been developed to treat the correlation energy more
-accurately. They can generally be subdivided into post-Hartree-Fock methods and
+of the total electronic energy, it is an important contribution in molecular systems
+when energy differences are involved. 
+A multitude of methods has therefore been developed to treat electron correlation more
+accurately. They can generally be subdivided into post-Hartree-Fock methods  and
 \ac{DFT}. While post-Hartree-Fock methods rely on a Hartree-Fock wave function
-as a starting point, \ac{DFT} is in principle a wave function free method. It
-establishes a connection between the energy of the system and the electron
-density $\rho$ instead of the wave function. The electron density is observable
-and a positive quantity, which makes \ac{DFT} easier to grasp than wave
+(or its multi-reference analogs) as a starting point, \ac{DFT} is in principle a wave function free method. It
+establishes a connection between the energy of the system and the (one-particle) electron
+density $\rho({\mathbf r})$ instead of the complex wave function dependent on the coordinates
+of all particles. The electron density is an observable
+and a positive real function, which makes \ac{DFT} easier to grasp than wave
 function based methods. However, the electron density is related to the wave
 function via its square. 
 %
