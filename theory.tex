@@ -856,18 +856,18 @@ Sham.\autocite{Kohn_SelfConsistentEquationsIncluding_1965}
 \subsection{Kohn-Sham Theory}
 \label{sec:kohnshamtheory}
 
-One of the biggest flaws in orbital free \ac{DFT} is the poor description of
+One of the biggest problems in orbital free \ac{DFT} is the poor description of
 the kinetic energy term. Kohn and Sham realised it would be easier to describe
 it in terms of a reference system of non-interacting electrons. Their kinetic
-energy $T_S$ can be expressed in terms of a Slater determinant consisting of
-one-electron orbitals $\phi_i$ also called Kohn-Sham orbitals.
+energy $T_S$ can be expressed in terms of
+one-electron orbitals $\phi_i$, called Kohn-Sham (KS) orbitals.
 %
 \begin{align}
     T_S=-\frac{1}{2}\sum_i^N\mel{\phi_i}{\nabla_i^2}{\phi_i}
 \end{align}
 %
-The electron density resulting from the Kohn-Sham orbitals is required to be
-equal to the density of the real system.
+The electron density resulting from the KS orbitals is required to be
+equal to the (in principle exact) ground state density of the real system.
 %
 \begin{align}
     \rho_S(\mathbf{r}) = \rho_0(\mathbf{r})
