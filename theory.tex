@@ -709,7 +709,7 @@ set of convergence criteria has been met, the effective potential is said to
 remain unchanged, creating a \ac{SCF} solution.  \\ 
 
 Solving the canonical Hartree-Fock equations numerically for larger systems will
-be possible in future, but currently too costly with the algorithms available.  
+be possible in the future, but is too costly with the algorithms currently available.  
 Instead, they are solved using an analytical basis set expansion to
 approximate the unknown molecular orbitals. The basis functions are usually
 chosen to agree with the underlying physics of the system. For example,
@@ -763,43 +763,42 @@ to the ones of the parent generation. This marks the end of the \ac{SCF} cycle.
 \label{sec:dft}
 
 The Hartree-Fock method belongs to the class of mean field approximations,
-which implies the electrons do not interact directly with each other, but each
-electron is moving in a mean field created by all the other electrons. The Hartree-Fock
-energy $E_\text{HF}$ is therefore never exact for a multi-electron system even in the infinite basis set
-limit. The difference to the exact energy $E_0$ was first named electron correlation
-energy $E_\text{corr}$ by L\"owdin\autocite{Lowdin_CorrelationProblemManyElectron_1958}.
+which implies that the electrons do not interact directly with each other, but
+each electron is moving in a mean field created by all the other electrons. The
+Hartree-Fock energy $E_\text{HF}$ is therefore never exact for a multi-electron
+system even in the infinite basis set limit. The difference to the exact energy
+$E_0$ was first named electron correlation energy $E_\text{corr}$ by
+L\"owdin\autocite{Lowdin_CorrelationProblemManyElectron_1958}.
 %
 \begin{align}
     E_\text{corr} = E_0 - E_\text{HF}
 \end{align}
 %
 Even though the correlation energy only attributes for about \SI{1}{\percent}
-of the total electronic energy, it is an important contribution in molecular systems
-when energy differences are involved. 
-A multitude of methods has therefore been developed to treat electron correlation more
-accurately. They can generally be subdivided into post-Hartree-Fock methods  and
-\ac{DFT}. While post-Hartree-Fock methods rely on a Hartree-Fock wave function
-(or its multi-reference analogs) as a starting point, \ac{DFT} is in principle a wave function free method. It
-establishes a connection between the energy of the system and the (one-particle) electron
-density $\rho({\mathbf r})$ instead of the complex wave function dependent on the coordinates
-of all particles. The electron density is an observable
-and a positive real function, which makes \ac{DFT} easier to grasp than wave
-function based methods. However, the electron density is related to the wave
-function via its square. 
+of the total electronic energy, it is an important contribution in molecular
+systems when small changes in energy are involved. A multitude of methods has
+therefore been developed to treat electron correlation more accurately. They
+can generally be subdivided into post-Hartree-Fock methods  and \ac{DFT}. While
+post-Hartree-Fock methods rely on a Hartree-Fock wave function (or its
+multi-reference analogues) as a starting point, \ac{DFT} is in principle a wave
+function free method. It establishes a connection between the energy of the
+system and the (one-particle) electron density $\rho({\mathbf r})$ instead of
+the complex wave function that depends on the coordinates of all particles. The
+electron density is an observable and a positive real function, which makes
+\ac{DFT} easier to grasp than wave function based methods. However, the
+electron density is related to the wave function via its square. 
 %
 \begin{align}
     \rho(\mathbf{r}_1)=N\int\dots\int|\Psi(\mathbf{x}_1,\mathbf{x}_2,\dots,\mathbf{x}_N)|^2\;\dd\omega_1\dd\mathbf{x}_2\dots\dd\mathbf{x}_N\label{eqn:electrondensity}
 \end{align}
 %
 Equation~\eqref{eqn:electrondensity} describes the probability density of
-finding one of the $N$ electrons in the volume $\dd \mathbf{r}_1$. 
-If we include spin we arrive at a similar expression for the one-particle spin density. 
-%All other $(N-1)$ electrons occupy any volume elements, but have opposite spin. 
-As electrons are indistinguishable the probability of finding
-any of the $N$ electrons in the volume $\dd\mathbf{r}_1$ is equal to $N$ times
-the probability of finding a specific electron in that volume.  A justification
-for using the electron density instead of the wave function was found by
-Hohenberg and Kohn in 1964.\autocite{Hohenberg_InhomogeneousElectronGas_1964}
+finding one of the $N$ electrons in the volume $\dd \mathbf{r}_1$. As electrons
+are indistinguishable the probability of finding any of the $N$ electrons in
+the volume $\dd\mathbf{r}_1$ is equal to $N$ times the probability of finding a
+specific electron in that volume.  A justification for using the electron
+density instead of the wave function was found by Hohenberg and Kohn in
+1964.\autocite{Hohenberg_InhomogeneousElectronGas_1964}
 
 \subsection{Hohenberg-Kohn Theorems}
 \label{sec:HKtheorems}
@@ -1979,14 +1978,44 @@ Both parameters $\varepsilon$ and $r_e$ can be determined by the size of the
 interaction atoms and the interaction strength. The evaluation of the exponents
 $m$ and $n$, however, is more complicated. The exponent $m$ is mainly important
 for the correct long range behaviour, while $n$ dominates for distances smaller
-than $r_e$. First attempts at deriving correct long range behaviour have been
+than $r_e$. First attempts at deriving the correct long range behaviour have been
 made by considering two hydrogen
 atoms.\autocite{Wang_gegenseitigeEinwirkungzweier_1927} The attractive force
-was shown to scale with $r^{-7}$, which could not be confirmed by other
-investigations. Works by other authors showed the behaviour to be on the order
-of
+was shown to scale with $r^{-7}$, which is in agreement with other
+investigations, showing the \textit{potential} of the attractive
+field\footnote{Note that the force is the first derivative of the potential.}
+to be on the order of
 $r^{-6}$.\autocite{Eisenschitz_UeberVerhaeltnisvan_1930,Lennard-Jones_Perturbationproblemsquantum_1930,Hasse_calculationvanWaal_1931,Slater_VanWaalsForces_1931}
+First attempts were made to relate the long-range behaviour to the
+polarisability of the
+atoms,\autocite{London_ZurTheorieund_1930,Slater_VanWaalsForces_1931} a
+correlation that is used to treat van-der-Waals interactions parametrically,
+today (see section~\ref{sec:dispersioncorrections}). Lennard-Jones calculated
+force constants for various gases showing the same long-range behaviour from
+studying their equation of
+state.\autocite{Jones_DeterminationMolecularFields_1924,Jones_atomicfieldshelium_1925,Lennard-Jones_theoreticalcalculationsphysical_1925,Lennard-Jones_molecularfieldshydrogen_1926,Lennard-Jones_equationstategaseous_1927}
 
+The repulsive part is more complicated, as it can not be derived directly form
+the equation of state. Lennard-Jones used lattice parameters and heats of
+sublimation from experiments to fit his potential. He found $n=12$ and $m=6$ to
+fit the data well, giving rise to the most commonly used form of the \ac{LJ}
+potential: $V_{6,12}(r)$.\autocite{Lennard-Jones_Cohesion_1931} Some examples
+for potential curves with exponents $n=12$ and $m=6$ can be found in
+figure~\ref{fig:LJ-param}.
+%
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.8\textwidth]{plot/LJ-param.pdf}
+    \caption{Examples of Lennard-Jones potential curves for the (6,12)-\ac{LJ}
+    potential with different values for $\varepsilon$ and $r_e$.}
+    \label{fig:LJ-param}
+\end{figure}
+
+\subsection{Extended Lennard-Jones potential}
+\label{sec:eLJ}
+
+\subsection{Global Optimisation}
+\label{sec:GlobalOptimisation}
 
 \section{Sticky-Hard-Sphere Potential}
 \label{sec:SHS}
