@@ -866,8 +866,9 @@ one-electron orbitals $\phi_i$, called Kohn-Sham (KS) orbitals.
     T_S=-\frac{1}{2}\sum_i^N\mel{\phi_i}{\nabla_i^2}{\phi_i}
 \end{align}
 %
-The electron density resulting from the KS orbitals is required to be
-equal to the (in principle exact) ground state density of the real system.
+The electron density resulting from the KS orbitals $\rho_S(\mathbf{r})$ is
+required to be equal to the (in principle exact) ground state density of the
+real system $\rho_0(\mathbf{r})$.
 %
 \begin{align}
     \rho_S(\mathbf{r}) = \rho_0(\mathbf{r})
@@ -1964,6 +1965,8 @@ combined such that the resulting potential energy function has a minimum value
 at some equilibrium distance. For distances larger than the equilibrium
 distance the potentials approach zero asymptotically from below, while they
 diverge towards $+\infty$ for distances close to zero.
+
+
 
 Equation~\ref{eqn:LJgeneral} can be redefined in terms of parameters for the
 depth of the potential energy well $\varepsilon$ and equilibrium distance
