@@ -789,7 +789,7 @@ electron density is an observable and a positive real function, which makes
 electron density is related to the wave function via its square. 
 %
 \begin{align}
-    \rho(\mathbf{r}_1)=N\int\dots\int|\Psi(\mathbf{x}_1,\mathbf{x}_2,\dots,\mathbf{x}_N)|^2\;\dd\omega_1\dd\mathbf{x}_2\dots\dd\mathbf{x}_N\label{eqn:electrondensity}
+    \rho(\mathbf{r})=N\int\dots\int|\Psi(\mathbf{x}_1,\mathbf{x}_2,\dots,\mathbf{x}_N)|^2\;\dd\omega_1\dd\mathbf{x}_2\dots\dd\mathbf{x}_N\label{eqn:electrondensity}
 \end{align}
 %
 Equation~\eqref{eqn:electrondensity} describes the probability density of
@@ -883,7 +883,7 @@ terms can be combined to the exchange-correlation term $E_{XC}$.
     E\left[\rho\right]=T_S\left[\rho\right] + J\left[\rho\right] + E_{XC}\left[\rho\right] + E_\text{Ne}\left[\rho\right] \\
     \begin{aligned}
         =&-\frac{1}{2}\sum_i^N\mel{\phi_i}{\nabla_i^2}{\phi_i} + \frac{1}{2}\sum_i^N\sum_j^N\iint \dd\mathbf{r}_1\dd\mathbf{r}_2|\phi_i(\mathbf{r}_1)|^2\frac{1}{r_{12}}|\phi_j(\mathbf{r}_2)|^2 \\
-        &+ E_{XC}\left[\rho\right] - \sum_i^N\int\dd\mathbf{r}_1\sum_A^M|\phi_i(\mathbf{r}_1)|^2
+        &+ E_{XC}\left[\rho\right] - \sum_i^N\int\dd\mathbf{r}_1\sum_A^M \frac{Z_A}{r_{1A}} |\phi_i(\mathbf{r}_1)|^2
     \end{aligned}\label{eqn:energyKS}
 \end{align}
 %
@@ -915,7 +915,7 @@ Kohn-Sham matrix $\mathbf{F}_\text{KS}$.
 
 The key to solving the Kohn-Sham equations is the exchange-correlation energy
 $E_\text{XC}$. Over the years there have been a large number of proposals for its analytical form,
-the oldest being the \ac{LDA}. It is based on the uniform electron gas (Thomas-Fermi) model for
+the oldest being the \ac{LDA}. It is based on the uniform electron gas (Thomas-Fermi model) for
 which analytical functionals for exchange and correlation are known.
 %
 \begin{align}
@@ -956,7 +956,7 @@ this functional.
 
 Long-range dispersive effects are part of the correlation energy and most
 \ac{DFT} functionals can only describe these effects to a very limited degree.
-Grimme \citeauthor{Grimme_consistentaccurateinitio_2010} developed a method that can
+\citeauthor{Grimme_consistentaccurateinitio_2010} developed a method that can
 be used in conjunction with most density
 functionals.\autocite{Grimme_consistentaccurateinitio_2010} It relies on the
 calculation of a dispersive energy contribution $E_\text{disp}$ (and gradient

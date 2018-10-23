@@ -120,13 +120,13 @@ set timestamp  font "" norotate
 set trange [ * : * ] noreverse nowriteback
 set urange [ * : * ] noreverse nowriteback
 set vrange [ * : * ] noreverse nowriteback
-set xlabel "" 
+set xlabel "{/Palatino-Italics r}" 
 set xlabel  font "" textcolor lt -1 norotate
 set x2label "" 
 set x2label  font "" textcolor lt -1 norotate
 set xrange [ 0.500000 : 2.50000 ] noreverse nowriteback
 set x2range [ * : * ] noreverse nowriteback
-set ylabel "" 
+set ylabel "{/Palatino-Italics V_{6,12}(r)}" 
 set ylabel  font "" textcolor lt -1 rotate
 set y2label "" 
 set y2label  font "" textcolor lt -1 rotate
@@ -162,6 +162,7 @@ set loadpath
 set fontpath 
 set psdir
 set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap v5
+set samples 1000
 f(x)=x**(-12)-2*x**(-6)
 g(x)=0.75*(1.25/x)**(12)-1.5*(1.25/x)**(6)
 h(x)=0.5*(1.5/x)**(12)-(1.5/x)**(6)
@@ -169,5 +170,5 @@ GNUTERM = "wxt"
 GPFUN_f = "f(x)=x**(-12)-2*x**(-6)"
 GPFUN_g = "g(x)=0.75*(1.25/x)**(12)-1.5*(1.25/x)**(6)"
 GPFUN_h = "h(x)=0.5*(1.5/x)**(12)-(1.5/x)**(6)"
-plot f(x), g(x), h(x)
+plot f(x) w l lw 5 lc rgb "#1b9e77" title "{/Palatino-Italics {/Symbol e}=1,r_e=1}", g(x) w l lw 5 lc rgb "#d95f02" title "{/Palatino-Italics {/Symbol e}=0.75,r_e=1.25}", h(x) w l lw 5 lc rgb "#7570b3" title "{/Palatino-Italics {/Symbol e}=0.5,r_e=1.5}"
 #    EOF
