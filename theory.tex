@@ -914,15 +914,15 @@ Kohn-Sham matrix $\mathbf{F}_\text{KS}$.
 \label{sec:exchangecorrelationfunctionals}
 
 The key to solving the Kohn-Sham equations is the exchange-correlation energy
-$E_\text{XC}$. Over the years there have been lots of proposals for its form,
-the oldest being the \ac{LDA}. It is based on the uniform electron gas for
+$E_\text{XC}$. Over the years there have been a large number of proposals for its analytical form,
+the oldest being the \ac{LDA}. It is based on the uniform electron gas (Thomas-Fermi) model for
 which analytical functionals for exchange and correlation are known.
 %
 \begin{align}
     E_{XC}^\text{LDA}\left[\rho\right]=\int\rho(\mathbf{r})\varepsilon_{XC}\left[\rho(\mathbf{r})\right]\dd\mathbf{r}
 \end{align}
 %
-The exchange-correlation energy $\varepsilon_{XC}\left[\rho(\mathbf{r})\right]$
+The exchange-correlation energy functional $\varepsilon_{XC}\left[\rho(\mathbf{r})\right]$
 is weighted with the probability of finding and electron at this point in
 space. After separation of the exchange and correlation parts the exchange
 energy can be described by a term developed by Slater.
@@ -932,22 +932,22 @@ energy can be described by a term developed by Slater.
 	E_{X}^\text{LDA}\left[\rho\right] = -C_X\int\rho(\mathbf{r})^{\frac{4}{3}}\dd\mathbf{r}
 \end{align}
 %
-No simple formula for the correlation term is known.
+However, no simple formula for the correlation term is known.
 
 \ac{LDA} describes the inhomogeneous electron density by dividing it up into
 small homogeneous volumes. An improvement over \ac{LDA} can be made if the
 homogeneous electron density is expanded in a Taylor series. Truncating after the
 first term gives the \ac{LDA} approximation, including one more term is called
-the \ac{GEA}. Because \ac{GEA} doesn't correctly describe the
+the \ac{GEA}. Because \ac{GEA} does not correctly describe the
 exchange-correlation hole function it gives worse results than \ac{LDA}.
 
 A break-through for theoretical chemistry has been achieved with the
-introduction of the \ac{GGA}. It uses the \ac{GEA} hole functions and tailors
+introduction of the \ac{GGA} by Becke and Perdew. It uses the \ac{GEA} hole functions and tailors
 them to physically meaningful boundary conditions. 
 
 In this work the PBE functional by Perdew, Burke and Ernzerhof\autocite{Perdew_GeneralizedGradientApproximation_1996,Perdew_GeneralizedGradientApproximation_1997},
 which belongs to the group of \ac{GGA} functionals, was used for most
-calculations. They published both, correlation and exchange expressions for
+calculations. They published both correlation and exchange expressions for
 this functional.
 %%show functional
 
@@ -955,8 +955,8 @@ this functional.
 \label{sec:dispersioncorrections}
 
 Long-range dispersive effects are part of the correlation energy and most
-\ac{DFT} functionals can only describe these effects to very limited degree.
-\citeauthor{Grimme_consistentaccurateinitio_2010} developed a method that can
+\ac{DFT} functionals can only describe these effects to a very limited degree.
+Grimme \citeauthor{Grimme_consistentaccurateinitio_2010} developed a method that can
 be used in conjunction with most density
 functionals.\autocite{Grimme_consistentaccurateinitio_2010} It relies on the
 calculation of a dispersive energy contribution $E_\text{disp}$ (and gradient
@@ -968,7 +968,7 @@ therefore has a negative sign by convention.
 	E = E_\text{DFT} + E_\text{disp}
 \end{align}
 %
-In the third generation D3 dispersion correction, which was used in this work,
+In the third generation dispersion correction (D3), which was used in this work,
 the calculation of $E_\text{disp}$ involves solving a two- and three-body term.
 The two-body term $E^{(2)}$ is more important and is only a function of the
 distance between two nuclei $r_{AB}$.
@@ -977,29 +977,29 @@ distance between two nuclei $r_{AB}$.
 	E^{(2)}=\sum\limits_{AB}s_6\frac{C_6^{AB}}{\left(r_{AB}\right)^6}f_{\text{dmp},6}(r_{AB}) + s_8\frac{C_8^{AB}}{\left(r_{AB}\right)^8}f_{\text{dmp},8}(r_{AB}).\label{eqn:Edisp2}
 \end{align}
 %
-Using only the first term in equation~\eqref{eqn:Edisp2} is equal to the
+Using only the first term (London dispersion) in equation~\eqref{eqn:Edisp2} is equal to the
 second generation dispersion correction D2.\footnote{The calculation of $C_6$
 parameters is carried out differently for D2.} $s_6$ and $s_8$ are functional
 specific parameters that need to be adjusted for each different \ac{DFT}
 functional. The damping functions $f_{\text{dmp},6}$ and $f_{\text{dmp},8}$ are
-necessary to cut off the interaction at long distances. The $C_6^{AB}$
+necessary to cut off the interaction at short distances including the repulsive
+region, where the density functional without dispersion performs well. The $C_6^{AB}$
 dispersion coefficient is calculated by averaging over the dipole
 polarisabilities $\alpha$ of the hydrides of the elements $A$ and $B$. The
-contributions of the hydrogen atoms have to be substracted. The value of
-$C_6^{AB}$ can be used to calculate $C_8^{AB}$ and $C_9^{AB}$, which is
-contained in the three-body term.
+contributions of the hydrogen atoms have to be subtracted. The value of
+$C_6^{AB}$ can be used to calculate $C_8^{AB}$ and $C_9^{AB}$, the latter is
+contained in the three-body (Axilrod-Teller-Muto) term.
 
 Usually, a zero damping approach is used for the damping function.
 %
 \begin{align}
-	f_{\text{dmp},n} = \frac{1}{1+6\left( \frac{r_Ar_B}{s_{r,n}r_0^{AB}} \right)^{\alpha_n}}
+	f_{\text{dmp},n} = \frac{1}{1+6\left( \frac{r_{AB}}{s_{r,n}r_0^{AB}} \right)^{-\alpha_n}}
 \end{align}
 %
 The name comes from the limit of the damping function which approaches zero
-with $r_{AB}$ going to infinity. Alternatively, the Becke-Johnson damping
-function\autocite{Grimme_Effectdampingfunction_2011} can be used, which
-approaches a constant value with $r_{AB}\to\infty$ - a more physically
-meaningful damping.
+with $r_{AB}$ going to zero. Alternatively, the Becke-Johnson damping
+function\autocite{Grimme_Effectdampingfunction_2011} can be used. 
+%which approaches a constant value with $r_{AB}\to\infty$ - a more physically meaningful damping.
 
 \section{Periodic Boundary Conditions}
 \label{sec:PBC}
