@@ -1006,7 +1006,8 @@ function\autocite{Grimme_Effectdampingfunction_2011} can be used.
 
 When dealing with the electronic description of solids and crystals the
 periodic symmetry needs to be taken into consideration. This is done by
-describing the solid state system with an infinite three-dimensional grid. In
+describing the solid state system with an infinite three-dimensional grid
+containing cells which are translation invariant. In
 the following sections the concept of reciprocal space and its application to
 problems involving periodic boundary conditions is explained.
 
@@ -1014,7 +1015,7 @@ problems involving periodic boundary conditions is explained.
 \label{sec:SpatialandElectronicStructure}
 
 The geometry of a crystal can be described in real and reciprocal space. In real
-space the crystal lattice can be created by the lattice vector
+(configuration) space the crystal lattice can be created by the lattice vector
 $\mathbf{R}$ acting on the atoms contained in the primitive unit cell.
 %
 \begin{align}
@@ -1023,8 +1024,8 @@ $\mathbf{R}$ acting on the atoms contained in the primitive unit cell.
 %
 Here, $\mathbf{a}_i$ are basis vectors of the lattice and $n_i$ are integers.
 As the number of atoms in this system is infinite the total energy is also
-going to be infinite, only the energy per unit cell is meaningful. To solve
-this problem the electronic structure is usually solved in reciprocal space.
+going to be infinite, and only the energy per unit cell is meaningful. To solve
+this problem the electronic structure is usually treated in reciprocal space.
 Instead of solving an infinitely large problem, reciprocal space allows to
 transform the system into infinitely many sub-systems, with each sub-system
 having a finite solution. 
@@ -1051,7 +1052,7 @@ $\exp\{i\mathbf{KR}\}=1$ and the corresponding basis vectors in real and
 reciprocal space must satisfy the condition
 $\mathbf{a}_i\mathbf{b}_i=2\pi\delta_{ij}$.
 
-In reciprocal space the primitive unit cell is also called the Brillouin zone and
+In reciprocal space the primitive unit cell is also called the Brillouin zone, which
 can be constructed by applying a Wigner-Seitz construction to the real space
 primitive unit cell.
 
@@ -1089,9 +1090,10 @@ The function $\exp\{i\mathbf{kR}\}$ is also called a plane wave.
 \label{sec:basissets}
 
 Both the Hartree-Fock approximation and \ac{DFT} are usually solved in a basis
-set expansion. For molecules in the gas phase an atom-centred approach is
-usually the method of choice. Depending on the nature of the system it can be
-beneficial to use a different approach like plane waves which are often used in
+set expansion of analytical functions. For molecules in the gas phase an atom-centred approach is
+usually the method of choice as most of the density is located around the nucleus. 
+Depending on the nature of the system it can be
+beneficial to use a different approach, like plane waves often used in
 periodic boundary calculations.
 
 \subsection{Atom-Centred Basis Functions}
@@ -1112,11 +1114,11 @@ coordinate $r$ and the orbital coefficient $\zeta_S$ and an angular part
 $Y_{l,m}(\theta,\varphi)$ which are spherical harmonics only depending on the
 angles $\theta$ and $\varphi$. \acp{STO} describe the cusp and the exponential
 decay in the core region well, but don't have analytical solutions for three-
-or four-centre integrals. They are usually only used when very high accuracy
-is required.
+or four-centre two-electron integrals. They are usually only used when very high accuracy
+is required or in density functional theory codes.
 
 \acp{GTO} use the same spherical harmonics to describe the angle dependent
-part, but contain a Gaussian function to describe the $r$-dependant term.
+part, but contain a Gaussian function to describe the $r$-dependent term.
 %
 \begin{align}
     \begin{aligned}
@@ -1147,7 +1149,7 @@ activity the valence regions are of far greater importance than the core
 regions. It is therefore beneficial to use split-valence basis sets that use
 more basis functions to describe the valence region and basis set contractions
 in the core regions. This usually leads to a smaller computational cost without
-loosing accuracy. 
+loosing much in accuracy. 
 
 \subsection{Plane Wave Basis Functions}
 \label{sec:PlaneWaveBasisFunctions}
