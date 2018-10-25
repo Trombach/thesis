@@ -1280,12 +1280,12 @@ Whether one uses quantum chemical methods or simple two-body potentials to
 investigate the properties of molecules and clusters, finding the coordinates
 of all atoms that minimise the chosen energy function is almost always the
 starting point of all calculations.  Methods for geometry optimisation have
-been used in all parts of this thesis and will therefore be explained in detail
+been used in all parts of this thesis and will therefore be explained in more detail
 in the following chapters. If not mentioned otherwise the theory is based on
 Fletcher's\autocite{Fletcher_Practicalmethodsoptimization_1987} introductory
 book.
 
-Finding the set of coordinates $\mathbf{x}$ that minimise a given energy
+Finding the set of coordinates $\mathbf{x}\in\mathbb{R}^N$ that minimise a given energy
 function is an optimisation problem. There are a multitude of methods available
 that are all suited for different types of problems. In the following sections
 the theory of local minimisation will be discussed in terms of a general
@@ -1335,7 +1335,7 @@ f(\mathbf{x})=\mathbf{G}(\mathbf{x})$ also called a Hessian matrix.
     \end{pmatrix}
 \end{equation}
 %
-Most inter atomic potentials have smooth potential energy landscapes, which
+Most interatomic potentials have smooth potential energy landscapes, which
 justifies this simplification. 
 
 To derive conditions for a point to be a local minimiser consider any line
@@ -1370,14 +1370,14 @@ $f^{(k)},\mathbf{g}^{(k)},\mathbf{G}^{(k)},\dots=f\left(\mathbf{x}^{(k)}\right),
 
 Equations~\eqref{eqn:firstordernecessary} and \eqref{eqn:secondordernecessary}
 are necessary (but not sufficient) conditions for local minimisers. In fact, as
-equation~\eqref{eqn:firstordernecessary} is derived from first order variations
+equation~\eqref{eqn:firstordernecessary} is derived from first-order variations
 in $f$ it is considered a first order necessary condition, while
-equation~\eqref{eqn:secondordernecessary} is considered a second order
+equation~\eqref{eqn:secondordernecessary} is considered a second-order
 necessary condition. It can be shown that sufficient conditions for local
 minimisers are equation~\eqref{eqn:firstordernecessary} and
 $\mathbf{s^\text{T}}\mathbf{G^*}\mathbf{s}>
 0$.\autocite{Fletcher_Practicalmethodsoptimization_1987} The reason for this
-minor change for the second order condition is that
+minor change for the second-order condition is that
 equation~\eqref{eqn:secondordernecessary} also holds true for points of zero
 curvature. In other words the sufficient conditions for a local minimiser are
 the gradient to be zero and the Hessian matrix to be positive definite at
@@ -1388,7 +1388,7 @@ fulfil the first condition $\mathbf{g^*}=0$. As those points can
 either refer to minima, maxima or saddle points they are called stationary
 points. A located stationary point has to be checked for his character, but it
 is usually not feasible to check equation~\eqref{eqn:secondordernecessary} as
-it can't be checked numerically. In this work the eigenvalues of
+it can not be checked numerically. In this work the eigenvalues of
 $\mathbf{G^*}$ are used to verify local minimisers, which have to be
 positive.
 
@@ -1521,7 +1521,7 @@ Problems arise if $\mathbf{G}$ is not positive definite, which can happen if
 the current iterator is far from the local minimiser. In that case it is still
 possible to calculate a search direction and search along positive and negative
 direction to find a lower $f^{(k)}$. This means, however, that the
-approximating quadratic function doesn't necessarily posess the same minimum
+approximating quadratic function does not necessarily possess the same minimum
 as the objective function. One possible solution proposed by Goldstein and
 Price\autocite{Goldstein_effectivealgorithmminimization_1967} is to iterate in
 a steepest descent direction $\mathbf{s}^{(k)}=-\mathbf{g}^{(k)}$ in case the
@@ -1583,7 +1583,7 @@ expensive as the exact Hessian calculation.
 
 The class of quasi-Newton methods tries to avoid these problems by
 approximating ${\mathbf{G}^{(k)}}^{-1}$ with a symmetric positive definite
-matrix $\mathbf{H}^{(k)}$, which can then be updated each iteration. The $k$th
+matrix $\mathbf{H}^{(k)}$, which can then be updated in each iteration. The $k$th
 iteration of a quasi-Newton optimisation requires to
 %
 \begin{enumerate}
@@ -1594,7 +1594,7 @@ iteration of a quasi-Newton optimisation requires to
 \end{enumerate}
 %
 The initial choice of $\mathbf{H}^{(1)}$ is not important as long as the matrix
-is symmetric positive definite. Simply choosing a unit matrix is sufficient,
+is symmetric and positive definite. Simply choosing a unit matrix is sufficient,
 which turns the first step of the optimisation into a steepest descent step as
 $\mathbf{s}^{(k)}=-\mathbf{g}^{(k)}$.
 
@@ -1680,7 +1680,7 @@ which is closely related to the \ac{DFP} formula.
 \end{align}
 %
 The relation can be illustrated by denoting $\mathbf{H}^{-1}$ as $\mathbf{B}$
-and substitute in in equation~\eqref{eqn:BFGSQuasiNewton}.
+and substitute in equation~\eqref{eqn:BFGSQuasiNewton}.
 %
 \begin{align}
     \mathbf{B}_\mathbf{BFGS}^{(k+1)}=\mathbf{B}+\frac{\bm{\gamma\gamma}^\mathbf{T}}{\bm{\gamma}^\mathbf{T}\bm{\delta}}
@@ -1689,7 +1689,7 @@ and substitute in in equation~\eqref{eqn:BFGSQuasiNewton}.
 %
 The similarity to equation~\eqref{eqn:DFPQuasiNewton} is obvious. Because both
 formulae are related by exchanging $\bm{\gamma}\leftrightarrow\bm{\delta}$ and
-$\mathbf{B}\leftrightarrow\mathbf{H}$ they are called dual or complementary.
+$\mathbf{B}\leftrightarrow\mathbf{H}$, they are called dual or complementary.
 %maybe talk about BFGS/DFP being invariant under affine transformation?
 
 In quantum chemistry an improvement of the \ac{BFGS} method (or any
@@ -1756,7 +1756,7 @@ $\mathbf{s}^{(k+1)}$ can be calculated from a Gram-Schmidt orthonormalisation.
 %
 This is also known as the \ac{FR}
 method.\autocite{Fletcher_Functionminimizationconjugate_1964} One advantage of
-the \ac{FR} method over the quasi-Newton methods is that it doesn't need any
+the \ac{FR} method over the quasi-Newton methods is that it does not need any
 matrix calculation, which can be seen in
 equation~\eqref{eqn:FletcherReevesBeta}. However, the procedure is not
 guaranteed to terminate for non-quadratic functions. There are several ways
@@ -1783,7 +1783,7 @@ equation~\eqref{eqn:PolakRibiereBeta}.
     \beta^{(k)}=\frac{\left(\mathbf{g}^{(k+1)}-\mathbf{g}^{(k)}\right)^\mathbf{T}\mathbf{g}^{(k+1)}}{{\mathbf{g}^{(k)}}^\mathbf{T}\mathbf{g}^{(k)}}\label{eqn:PolakRibiereBeta}
 \end{align}
 
-\section{Implementation for Two-Body Potentials}
+\section{Implementation for Two-Body Interaction Potentials}
 \label{sec:PracticalImplementationForPotentialsDependingOnPairDistances}
 
 In the special case of optimising the geometry of a collection of objects in
@@ -1878,7 +1878,7 @@ For this example the inner product of this vector with the normalised distance
 vector $\mathbf{r}_{ij}$ is $\frac{1}{r_{ij}}(x_{3i-1} - x_{3j-1})$. Therefore,
 the last term ensures that the $m$th component of the gradient vector only
 collects contributions from interactions between spheres that contain the
-coordinate $x_m$. If $m$ was a coordinate present in sphere $j$ the last term
+coordinate $x_m$. If $x_m$ was a coordinate present in sphere $j$ the last term
 swaps the sign of the gradient. This is a result of the fact, that the gradient
 at sphere $j$ should be opposite of the gradient at sphere $i$. The final
 gradient is given by calculating all partial derivatives with respect to $x_m$.
@@ -1929,7 +1929,7 @@ function from vector parts. This leads to the following equations.
 
 
 
-\chapter{Model Potentials}
+\chapter{Interaction Potentials}
 \label{sec:energylandscapes}
 
 For systems of large numbers of atoms or complete potential energy surface
