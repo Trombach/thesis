@@ -1936,7 +1936,8 @@ For systems of large numbers of atoms or complete potential energy surface
 scans it is usually not possible to treat everything with accurate quantum
 chemical methods as introduced in chapter~\ref{sec:basicsofQC}. In those cases
 more simple potentials, that still describe the system well, have to be
-employed. 
+employed. If not noted otherwise the following sections are based on a book by
+\citeauthor{Hirschfelder_Moleculartheorygases_1964}.\autocite{Hirschfelder_Moleculartheorygases_1964} 
 
 \section{Lennard-Jones Potential}
 \label{sec:LennardJones}
@@ -1951,7 +1952,7 @@ later.\autocite{Simon_KristallstrukturArgons_1924} The potential introduced by
 Lennard-Jones depending on the distance $r$ between two objects was of the form
 %
 \begin{align}
-    V_{m,n}(r)=\frac{B}{r^n}-\frac{A}{r^m},\, m<n,\label{eqn:LJgeneral}
+    V_{m,n}(r)=\frac{\lambda_n}{r^n}-\frac{\lambda_m}{r^m},\, m<n,\label{eqn:LJgeneral}
 \end{align}
 %
 with $m$ and $n$ not being set at that time. However, even though this general
@@ -1969,13 +1970,212 @@ at some equilibrium distance. For distances larger than the equilibrium
 distance the potentials approach zero asymptotically from below, while they
 diverge towards $+\infty$ for distances close to zero.
 
+The general form of the \ac{LJ} potential was derived purely from thermodynamic
+considerations.\autocite{Jones_DeterminationMolecularFields_1924} The equation
+of state of a gas was found to be described well by a polynomial of the
+following form by
+\citeauthor{KamerlinghOnnes_Expressionequationstate_1902}.\autocite{KamerlinghOnnes_Expressionequationstate_1902}
+%
+\begin{align}
+    pv=A'+\frac{B'}{v}+\frac{C'}{v^2}+\frac{D'}{v^4}+\frac{E'}{v^6}+\frac{F'}{v^8}
+\end{align}
+%
+Here, $p$ represents the pressure of the gas, $v$ the molar volume of the
+container and the parameters $A'$ to $F'$ are the \textit{virial coefficients}.
+The latter are functions of temperature $T$ and can be adjusted to fit the
+polynomial to experimental data obtained from various gases. It is often
+sufficient to focus on the first three virial coefficients to obtain a useful
+equation of state. 
 
+This formulation cane be generalised in terms of Taylor expansion
+%
+\begin{align}
+    \frac{pv}{RT}=1+\frac{B}{v}+\frac{C}{v^2}+\frac{D}{v^3}+\dots,\label{eqn:VirialEquationOfState}
+\end{align}
+%
+which allows the virial coefficients\footnote{Note that the prime notation was
+dropped to emphasise that the virial coefficients in this equation are
+different to the ones originally proposed in
+equation~\ref{eqn:VirialEquationOfState}.} to be expressed as functions of
+intermolecular potentials. If all virial coefficients are 0,
+equation~\ref{eqn:VirialEquationOfState} is equal to the ideal gas equation,
+which means that the virial coefficients are connected to the interactions
+between gas molecules. Analytic expressions for the virial coefficients can be
+derived as explained in the following section.
+
+\subsection{Equation of State from the Partition Function}
+\label{sec:equationofstatefromthepartitionfunction}
+
+The partition function $Z_N$ can be used to derive various thermodynamic quantities
+such as the pressure.
+%
+\begin{align}
+    p=kT\left(\pdv{\ln Z_N}{V}\right)_T\label{eqn:PressureEquationOfState}
+\end{align}
+%
+Using the expression of the classical partition function for a system of $N$
+identical particles\footnote{See page 106 in reference
+\cite{Hirschfelder_Moleculartheorygases_1964}.} the partition function can be
+re-formulated in terms of Boltzmann factors
+$W_N\left(\mathbf{r}^N\right)=e^{-\beta\Phi\left(\mathbf{r}^N\right)}$ and a
+configurational integral $Q_N$.
+%
+\begin{align}
+    Q_N&=\frac{1}{N!}\int W_N\left(\mathbf{r}^N\right)\dd{\mathbf{r}^N}\label{eqn:ConfigurationalIntegral}\\
+    Z_N&=\frac{Q_N}{\lambda^{3N}}\,\text{with}\, \lambda^2=\frac{h^2}{2\pi mkT}\label{eqn:PartitionFunction}
+\end{align}
+%
+Here, $\mathbf{r}^N$ refer to the set of coordinates defined by the set of $N$
+molecules, $h$ is Planck's constant and $\beta=1/kT$. The potential function
+$\Phi\left(\mathbf{r}^N\right)$ depends on all particle coordinates, but is
+currently not defined in detail. However, expressions for the virial
+coefficients can be found without defining the interaction potential by using a
+method introduced by
+\citeauthor{Ursell_evaluationGibbsphaseintegral_1927}\autocite{Ursell_evaluationGibbsphaseintegral_1927}.
+It requires the definition of ``U-functions''
+$U_l\left(\mathbf{r}^\lambda\right)$ that are expressed as combinations of
+Boltzmann factors. The subscript $l$ refers to how many molecules the
+U-function includes and $\lambda$ defines which molecules those are. For
+example, the first two U-functions are defined as:
+%
+\begin{align}
+    U_1\left(\mathbf{r}_i\right)&=W_1\left(\mathbf{r}_i\right)\\
+    U_2\left(\mathbf{r}_i,\mathbf{r}_j\right)&=W_2\left(\mathbf{r}_i,\mathbf{r}_j\right)-W_1\left(\mathbf{r}_i\right)W_1\left(\mathbf{r}_j\right).
+\end{align}
+%
+The advantage of using these expression can be demonstrated by considering the
+condition under which $U_l\left(\mathbf{r}^\lambda\right)$ vanishes. For
+example, for the second U-function to be equal to zero, both terms containing
+Boltzmann factors must be equal.
+%
+\begin{align}
+    W_2\left(\mathbf{r}_i,\mathbf{r}_j\right)&=W_1\left(\mathbf{r}_i\right)W_1\left(\mathbf{r}_j\right)\\
+    \Phi\left(\mathbf{r}_i,\mathbf{r}_j\right)&=\Phi\left(\mathbf{r}_i\right)+\Phi\left(\mathbf{r}_j\right)
+\end{align}
+%
+The latter is true if the molecules $i$ and $j$ are sufficiently far apart for
+their interaction to be negligible. For the higher order U-functions this
+concept can be extended to two or more groups of molecules being far enough
+apart for their interaction to become 0.
+
+By reversing the definition of the U-functions the Boltzmann factors can be
+expressed in terms of U-functions.
+%
+\begin{align}
+    W_N\left(\mathbf{r}^N\right)=\sum_{\sum lm_l=N}\prod U_l\left(\mathbf{r}^\lambda\right)
+\end{align}
+%
+The summation has to be carried out over all divisions of $N$ molecules into
+$m_l$ groups of $l$ molecules. With this expression
+equation~\ref{eqn:ConfigurationalIntegral} can now be solved.
+%
+\begin{align}
+    Q_N = \sum_{\sum lm_l=N} \prod_{l=1}^N\frac{(Vb_l)^{m_l}}{m_l!}\label{eqn:ConfigurationIntegralbl}
+\end{align}
+%
+The U-functions are now included in the \textit{cluster integrals} $b_l$ which
+are defined in the following way.
+%
+\begin{align}
+    b_l=\left(Vl!\right)^{-1}\int U_l(\mathbf{r}_1,\mathbf{r}_2,\dots,\mathbf{r}_l)\dd{\mathbf{r}_1}\dd{\mathbf{r}_2}\dots\dd{\mathbf{r}_l}
+\end{align}
+%
+Now equation~\ref{eqn:PartitionFunction} can be expressed in terms of the
+cluster integrals and the equation of state in virial form can be derived from
+equation~\ref{eqn:PressureEquationOfState}.
+%
+\begin{align}
+    \ln Z_N=-N\ln z\lambda^3 + \sum_{l=1}^\infty Vb_lz^l\\
+    pV=kTV\left(\pdv{\ln Z_N}{V}\right)_T=kT\sum_lVb_lz^l\\
+    z=\frac{N}{V}\exp\left(-\sum_{i=1}^\infty\gamma_i\left(\frac{N}{V}\right)^i\right)
+\end{align}
+%
+Here, $z$ has the dimension of a concentration and is called the \textit{active
+number density}. $\gamma_i$ are combinations of cluster integrals and the first two are
+%
+\begin{align}
+    \gamma_1&=2b_2\\
+    \gamma_2&=3b_3-6b_2^2
+\end{align}
+%
+Combining the equations above leads to and equation of a
+similar form to equation~\ref{eqn:VirialEquationOfState}.
+%
+\begin{align}
+    \frac{pv}{RT}=1-\sum_{i=1}^\infty\frac{i\gamma_i}{i+1}\left(\frac{N}{V}\right)^i\label{eqn:VirialEquationOfStateClusterIntegrals}
+\end{align}
+%
+Comparing equations~\ref{eqn:VirialEquationOfState} and
+\ref{eqn:VirialEquationOfStateClusterIntegrals} it becomes clear that the
+virial coefficients can be expressed in terms of cluster integrals.
+%
+\begin{align}
+    B(T)&=-\frac{1}{2}N_A\gamma_1\\
+    C(T)&=-\frac{2}{3}N_A^2\gamma_2
+\end{align}
+%
+As stated before, the virial coefficients arise from the molecular interactions
+as they are functions of the cluster integrals that in turn consist of
+many-body interactions. Additionally, it can be seen, that the second virial
+coefficient $B$ depends only on two-body interactions, the third virial
+coefficient $C$ on two- and three-body interactions and so on.
+
+Further simplification can be achieved by the assumption of additivity, which
+allows the total potential energy of the system to be expressed in terms of
+pairwise interactions $\varphi_{ij}$.
+%
+\begin{align}
+    \Phi\left(\mathbf{r}^N\right)=\frac{1}{2}\sum_i\sum_j\varphi_{ij}
+\end{align}
+%
+The magnitude of the error introduced by this treatment has been calculated by
+\citeauthor{Axilrod_InteractionvanWaals_1943}\autocite{Axilrod_InteractionvanWaals_1943}
+to scale with $r^{-9}$. The U-functions can now be expressed in terms of
+modified Boltzmann factors $f_{ij}(r_{ij})$, which are defined such that they only differ from
+zero if the interaction energy is significant.
+%
+\begin{align}
+    f_{ij}(r_{ij})=e^{-\beta\varphi_{ij}}-1
+\end{align}
+%
+For the U-functions this results in the following expressions.
+%
+\begin{align}
+    \begin{aligned}
+    U_1(\mathbf{r}_1)&=1\\
+    U_2(\mathbf{r}_1,\mathbf{r}_2)&=f_{12}\\
+    U_3(\mathbf{r}_1,\mathbf{r}_2,\mathbf{r}_3)&=f_{12}f_{23}f_{13}+f_{12}f_{23}+f_{23}f_{13}+f_{12}f_{23}
+    \end{aligned}
+\end{align}
+%
+From these definitions expressions depending on two-body interactions for the
+virial coefficients can be derived.
+%
+\begin{align}
+    B(T)=-\frac{2\pi N}{3kT}\int\limits_0^\infty r^3\dv{\varphi}{r}e^{-\beta\varphi(r)}\dd{r}
+\end{align}
+%
+In diluted gases, where interactions of more than two particles are rare, an
+equation of state only containing the second virial coefficient describes
+the system well enough.
+%
+\begin{align}
+    \frac{pv}{RT}=1+\frac{B}{v}
+\end{align}
+%
+To solve the integral in the virial coefficient $B$ the pairwise interaction
+potential has to be introduced. It is possible to find analytical solutions to
+this integral for various potentials, for example purely repulsive the
+Sutherland potential. Lennard-Jones, however, introduced the potential in
+equation~\ref{eqn:LJgeneral} and solved the equation of state analytically to
+derive parameters for $\lambda_n$ and $\lambda_m$ based on experimental
+results.\autocite{Jones_DeterminationMolecularFields_1924}
 
 Equation~\ref{eqn:LJgeneral} can be redefined in terms of parameters for the
 depth of the potential energy well $\varepsilon$ and equilibrium distance
 $r_e$. Under the constraint of $V_{m,n}(r_e)=\varepsilon$ and
 $\dv{V_{m,n}(r_e)}{r}=0$ a more common notation of the \ac{LJ} potential can be
-derived from equation~\ref{eqn:LJgeneral}.
+derived.
 %
 \begin{align}
     V_{m,n}(r)=\frac{\varepsilon}{n-m} \left[ m \left(\frac{r_e}{r}\right)^n  - n\left(\frac{r_e}{r}\right)^m \right]
@@ -2021,8 +2221,29 @@ figure~\ref{fig:LJ-param}.
 \subsection{Extended Lennard-Jones potential}
 \label{sec:eLJ}
 
-\subsection{Global Optimisation}
-\label{sec:GlobalOptimisation}
+A more sophisticated approach of describing the intermolecular interactions can
+be found in the \acf{eLJ} potential. The choice of the exponents $m$ and $n$ in
+the \ac{LJ} potential is arbitrary and lacks flexibility. Any effect that
+scales differently from $r^{-12}$ or $r^{-6}$ can not be described accurately.
+Therefore, it seems almost natural to extend the \ac{LJ} potential by a sum
+over different $r^{-i}$ terms weighted by coefficients $c_i$.
+%
+\begin{align}
+    V_\text{eLJ}(r)=\sum_{i=n_\text{min}}^{n_\text{max}} c_{i}r^{-i}\label{eqn:ELJ}
+\end{align}
+%
+The number and type of the exponents $n_\text{min}$ to $n_\text{max}$ needs to
+be determined based on the investigated system. For example, in the original
+publication only even exponents from 6 to 16 were
+included.\autocite{Schwerdtfeger_ExtensionLennardJonespotential_2006} A later
+study investigated the Xenon dimer and it was decided to include exponents up
+to $i=18$ and also some odd numbered
+ones.\autocite{Jerabek_relativisticcoupledclusterinteraction_2017} In both
+cases the coefficients $c_i$ are determined by a fitting procedure to very
+accurate dissociation curves of the respective dimer molecules calculated by
+coupled-cluster theory.
+\subsection{Potential Energy Landscape}
+\label{sec:PotentialEnergyLandscape}
 
 \section{Sticky-Hard-Sphere Potential}
 \label{sec:SHS}
