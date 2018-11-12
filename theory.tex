@@ -1939,42 +1939,14 @@ more simple potentials, that still describe the system well, have to be
 employed. If not noted otherwise the following sections are based on a book by
 \citeauthor{Hirschfelder_Moleculartheorygases_1964}.\autocite{Hirschfelder_Moleculartheorygases_1964} 
 
-\section{Lennard-Jones Potential}
-\label{sec:LennardJones}
 
-One of the most widely used interaction potentials today is the \ac{LJ}
-potential. It was first introduced by
-\citeauthor{Jones_DeterminationMolecularFields_1924} (later Lennard-Jones) on
-April 22, 1924\autocite{Jones_DeterminationMolecularFields_1924}, however, the
-same potential was submitted for publication by
-\citeauthor{Simon_KristallstrukturArgons_1924} only a few days
-later.\autocite{Simon_KristallstrukturArgons_1924} The potential introduced by
-Lennard-Jones depending on the distance $r$ between two objects was of the form
-%
-\begin{align}
-    V_{m,n}(r)=\frac{\lambda_n}{r^n}-\frac{\lambda_m}{r^m},\, m<n,\label{eqn:LJgeneral}
-\end{align}
-%
-with $m$ and $n$ not being set at that time. However, even though this general
-potential form is nowadays known as the Lennard-Jones potentials, there have
-been other attempts at modelling cluster structures with different interaction
-potentials earlier. In 1920,
-\citeauthor{Kratzer_ultrarotenRotationsspektrenHalogenwasserstoffe_1920}\autocite{Kratzer_ultrarotenRotationsspektrenHalogenwasserstoffe_1920}
-already published a less general potential of the same form with the exponents
-$m$ and $n$ set to 1 and 2, respectively. The general idea behind these two
-potential forms was already discussed at the beginning of the 20th century by
-\citeauthor{Mie_ZurkinetischenTheorie_1903}\autocite{Mie_ZurkinetischenTheorie_1903}.
-In all those potentials attractive and repulsive distance dependant terms are
-combined such that the resulting potential energy function has a minimum value
-at some equilibrium distance. For distances larger than the equilibrium
-distance the potentials approach zero asymptotically from below, while they
-diverge towards $+\infty$ for distances close to zero.
+\section{Thermodynamic Considerations}
+\label{sec:ThermodynamicConsiderations}
 
-The general form of the \ac{LJ} potential was derived purely from thermodynamic
-considerations.\autocite{Jones_DeterminationMolecularFields_1924} The equation
-of state of a gas was found to be described well by a polynomial of the
-following form by
-\citeauthor{KamerlinghOnnes_Expressionequationstate_1902}.\autocite{KamerlinghOnnes_Expressionequationstate_1902}
+The general form of an interaction potential can derived purely from
+thermodynamic considerations about the equation of state of a gas. One of the
+first formulations was published by
+\citeauthor{KamerlinghOnnes_Expressionequationstate_1902}.\autocite{KamerlinghOnnes_Expressionequationstate_1902}.
 %
 \begin{align}
     pv=A'+\frac{B'}{v}+\frac{C'}{v^2}+\frac{D'}{v^4}+\frac{E'}{v^6}+\frac{F'}{v^8}
@@ -2163,17 +2135,49 @@ the system well enough.
     \frac{pv}{RT}=1+\frac{B}{v}
 \end{align}
 %
-To solve the integral in the virial coefficient $B$ the pairwise interaction
-potential has to be introduced. It is possible to find analytical solutions to
-this integral for various potentials, for example purely repulsive the
-Sutherland potential. Lennard-Jones, however, introduced the potential in
+
+\section{Lennard-Jones Potential}
+\label{sec:LennardJones}
+
+One of the most widely used interaction potentials today is the \ac{LJ}
+potential. It was first introduced by
+\citeauthor{Jones_DeterminationMolecularFields_1924} (later Lennard-Jones) on
+April 22, 1924\autocite{Jones_DeterminationMolecularFields_1924}, however, the
+same potential was submitted for publication by
+\citeauthor{Simon_KristallstrukturArgons_1924} only a few days
+later.\autocite{Simon_KristallstrukturArgons_1924} The potential introduced by
+Lennard-Jones depending on the distance $r$ between two objects was of the form
+%
+\begin{align}
+    V_{m,n}(r)=\frac{\lambda_n}{r^n}-\frac{\lambda_m}{r^m},\, m<n,\label{eqn:LJgeneral}
+\end{align}
+%
+with $m$ and $n$ not being set at that time. However, even though this general
+potential form is nowadays known as the Lennard-Jones potential, there have
+been other attempts at defining similar interaction
+potentials earlier. In 1920,
+\citeauthor{Kratzer_ultrarotenRotationsspektrenHalogenwasserstoffe_1920}\autocite{Kratzer_ultrarotenRotationsspektrenHalogenwasserstoffe_1920}
+already published a less general potential of the same form with the exponents
+$m$ and $n$ set to 1 and 2, respectively. The general idea behind these two
+potential forms was already discussed at the beginning of the 20th century by
+\citeauthor{Mie_ZurkinetischenTheorie_1903}\autocite{Mie_ZurkinetischenTheorie_1903}.
+In all those potentials attractive and repulsive distance dependant terms are
+combined such that the resulting potential energy function has a minimum value
+at some equilibrium distance. For distances larger than the equilibrium
+distance the potentials approach zero asymptotically from below, while they
+diverge towards $+\infty$ for distances close to zero.
+
+Lennard-Jones used this potential form to solve the integral expression in the
+second virial coefficient $B$. Analytical expressions can also be found for
+purely repulsive potentials and the attractive Sutherland potential.
+Lennard-Jones, however, introduced the potential in
 equation~\ref{eqn:LJgeneral} and solved the equation of state analytically to
 derive parameters for $\lambda_n$ and $\lambda_m$ based on experimental
 results.\autocite{Jones_DeterminationMolecularFields_1924}
 
 Equation~\ref{eqn:LJgeneral} can be redefined in terms of parameters for the
 depth of the potential energy well $\varepsilon$ and equilibrium distance
-$r_e$. Under the constraint of $V_{m,n}(r_e)=\varepsilon$ and
+$r_e$. Under the constraint of $V_{m,n}(r_e)=-\varepsilon$ and
 $\dv{V_{m,n}(r_e)}{r}=0$ a more common notation of the \ac{LJ} potential can be
 derived.
 %
@@ -2218,7 +2222,7 @@ figure~\ref{fig:LJ-param}.
     \label{fig:LJ-param}
 \end{figure}
 
-\subsection{Extended Lennard-Jones potential}
+\subsection{Extended Lennard-Jones Potential}
 \label{sec:eLJ}
 
 A more sophisticated approach of describing the intermolecular interactions can
@@ -2242,8 +2246,18 @@ ones.\autocite{Jerabek_relativisticcoupledclusterinteraction_2017} In both
 cases the coefficients $c_i$ are determined by a fitting procedure to very
 accurate dissociation curves of the respective dimer molecules calculated by
 coupled-cluster theory.
-\subsection{Potential Energy Landscape}
-\label{sec:PotentialEnergyLandscape}
+
+\subsection{Lennard-Jones Clusters}
+\label{sec:LJClusters}
+
+The \ac{LJ} potential has been used extensively to study nucleation of clusters
+and as a benchmark for global optimisation methods. From the derivation of the
+\ac{LJ} potential as a interaction potential to get analytical solutions for
+the second virial coefficient it should be clear, that it is a rather crude
+approximation for the forces between atoms in a cluster of the size of a few
+atoms. Nevertheless, some predictions from global optimisation algorithms
+employing a \ac{LJ} potential could actually be verified
+experimentally.\autocite{Wales_Energylandscapes_2003}
 
 \section{Sticky-Hard-Sphere Potential}
 \label{sec:SHS}
