@@ -20,7 +20,7 @@ compiler version 3.8.
 \label{sec:generalstructure}
 
 The main functions of the program are implemented in three different
-executable programs. Each carries out a different task, i.e optimising given input
+executable programs. Each carries out a different task, i.e. optimising given input
 structures and output the results, removing duplicate structures from a set of
 input structures and finding differences of two sets of input structures. The
 respective output of these programs is set up such that they can be used as
@@ -35,7 +35,7 @@ figure~\ref{fig:OptimisationAnalyseScheme}.
     \node [block, right of=Input1] (Optimise) {Optimise};
     \node [decision, right of=Optimise] (Hessian) {Negative values in Hessian?};
     \node [block, below of=Optimise] (reopt) {Displace geometry};
-    \node [cloud, right=1.5cm of Hessian] (print) {Optimised Structures};
+    \node [cloud, right=1.5cm of Hessian] (print) {Optimised structures};
     \node [block, below of=print] (Analyse) {Analyse $\{r_{ij}\}$};
     \node [cloud, below of=Analyse] (Analysed) {Duplicates removed};
     \node [block, left of=Analysed] (Match) {Match sets};
@@ -95,8 +95,10 @@ representing the position of on sphere. Multiple structures can be included by
 separating the list of coordinates by single blank lines. The program
 automatically moves the input structures to their respective centres of mass,
 and rotates them into the principal axis system. To speed up the optimisation
-the Unix variable \texttt{OMP\_NUM\_THREADS} can be set to a value
-greater than one to enable \ac{OMP} parallelisation.
+the Unix variable \texttt{OMP\_NUM\_THREADS} can be set to a value greater than
+one to enable \ac{OMP} parallelisation. Each optimisation is carried out in a
+separate thread, while the number of simultaneously running threads is equal to
+\texttt{OMP\_NUM\_THREADS}.
 
 The optimisation can be controlled by parameters set in the \texttt{settings}
 file using the \texttt{opt} keyword. The form of the optimisation potential can
@@ -222,15 +224,40 @@ directory for further analysis.
 Graph theoretical analysis of cluster structures can be done with
 \verb|ico-subgraph|, which is a very specialised program designed to compare
 contact graphs of \ac{GN} clusters to the icosahedral graph. The input format
-for the structures to be compared is remaining unchanged. 
+for the structures to be compared remains unchanged. 
+
+All graph objects are handled by the \textit{boost graph
+library}\autocite{Siek_BoostGraphLibrary_2002} and are implemented as
+undirected graphs as the direction of the connectivity in clusters is
+not meaningful. The graphs are automatically generated from three-dimensional
+coordinate input given by and object of type \verb|structure|. Two types of
+graphs can be generated from these: (1) the graph of the complete structure and
+(2) the contact graph containing all spheres but the central one (if it
+exists). The latter is the more important one as it was used to carry out the
+analyses in chapter~\ref{sec:thegregorynewtonclusters}. The decision whether
+two spheres are connected is based on two parameters, the equilibrium distance
+and a threshold value. The default values for these are $1$ and $10^{-10}$,
+respectively.
+
+The icosahedral graph is generated from three-dimensional coordinate input and
+is compared to the input structures via their graphs and the \textit{VF2}
+algorithm.\autocite{Cordella_ImprovedAlgorithmMatching_2001,Cordella_SubGraphIsomorphism_2004}
+The algorithm finds all mappings of the vertices of the icosahedral graph to
+the graph of the input structure. As the icosahedron represents the complete
+planar graph for 12 vertices, every graph that is a subgraph of the icosahedral
+graph can be represented by the number and type of edges removed from the
+icosahedral graph. For this application the mapping was chosen based on the
+\ac{RMS} value of the distances between the spheres formerly connected by edges
+in the icosahedral graph. 
+
 
 \section{Additional Functions}
 \label{sec:AdditionalFunctions}
 
 Besides the main parts of the program that have been described on the previous
-pages some script-like executable programs are provided. These were used to calculate
-various different properties of the investigated clusters and will be briefly
-explained in the following.
+pages some script-like executable programs are provided. These were used to
+calculate various different properties of the investigated clusters and will be
+briefly explained in the following.
 
 \paragraph{Analyse Bond Lengths}%app-bondvariance app-shortestbond (app-N14?)
 The bond variance in optimised structures can be calculated with
@@ -411,7 +438,12 @@ They have been altered slightly from the original
 publications\autocite{Trombach_HollowGoldCages_2016,Trombach_stickyhardsphereLennardJonestypeclusters_2018,Trombach_GregoryNewtonproblemkissing_2018}
 to match the style of this thesis.
 
-\section{Computational Details for Chapter~\ref{sec:goldendualfullerenes}}
+\section[Computational Details for
+Chapter~\ref{sec:goldendualfullerenes}]{Computational Details for
+Chapter~\ref{sec:goldendualfullerenes}\footnote{This section has been published
+previously in
+\citetitle*{Trombach_HollowGoldCages_2016}\autocite{Trombach_HollowGoldCages_2016}
+\textcopyright 2016 WILEY-VCH Verlag GmbH \& Co. KGaA.}}
 \label{sec:ComputationalDetailsforGoldenDualFullerenes}
 
 Program FULLERENE\autocite{Schwerdtfeger_Programfullerenesoftware_2013} has
@@ -515,7 +547,12 @@ where $R_\mathrm{min}$ is the smallest bond distance found in the cluster. The p
 where the pentagon indices $(p_i | i=0, \dots , 5)$ define the number of
 pentagons attached to another pentagon.\autocite{Fowler-atlas-2006}
 
-\section{Computational Details for Chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters}}
+\section[Computational Details for
+Chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters}]{Computational Details
+for Chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters}\footnote{This
+section has been published previously in
+\citetitle*{Trombach_stickyhardsphereLennardJonestypeclusters_2018}\autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018}
+\textcopyright 2018 American Physical Society.} }
 
 The \textit{pele} program~\autocite{_pelePythonenergy_2017} was used to generate putatively
 complete sets of local minima for $(m,n)$-Lennard-Jones potentials 
@@ -595,7 +632,12 @@ $c_{16}=+11157.4331408911$; $c_{17}=-2745.9740079192$; $c_{18}=+293.9003309498$
 \autocite{Jerabek_relativisticcoupledclusterinteraction_2017}. The \ac{eLJ}
 potential for xenon is shown in figure~\ref{fig:LJ} (dashed line).
 
-\section{Computational Details for Chapter~\ref{sec:thegregorynewtonclusters}}
+\section[Computational Details for
+Chapter~\ref{sec:thegregorynewtonclusters}]{Computational Details for
+Chapter~\ref{sec:thegregorynewtonclusters}\footnote{This section has been
+published previously in
+\citetitle*{Trombach_GregoryNewtonproblemkissing_2018}\autocite{Trombach_GregoryNewtonproblemkissing_2018}
+\textcopyright 2018 American Physical Society.}}
 
 Coordinates for \ac{GNC} structures have been obtained by searching for
 adjacency matrices of the results for $N=13$ from
