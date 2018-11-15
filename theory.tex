@@ -2255,9 +2255,18 @@ and as a benchmark for global optimisation methods. From the derivation of the
 \ac{LJ} potential as a interaction potential to get analytical solutions for
 the second virial coefficient it should be clear, that it is a rather crude
 approximation for the forces between atoms in a cluster of the size of a few
-atoms. Nevertheless, some predictions from global optimisation algorithms
-employing a \ac{LJ} potential could actually be verified
-experimentally.\autocite{Wales_Energylandscapes_2003}
+atoms. Nevertheless, the \ac{LJ} potential is capable of making verifiable
+predictions especially in the case of rare gas
+clusters.\autocite{Wales_Energylandscapes_2003} For example, the most stable
+arrangement is often predicted to be a Mackay icosahedron in agreement with
+experimental results.\autocite{Kakar_SizedependentKedgeEXAFS_1997}
+
+Within the Born-Oppenheimer approximation
+(section~\ref{sec:bornoppenheimerapproximation}) the movement of the nuclei can
+be approximated to be described by a \ac{PES}, also called the energy
+landscape. The \ac{PES} is a multidimensional function\footnote{In three
+dimensions the number of variables is equal to $3N$.} and is entirely defined
+b the inter-atomic potential. 
 
 \section{Sticky-Hard-Sphere Potential}
 \label{sec:SHS}
