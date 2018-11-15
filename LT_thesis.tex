@@ -12,7 +12,8 @@
 %\KOMAoptions{listof=numbered}
 %\setuptoc{toc}{numbered}
               
-\sloppy
+%\sloppy
+\setlength\emergencystretch{\hsize}\hbadness=10000
 \input{packages}
 \input{definitions}
 
@@ -32,6 +33,7 @@
 \pagestyle{plain}\pagenumbering{roman}
 \setcounter{tocdepth}{1}
 \tableofcontents
+\include{acknowledgement}
 \include{publications}
 \include{acronyms}
 \begin{refsection}
