@@ -248,7 +248,24 @@ planar graph for 12 vertices, every graph that is a subgraph of the icosahedral
 graph can be represented by the number and type of edges removed from the
 icosahedral graph. For this application the mapping was chosen based on the
 \ac{RMS} value of the distances between the spheres formerly connected by edges
-in the icosahedral graph. 
+in the icosahedral graph. From all the possible mappings of the investigated
+graphs to the icosahedral graph the one with the lowest \ac{RMS} value was
+chosen.
+
+The graphs of the input structures are analysed with respect to their vertex
+and face degrees. Vertex degrees are calculated directly by the library and can
+be accessed with the \verb|degree| function. For face degrees the
+\verb|planar_face_traversal| function has to be invoked. This algorithm
+iterates over all faces in the planar embedding counting the number of vertices
+constructing each face. The graphs of the input structures are then sorted
+based on the calculated degree values, starting with the vertex degree in
+descending order and followed by the face degree in ascending order. If two or
+more graphs have the same amount of face and vertex degrees they are grouped
+together. The sorted graphs are printed to the standard output in the same form
+as table~\ref{tab:verticesandfaces} (page~\pageref{tab:verticesandfaces}).
+Additionally, the investigated graphs are printed in terms of edges removed
+from the icosahedral graph as shown in table~\ref{tab:icosubgraphs}
+(page~\pageref{tab:icosubgraphs}).
 
 
 \section{Additional Functions}
@@ -443,7 +460,8 @@ Chapter~\ref{sec:goldendualfullerenes}]{Computational Details for
 Chapter~\ref{sec:goldendualfullerenes}\footnote{This section has been published
 previously in
 \citetitle*{Trombach_HollowGoldCages_2016}\autocite{Trombach_HollowGoldCages_2016}
-\textcopyright 2016 WILEY-VCH Verlag GmbH \& Co. KGaA.}}
+and is reproduced with permission from the publisher \textcopyright 2016
+WILEY-VCH Verlag GmbH \& Co. KGaA.}}
 \label{sec:ComputationalDetailsforGoldenDualFullerenes}
 
 Program FULLERENE\autocite{Schwerdtfeger_Programfullerenesoftware_2013} has
@@ -552,7 +570,8 @@ Chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters}]{Computational Details
 for Chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters}\footnote{This
 section has been published previously in
 \citetitle*{Trombach_stickyhardsphereLennardJonestypeclusters_2018}\autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018}
-\textcopyright 2018 American Physical Society.} }
+and is reproduced with permission from the publisher \textcopyright 2018
+American Physical Society.} }
 
 The \textit{pele} program~\autocite{_pelePythonenergy_2017} was used to generate putatively
 complete sets of local minima for $(m,n)$-Lennard-Jones potentials 
@@ -637,7 +656,8 @@ Chapter~\ref{sec:thegregorynewtonclusters}]{Computational Details for
 Chapter~\ref{sec:thegregorynewtonclusters}\footnote{This section has been
 published previously in
 \citetitle*{Trombach_GregoryNewtonproblemkissing_2018}\autocite{Trombach_GregoryNewtonproblemkissing_2018}
-\textcopyright 2018 American Physical Society.}}
+and is reproduced with permission from the publisher \textcopyright 2018
+American Physical Society.}}
 
 Coordinates for \ac{GNC} structures have been obtained by searching for
 adjacency matrices of the results for $N=13$ from
