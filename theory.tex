@@ -2172,8 +2172,9 @@ second virial coefficient $B$. Analytical expressions can also be found for
 purely repulsive potentials and the attractive Sutherland potential.
 Lennard-Jones, however, introduced the potential in
 equation~\ref{eqn:LJgeneral} and solved the equation of state analytically to
-derive parameters for $\lambda_n$ and $\lambda_m$ based on experimental
-results.\autocite{Jones_DeterminationMolecularFields_1924}
+derive parameters for $\lambda_n$ and $\lambda_m$ based on experimental results
+for noble gases\autocite{Jones_DeterminationMolecularFields_1924} and later on
+for the solid state.\autocite{Jones_calculationcertaincrystal_1925}
 
 Equation~\ref{eqn:LJgeneral} can be redefined in terms of parameters for the
 depth of the potential energy well $\varepsilon$ and equilibrium distance
@@ -2247,7 +2248,7 @@ cases the coefficients $c_i$ are determined by a fitting procedure to very
 accurate dissociation curves of the respective dimer molecules calculated by
 coupled-cluster theory.
 
-\subsection{Lennard-Jones Clusters}
+\subsection{Lennard-Jones Clusters \& Global Optimisation}
 \label{sec:LJClusters}
 
 The \ac{LJ} potential has been used extensively to study nucleation of clusters
@@ -2259,14 +2260,19 @@ atoms. Nevertheless, the \ac{LJ} potential is capable of making verifiable
 predictions especially in the case of rare gas
 clusters.\autocite{Wales_Energylandscapes_2003} For example, the most stable
 arrangement is often predicted to be a Mackay icosahedron in agreement with
-experimental results.\autocite{Kakar_SizedependentKedgeEXAFS_1997}
+experimental results.\autocite{Kakar_SizedependentKedgeEXAFS_1997} The reason
+for this agreement lies within the nature of the interaction between rare gas
+atoms due to dispersive forces, which are approximated well by the \ac{LJ}
+potential.
 
 Within the Born-Oppenheimer approximation
 (section~\ref{sec:bornoppenheimerapproximation}) the movement of the nuclei can
 be approximated to be described by a \ac{PES}, also called the energy
-landscape. The \ac{PES} is a multidimensional function\footnote{In three
-dimensions the number of variables is equal to $3N$.} and is entirely defined
-b the inter-atomic potential. 
+landscape. The \ac{PES} is a multidimensional function and is entirely defined
+by the inter-atomic potential. 
+
+%%%global opt
+
 
 \section{Sticky-Hard-Sphere Potential}
 \label{sec:SHS}
