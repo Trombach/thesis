@@ -6,13 +6,13 @@
 \chapter{Graph Theory}
 \label{sec:graphtheory}
 
-Graph theory is a powerful mathematical tool to describe relations between
-pairs of objects. It's biggest advantage is probably the broad range of
-applicability in fields like computer science, biology, social sciences and of
-course physics and chemistry. In the following sections the focus will lie on
-introducing graph theory in general and demonstrating its usefulness in the
-scope of this thesis. If not mentioned otherwise the chapter is mainly based on
-standard books on graph theory by
+Graph theory is a powerful mathematical tool to describe relations between pairs
+of objects. It's biggest advantage is probably the broad range of applicability
+in fields like computer science, biology, social sciences and of course physics
+and chemistry. In the following sections the focus will lie on introducing graph
+theory in general and demonstrating its usefulness in the scope of this thesis.
+If not mentioned otherwise the chapter is mainly based on standard books on
+graph theory by
 \citeauthor{West_Introductiongraphtheory_2001}\autocite{West_Introductiongraphtheory_2001}
 and
 \citeauthor{Balakrishnan_Schaumoutlinetheory_1997}\autocite{Balakrishnan_Schaumoutlinetheory_1997}.
@@ -1805,13 +1805,13 @@ denoted $\mathbf{X}$.
         \mathbf{X}=
         \begin{pmatrix}
             \mathbf{x}_1 & \mathbf{x}_2 & \cdots & \mathbf{x}_N
-        \end{pmatrix}&=
+        \end{pmatrix}=
         \begin{pmatrix}
             x_1 & x_4 & \cdots & x_{3N-2}\\
             x_2 & x_5 & \cdots & x_{3N-1}\\
             x_3 & x_6 & \cdots & x_{3N}
         \end{pmatrix}\\
-            \mathbf{x}_i &= 
+            \mathbf{x}_i = 
             \begin{pmatrix}
                 x_{3i-2}\\
                 x_{3i-1}\\
@@ -1927,6 +1927,33 @@ function from vector parts. This leads to the following equations.
     \end{aligned}
 \end{align}
 
+\section{Global Optimisation}
+\label{sec:GlobalOptimisation}
+
+In the most simple case the objective function possesses only one (global)
+minimum. However, in a real scenario like in a cluster or molecule bound by a
+chemical interaction potential, there can be many local minima connected by
+higher order stationary points. Knowledge about the nature and location of these
+stationary points is crucial for a thorough understanding of the underlying
+system. The global minimum is an important information as it represents the most
+likely configuration of the system and efforts are usually focussed on locating
+this particular arrangement. However, as this requires the whole configuration
+space to be scanned, local minima can also be located with global optimisation
+methods.  However, global optimisation problems belong the the class of
+``NP-complete'' problems, meaning no algorithm is known that is guaranteed to
+find a solution within a time scaling as a power of the system size. However, a
+multitude of heuristic global optimisation algorithms have been proposed and a
+few selected ones will be discussed briefly in the following sections.
+
+\subsection{Algorithms}
+\label{sec:GOAlgorithms}
+
+One of the first global optimisation algorithms was the \textit{simulated
+annealing} method.\autocite{Kirkpatrick_OptimizationSimulatedAnnealing_1983} The
+name is derived from the fact that the method is strongly connected statistical
+thermodynamics by introducing an effective temperature parameter that allows for
+the simulation of a slow cooling procedure. The effective temperature is simply
+a control parameter in the units of the objective function. 
 
 
 \chapter{Interaction Potentials}
@@ -2190,13 +2217,12 @@ Both parameters $\varepsilon$ and $r_e$ can be determined by the size of the
 interaction atoms and the interaction strength. The evaluation of the exponents
 $m$ and $n$, however, is more complicated. The exponent $m$ is mainly important
 for the correct long range behaviour, while $n$ dominates for distances smaller
-than $r_e$. First attempts at deriving the correct long range behaviour have been
-made by considering two hydrogen
-atoms.\autocite{Wang_gegenseitigeEinwirkungzweier_1927} The attractive force
-was shown to scale with $r^{-7}$, which is in agreement with other
-investigations, showing the \textit{potential} of the attractive
-field\footnote{Note that the force is the first derivative of the potential.}
-to be on the order of
+than $r_e$. First attempts at deriving the correct long range behaviour have
+been made by considering two hydrogen
+atoms.\autocite{Wang_gegenseitigeEinwirkungzweier_1927} The attractive force was
+shown to scale with $r^{-7}$, which is in agreement with other investigations,
+showing the \textit{potential} of the attractive field\footnote{Note that the
+force is the first derivative of the potential.} to be on the order of
 $r^{-6}$.\autocite{Eisenschitz_UeberVerhaeltnisvan_1930,Lennard-Jones_Perturbationproblemsquantum_1930,Hasse_calculationvanWaal_1931,Slater_VanWaalsForces_1931}
 First attempts were made to relate the long-range behaviour to the
 polarisability of the
@@ -2228,10 +2254,10 @@ figure~\ref{fig:LJ-param}.
 
 A more sophisticated approach of describing the intermolecular interactions can
 be found in the \acf{eLJ} potential. The choice of the exponents $m$ and $n$ in
-the \ac{LJ} potential is arbitrary and lacks flexibility. Any effect that
-scales differently from $r^{-12}$ or $r^{-6}$ can not be described accurately.
-Therefore, it seems almost natural to extend the \ac{LJ} potential by a sum
-over different $r^{-i}$ terms weighted by coefficients $c_i$.
+the \ac{LJ} potential is arbitrary and lacks flexibility. Any effect that scales
+differently from $r^{-12}$ or $r^{-6}$ can not be described accurately.
+Therefore, it seems almost natural to extend the \ac{LJ} potential by a sum over
+different $r^{-i}$ terms weighted by coefficients $c_i$.
 %
 \begin{align}
     V_\text{eLJ}(r)=\sum_{i=n_\text{min}}^{n_\text{max}} c_{i}r^{-i}\label{eqn:ELJ}
@@ -2241,11 +2267,11 @@ The number and type of the exponents $n_\text{min}$ to $n_\text{max}$ needs to
 be determined based on the investigated system. For example, in the original
 publication only even exponents from 6 to 16 were
 included.\autocite{Schwerdtfeger_ExtensionLennardJonespotential_2006} A later
-study investigated the Xenon dimer and it was decided to include exponents up
-to $i=18$ and also some odd numbered
-ones.\autocite{Jerabek_relativisticcoupledclusterinteraction_2017} In both
-cases the coefficients $c_i$ are determined by a fitting procedure to very
-accurate dissociation curves of the respective dimer molecules calculated by
+study investigated the Xenon dimer and it was decided to include exponents up to
+$i=18$ and also some odd numbered
+ones.\autocite{Jerabek_relativisticcoupledclusterinteraction_2017} In both cases
+the coefficients $c_i$ are determined by a fitting procedure to very accurate
+dissociation curves of the respective dimer molecules calculated by
 coupled-cluster theory.
 
 \subsection{Lennard-Jones Clusters \& Global Optimisation}
