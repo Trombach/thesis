@@ -1950,10 +1950,36 @@ few selected ones will be discussed briefly in the following sections.
 
 One of the first global optimisation algorithms was the \textit{simulated
 annealing} method.\autocite{Kirkpatrick_OptimizationSimulatedAnnealing_1983} The
-name is derived from the fact that the method is strongly connected statistical
+name is related to the fact that the method is strongly connected to statistical
 thermodynamics by introducing an effective temperature parameter that allows for
 the simulation of a slow cooling procedure. The effective temperature is simply
-a control parameter in the units of the objective function. 
+a control parameter in the units of the objective function and should not be
+equated to a real temperature. In the procedure the particles are moved by a
+small random displacement and the energy of the result is calculated. Whether
+this step is accepted is decided by the Metropolis
+criterion.\autocite{Metropolis_EquationStateCalculations_1953} If the difference
+in the value of the objective function $\Delta f$ of the new configuration to
+the previous one is negative, it is accepted as the next step. If the difference
+is positive it is accepted with a probability $P$ of
+%
+\begin{align}
+    P = \exp{-\frac{\Delta f}{kT}}.
+\end{align}
+%
+Repetition of this step is equivalent to simulating a system of particles in a
+heat bath at the effective temperature $T$ and leads to the system to be
+represented by a Boltzmann distribution. This procedure is first carried out for
+a high temperature, effectively simulating a ``melted'' state of the system.
+Subsequently, the temperature is reduced in small steps until the system
+``freezes'', meaning there are no more changes. The optimisation in each
+temperature step must be carried out until a steady state is reached. In
+comparison to a purely iterative method, simulated annealing has the advantage
+of not getting stuck in local minima as it is always possible to transition out
+of a local minimum at non-zero temperature. To locate the global minimum with a
+simulated annealing method the temperature needs to decrease logarithmically
+with time, which makes this method rather computationally expensive. The rate at
+which the temperature decreases is also called and annealing schedule and is
+usually chosen empirically.
 
 
 \chapter{Interaction Potentials}
