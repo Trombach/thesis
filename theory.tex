@@ -1980,6 +1980,28 @@ simulated annealing method the temperature needs to decrease logarithmically
 with time, which makes this method rather computationally expensive. The rate at
 which the temperature decreases is also called and annealing schedule and is
 usually chosen empirically.
+%
+\\\newline
+\textit{Basin-hopping} is a hypersurface transformation method and has been
+applied successfully to global optimisation
+problems.\autocite{Wales_GlobalOptimizationBasinHopping_1997,Doye_Structuralconsequencesrange_1997,Doye_Modelingstructureclusters_2001}
+The transformation of the hypersurface upon which the particles move is carried
+out by applying a geometry optimisation to some point in configuration space as
+outlined in the sections above. This effectively maps the chosen point in
+configuration space to a (local) minimum.
+%
+\begin{align}
+    \widetilde{f} : (\mathbf{X}) \mapsto \min\{f : (\mathbf{X})\}
+\end{align}
+%
+This transforms the the smooth original hypersurface into basins of attraction,
+while leaving the energies of the minima unchanged. An illustration of this
+process can be found in figure~~~~. The mapping procedure is usually combined
+with a Monte-Carlo-type sampling
+procedure.\autocite{Wales_GlobalOptimizationBasinHopping_1997} A new sample is
+produced by introducing a small random displacement, as in the simulated
+annealing approach, followed by a geometry optimisation. The acceptance of the
+result is, again, determined by the Metropolis criterion.
 
 
 \chapter{Interaction Potentials}
