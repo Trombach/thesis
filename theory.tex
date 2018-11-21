@@ -1985,10 +1985,12 @@ usually chosen empirically.
 \textit{Basin-hopping} is a hypersurface transformation method and has been
 applied successfully to global optimisation
 problems.\autocite{Wales_GlobalOptimizationBasinHopping_1997,Doye_Structuralconsequencesrange_1997,Doye_Modelingstructureclusters_2001}
-The transformation of the hypersurface upon which the particles move is carried
-out by applying a geometry optimisation to some point in configuration space as
-outlined in the sections above. This effectively maps the chosen point in
-configuration space to a (local) minimum.
+It was first used to solve multiple-minima problems in protein
+folding.\autocite{Li_MonteCarlominimizationapproach_1987} The transformation of
+the hypersurface upon which the particles move is carried out by applying a
+geometry optimisation to some point in configuration space as outlined in the
+sections above. This effectively maps the chosen point in configuration space to
+a (local) minimum.
 %
 \begin{align}
     \widetilde{f} : (\mathbf{X}) \mapsto \min\{f : (\mathbf{X})\}
@@ -1996,12 +1998,27 @@ configuration space to a (local) minimum.
 %
 This transforms the the smooth original hypersurface into basins of attraction,
 while leaving the energies of the minima unchanged. An illustration of this
-process can be found in figure~~~~. The mapping procedure is usually combined
-with a Monte-Carlo-type sampling
+process can be found in figure~\ref{fig:PEStransform}.
+%
+\begin{figure}[htb]\centering
+    \includegraphics[width=.8\textwidth]{other-pics/basin-hopping.pdf}
+    \caption{Hypersurface transformation in the basin-hopping method. The original hypersurface (solid line) is mapped onto the transformed surface (dashed line) by a geometry optimisation.}
+    \label{fig:PEStransform}
+\end{figure}
+%
+The mapping procedure is usually combined with a Monte-Carlo-type sampling
 procedure.\autocite{Wales_GlobalOptimizationBasinHopping_1997} A new sample is
-produced by introducing a small random displacement, as in the simulated
+created by introducing a small random displacement, analogous to the simulated
 annealing approach, followed by a geometry optimisation. The acceptance of the
-result is, again, determined by the Metropolis criterion.
+result is, again, determined by the Metropolis criterion. The effect of the
+transformation is that transition states are removed from the hypersurface and
+accelerated dynamics as local minima can be escaped easily by fixing the
+acceptance ration by adjusting the effective temperature in the Metropolis step.
+Contrary to the simulated annealing method, the basin-hopping approach is
+capable of finding the global minimum even on hypersurfaces with multiple almost
+degenerate low-lying minima.
+
+
 
 
 \chapter{Interaction Potentials}
