@@ -2017,7 +2017,27 @@ acceptance ration by adjusting the effective temperature in the Metropolis step.
 Contrary to the simulated annealing method, the basin-hopping approach is
 capable of finding the global minimum even on hypersurfaces with multiple almost
 degenerate low-lying minima.
-
+%
+\\\newline
+In the \textit{genetic algorithm}
+approach\autocite{Goldberg_GeneticAlgorithmsSearch_1989} the hypersurface is
+explored by utilizing ideas from evolution theory, in particular natural
+selection. A ``gene'' is represented by the coordinates of the particles,
+forming a ``chromosome''. The ``fitness'' of a structure is determined by the
+potential energy with respect to the objective function. The structural
+information is often encoded in a binary bit string, but it is also possible to
+just use coordinates directly. In the first step of the algorithm an initial
+population is generated randomly and their fitness is calculated. A pair of
+``parents'' is chosen, in which one is picked randomly while the other is
+selected based on its fitness. The structures of the parents are combined to
+create two ``children'' with a fixed probability of a single bit to cross-over.
+Additionally, a low probability for random mutations is incorporated into the
+algorithm as well. After the next generation is created the parent generation is
+discarded to leave the population size constant. The algorithm is inherently
+parallel as multiple parent paris can be treated simultaneously. In its first
+application it was shown that a genetic algorithm can lead to convergence
+towards the global minimum in far fewer steps then for example the simulated
+annealing method.\autocite{Hartke_Globalgeometryoptimization_1993}
 
 
 
@@ -2030,7 +2050,6 @@ chemical methods as introduced in chapter~\ref{sec:basicsofQC}. In those cases
 more simple potentials, that still describe the system well, have to be
 employed. If not noted otherwise the following sections are based on a book by
 \citeauthor{Hirschfelder_Moleculartheorygases_1964}.\autocite{Hirschfelder_Moleculartheorygases_1964} 
-
 
 \section{Thermodynamic Considerations}
 \label{sec:ThermodynamicConsiderations}
