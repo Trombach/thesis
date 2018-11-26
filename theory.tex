@@ -1511,7 +1511,7 @@ $\left\{f^{(k)}\right\}$ decrease towards the minimum value it can be useful to
 define the direction of search as
 %
 \begin{align}
-    \mathbf{s}^{(k)}=-{\mathbf{G}^{(k)}}^{-1}\mathbf{g}^{(k)}.
+    \mathbf{s}^{(k)}=-{\mathbf{G}^{(k)}}^{-1}\mathbf{g}^{(k)}.\label{eqn:NewtonRaphsonStep}
 \end{align}
 %
 If $\mathbf{G}$ is positive definite so is $\mathbf{G}^{-1}$ and $\mathbf{s}$ is
@@ -1939,15 +1939,55 @@ system. The global minimum is an important information as it represents the most
 likely configuration of the system and efforts are usually focussed on locating
 this particular arrangement. However, as this requires the whole configuration
 space to be scanned, local minima can also be located with global optimisation
-methods.  However, global optimisation problems belong the the class of
-``NP-complete'' problems, meaning no algorithm is known that is guaranteed to
-find a solution within a time scaling as a power of the system size. However, a
-multitude of heuristic global optimisation algorithms have been proposed and a
-few selected ones will be discussed briefly in the following sections.
+methods. Global optimisation problems belong the the class of ``NP-complete''
+problems, meaning no algorithm is known that is guaranteed to find a solution
+within a time scaling as a power of the system size. However, a multitude of
+heuristic global optimisation algorithms have been proposed and a few selected
+ones will be discussed briefly in the following sections.
 
 \subsection{Algorithms}
 \label{sec:GOAlgorithms}
 
+%eigenvector following
+If the potential hypersurface of a system is completely unknown, a good first
+exploration method can be the \textit{eigenvector following} method. It was
+first developed for finding transition
+states\autocite{Cerjan_findingtransitionstates_1981}, but can be applied to
+global optimisation problems by repeating the process and following all
+eigenmodes of the system. It makes used of a modified Newton-Raphson
+step\footnote{The normal Newton-Raphson step can be found in
+equation~\ref{eqn:NewtonRaphsonStep}.}, which requires the matrix of second
+derivatives $\mathbf{G}$ to be computed.
+%
+\begin{align}
+    \Delta \mathbf{s}=\left(\lambda\mathbf{1}-\mathbf{G}\right)^{-1}\cdot\mathbf{g}\label{eqn:EigenVectorFollowingStep}\\
+    \Delta^2=\Delta \mathbf{s}\cdot\Delta \mathbf{s}=\mathbf{g}\cdot\left(\lambda\mathbf{1}-\mathbf{G}\right)^{-1}\cdot\mathbf{g}\label{eqn:EigenVectorFollowingStepsize}
+\end{align}
+%
+Here, $\mathbf{1}$ and $\mathbf{g}$ are the identity matrix and the gradient
+vector, respectively. The Lagrange multiplier $\lambda$ was introduced by the
+procedure of minimising under a constraint and needs to be determined according
+to equation~\ref{eqn:EigenVectorFollowingStepsize} such that the step size
+$\Delta^2$ is neither too large nor too small. After $\lambda$ is calculated it
+can be used to calculate the actual step $\Delta\mathbf{s}$ can be calculated
+via equation~\ref{eqn:EigenVectorFollowingStep}. This step will then move
+upwards in energy instead of downwards, effectively moving away from a local
+minimum towards a saddle point. This will make the lowest eigenvalue of the
+Hessian matrix negative, and the corresponding eigenvector represents the
+reaction coordinate of this deformation. Close to the saddle point the standard
+Newton-Raphson step is the most efficient choice for convergence towards the
+stationary point and it can be easily seen that it follows from
+equation~\ref{eqn:EigenVectorFollowingStep} for $\lambda=0$. This procedure can
+be implemented to scan a hypersurface. Starting from any distribution of
+coordinates a standard geometry optimisation can be carried out to find a
+minimum of the hypersurface. From there, the modified Newton-Raphson method can
+be used to find the closest saddle point. Calculating and diagonalising the
+Hessian matrix at this point should lead to one negative eigenvalue and the
+eigenvector corresponding to this eigenvalue should lead to at least one not
+found previously. From there on the procedure can start from the beginning,
+moving to larger eigenvalues.
+%
+\\\newline
 One of the first global optimisation algorithms was the \textit{simulated
 annealing} method.\autocite{Kirkpatrick_OptimizationSimulatedAnnealing_1983} The
 name is related to the fact that the method is strongly connected to statistical
