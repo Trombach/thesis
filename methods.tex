@@ -107,7 +107,7 @@ be chosen with the \texttt{name} tag, which currently can be set to either
 gradient method. The energy termination criterion is defined using the
 \texttt{dforce} tag.Furthermore, the maximum number of steps can be set with
 the \texttt{nsteps} tag. An example is given in the box below.
-\newline
+\begin{figure}[ht]
 \begin{Verbatim}[frame=single,label=settings file - opt tag]
 opt: {
     name = "BFGS";
@@ -115,6 +115,7 @@ opt: {
     nsteps = 100;
 };
 \end{Verbatim}
+\end{figure}
 %
 A potential model has to be chosen for the optimisation procedure. Custom
 models can be defined easily, which will be explained later. The current
@@ -122,6 +123,7 @@ implementation allows the selection of two pair potentials, namely \ac{LJ} and
 \ac{eLJ}. For the \ac{LJ} potential four parameters have to be given to the
 \texttt{potential} tag as seen in the box below.
 %
+\begin{figure}[htb]
 \begin{Verbatim}[frame=single,label=settings file - potential tag]
 potential: {
     name = "LJ";
@@ -131,6 +133,7 @@ potential: {
     exp2 = 6.0;
 };
 \end{Verbatim}
+\end{figure}
 %
 The \texttt{name} tag enables the \ac{LJ} potential to be used and the four
 parameters \texttt{epsilon}, \texttt{rm}, \texttt{exp1} and \texttt{exp2}
