@@ -1978,14 +1978,15 @@ reaction coordinate of this deformation. Close to the saddle point the standard
 Newton-Raphson step is the most efficient choice for convergence towards the
 stationary point and it can be easily seen that it follows from
 equation~\ref{eqn:EigenVectorFollowingStep} for $\lambda=0$. This procedure can
-be implemented to scan a hypersurface. Starting from any distribution of
-coordinates a standard geometry optimisation can be carried out to find a
-minimum of the hypersurface. From there, the modified Newton-Raphson method can
-be used to find the closest saddle point. Calculating and diagonalising the
-Hessian matrix at this point should lead to one negative eigenvalue and the
-eigenvector corresponding to this eigenvalue should lead to at least one not
-found previously. From there on the procedure can start from the beginning,
-moving to larger eigenvalues.
+be implemented to scan a
+hypersurface.\autocite{Wales_EnergyLandscapesClusters_2000} Starting from any
+distribution of coordinates a standard geometry optimisation can be carried out
+to find a minimum of the hypersurface. From there, the modified Newton-Raphson
+method can be used to find the closest saddle point. Calculating and
+diagonalising the Hessian matrix at this point should lead to one negative
+eigenvalue and the eigenvector corresponding to this eigenvalue should lead to
+at least one not found previously. From there on the procedure can start from
+the beginning, moving to larger eigenvalues.
 %
 \\\newline
 One of the first global optimisation algorithms was the \textit{simulated
@@ -2398,7 +2399,7 @@ the coefficients $c_i$ are determined by a fitting procedure to very accurate
 dissociation curves of the respective dimer molecules calculated by
 coupled-cluster theory.
 
-\subsection{Lennard-Jones for Clusters}
+\subsection{Lennard-Jones Clusters}
 \label{sec:LJClusters}
 
 The \ac{LJ} potential has been used extensively to study nucleation of clusters
@@ -2416,9 +2417,21 @@ for this agreement lies within the nature of the interaction between rare gas
 atoms due to dispersive forces, which are approximated well by the \ac{LJ}
 potential.
 
-The hypersurface upon which the particles move, also called a \ac{PES} or energy landscape, has been explored extensively.\autocite{Doye_Saddlepointsdynamics_2002}
+The hypersurface upon which the particles move, also called a \ac{PES} or energy
+landscape, has been explored extensively for the \ac{LJ} potential.
+\autocite{Tsai_Useeigenmodemethod_1993,Ball_Dynamicsstatisticalsamples_1999,Doye_Saddlepointsdynamics_2002} \citeauthor{Doye_Saddlepointsdynamics_2002}\autocite{Doye_Saddlepointsdynamics_2002}
+employed the eigenvector following method (section~\ref{sec:GOAlgorithms}) to
+find an initial set of minima and transition states with Hessian index
+1.\footnote{The Hessian index gives the number of negative eigenvalues of the
+Hessian matrix.} From this set higher order Hessian index saddle point can be
+found by randomly perturbing the found minima and transition states and
+following the eigenvector to a new stationary point. Additionally, stationary
+points were searched for in reversed order, meaning the search is started from a
+high order index saddle point and structures with lower Hessian index are
+located by perturbing the initial structure randomly.
 
-\autocite{Wales_EnergyLandscapesClusters_2000}
+Absolute numbers of local minima of \ac{LJ} clusters can be found in the results part (chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters}).
+
 
 
 
