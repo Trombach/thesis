@@ -2430,11 +2430,63 @@ points were searched for in reversed order, meaning the search is started from a
 high order index saddle point and structures with lower Hessian index are
 located by perturbing the initial structure randomly.
 
-Absolute numbers of local minima of \ac{LJ} clusters can be found in the results part (chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters}).
-
-
-
-
+Absolute numbers of local minima of \ac{LJ} clusters can be found in the results
+part (chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters}).
 
 \section{Sticky-Hard-Sphere Potential}
 \label{sec:SHS}
+
+%The \acf{SHS} potential was originally introduced by
+%\citeauthor{baxter68}\autocite{baxter68} to derive an analytical solution to
+%Ornstein-Zernike relation\autocite{Ornstein_Accidentaldeviationsdensity_1914}
+%with a correlation function as proposed by
+%\citeauthor{Percus_AnalysisClassicalStatistical_1958}\autocite%{Percus_AnalysisClassicalStatistical_1958}
+%The Ornstein-Zernike relation allows to measure the influence of one particle to
+%another one in terms of their distance. The indirect correlation function $h%(\mathbf{r})$
+%is often defined in terms of the radial distribution function $g(\mathbf{r})$.
+%%
+%\begin{align}
+%    h(\mathbf{r})=g(\mathbf{r})-1
+%\end{align}
+%%
+%In the Ornstein-Zernike approximation $h(\mathbf{r})$ as 
+%%
+%\begin{align}
+%    h(\mathbf{r})=c(\mathbf{r})+\rho\int\dd{\mathbf{r'}}c(|\mathbf{r'}|)h(|\mathbf%{r}-\mathbf{r'}|).
+%\end{align}
+%%
+%Here, $\rho$ is the particle density and $h(\mathbf{r})$ describes the
+%probability of finding a second particle at the distance $r$ to a particle at
+%the origin. As derived by \citeauthor{Percus_AnalysisClassicalStatistical_1958}
+%the direct correlation function is
+%$c(\mathbf{r})=g(\mathbf{r})\left(1-\exp{\phi(\mathbf{r})/kT}\right)$. For the %potential term $\phi(r)$ Baxter introduced a potential for hard spheres with %surface adhesion, which can be expressed as
+%
+The \acf{SHS} potential was originally introduced by
+\citeauthor{baxter68}\autocite{baxter68} and can be regarded as a rigid sphere
+interaction with surface adhesion. In the rigid sphere model the interaction
+potential is 0 for distances larger than the equilibrium distance $r_s$ and goes
+to infinity when the particles ``touch''. This concept can be extended by
+introducing a region of attraction of width $R$ in which the potential is
+defined to be $-\varepsilon$. The potential can be defined as
+%
+\begin{align}
+    \phi(r) =
+    \begin{cases}
+        \infty & 0 < r < r_s.\\
+        -\varepsilon & r_s < r < Rr_s.\\
+        0 & r > Rr_s.
+    \end{cases}
+\end{align}
+%
+For this potential the second and third virial coefficients have been evaluated
+analytically. For clarity only the more important second virial coefficient
+$B(T)$ is shown.
+%
+\begin{align}
+    B(T)=\frac{2}{3}\pi N_A{r_s}^3\left[1-(R^3-1)\left(\exp{\frac{\varepsilon}{kT}}-1\right)\right]
+\end{align}
+
+
+
+
+
