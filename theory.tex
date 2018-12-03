@@ -2463,11 +2463,12 @@ part (chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters}).
 %
 The \acf{SHS} potential was originally introduced by
 \citeauthor{baxter68}\autocite{baxter68} and can be regarded as a rigid sphere
-interaction with surface adhesion. In the rigid sphere model the interaction
-potential is 0 for distances larger than the equilibrium distance $r_s$ and goes
-to infinity when the particles ``touch''. This concept can be extended by
-introducing a region of attraction of width $R$ in which the potential is
-defined to be $-\varepsilon$. The potential can be defined as
+interaction with surface adhesion. In the simpler rigid sphere model the
+interaction potential is 0 for distances larger than the equilibrium distance
+$r_s$ and goes to infinity when the particles ``touch''. The rigid sphere model
+with surface adhesion builds upon this by introducing a region of
+attraction of width $R(r_s-1)$ in which the potential is defined to be $-\varepsilon$.
+The potential can be defined as
 %
 \begin{align}
     \phi(r) =
@@ -2485,7 +2486,17 @@ $B(T)$ is shown.
 \begin{align}
     B(T)=\frac{2}{3}\pi N_A{r_s}^3\left[1-(R^3-1)\left(\exp{\frac{\varepsilon}{kT}}-1\right)\right]
 \end{align}
-
+%
+Interestingly, this potential shows a relationship to the (6,12)-\ac{LJ}
+potential. For values of $R=1.8$ and $\varepsilon = 0.56$ the second virial
+coefficient becomes
+%
+\begin{align}
+    B(T)=\frac{2}{3}\pi N_A{r_s}^3\left(1-4.832\left(\exp{\frac{\varepsilon}{kT}}-1\right)\right),
+\end{align}
+%
+which approximates the second virial coefficient of the (6,12)-\ac{LJ} potential
+quite well.\autocite{Hirschfelder_Moleculartheorygases_1964}
 
 
 
