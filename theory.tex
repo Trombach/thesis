@@ -2301,7 +2301,7 @@ later.\autocite{Simon_KristallstrukturArgons_1924} The potential introduced by
 Lennard-Jones depending on the distance $r$ between two objects was of the form
 %
 \begin{align}
-    V_{m,n}(r)=\frac{\lambda_n}{r^n}-\frac{\lambda_m}{r^m},\, m<n,\label{eqn:LJgeneral}
+    V_{m,n}^\text{LJ}(r)=\frac{\lambda_n}{r^n}-\frac{\lambda_m}{r^m},\, m<n,\label{eqn:LJgeneral}
 \end{align}
 %
 with $m$ and $n$ not being set at that time. However, even though this general
@@ -2335,7 +2335,7 @@ $\dv{V_{m,n}(r_e)}{r}=0$ a more common notation of the \ac{LJ} potential can be
 derived.
 %
 \begin{align}
-    V_{m,n}(r)=\frac{\varepsilon}{n-m} \left[ m \left(\frac{r_e}{r}\right)^n  - n\left(\frac{r_e}{r}\right)^m \right]
+    V_{m,n}^\text{LJ}(r)=\frac{\varepsilon}{n-m} \left[ m \left(\frac{r_e}{r}\right)^n  - n\left(\frac{r_e}{r}\right)^m \right]\label{eqn:LJgeneral_theory}
 \end{align}
 %
 Both parameters $\varepsilon$ and $r_e$ can be determined by the size of the
@@ -2461,7 +2461,7 @@ part (chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters}).
 %the direct correlation function is
 %$c(\mathbf{r})=g(\mathbf{r})\left(1-\exp{\phi(\mathbf{r})/kT}\right)$. For the %potential term $\phi(r)$ Baxter introduced a potential for hard spheres with %surface adhesion, which can be expressed as
 %
-The \acf{SHS} potential was originally introduced by
+A variation of the \acf{SHS} potential was originally introduced by
 \citeauthor{baxter68}\autocite{baxter68} and can be regarded as a rigid sphere
 interaction with surface adhesion. In the simpler rigid sphere model the
 interaction potential is 0 for distances larger than the equilibrium distance
@@ -2471,7 +2471,7 @@ attraction of width $R(r_s-1)$ in which the potential is defined to be $-\vareps
 The potential can be defined as
 %
 \begin{align}
-    \phi(r) =
+    V^\text{SW}(r) =
     \begin{cases}
         \infty & 0 < r < r_s.\\
         -\varepsilon & r_s < r < Rr_s.\\
@@ -2498,6 +2498,55 @@ coefficient becomes
 which approximates the second virial coefficient of the (6,12)-\ac{LJ} potential
 quite well.\autocite{Hirschfelder_Moleculartheorygases_1964}
 
+More important for the scope of this thesis is, however, the relation to the
+\ac{LJ} potential for when the width of the potential well goes to 0. In this
+case the potential can be written as
+%
+\begin{align}
+    V^\text{SHS}(r) =
+    \begin{cases}
+        \infty & 0 < r < r_s,\\
+        -\varepsilon & r=r_s,\\
+        0 & r > r_s,
+    \end{cases}\label{eqn:SHSpotential}
+\end{align}
+%
+which is then often called the \ac{SHS} potential. If the \ac{LJ} is expressed
+in terms of equation~\ref{eqn:LJgeneral_theory}, equation~\ref{eqn:SHSpotential}
+represents the limit with respect to the exponents $(n,m)$ approaching
+infinity.\footnote{An illustration of this property can be found in
+figure~\ref{fig:LJ}.}
+%
+\begin{align}
+    \lim_{m,n\to\infty} V_{m,n}^\text{LJ} = V^\text{SHS}
+\end{align}
+%
+This can easily be shown by applying l'H\^opital's rule to
+eqauation~\ref{eqn:LJgeneral_theory} and deriving the limits for the cases
+presented in equation~\ref{eqn:SHSpotential}.
 
+\subsection{Sticky Hard Sphere Clusters}
+\label{sec:SHSClusters}
 
-
+Similar to the \ac{LJ} clusters, the \ac{SHS} clusters can be found by
+investigating combinations of spheres that minimise the potential in
+equation~\ref{eqn:SHSpotential}. As the \ac{SHS} is not a continuous function,
+therefore optimisation methods can not be used to investigate the potential
+energy landscape. However, the nature of the \ac{SHS} potential results in a
+neat property that allows the clusters to be defined in terms of graph theory.
+As only pairs of spheres that have the right distance of $r=r_s$ contribute to
+the overall energy, the energy can be expressed in terms of the total number of
+contacts $N_c$, also called the contact number.
+%
+\begin{align}
+    E=-\varepsilon N_c=-\varepsilon \sum\limits_{i>j} \mathcal{A}_{ij}
+\end{align}
+%
+This allows the clusters to be represented by adjacency matrices $\mathcal{A}$,
+where a ``touching'' state is represented by a matrix element of
+$\mathcal{A}_{ij}=1$ and every other position by $\mathcal{A}_{ij}=0$. The
+problem of minimising the energy now becomes a problem of maximising the contact
+number $N_c$, or the number of 1 entries in the adjacency matrix. A methodology
+to find all minimally rigid packings for a given number of spheres $N$ was given
+by
+\citeauthor{Arkus_DerivingFiniteSphere_2011}\autocite{Arkus_DerivingFiniteSphere_2011}.
