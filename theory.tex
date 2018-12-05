@@ -2544,9 +2544,27 @@ contacts $N_c$, also called the contact number.
 %
 This allows the clusters to be represented by adjacency matrices $\mathcal{A}$,
 where a ``touching'' state is represented by a matrix element of
-$\mathcal{A}_{ij}=1$ and every other position by $\mathcal{A}_{ij}=0$. The
-problem of minimising the energy now becomes a problem of maximising the contact
-number $N_c$, or the number of 1 entries in the adjacency matrix. A methodology
-to find all minimally rigid packings for a given number of spheres $N$ was given
-by
-\citeauthor{Arkus_DerivingFiniteSphere_2011}\autocite{Arkus_DerivingFiniteSphere_2011}.
+$\mathcal{A}_{ij}=1$ and every other position by
+$\mathcal{A}_{ij}=0$.\autocite{Arkus_DerivingFiniteSphere_2011} The problem of
+minimising the energy now becomes a problem of maximising the contact number
+$N_c$, or the number of 1 entries in the adjacency matrix. The adjacency matrix
+of a cluster will be symmetric, which means there are $2^{N(N- 1)/2}$ different
+combinations that could all potentially represent a cluster structure. To find
+all possible packings, all adjacency matrices have to be analysed with respect
+to their suitability for a stable cluster structure. A lot of the possible
+adjacency matrices can be rejected immediately, because they represent a already
+found structure with a different particle labeling. This particle labeling
+degeneracy comes from the fact that the spheres are all equal and therefore
+swapping two rows or columns in the adjacency matrix won't change the underlying
+cluster structure. If two adjacency matrices are corresponding to the same
+structure they are said to be \textit{isomorphic} (see
+chapter~\ref{sec:DefinitionGraph}).
+
+Besides the obvious rejection of adjacency matrices that represent the same
+structure, other restrictions can be imposed to reduce the numbers of adjacency
+matrices further. Most importantly, the resulting structures should be rigid,
+meining not continously deformable. Thus, each sphere needs to be in contact
+with at least three other spheres, which is true if each row or column of the
+adjacency matrix contains at least three matrix elements of 1.
+
+
