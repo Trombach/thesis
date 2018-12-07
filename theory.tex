@@ -1955,8 +1955,8 @@ first developed for finding transition
 states\autocite{Cerjan_findingtransitionstates_1981}, but can be applied to
 global optimisation problems by repeating the process and following all
 eigenmodes of the system. It makes used of a modified Newton-Raphson
-step\footnote{The normal Newton-Raphson step can be found in
-equation~\ref{eqn:NewtonRaphsonStep}.}, which requires the matrix of second
+step\footnote{The normal Newton-Raphson step is shown in
+equation~\eqref{eqn:NewtonRaphsonStep}.}, which requires the matrix of second
 derivatives $\mathbf{G}$ to be computed.
 %
 \begin{align}
@@ -1967,17 +1967,17 @@ derivatives $\mathbf{G}$ to be computed.
 Here, $\mathbf{1}$ and $\mathbf{g}$ are the identity matrix and the gradient
 vector, respectively. The Lagrange multiplier $\lambda$ was introduced by the
 procedure of minimising under a constraint and needs to be determined according
-to equation~\ref{eqn:EigenVectorFollowingStepsize} such that the step size
+to equation~\eqref{eqn:EigenVectorFollowingStepsize} such that the step size
 $\Delta^2$ is neither too large nor too small. After $\lambda$ is calculated it
 can be used to calculate the actual step $\Delta\mathbf{s}$ can be calculated
-via equation~\ref{eqn:EigenVectorFollowingStep}. This step will then move
+via equation~\eqref{eqn:EigenVectorFollowingStep}. This step will then move
 upwards in energy instead of downwards, effectively moving away from a local
 minimum towards a saddle point. This will make the lowest eigenvalue of the
 Hessian matrix negative, and the corresponding eigenvector represents the
 reaction coordinate of this deformation. Close to the saddle point the standard
 Newton-Raphson step is the most efficient choice for convergence towards the
 stationary point and it can be easily seen that it follows from
-equation~\ref{eqn:EigenVectorFollowingStep} for $\lambda=0$. This procedure can
+equation~\eqref{eqn:EigenVectorFollowingStep} for $\lambda=0$. This procedure can
 be implemented to scan a
 hypersurface.\autocite{Wales_EnergyLandscapesClusters_2000} Starting from any
 distribution of coordinates a standard geometry optimisation can be carried out
@@ -2120,9 +2120,9 @@ This formulation cane be generalised in terms of Taylor expansion
 which allows the virial coefficients\footnote{Note that the prime notation was
 dropped to emphasise that the virial coefficients in this equation are
 different to the ones originally proposed in
-equation~\ref{eqn:VirialEquationOfState}.} to be expressed as functions of
+equation~\eqref{eqn:VirialEquationOfState}.} to be expressed as functions of
 intermolecular potentials. If all virial coefficients are 0,
-equation~\ref{eqn:VirialEquationOfState} is equal to the ideal gas equation,
+equation~\eqref{eqn:VirialEquationOfState} is equal to the ideal gas equation,
 which means that the virial coefficients are connected to the interactions
 between gas molecules. Analytic expressions for the virial coefficients can be
 derived as explained in the following section.
@@ -2191,7 +2191,7 @@ expressed in terms of U-functions.
 %
 The summation has to be carried out over all divisions of $N$ molecules into
 $m_l$ groups of $l$ molecules. With this expression
-equation~\ref{eqn:ConfigurationalIntegral} can now be solved.
+equation~\eqref{eqn:ConfigurationalIntegral} can now be solved.
 %
 \begin{align}
     Q_N = \sum_{\sum lm_l=N} \prod_{l=1}^N\frac{(Vb_l)^{m_l}}{m_l!}\label{eqn:ConfigurationIntegralbl}
@@ -2204,9 +2204,9 @@ are defined in the following way.
     b_l=\left(Vl!\right)^{-1}\int U_l(\mathbf{r}_1,\mathbf{r}_2,\dots,\mathbf{r}_l)\dd{\mathbf{r}_1}\dd{\mathbf{r}_2}\dots\dd{\mathbf{r}_l}
 \end{align}
 %
-Now equation~\ref{eqn:PartitionFunction} can be expressed in terms of the
+Now equation~\eqref{eqn:PartitionFunction} can be expressed in terms of the
 cluster integrals and the equation of state in virial form can be derived from
-equation~\ref{eqn:PressureEquationOfState}.
+equation~\eqref{eqn:PressureEquationOfState}.
 %
 \begin{align}
     \ln Z_N=-N\ln z\lambda^3 + \sum_{l=1}^\infty Vb_lz^l\\
@@ -2223,14 +2223,14 @@ number density}. $\gamma_i$ are combinations of cluster integrals and the first 
 \end{align}
 %
 Combining the equations above leads to and equation of a
-similar form to equation~\ref{eqn:VirialEquationOfState}.
+similar form to equation~\eqref{eqn:VirialEquationOfState}.
 %
 \begin{align}
     \frac{pv}{RT}=1-\sum_{i=1}^\infty\frac{i\gamma_i}{i+1}\left(\frac{N}{V}\right)^i\label{eqn:VirialEquationOfStateClusterIntegrals}
 \end{align}
 %
-Comparing equations~\ref{eqn:VirialEquationOfState} and
-\ref{eqn:VirialEquationOfStateClusterIntegrals} it becomes clear that the
+Comparing equations~\eqref{eqn:VirialEquationOfState} and
+\eqref{eqn:VirialEquationOfStateClusterIntegrals} it becomes clear that the
 virial coefficients can be expressed in terms of cluster integrals.
 %
 \begin{align}
@@ -2323,12 +2323,12 @@ Lennard-Jones used this potential form to solve the integral expression in the
 second virial coefficient $B$. Analytical expressions can also be found for
 purely repulsive potentials and the attractive Sutherland potential.
 Lennard-Jones, however, introduced the potential in
-equation~\ref{eqn:LJgeneral} and solved the equation of state analytically to
+equation~\eqref{eqn:LJgeneral} and solved the equation of state analytically to
 derive parameters for $\lambda_n$ and $\lambda_m$ based on experimental results
 for noble gases\autocite{Jones_DeterminationMolecularFields_1924} and later on
 for the solid state.\autocite{Jones_calculationcertaincrystal_1925}
 
-Equation~\ref{eqn:LJgeneral} can be redefined in terms of parameters for the
+Equation~\eqref{eqn:LJgeneral} can be redefined in terms of parameters for the
 depth of the potential energy well $\varepsilon$ and equilibrium distance
 $r_e$. Under the constraint of $V_{m,n}(r_e)=-\varepsilon$ and
 $\dv{V_{m,n}(r_e)}{r}=0$ a more common notation of the \ac{LJ} potential can be
@@ -2512,7 +2512,7 @@ case the potential can be written as
 \end{align}
 %
 which is then often called the \ac{SHS} potential. If the \ac{LJ} is expressed
-in terms of equation~\ref{eqn:LJgeneral_theory}, equation~\ref{eqn:SHSpotential}
+in terms of equation~\eqref{eqn:LJgeneral_theory}, equation~\eqref{eqn:SHSpotential}
 represents the limit with respect to the exponents $(n,m)$ approaching
 infinity.\footnote{An illustration of this property can be found in
 figure~\ref{fig:LJ}.}
@@ -2522,15 +2522,15 @@ figure~\ref{fig:LJ}.}
 \end{align}
 %
 This can easily be shown by applying l'H\^opital's rule to
-eqauation~\ref{eqn:LJgeneral_theory} and deriving the limits for the cases
-presented in equation~\ref{eqn:SHSpotential}.
+equation~\eqref{eqn:LJgeneral_theory} and deriving the limits for the cases
+presented in equation~\eqref{eqn:SHSpotential}.
 
 \subsection{Sticky Hard Sphere Clusters}
 \label{sec:SHSClusters}
 
 Similar to the \ac{LJ} clusters, the \ac{SHS} clusters can be found by
 investigating combinations of spheres that minimise the potential in
-equation~\ref{eqn:SHSpotential}. As the \ac{SHS} is not a continuous function,
+equation~\eqref{eqn:SHSpotential}. As the \ac{SHS} is not a continuous function,
 therefore optimisation methods can not be used to investigate the potential
 energy landscape. However, the nature of the \ac{SHS} potential results in a
 neat property that allows the clusters to be defined in terms of graph theory.
@@ -2543,7 +2543,7 @@ contacts $N_c$, also called the contact number.
 \end{align}
 %
 This allows the clusters to be represented by adjacency matrices $\mathcal{A}$,
-where a ``touching'' state is represented by a matrix element of
+where a contact state is represented by a matrix element of
 $\mathcal{A}_{ij}=1$ and every other position by
 $\mathcal{A}_{ij}=0$.\autocite{Arkus_DerivingFiniteSphere_2011} The problem of
 minimising the energy now becomes a problem of maximising the contact number
@@ -2553,18 +2553,24 @@ combinations that could all potentially represent a cluster structure. To find
 all possible packings, all adjacency matrices have to be analysed with respect
 to their suitability for a stable cluster structure. A lot of the possible
 adjacency matrices can be rejected immediately, because they represent a already
-found structure with a different particle labeling. This particle labeling
+found structure with a different particle labelling. This particle labelling
 degeneracy comes from the fact that the spheres are all equal and therefore
 swapping two rows or columns in the adjacency matrix won't change the underlying
 cluster structure. If two adjacency matrices are corresponding to the same
 structure they are said to be \textit{isomorphic} (see
 chapter~\ref{sec:DefinitionGraph}).
 
-Besides the obvious rejection of adjacency matrices that represent the same
-structure, other restrictions can be imposed to reduce the numbers of adjacency
-matrices further. Most importantly, the resulting structures should be rigid,
-meining not continously deformable. Thus, each sphere needs to be in contact
-with at least three other spheres, which is true if each row or column of the
-adjacency matrix contains at least three matrix elements of 1.
-
-
+Besides the obvious rejection of adjacency matrices that are isomorphic, other
+restrictions can be imposed to reduce the numbers of adjacency matrices further.
+Most importantly, the resulting structures should be rigid, meaning not
+continuously deformable. Thus, each sphere needs to be in contact with at least
+three other spheres, which is true if each row or column of the adjacency matrix
+contains at least three matrix elements of 1. Another restriction that has often
+been imposed on the adjacency matrices is the Maxwell criterion, which states
+that the contact number needs to be $N_c\geq 3N-6$ for a structure to be
+rigid.\autocite{Maxwell_calculationequilibriumstiffness_1864} However, recent
+investigations revealed the existence of rigid structures with $N_c<
+3N-6$.\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016} Up to a size of $N=4$
+all inter-particle distances are completely defined by the adjacency matrix.
+Starting from $n=5$ there will be at least one unknown inter-particle distance,
+that needs to be determined algebraically.
