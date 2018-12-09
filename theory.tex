@@ -2573,4 +2573,36 @@ investigations revealed the existence of rigid structures with $N_c<
 3N-6$.\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016} Up to a size of $N=4$
 all inter-particle distances are completely defined by the adjacency matrix.
 Starting from $n=5$ there will be at least one unknown inter-particle distance,
-that needs to be determined algebraically.
+which need to be determined algebraically. For this, the distance matrix
+$\mathcal{D}$ needs to be constructed from the adjacency matrix. Based on the
+adjacency matrix $3N-6$ equations (and $N(N-1)/2 - (3N-6)$ inequalities) can be
+defined.
+%
+\begin{align}
+    \mathcal{A}_{ij}=1\rightarrow r_{ij}=2r\\
+    \mathcal{A}_{ij}=0\rightarrow r_{ij}>2r
+\end{align}
+%
+If two spheres are fixed at the origin and along one of the axis the system
+consists of $3N-6$ variable coordinates and is therefore completely defined by
+the equations above. In case the structure has more contacts than $3N-6$ the
+system is overdefined, but still solvable. Deriving an efficient method for
+mapping the adjacency matrix into the distance matrix is the crucial step to
+examine clusters bound by the \ac{SHS} potential.
+
+A set of geometric elimination rules and distance rules have been derived by
+\citeauthor{Arkus_DerivingFiniteSphere_2011}\autocite{Arkus_DerivingFiniteSphere_2011}.
+An elimination rule sorts out unphysical adjacency matrices, while a distance
+rule solves for the mapping $\mathcal{A}_{ij}\to \mathcal{D}_{ij}$. These rules
+can be derived from geometric considerations about the neighbourhood of a
+sphere. If another sphere touches a sphere of radius $r$, it must lie on the
+surface of a sphere with radius $R=2r$. For two spheres in contact, their
+surrounding spheres intersect and form an \textit{intersection circle} with
+radius $\frac{\sqrt{3}}{2}R$. Therefore, each matrix element $\mathcal{A}_{ij}$
+can be related to and intersection circle between spheres $i$ and $j$. Several
+rules can be derived from considering the intersection circles of the particles,
+for instance, the fact that more than one intersection circle can only intersect
+in 0, 1 or 2 points (and never more) implies that three connected spheres can
+never be touched by more than two spheres simultaneously. The article by
+\citeauthor{Arkus_DerivingFiniteSphere_2011} referenced above contains many more
+such rules that can be used to construct \ac{SHS} clusters.
