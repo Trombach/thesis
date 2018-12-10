@@ -1930,34 +1930,33 @@ function from vector parts. This leads to the following equations.
 \section{Global Optimisation}
 \label{sec:GlobalOptimisation}
 
-In the most simple case the objective function possesses only one (global)
-minimum. However, in a real scenario like in a cluster or molecule bound by a
-chemical interaction potential, there can be many local minima connected by
+In the most simple case, the objective function possesses only one (global)
+minimum. However, in a real scenario, like in a cluster or molecule bound by a
+physical interaction potential, there can be many local minima connected by
 higher order stationary points. Knowledge about the nature and location of these
 stationary points is crucial for a thorough understanding of the underlying
 system. The global minimum is an important information as it represents the most
 likely configuration of the system and efforts are usually focussed on locating
-this particular arrangement. However, as this requires the whole configuration
-space to be scanned, local minima can also be located with global optimisation
-methods. Global optimisation problems belong the the class of ``NP-complete''
-problems, meaning no algorithm is known that is guaranteed to find a solution
-within a time scaling as a power of the system size. However, a multitude of
-heuristic global optimisation algorithms have been proposed and a few selected
-ones will be discussed briefly in the following sections.
+this particular arrangement. As this requires the whole configuration space to
+be scanned, local minima will also be located with global optimisation methods
+as a side effect. Such global optimisation problems belong the the class of
+``NP-complete'' problems, meaning no algorithm is known that is guaranteed to
+find a solution within a time scaling as a power of the system size. However, a
+multitude of heuristic global optimisation algorithms have been proposed and a
+few selected ones will be discussed briefly in the following sections.
 
 \subsection{Algorithms}
 \label{sec:GOAlgorithms}
 
-%eigenvector following
-If the potential hypersurface of a system is completely unknown, a good first
-exploration method can be the \textit{eigenvector following} method. It was
-first developed for finding transition
-states\autocite{Cerjan_findingtransitionstates_1981}, but can be applied to
+If the potential hypersurface of a system is completely unknown, the
+\textit{eigenvector following} method can be used to gain valuable insights into
+its nature. It was first developed as a transition state location
+method\autocite{Cerjan_findingtransitionstates_1981}, but can be applied to
 global optimisation problems by repeating the process and following all
-eigenmodes of the system. It makes used of a modified Newton-Raphson
-step\footnote{The normal Newton-Raphson step is shown in
-equation~\eqref{eqn:NewtonRaphsonStep}.}, which requires the matrix of second
-derivatives $\mathbf{G}$ to be computed.
+eigenmodes of the system. It makes use of a modified Newton-Raphson
+step,\footnote{The normal Newton-Raphson step is shown in
+equation~\eqref{eqn:NewtonRaphsonStep}.} which requires the matrix of second
+derivatives $\mathbf{G}$ to be calculated.
 %
 \begin{align}
     \Delta \mathbf{s}=\left(\lambda\mathbf{1}-\mathbf{G}\right)^{-1}\cdot\mathbf{g}\label{eqn:EigenVectorFollowingStep}\\
@@ -1965,32 +1964,32 @@ derivatives $\mathbf{G}$ to be computed.
 \end{align}
 %
 Here, $\mathbf{1}$ and $\mathbf{g}$ are the identity matrix and the gradient
-vector, respectively. The Lagrange multiplier $\lambda$ was introduced by the
-procedure of minimising under a constraint and needs to be determined according
-to equation~\eqref{eqn:EigenVectorFollowingStepsize} such that the step size
-$\Delta^2$ is neither too large nor too small. After $\lambda$ is calculated it
-can be used to calculate the actual step $\Delta\mathbf{s}$ can be calculated
-via equation~\eqref{eqn:EigenVectorFollowingStep}. This step will then move
-upwards in energy instead of downwards, effectively moving away from a local
-minimum towards a saddle point. This will make the lowest eigenvalue of the
-Hessian matrix negative, and the corresponding eigenvector represents the
-reaction coordinate of this deformation. Close to the saddle point the standard
+vector, respectively. The Lagrange multiplier $\lambda$ was introduced to
+minimise the objective function under the constraint of a medium sized step size
+$\Delta^2$ and needs to be determined according to
+equation~\eqref{eqn:EigenVectorFollowingStepsize}. After $\lambda$ is calculated
+it can be used to calculate the actual step $\Delta\mathbf{s}$ via
+equation~\eqref{eqn:EigenVectorFollowingStep}. This step will then move upwards
+in energy instead of downwards, effectively moving away from a local minimum
+towards a saddle point. This will make the lowest eigenvalue of the Hessian
+matrix negative, and the corresponding eigenvector represents the reaction
+coordinate of this deformation. Close to the saddle point the standard
 Newton-Raphson step is the most efficient choice for convergence towards the
-stationary point and it can be easily seen that it follows from
-equation~\eqref{eqn:EigenVectorFollowingStep} for $\lambda=0$. This procedure can
-be implemented to scan a
+stationary point and it can be easily seen that this follows from
+equation~\eqref{eqn:EigenVectorFollowingStep} for $\lambda=0$. This procedure
+can be implemented to scan a
 hypersurface.\autocite{Wales_EnergyLandscapesClusters_2000} Starting from any
 distribution of coordinates a standard geometry optimisation can be carried out
 to find a minimum of the hypersurface. From there, the modified Newton-Raphson
 method can be used to find the closest saddle point. Calculating and
 diagonalising the Hessian matrix at this point should lead to one negative
 eigenvalue and the eigenvector corresponding to this eigenvalue should lead to
-at least one not found previously. From there on the procedure can start from
+at least one unknown structure. From there on the procedure can start from
 the beginning, moving to larger eigenvalues.
 %
 \\\newline
 One of the first global optimisation algorithms was the \textit{simulated
-annealing} method.\autocite{Kirkpatrick_OptimizationSimulatedAnnealing_1983} The
+annealing} algorithm.\autocite{Kirkpatrick_OptimizationSimulatedAnnealing_1983} The
 name is related to the fact that the method is strongly connected to statistical
 thermodynamics by introducing an effective temperature parameter that allows for
 the simulation of a slow cooling procedure. The effective temperature is simply
@@ -2009,18 +2008,16 @@ is positive it is accepted with a probability $P$ of
 %
 Repetition of this step is equivalent to simulating a system of particles in a
 heat bath at the effective temperature $T$ and leads to the system to be
-represented by a Boltzmann distribution. This procedure is first carried out for
+represented by a Boltzmann distribution. This procedure is first carried out at
 a high temperature, effectively simulating a ``melted'' state of the system.
 Subsequently, the temperature is reduced in small steps until the system
-``freezes'', meaning there are no more changes. The optimisation in each
-temperature step must be carried out until a steady state is reached. In
-comparison to a purely iterative method, simulated annealing has the advantage
-of not getting stuck in local minima as it is always possible to transition out
-of a local minimum at non-zero temperature. To locate the global minimum with a
-simulated annealing method the temperature needs to decrease logarithmically
-with time, which makes this method rather computationally expensive. The rate at
-which the temperature decreases is also called and annealing schedule and is
-usually chosen empirically.
+``freezes'', meaning a steady state is reached. In comparison to a purely
+iterative method, simulated annealing has the advantage of not getting stuck in
+local minima as it is always possible to transition out of a local minimum at
+non-zero temperature. To locate the global minimum with a simulated annealing
+method the temperature needs to decrease logarithmically with time, which makes
+this method rather computationally expensive. The rate at which the temperature
+decreases is called an annealing schedule and is usually chosen empirically.
 %
 \\\newline
 \textit{Basin-hopping} is a hypersurface transformation method and has been
@@ -2037,9 +2034,9 @@ a (local) minimum.
     \widetilde{f} : (\mathbf{X}) \mapsto \min\{f : (\mathbf{X})\}
 \end{align}
 %
-This transforms the the smooth original hypersurface into basins of attraction,
-while leaving the energies of the minima unchanged. An illustration of this
-process can be found in figure~\ref{fig:PEStransform}.
+The result is a hypersurface that is divided into basins of attraction, while
+preserving the information about the energies of the minima. An illustration of
+this process is depicted in figure~\ref{fig:PEStransform}.
 %
 \begin{figure}[htb]\centering
     \includegraphics[width=.8\textwidth]{other-pics/basin-hopping.pdf}
@@ -2053,11 +2050,11 @@ created by introducing a small random displacement, analogous to the simulated
 annealing approach, followed by a geometry optimisation. The acceptance of the
 result is, again, determined by the Metropolis criterion. The effect of the
 transformation is that transition states are removed from the hypersurface and
-accelerated dynamics as local minima can be escaped easily by fixing the
-acceptance ration by adjusting the effective temperature in the Metropolis step.
-Contrary to the simulated annealing method, the basin-hopping approach is
-capable of finding the global minimum even on hypersurfaces with multiple almost
-degenerate low-lying minima.
+dynamics are accelerated as local minima can be left easily by fixing the
+acceptance ratio to the desired value via the effective temperature in the
+Metropolis step. Contrary to the simulated annealing method, the basin-hopping
+approach is capable of finding the global minimum even on hypersurfaces with
+multiple almost degenerate low-lying minima.
 %
 \\\newline
 In the \textit{genetic algorithm}
@@ -2069,14 +2066,14 @@ potential energy with respect to the objective function. The structural
 information is often encoded in a binary bit string, but it is also possible to
 just use coordinates directly. In the first step of the algorithm an initial
 population is generated randomly and their fitness is calculated. A pair of
-``parents'' is chosen, in which one is picked randomly while the other is
+``parents'' is chosen, on of which is picked randomly while the other is
 selected based on its fitness. The structures of the parents are combined to
 create two ``children'' with a fixed probability of a single bit to cross-over.
 Additionally, a low probability for random mutations is incorporated into the
 algorithm as well. After the next generation is created the parent generation is
 discarded to leave the population size constant. The algorithm is inherently
-parallel as multiple parent paris can be treated simultaneously. In its first
-application it was shown that a genetic algorithm can lead to convergence
+parallel as multiple pairs of parents can be treated simultaneously. In its
+first application it was shown that a genetic algorithm can lead to convergence
 towards the global minimum in far fewer steps then for example the simulated
 annealing method.\autocite{Hartke_Globalgeometryoptimization_1993}
 
