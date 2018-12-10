@@ -2431,7 +2431,7 @@ high order index saddle point and structures with lower Hessian index are
 located by perturbing the initial structure randomly.
 
 Absolute numbers of local minima of \ac{LJ} clusters can be found in the results
-part (chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters}).
+part (table~\ref{tab:comp}, page~\pageref{tab:comp}).
 
 \section{Sticky-Hard-Sphere Potential}
 \label{sec:SHS}
@@ -2543,22 +2543,22 @@ contacts $N_c$, also called the contact number.
 \end{align}
 %
 This allows the clusters to be represented by adjacency matrices $\mathcal{A}$,
-where a contact state is represented by a matrix element of
-$\mathcal{A}_{ij}=1$ and every other position by
+where a contact state is represented by a matrix element of $\mathcal{A}_{ij}=1$
+and every other position by
 $\mathcal{A}_{ij}=0$.\autocite{Arkus_DerivingFiniteSphere_2011} The problem of
 minimising the energy now becomes a problem of maximising the contact number
 $N_c$, or the number of 1 entries in the adjacency matrix. The adjacency matrix
 of a cluster will be symmetric, which means there are $2^{N(N- 1)/2}$ different
 combinations that could all potentially represent a cluster structure. To find
 all possible packings, all adjacency matrices have to be analysed with respect
-to their suitability for a stable cluster structure. A lot of the possible
-adjacency matrices can be rejected immediately, because they represent a already
-found structure with a different particle labelling. This particle labelling
-degeneracy comes from the fact that the spheres are all equal and therefore
-swapping two rows or columns in the adjacency matrix won't change the underlying
-cluster structure. If two adjacency matrices are corresponding to the same
-structure they are said to be \textit{isomorphic} (see
-chapter~\ref{sec:DefinitionGraph}).
+to their suitability for a stable cluster structure, a method called
+\textit{exact enumeration}. A lot of the possible adjacency matrices can be
+rejected immediately, because they represent a already found structure with a
+different particle labelling. This particle labelling degeneracy comes from the
+fact that the spheres are all equal and therefore swapping two rows or columns
+in the adjacency matrix won't change the underlying cluster structure. If two
+adjacency matrices are corresponding to the same structure they are said to be
+\textit{isomorphic} (see chapter~\ref{sec:DefinitionGraph}).
 
 Besides the obvious rejection of adjacency matrices that are isomorphic, other
 restrictions can be imposed to reduce the numbers of adjacency matrices further.
@@ -2606,3 +2606,14 @@ in 0, 1 or 2 points (and never more) implies that three connected spheres can
 never be touched by more than two spheres simultaneously. The article by
 \citeauthor{Arkus_DerivingFiniteSphere_2011} referenced above contains many more
 such rules that can be used to construct \ac{SHS} clusters.
+
+Results for complete exact enumeration of up to 14
+spheres\autocite{Arkus_DerivingFiniteSphere_2011,Hoy_Structurefinitesphere_2012,Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016}
+have been published. The results by
+\citeauthor{Holmes-Cerfon_EnumeratingRigidSphere_2016}\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}
+also showed evidence of so called hypostatic clusters with less than $3N-6$
+contacts. This is likely to be due to the fact that in this study a modification
+of the exact enumeration method was used, which follows on-dimensional
+transition paths created from breaking a random contact in an already found
+cluster. An overview of these results can be found in table~\ref{tab:comp}
+(page~\pageref{tab:comp}).
