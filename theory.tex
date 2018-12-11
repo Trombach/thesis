@@ -2082,20 +2082,21 @@ annealing method.\autocite{Hartke_Globalgeometryoptimization_1993}
 \chapter{Interaction Potentials}
 \label{sec:energylandscapes}
 
-For systems of large numbers of atoms or complete potential energy surface
-scans it is usually not possible to treat everything with accurate quantum
-chemical methods as introduced in chapter~\ref{sec:basicsofQC}. In those cases
-more simple potentials, that still describe the system well, have to be
-employed. If not noted otherwise the following sections are based on a book by
+Systems of large numbers of atoms or complete scans of potential hypersurfaces
+are usually not treatable by accurate quantum chemical methods as introduced in
+chapter~\ref{sec:basicsofQC}. In those cases more simple potentials have to be
+employed, without loosing crucial information about the system. In the following
+sections two potentials used in this thesis will be introduced. If not noted
+otherwise the following sections are based on a book by
 \citeauthor{Hirschfelder_Moleculartheorygases_1964}.\autocite{Hirschfelder_Moleculartheorygases_1964} 
 
 \section{Thermodynamic Considerations}
 \label{sec:ThermodynamicConsiderations}
 
-The general form of an interaction potential can derived purely from
-thermodynamic considerations about the equation of state of a gas. One of the
-first formulations was published by
-\citeauthor{KamerlinghOnnes_Expressionequationstate_1902}.\autocite{KamerlinghOnnes_Expressionequationstate_1902}.
+The need to find intermolecular interaction potentials arose from the desire to
+have a good description for the equation of state of a gas. A purely empirical
+relation was first found by
+\citeauthor{KamerlinghOnnes_Expressionequationstate_1902}.\autocite{KamerlinghOnnes_Expressionequationstate_1902}
 %
 \begin{align}
     pv=A'+\frac{B'}{v}+\frac{C'}{v^2}+\frac{D'}{v^4}+\frac{E'}{v^6}+\frac{F'}{v^8}
@@ -2115,27 +2116,28 @@ This formulation cane be generalised in terms of Taylor expansion
 \end{align}
 %
 which allows the virial coefficients\footnote{Note that the prime notation was
-dropped to emphasise that the virial coefficients in this equation are
-different to the ones originally proposed in
-equation~\eqref{eqn:VirialEquationOfState}.} to be expressed as functions of
-intermolecular potentials. If all virial coefficients are 0,
-equation~\eqref{eqn:VirialEquationOfState} is equal to the ideal gas equation,
-which means that the virial coefficients are connected to the interactions
-between gas molecules. Analytic expressions for the virial coefficients can be
-derived as explained in the following section.
+dropped to emphasise that the virial coefficients in this equation are different
+to the ones originally proposed in equation~\eqref{eqn:VirialEquationOfState}.}
+to be expressed as functions of intermolecular potentials. If all virial
+coefficients are 0, equation~\eqref{eqn:VirialEquationOfState} is equal to the
+ideal gas equation, which means that the virial coefficients are connected to
+the interactions between gas molecules not included in the ideal gas law.
+Analytic expressions for the virial coefficients can be derived as explained in
+the following section.
 
 \subsection{Equation of State from the Partition Function}
 \label{sec:equationofstatefromthepartitionfunction}
 
-The partition function $Z_N$ can be used to derive various thermodynamic quantities
-such as the pressure.
+The partition function $Z_N$ can be used to derive various thermodynamic
+quantities, for instance the pressure $p$.
 %
 \begin{align}
     p=kT\left(\pdv{\ln Z_N}{V}\right)_T\label{eqn:PressureEquationOfState}
 \end{align}
 %
-Using the expression of the classical partition function for a system of $N$
-identical particles\footnote{See page 106 in reference
+In this equation, $k$ is the Boltzmann constant, $T$ the temperature and $V$ the
+volume of the vessel. Using the expression of the classical partition function
+for a system of $N$ identical particles\footnote{See page 106 in reference
 \cite{Hirschfelder_Moleculartheorygases_1964}.} the partition function can be
 re-formulated in terms of Boltzmann factors
 $W_N\left(\mathbf{r}^N\right)=e^{-\beta\Phi\left(\mathbf{r}^N\right)}$ and a
@@ -2146,18 +2148,18 @@ configurational integral $Q_N$.
     Z_N&=\frac{Q_N}{\lambda^{3N}}\,\text{with}\, \lambda^2=\frac{h^2}{2\pi mkT}\label{eqn:PartitionFunction}
 \end{align}
 %
-Here, $\mathbf{r}^N$ refer to the set of coordinates defined by the set of $N$
-molecules, $h$ is Planck's constant and $\beta=1/kT$. The potential function
-$\Phi\left(\mathbf{r}^N\right)$ depends on all particle coordinates, but is
-currently not defined in detail. However, expressions for the virial
-coefficients can be found without defining the interaction potential by using a
-method introduced by
+Here, $\mathbf{r}^N$ refers to the set of coordinates defined by the set of $N$
+molecules, $h$ is Planck's constant, $m$ the particle mass and $\beta=1/kT$. The
+potential function $\Phi\left(\mathbf{r}^N\right)$ depends on all particle
+coordinates and is not yet defined explicitly. However, expressions for the
+virial coefficients can be found without defining the interaction potential by
+using a method introduced by
 \citeauthor{Ursell_evaluationGibbsphaseintegral_1927}\autocite{Ursell_evaluationGibbsphaseintegral_1927}.
-It requires the definition of ``U-functions''
+This method requires the definition of ``U-functions''
 $U_l\left(\mathbf{r}^\lambda\right)$ that are expressed as combinations of
-Boltzmann factors. The subscript $l$ refers to how many molecules the
-U-function includes and $\lambda$ defines which molecules those are. For
-example, the first two U-functions are defined as:
+Boltzmann factors. The subscript $l$ refers to how many molecules the U-function
+includes and $\lambda$ denotes which molecules. For example, the first two
+U-functions are defined as:
 %
 \begin{align}
     U_1\left(\mathbf{r}_i\right)&=W_1\left(\mathbf{r}_i\right)\\
@@ -2177,10 +2179,8 @@ Boltzmann factors must be equal.
 The latter is true if the molecules $i$ and $j$ are sufficiently far apart for
 their interaction to be negligible. For the higher order U-functions this
 concept can be extended to two or more groups of molecules being far enough
-apart for their interaction to become 0.
-
-By reversing the definition of the U-functions the Boltzmann factors can be
-expressed in terms of U-functions.
+apart for their interaction to become 0. By reversing the definition of the
+U-functions, the Boltzmann factors can be expressed in terms of U-functions.
 %
 \begin{align}
     W_N\left(\mathbf{r}^N\right)=\sum_{\sum lm_l=N}\prod U_l\left(\mathbf{r}^\lambda\right)
@@ -2201,7 +2201,7 @@ are defined in the following way.
     b_l=\left(Vl!\right)^{-1}\int U_l(\mathbf{r}_1,\mathbf{r}_2,\dots,\mathbf{r}_l)\dd{\mathbf{r}_1}\dd{\mathbf{r}_2}\dots\dd{\mathbf{r}_l}
 \end{align}
 %
-Now equation~\eqref{eqn:PartitionFunction} can be expressed in terms of the
+Equation~\eqref{eqn:PartitionFunction} can now be expressed in terms of the
 cluster integrals and the equation of state in virial form can be derived from
 equation~\eqref{eqn:PressureEquationOfState}.
 %
@@ -2212,23 +2212,24 @@ equation~\eqref{eqn:PressureEquationOfState}.
 \end{align}
 %
 Here, $z$ has the dimension of a concentration and is called the \textit{active
-number density}. $\gamma_i$ are combinations of cluster integrals and the first two are
+number density}. $\gamma_i$ are combinations of cluster integrals and the first
+two are
 %
 \begin{align}
     \gamma_1&=2b_2\\
-    \gamma_2&=3b_3-6b_2^2
+    \gamma_2&=3b_3-6b_2^2.
 \end{align}
 %
-Combining the equations above leads to and equation of a
-similar form to equation~\eqref{eqn:VirialEquationOfState}.
+Combining the equations above leads to an equation similar to
+equation~\eqref{eqn:VirialEquationOfState}.
 %
 \begin{align}
     \frac{pv}{RT}=1-\sum_{i=1}^\infty\frac{i\gamma_i}{i+1}\left(\frac{N}{V}\right)^i\label{eqn:VirialEquationOfStateClusterIntegrals}
 \end{align}
 %
 Comparing equations~\eqref{eqn:VirialEquationOfState} and
-\eqref{eqn:VirialEquationOfStateClusterIntegrals} it becomes clear that the
-virial coefficients can be expressed in terms of cluster integrals.
+\eqref{eqn:VirialEquationOfStateClusterIntegrals} it is clear that the virial
+coefficients can be expressed in terms of cluster integrals.
 %
 \begin{align}
     B(T)&=-\frac{1}{2}N_A\gamma_1\\
@@ -2269,7 +2270,7 @@ For the U-functions this results in the following expressions.
     \end{aligned}
 \end{align}
 %
-From these definitions expressions depending on two-body interactions for the
+From these definitions, expressions depending on two-body interactions for the
 virial coefficients can be derived.
 %
 \begin{align}
@@ -2308,13 +2309,14 @@ potentials earlier. In 1920,
 \citeauthor{Kratzer_ultrarotenRotationsspektrenHalogenwasserstoffe_1920}\autocite{Kratzer_ultrarotenRotationsspektrenHalogenwasserstoffe_1920}
 already published a less general potential of the same form with the exponents
 $m$ and $n$ set to 1 and 2, respectively. The general idea behind these two
-potential forms was already discussed at the beginning of the 20th century by
+potential forms was already discussed earlier in the beginning of the 20th
+century by
 \citeauthor{Mie_ZurkinetischenTheorie_1903}\autocite{Mie_ZurkinetischenTheorie_1903}.
 In all those potentials attractive and repulsive distance dependant terms are
 combined such that the resulting potential energy function has a minimum value
-at some equilibrium distance. For distances larger than the equilibrium
-distance the potentials approach zero asymptotically from below, while they
-diverge towards $+\infty$ for distances close to zero.
+at some equilibrium distance. For distances larger than the equilibrium distance
+the potentials approach zero asymptotically from below, while they diverge
+towards $+\infty$ for distances close to zero.
 
 Lennard-Jones used this potential form to solve the integral expression in the
 second virial coefficient $B$. Analytical expressions can also be found for
@@ -2336,7 +2338,7 @@ derived.
 \end{align}
 %
 Both parameters $\varepsilon$ and $r_e$ can be determined by the size of the
-interaction atoms and the interaction strength. The evaluation of the exponents
+interacting atoms and the interaction strength. The evaluation of the exponents
 $m$ and $n$, however, is more complicated. The exponent $m$ is mainly important
 for the correct long range behaviour, while $n$ dominates for distances smaller
 than $r_e$. First attempts at deriving the correct long range behaviour have
@@ -2374,8 +2376,8 @@ figure~\ref{fig:LJ-param}.
 \subsection{Extended Lennard-Jones Potential}
 \label{sec:eLJ}
 
-A more sophisticated approach of describing the intermolecular interactions can
-be found in the \acf{eLJ} potential. The choice of the exponents $m$ and $n$ in
+A more sophisticated solution to describing intermolecular interactions can
+be achieved with the \acf{eLJ} potential. The choice of the exponents $m$ and $n$ in
 the \ac{LJ} potential is arbitrary and lacks flexibility. Any effect that scales
 differently from $r^{-12}$ or $r^{-6}$ can not be described accurately.
 Therefore, it seems almost natural to extend the \ac{LJ} potential by a sum over
@@ -2423,8 +2425,8 @@ find an initial set of minima and transition states with Hessian index
 Hessian matrix.} From this set higher order Hessian index saddle point can be
 found by randomly perturbing the found minima and transition states and
 following the eigenvector to a new stationary point. Additionally, stationary
-points were searched for in reversed order, meaning the search is started from a
-high order index saddle point and structures with lower Hessian index are
+points were searched for in reverse order, meaning the search was started from a
+high order index saddle point and structures with lower Hessian index were
 located by perturbing the initial structure randomly.
 
 Absolute numbers of local minima of \ac{LJ} clusters can be found in the results
@@ -2508,11 +2510,11 @@ case the potential can be written as
     \end{cases}\label{eqn:SHSpotential}
 \end{align}
 %
-which is then often called the \ac{SHS} potential. If the \ac{LJ} is expressed
-in terms of equation~\eqref{eqn:LJgeneral_theory}, equation~\eqref{eqn:SHSpotential}
-represents the limit with respect to the exponents $(n,m)$ approaching
-infinity.\footnote{An illustration of this property can be found in
-figure~\ref{fig:LJ}.}
+which is then often called the \ac{SHS} potential. If the \ac{LJ} potential is
+expressed in terms of equation~\eqref{eqn:LJgeneral_theory},
+equation~\eqref{eqn:SHSpotential} represents the limit with respect to the
+exponents $(n,m)$ approaching infinity.\footnote{An illustration of this
+property is shown in figure~\ref{fig:LJ}.}
 %
 \begin{align}
     \lim_{m,n\to\infty} V_{m,n}^\text{LJ} = V^\text{SHS}
@@ -2527,13 +2529,13 @@ presented in equation~\eqref{eqn:SHSpotential}.
 
 Similar to the \ac{LJ} clusters, the \ac{SHS} clusters can be found by
 investigating combinations of spheres that minimise the potential in
-equation~\eqref{eqn:SHSpotential}. As the \ac{SHS} is not a continuous function,
-therefore optimisation methods can not be used to investigate the potential
+equation~\eqref{eqn:SHSpotential}. As the \ac{SHS} potential is not a continuous
+function, optimisation methods can not be used to investigate the potential
 energy landscape. However, the nature of the \ac{SHS} potential results in a
 neat property that allows the clusters to be defined in terms of graph theory.
-As only pairs of spheres that have the right distance of $r=r_s$ contribute to
-the overall energy, the energy can be expressed in terms of the total number of
-contacts $N_c$, also called the contact number.
+Only pairs of spheres that have the right distance of $r=r_s$ contribute to the
+overall energy, allowing the energy to be expressed in terms of the contact
+number $N_c$.
 %
 \begin{align}
     E=-\varepsilon N_c=-\varepsilon \sum\limits_{i>j} \mathcal{A}_{ij}
@@ -2550,11 +2552,11 @@ combinations that could all potentially represent a cluster structure. To find
 all possible packings, all adjacency matrices have to be analysed with respect
 to their suitability for a stable cluster structure, a method called
 \textit{exact enumeration}. A lot of the possible adjacency matrices can be
-rejected immediately, because they represent a already found structure with a
-different particle labelling. This particle labelling degeneracy comes from the
+rejected immediately, because they represent an already found structure with a
+different particle labelling. This particle labelling degeneracy is due to the
 fact that the spheres are all equal and therefore swapping two rows or columns
 in the adjacency matrix won't change the underlying cluster structure. If two
-adjacency matrices are corresponding to the same structure they are said to be
+adjacency matrices correspond to the same structure they are said to be
 \textit{isomorphic} (see chapter~\ref{sec:DefinitionGraph}).
 
 Besides the obvious rejection of adjacency matrices that are isomorphic, other
@@ -2564,23 +2566,23 @@ continuously deformable. Thus, each sphere needs to be in contact with at least
 three other spheres, which is true if each row or column of the adjacency matrix
 contains at least three matrix elements of 1. Another restriction that has often
 been imposed on the adjacency matrices is the Maxwell criterion, which states
-that the contact number needs to be $N_c\geq 3N-6$ for a structure to be
+that the contact number needs to fulfil $N_c\geq 3N-6$ for a structure to be
 rigid.\autocite{Maxwell_calculationequilibriumstiffness_1864} However, recent
 investigations revealed the existence of rigid structures with $N_c<
 3N-6$.\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016} Up to a size of $N=4$
 all inter-particle distances are completely defined by the adjacency matrix.
-Starting from $n=5$ there will be at least one unknown inter-particle distance,
-which need to be determined algebraically. For this, the distance matrix
-$\mathcal{D}$ needs to be constructed from the adjacency matrix. Based on the
-adjacency matrix $3N-6$ equations (and $N(N-1)/2 - (3N-6)$ inequalities) can be
-defined.
+Starting from $N=5$ there will be at least one unknown inter-particle distance,
+which needs to be determined algebraically. For this, the distance matrix
+$\mathcal{D}$ needs to be constructed from the adjacency matrix. This can be
+achieved by defining $3N-6$ equations (and $N(N-1)/2 - (3N-6)$ inequalities)
+from the adjacency information.
 %
 \begin{align}
     \mathcal{A}_{ij}=1\rightarrow r_{ij}=2r\\
     \mathcal{A}_{ij}=0\rightarrow r_{ij}>2r
 \end{align}
 %
-If two spheres are fixed at the origin and along one of the axis the system
+If two spheres are fixed at the origin and along one of the, axis the system
 consists of $3N-6$ variable coordinates and is therefore completely defined by
 the equations above. In case the structure has more contacts than $3N-6$ the
 system is overdefined, but still solvable. Deriving an efficient method for
@@ -2609,8 +2611,7 @@ spheres\autocite{Arkus_DerivingFiniteSphere_2011,Hoy_Structurefinitesphere_2012,
 have been published. The results by
 \citeauthor{Holmes-Cerfon_EnumeratingRigidSphere_2016}\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}
 also showed evidence of so called hypostatic clusters with less than $3N-6$
-contacts. This is likely to be due to the fact that in this study a modification
-of the exact enumeration method was used, which follows on-dimensional
-transition paths created from breaking a random contact in an already found
-cluster. An overview of these results can be found in table~\ref{tab:comp}
-(page~\pageref{tab:comp}).
+contacts. This is due to the fact that in this study a modification of the exact
+enumeration method was used, which follows on-dimensional transition paths
+created from breaking a random contact in an already found cluster. An overview
+of these results can be found in table~\ref{tab:comp} (page~\pageref{tab:comp}).
