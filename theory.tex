@@ -7,9 +7,9 @@
 \label{sec:graphtheory}
 
 Graph theory is a powerful mathematical tool to describe relations between pairs
-of objects. It's biggest advantage is probably the broad range of applicability
-in fields like computer science, biology, social sciences and of course physics
-and chemistry. In the following sections the focus will lie on introducing graph
+of objects. Its biggest advantage is the broad range of applicability in fields
+like computer science, biology, social sciences and of course physics and
+chemistry. In the following sections the focus will be put on introducing graph
 theory in general and demonstrating its usefulness in the scope of this thesis.
 If not mentioned otherwise the chapter is mainly based on standard books on
 graph theory by
@@ -65,15 +65,15 @@ via seven bridges.
     \label{fig:KoenigsbergBridgeProblem}
 \end{figure}
 %
-The bridge layout is schematically depicted in
+The bridge layout is depicted schematically in
 figure~\ref{subfig:koenigsberg-scheme}. Is it possible for a citizen of
 K\"onigsberg to leave home, cross each bridge exactly once and return? The
 answer is no and it was proven by Euler using a reduction of the problem as
 shown in figure~\ref{subfig:koenigsberg-graph}. Landmasses are reduced to
 circles and their connections via bridges is shown as lines between them. This
 simplification makes it easy to realise why the answer to the formerly posed
-question is no. It is clear that the landmasses would need to be connected by
-and even number of bridges for the desired traversal to exist.
+question is no. It is clear that the landmasses would need to be connected by an
+even number of bridges for the desired traversal to exist.
 
 Mathematically, a graph $G$ is a triple that contains a vertex set $V(G)$ and
 an edge set $E(G)$ that connects pairs of vertices via their endpoints. Edges
@@ -2538,13 +2538,13 @@ overall energy, allowing the energy to be expressed in terms of the contact
 number $N_c$.
 %
 \begin{align}
-    E=-\varepsilon N_c=-\varepsilon \sum\limits_{i>j} \mathcal{A}_{ij}
+    E=-\varepsilon N_c=-\varepsilon \sum\limits_{i>j} A_{ij}
 \end{align}
 %
-This allows the clusters to be represented by adjacency matrices $\mathcal{A}$,
-where a contact state is represented by a matrix element of $\mathcal{A}_{ij}=1$
+This allows the clusters to be represented by adjacency matrices $\mathbf{A}$,
+where a contact state is represented by a matrix element of $A_{ij}=1$
 and every other position by
-$\mathcal{A}_{ij}=0$.\autocite{Arkus_DerivingFiniteSphere_2011} The problem of
+$A_{ij}=0$.\autocite{Arkus_DerivingFiniteSphere_2011} The problem of
 minimising the energy now becomes a problem of maximising the contact number
 $N_c$, or the number of 1 entries in the adjacency matrix. The adjacency matrix
 of a cluster will be symmetric, which means there are $2^{N(N- 1)/2}$ different
@@ -2573,13 +2573,13 @@ investigations revealed the existence of rigid structures with $N_c<
 all inter-particle distances are completely defined by the adjacency matrix.
 Starting from $N=5$ there will be at least one unknown inter-particle distance,
 which needs to be determined algebraically. For this, the distance matrix
-$\mathcal{D}$ needs to be constructed from the adjacency matrix. This can be
+$\mathbf{D}$ needs to be constructed from the adjacency matrix. This can be
 achieved by defining $3N-6$ equations (and $N(N-1)/2 - (3N-6)$ inequalities)
 from the adjacency information.
 %
 \begin{align}
-    \mathcal{A}_{ij}=1\rightarrow r_{ij}=2r\\
-    \mathcal{A}_{ij}=0\rightarrow r_{ij}>2r
+    A_{ij}=1\rightarrow r_{ij}=2r\\
+    A_{ij}=0\rightarrow r_{ij}>2r
 \end{align}
 %
 If two spheres are fixed at the origin and along one of the, axis the system
@@ -2592,12 +2592,12 @@ examine clusters bound by the \ac{SHS} potential.
 A set of geometric elimination rules and distance rules have been derived by
 \citeauthor{Arkus_DerivingFiniteSphere_2011}\autocite{Arkus_DerivingFiniteSphere_2011}.
 An elimination rule sorts out unphysical adjacency matrices, while a distance
-rule solves for the mapping $\mathcal{A}_{ij}\to \mathcal{D}_{ij}$. These rules
+rule solves for the mapping $A_{ij}\to D_{ij}$. These rules
 can be derived from geometric considerations about the neighbourhood of a
 sphere. If another sphere touches a sphere of radius $r$, it must lie on the
 surface of a sphere with radius $R=2r$. For two spheres in contact, their
 surrounding spheres intersect and form an \textit{intersection circle} with
-radius $\frac{\sqrt{3}}{2}R$. Therefore, each matrix element $\mathcal{A}_{ij}$
+radius $\frac{\sqrt{3}}{2}R$. Therefore, each matrix element $A_{ij}$
 can be related to and intersection circle between spheres $i$ and $j$. Several
 rules can be derived from considering the intersection circles of the particles,
 for instance, the fact that more than one intersection circle can only intersect
