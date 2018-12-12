@@ -75,25 +75,26 @@ simplification makes it easy to realise why the answer to the formerly posed
 question is no. It is clear that the landmasses would need to be connected by an
 even number of bridges for the desired traversal to exist.
 
-Mathematically, a graph $G$ is a triple that contains a vertex set $V(G)$ and
-an edge set $E(G)$ that connects pairs of vertices via their endpoints. Edges
-can form a loop by having both endpoints on the same vertex and multiple edges
-can connect the same vertices. However, simple graphs don't contain loops and
-multiple edges and are more important for most practical applications. A simple
-graph can now be defined by a set of unordered pairs of vertices by defining
-each edge as $e=uv$ or $e=vu$ with $u$ and $v$ being the endpoints (or
-vertices) of the edges. Then, neighbouring or adjacent vertices are those that
-share an edge.
+Mathematically, a \textit{graph} $G$ is a triple that contains a \textit{vertex
+set} $V(G)$ and an \textit{edge set} $E(G)$ that connects pairs of vertices via
+their endpoints. Edges can form a \textit{loop} by having both endpoints at the
+same vertex and multiple edges can connect the same vertices. However,
+\textit{simple graphs} don't contain loops and multiple edges and are more
+important for most practical applications. A simple graph can now be defined by
+a set of unordered pairs of vertices by defining each edge as $e=uv$ or $e=vu$
+with $u$ and $v$ being the endpoints (or vertices) of the edges. Then,
+neighbouring or adjacent vertices are those that share an edge.
 
 Graphs are often just represented as a graph drawing such as
 figure~\ref{subfig:koenigsberg-graph}, however, sometimes it can be useful to
 introduce a matrix representation. A simple graph $G$ with vertex set
 $V(G)=\{v_1,v_2,\dots,v_n\}$ and edge set $E(G)=\{e_1,e_2,\dots,e_m\}$ can be
-defined by writing an adjacency matrix $\mathbf{A}$ that encodes the
-edge-connectivity of the vertex set, i.e. $A$ is a $n\cross n$ matrix where
-each matrix element $a_{ij}$ represents the number of edges that connect $v_i$
-and $v_j$. For the K\"onigsberg Bridge problem one possible adjacency matrix
-that corresponds to ordering the vertices alphabetically by their label is:
+defined by writing an \textit{adjacency matrix} $\mathbf{A}$ that encodes the
+edge-connectivity of the vertex set, i.e. $\mathbf{A}$ is a $n\times n$ matrix
+where each matrix element $A_{ij}$ represents the number of edges that connect
+$v_i$ and $v_j$. For the K\"onigsberg Bridge problem one possible adjacency
+matrix that corresponds to ordering the vertices alphabetically by their label
+is:
 %
 \begin{equation}
     \mathbf{A}=
@@ -105,29 +106,31 @@ that corresponds to ordering the vertices alphabetically by their label is:
     \end{pmatrix}.
 \end{equation}
 %
-And adjacency matrix is always symmetric and it can be used to easily determine
-the vertex degree, that is the number of edges connected to a particular
-vertex, by calculating the sum over all entries in the corresponding row or
-column. 
+An adjacency matrix is always symmetric and it can be used to easily determine
+the \textit{vertex degree}, that is the number of edges connected to a
+particular vertex, by calculating the sum over all entries in the corresponding
+row or column. 
 
-Alternatively, the incidence matrix $M$ is an $n \cross m$ matrix where each
-matrix element $m_{ij}$ is either $1$ or $0$ depending on whether $v_i$ is an
-endpoint of $e_j$. If the matrix element $m_{ij}$ is $1$ the vertex $v_i$ and
-edge $e_j$ are said to be incident.
+Alternatively, the \textit{incidence matrix} $M$ is an $n \cross m$ matrix where
+each matrix element $m_{ij}$ is either $1$ or $0$ depending on whether $v_i$ is
+an endpoint of $e_j$. If the matrix element $m_{ij}$ is $1$ the vertex $v_i$ and
+edge $e_j$ are incident.
 
 The labelling of the vertices in figure~\ref{subfig:koenigsberg-graph} is
 arbitrary and so is the ordering of the rows and columns in the adjacency
 matrix. It is clear that a different ordering still describes the same graph
 object and should therefore have no influence on the properties of the graph.
 Permutation of the vertex labelling for a given simple graph $G$ that turns the
-vertex set $V(G)$ into the vertex set $V(H)$ is called a bijection. If such a
-bijection exists the graphs $G$ and $H$ are isomorphic to each other.
+vertex set $V(G)$ into the vertex set $V(H)$ is called a \textit{bijection}. If
+such a bijection exists the graphs $G$ and $H$ are isomorphic to each other.
+This property is important for the discussion of a specific type of cluster
+later on in this thesis (chapter~\ref{sec:SHSClusters}).
 
 If it is possible to order the vertices of a simple graph in such a way that
 only two consecutively listed vertices are adjacent, the graph can be called a
-path. An extension of this concept is the cycle, that requires an equal number
-of vertices and edges so that the graph can be drawn as a circle of
-consecutively listed vertices. Consequently, removing an edge from a cycle
+\textit{path}. An extension of this concept is the \textit{cycle}, that requires
+an equal number of vertices and edges so that the graph can be drawn as a circle
+of sequentially listed vertices. Consequently, removing an edge from a cycle
 always yields a path. In many applications (e.g. road networks) it is not
 necessary for the whole graph to represent a path or a cycle, but it is only
 important whether the graph contains a path or a cycle. If the graph $G$
@@ -244,11 +247,12 @@ in figure~\ref{fig:disconnectedgraph}.
     one contains the other three vertices.} \label{fig:disconnectedgraph}
 \end{figure}
 %
-The maximally connected sub-graphs of a graph are called its components. In
-figure~\ref{fig:disconnectedgraph} the vertex B forms one component, while the
-rest of the vertices form a second one. The vertex B is an isolated vertex as
-it is of degree zero. A graph consisting of only isolated vertices is called a
-trivial graph with each vertex forming its own trivial component.
+The maximally connected sub-graphs of a graph are called its
+\textit{components}. In figure~\ref{fig:disconnectedgraph} the vertex B forms
+one component, while the rest of the vertices form a second one. The vertex B is
+an \textit{isolated vertex} as it is of degree zero. A graph consisting of only
+isolated vertices is called a \textit{trivial graph} with each vertex forming
+its own trivial component.
 
 Adding edges to any graph either reduces the number of components by 1 or 0,
 and therefore the minimum number of components is at least $n-m$. This can be
@@ -257,12 +261,13 @@ that the number of components $k$ changes by one with each of the $m$ edges. An
 edge that increases the number of components upon deletion is also called a
 \textit{cut-edge}.
 
-An important concept utilised in the last chapter of this thesis is that of
-induced sub-graphs. If we remove a list of vertices $T$ from a graph $G$ the
-vertex-induced sub-graph $H$ with the vertex set $V(H)=V(G)-T$ is obtained. All
-edges incident to one of the removed edges need to be removed as well. Removing
-the edge set $S$ results in the edge-induced sub-graph $I$ with the edge set
-$E(I)=E(G)-S$, which leaves the vertex set unchanged.
+An important concept utilised in chapter~\ref{sec:thegregorynewtonclusters} of
+this thesis is that of induced sub-graphs. If we remove a list of vertices $T$
+from a graph $G$ the vertex-induced sub-graph $H$ with the vertex set
+$V(H)=V(G)-T$ is obtained. All edges incident to one of the removed edges need
+to be removed as well. Removing the edge set $S$ results in the edge-induced
+sub-graph $I$ with the edge set $E(I)=E(G)-S$, which leaves the vertex set
+unchanged.
 
 \section{Planar Graphs}
 \label{sec:PlanarGraphs}
@@ -442,6 +447,16 @@ surface, \protect\subref{subfig:icostretch2} fully flattened surface shows a
 plane graph.}
 \label{fig:icographtransform}
 \end{figure}
+%
+Notice how no connections were broken in the process, which means the resulting
+graph accurately represents the connectivity of the original polyhedron.
+
+A plane graph sections the area of the graph into regions (or faces), one of
+which is exterior while all others are interior. The exterior region is the only
+one that is not finite. A region is enclosed by a closed walk and its degree is
+equal to the number of edges contained in the walk. 
+
+%euler formula + proof
 
 \chapter{Quantum Chemistry}
 \label{sec:basicsofQC}
