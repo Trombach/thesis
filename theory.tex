@@ -456,7 +456,132 @@ which is exterior while all others are interior. The exterior region is the only
 one that is not finite. A region is enclosed by a closed walk and its degree is
 equal to the number of edges contained in the walk. 
 
-%euler formula + proof
+A relation between the number of vertices $|V|$, regions $|F|$ and edges $|E|$ in a
+planar graph is given by Euler's polyhedral formula.
+%
+\begin{align}
+    |V|-|E|+|F|=2\label{eqn:Euler}
+\end{align}
+%
+There exist a large amount of proofs for this formula, one of which was
+published shortly after Euler's death by
+Cauchy.\autocite{Patterson_AspectsEulerTheorem_1977} Take any graph derived from
+a convex polyhedron like the cubic graph shown in
+figure~\ref{subfig:EulerProofa}.
+%
+\begin{figure}[htb]\centering
+    \subfloat[$8-12+6=2$\label{subfig:EulerProofa}]{
+    \begin{tikzpicture}[every node/.style = {anchor=center}]
+        \node (A) {};
+        \node [right = 2cm of A.center] (B) {};
+        \node [below = 2cm of B.center] (C) {};
+        \node [left = 2cm of C.center] (D) {};
+        \node [below right = 0.5cm of A.center] (E) {};
+        \node [right = 1cm of E.center] (F) {};
+        \node [below = 1cm of F.center] (G) {};
+        \node [left = 1cm of G.center] (H) {};
+
+        \draw [thick] (A.center) -- (B.center) -- (C.center) -- (D.center) -- (A.center);
+        \draw [thick] (E.center) -- (F.center) -- (G.center) -- (H.center) -- (E.center);
+        \draw [thick] (A.center) -- (E.center);
+        \draw [thick] (B.center) -- (F.center);
+        \draw [thick] (C.center) -- (G.center);
+        \draw [thick] (D.center) -- (H.center);
+    \end{tikzpicture}
+    }\hspace{1cm}
+    \subfloat[$8-17+11=2$\label{subfig:EulerProofb}]{
+        \begin{tikzpicture}[every node/.style = {anchor=center}]
+            \node (A) {};
+            \node [right = 2cm of A.center] (B) {};
+            \node [below = 2cm of B.center] (C) {};
+            \node [left = 2cm of C.center] (D) {};
+            \node [below right = 0.5cm of A.center] (E) {};
+            \node [right = 1cm of E.center] (F) {};
+            \node [below = 1cm of F.center] (G) {};
+            \node [left = 1cm of G.center] (H) {};
+    
+            \draw [thick] (A.center) -- (B.center) -- (C.center) -- (D.center) -- (A.center);
+            \draw [thick] (E.center) -- (F.center) -- (G.center) -- (H.center) -- (E.center);
+            \draw [thick] (A.center) -- (E.center);
+            \draw [thick] (B.center) -- (F.center);
+            \draw [thick] (C.center) -- (G.center);
+            \draw [thick] (D.center) -- (H.center);
+            \draw [thick] (A.center) -- (F.center);
+            \draw [thick] (B.center) -- (G.center);
+            \draw [thick] (C.center) -- (H.center);
+            \draw [thick] (D.center) -- (E.center);
+            \draw [thick] (E.center) -- (G.center);
+        \end{tikzpicture}
+        }\hspace{1cm}
+        \subfloat[$8-16+10=2$\label{subfig:EulerProofc}]{
+            \begin{tikzpicture}[every node/.style = {anchor=center}]
+                \node (A) {};
+                \node [right = 2cm of A.center] (B) {};
+                \node [below = 2cm of B.center] (C) {};
+                \node [left = 2cm of C.center] (D) {};
+                \node [below right = 0.5cm of A.center] (E) {};
+                \node [right = 1cm of E.center] (F) {};
+                \node [below = 1cm of F.center] (G) {};
+                \node [left = 1cm of G.center] (H) {};
+        
+                \draw [thick]  (C.center) -- (D.center) -- (A.center) -- (B.center);
+                \draw [thick] (E.center) -- (F.center) -- (G.center) -- (H.center) -- (E.center);
+                \draw [thick] (A.center) -- (E.center);
+                \draw [thick] (B.center) -- (F.center);
+                \draw [thick] (C.center) -- (G.center);
+                \draw [thick] (D.center) -- (H.center);
+                \draw [thick] (A.center) -- (F.center);
+                \draw [thick] (B.center) -- (G.center);
+                \draw [thick] (C.center) -- (H.center);
+                \draw [thick] (D.center) -- (E.center);
+                \draw [thick] (E.center) -- (G.center);
+            \end{tikzpicture}
+            }
+    \caption{\protect\subref{subfig:EulerProofa} Graph of a cube, \protect\subref{subfig:EulerProofb} triangulation of the internal regions of the same graph, \protect\subref{subfig:EulerProofc} removal of one face and edge.}
+    \label{fig:EulerProof}
+\end{figure}
+%
+As shown in figure~\ref{subfig:EulerProofb}, add edges such that every internal
+region becomes a triangle. This procedure increases both $E$ and $F$, therefore
+not affecting the result of equation~\eqref{eqn:Euler}. In the final step of the
+proof, the triangles are removed one by one starting from the outside boundary
+of the graph. This can either be achieved by removing one edge and a face as
+shown in figure~\ref{subfig:EulerProofc} or two edges and one vertex and one
+face, again leaving equation~\eqref{eqn:Euler} unchanged. In the end, only one
+internal region will remain: a triangle. This triangle will always result from
+the procedure described above no matter which planar graph the procedure was
+started from. Equation~\eqref{eqn:Euler} for this triangle is $3 - 3 + 2 = 2$,
+therefore proving Euler's relation to be true. The result $2$ of Euler's
+polyhedral formula is true for convex polyhedra and is also called the
+\textit{Euler characteristic} $\chi$. The formula can be extended to other
+objects via this value. It is directly related to the genus $g$ of an object via
+the relation
+%
+\begin{align}
+    \chi=2-2g.
+\end{align}
+%
+Even for disconnected graphs the formula can be modified and expressed in terms
+of the number of connected components $k$ of the graph.
+%
+\begin{align}
+    |V|- |E| + |F| = k + 1
+\end{align}
+
+Euler's polyhedral formula is very simple, but nevertheless very powerful. For
+example, it shows a symmetry between the number of regions and the number of
+vertices in a graph, because exchanging $V$ and $F$ doesn't change its result.
+This property is known as \textit{duality}. The geometric dual of a graph $G'$
+has $|V|$ faces and $|F|$ vertices, while the edge count remains unchanged. It
+can be constructed by considering the neighbouring regions of an edge $e$. If
+$e$ is between region $A$ and $B$, then the corresponding dual edge $e'$
+connects the vertices $a$ and $b$ of the dual graph $G'$. Repeating this
+procedure for all edges of $G$ results in a graph that is its geometric dual.
+
+\section{Algorithms for Graph Analysis}
+\label{sec:AlgorithmGraph}
+
+
 
 \chapter{Quantum Chemistry}
 \label{sec:basicsofQC}
