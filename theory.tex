@@ -578,8 +578,33 @@ $e$ is between region $A$ and $B$, then the corresponding dual edge $e'$
 connects the vertices $a$ and $b$ of the dual graph $G'$. Repeating this
 procedure for all edges of $G$ results in a graph that is its geometric dual.
 
-\section{Algorithms for Graph Analysis}
+\section{Graph Matching}
 \label{sec:AlgorithmGraph}
+
+Isomorphism and sub-graph isomorphism are important properties to determine
+similarities and equalities between graphs. In either way, the procedure is
+required to find a mapping $M$ between the vertices of two graphs, which depends
+on the external constraints imposed on it. Such a mapping is a bijection and
+can be expressed by ordered pairs of vertices $(a,b)$.
+%
+\begin{align}
+    M=\{(a_1,b_1),(a_2,b_2)\dots\}
+\end{align}
+%
+Mappings have to created vertex by vertex, so initially all mappings start as
+partial mappings that only contain a subset of the vertices of both graphs. This
+mapping can be found by simply computing all possible partial solutions, that
+satisfy the desired isomorphism type. However, this becomes increasingly
+expensive for larger graphs and more efficient methods have been developed. The
+\textit{VF} algorithm\autocite{Cordella_SubgraphTransformationsInexact_1998},
+for example, uses feasibility rules to rule out partial mappings that will
+definitely not result in a mapping with the desired properties. This can reduce
+the size of the problem substantially, as dead-end solutions will be removed
+early in the procedure. The \textit{VF} algorithms memory footprint has been
+improved in the \textit{VF2}
+implementation,\autocite{Cordella_ImprovedAlgorithmMatching_2001} which is the
+version included in the \textit{boost graph
+library}\autocite{Siek_BoostGraphLibrary_2002} utilised in this thesis.
 
 
 
