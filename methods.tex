@@ -3,7 +3,7 @@
 \part{Methods}
 \label{sec:methods}
 
-\chapter{Program \textsc{Spheres}}
+\chapter{Program Package \textsc{Spheres}}
 \label{sec:theprogramspheres}
 
 In the projects outlined in
@@ -14,10 +14,10 @@ required to be created. The optimisation routine needed to be flexible in the
 way that it would be easy to implement different two-body potentials like
 \ac{LJ} or \ac{eLJ}. Furthermore, the program needed to be able to analyse the
 results regarding structure, energy and the matrix of second derivatives. The
-resulting program was written in \Cpp and was tested to compile in a Linux
-environment with the \texttt{clang++} compiler version 6.0. In the following
-sections, main features are explained and more important functionalities are
-outlined in more detail.
+resulting program was written in \Cpp with standard library version 11 and was
+tested to compile in a Linux environment with the \texttt{clang++} compiler
+version 6.0. In the following sections, main features are explained and more
+important functionalities are outlined in more detail.
 
 A final version of the source code will be provided in combination with this
 thesis.
@@ -25,14 +25,14 @@ thesis.
 \section{Structural Optimisation and Analysis}
 \label{sec:generalstructure}
 
-The main functions of the program are implemented in three different executable
-programs. Each carries out a different task, i.e. optimising given input
+The main functionality of the program is implemented in three different
+executables. Each carries out a different task, i.e. optimising given input
 structures and output the results, removing duplicate structures from a set of
 input structures and finding differences of two sets of input structures. The
 programs are set up in such a way that their outputs can be used as input files
 for the other program parts. This allows the programs to be used sequentially
-while retaining the flexibility of using each executable program separately.
-This chain-like execution scheme is depicted in
+while retaining the flexibility of using each executable separately. This
+chain-like execution scheme is depicted in
 figure~\ref{fig:OptimisationAnalyseScheme}. 
 %
 \begin{figure}[htb]\centering
@@ -76,8 +76,8 @@ figure~\ref{fig:OptimisationAnalyseScheme}.
 
 \end{tikzpicture}
     \caption{Schematic representation of the optimisation, analysis and
-    matching procedure. Red circles: program input or output, blue squares:
-    program functions.}
+    matching procedure. Red circles: program input or output, blue ellipses:
+    program executions.}
     \label{fig:OptimisationAnalyseScheme}
 \end{figure}
 %
@@ -95,27 +95,30 @@ coordinates of structures that are missing from either set 1 or 2 (Output 3).
 \label{sec:optimisationofinputstructures}
 
 The optimisation of input structures with a chosen potential can be carried out
-with the program \texttt{optimize}. The coordinates of the input structures
-have to be provided in a single file where each line contains three numbers
+with the program \texttt{optimize}. The coordinates of the input structures have
+to be provided in a single file where each line contains three numbers
 representing the position of one sphere. Multiple structures can be included by
 separating the list of coordinates by single blank lines. The program
 automatically moves the input structures to their respective centres of mass,
-and rotates them into the principal axis system. To speed up the optimisation
-the Unix variable \texttt{OMP\_NUM\_THREADS} can be set to a value greater than
-one to enable \ac{OMP} parallelisation. Each optimisation is carried out in a
-separate thread, while the number of simultaneously running threads is equal to
-\texttt{OMP\_NUM\_THREADS}.
+and rotates them onto the principal axis system. To speed up the optimisation
+the environment variable \texttt{OMP\_NUM\_THREADS} can be set to a value
+greater than one to enable \ac{OMP} parallelisation. Each optimisation is
+carried out in a separate thread, while the number of simultaneously running
+threads is equal to \texttt{OMP\_NUM\_THREADS}.
 
-The optimisation can be controlled by setting parameters in the
-\texttt{settings} file using the \texttt{opt} keyword. The optimisation model
-can be chosen with the \texttt{name} tag, which currently can be set to either
-\texttt{BFGS} for the \ac{BFGS} algorithm or \texttt{CG} for the conjugate
-gradient method. The optimiser uses the machine learning library
-dlib\autocite{King_DlibmlMachineLearning_2009} as a back-end, which allows for
-the implementation of additional optimisation models with relative ease. The energy
-termination criterion is defined using the \texttt{dforce} tag and the
-maximum number of steps can be set with the \texttt{nsteps} tag. An example is
-given in the box below.
+Various parameters of the program run can be controlled using a
+\texttt{settings} file in the working directory, which is parsed with help of
+the library
+\textit{libconfig}.\autocite{Lindner_libconfiglibraryprocessing_2018} For
+example, the optimisation can be controlled using the \texttt{opt} group. In
+this group, the optimisation model can be chosen with the \texttt{name} setting,
+which currently can be set to either \texttt{BFGS} for the \ac{BFGS} algorithm
+or \texttt{CG} for the conjugate gradient method. The optimiser uses the machine
+learning library dlib\autocite{King_DlibmlMachineLearning_2009} as a back-end,
+which allows for the implementation of additional optimisation models with
+relative ease. The energy termination criterion is defined using the
+\texttt{dforce} setting and the maximum number of steps can be set with the
+\texttt{nsteps} setting. An example is given in the box below.
 %\begin{figure}[ht]
 %
 \begin{Verbatim}[frame=single,label=settings file - opt tag]
@@ -131,7 +134,7 @@ A potential model has to be chosen for the optimisation procedure. Custom models
 can be added easily, which will be explained later. The current implementation
 allows the selection of three pair potentials, \ac{LJ}, \ac{eLJ} and a \ac{LJ}
 potential with a cut-off range. For the \ac{LJ} potential four parameters have
-to be given to the \texttt{potential} tag as shown in the box below.
+to be given to the \texttt{potential} group as shown in the box below.
 %
 %\begin{figure}[htb]
 \begin{Verbatim}[frame=single,label=settings file - potential tag]
@@ -145,16 +148,16 @@ potential: {
 \end{Verbatim}
 %\end{figure}
 %
-The \texttt{name} tag enables the \ac{LJ} potential to be used and the four
-parameters \texttt{epsilon}, \texttt{rm}, \texttt{exp1} and \texttt{exp2} define
-the potential. The values shown in the example are the default values, which the
+The \texttt{name} setting enables the \ac{LJ} potential and the four parameters
+\texttt{epsilon}, \texttt{rm}, \texttt{exp1} and \texttt{exp2} define the
+potential. The values shown in the example are the default values, which the
 program will fall back to if no values are provided by the user. The \ac{eLJ}
-potential can be chosen by setting the \texttt{name} tag to \texttt{ELJ} and a
-range cut-off value can be chosen with the \texttt{RangeLJ} potential. For the
+potential can be chosen by setting the \texttt{name} setting to \texttt{ELJ} and
+a range cut-off value can be chosen with the \texttt{RangeLJ} potential. For the
 \ac{eLJ}potential the $c_n$ coefficients have to be provided in a separate file
-named \texttt{ext}, where each line contains two numbers. The first integer
-represents $n$ and the second floating point number defines the corresponding
-coefficient.
+located in the working directory and named \texttt{ext}, where each line
+contains two numbers. The first integer represents $n$ and the second floating
+point number defines the corresponding coefficient.
 
 After each structural optimisation the program checks if the result is a true
 minimum by calculating the Hessian matrix eigenvalues. If this check fails the
@@ -166,37 +169,51 @@ five re-optimisations is reached.
 
 The resulting structures are printed in the file \texttt{coord} in the same
 format as the input. To analyse the optimisation procedure the additional files
-\texttt{opt} and \texttt{reopt} are printed, which contain the intermediate
-steps of the optimisation and re-optimisation procedures for each individual
+\texttt{opt} and \texttt{reopt} are created, which contain the intermediate
+coordinates of the optimisation and re-optimisation procedures for each individual
 input structure.
 
 \subsection{Removing Duplicate Structures}
 \label{sec:analysingresults}
 
 Duplicated geometries in a set of input structures can be identified using the
-second sub-program \texttt{analyze}. The input has to be provided in the same
-format as for the \texttt{optimize} program. The read-in procedure is
-equivalent to the \texttt{optimize} program. The program uses two
-methods to identify unique structures, one of which uses the energy of the
-cluster as a criterion, therefore the \texttt{potential} tag has to be set in
-the \texttt{settings} file.
+second program \texttt{analyze}. The input has to be provided in the same format
+as for the \texttt{optimize} program. The read-in procedure is equivalent to the
+\texttt{optimize} program. The program uses two methods to identify unique
+structures, one of which uses the energy of the cluster as a criterion,
+therefore the \texttt{potential} group has to be set in the \texttt{settings}
+file.
 
 The first method uses four values to uniquely identify a structure. Those are
 the values for energy and the three eigenvalues of the moment of inertia tensor.
-This sorting procedure uses a \verb|map| container, which is an implementation
-of a binary search tree. This allows the algorithm to scale well with the number
-of structures to be analysed. The \verb|map| container contains a \verb|key| and
-a \verb|value| field and elements of a \verb|map| are guaranteed to be stored in
-order.\autocite{Stroustrup_programminglanguage_2000} In this specific case the
-ordering is done by energy first, then smallest moment of inertia tensor
-eigenvalue followed by the two larger moment of inertia tensor eigenvalues. The
-\texttt{map} container maps the \texttt{key}, which is the combination of energy
-and moment of inertia eigenvalues, to a \texttt{value}, which, in this case, is
-simply the number of structures. 
-
-The advantage of this method is its great scalability with respect to the
-number of input structures as values can be retrieved quickly based on the
-key.
+This sorting procedure uses a \verb|map| container from the \Cpp standard
+library, which is an implementation of a binary search tree. The \verb|map|
+stores key-value pairs, which are guaranteed to be stored in order with respect
+to the key.\autocite{Stroustrup_programminglanguage_2000} In this specific case,
+the ordering is implemented as a custom comparator function that sorts by energy
+first, then smallest moment of inertia tensor eigenvalue followed by the two
+larger moment of inertia tensor eigenvalues. The comparator function returns
+\texttt{true} if the first argument is considered smaller than the second
+argument. This procedure is shown as pseudocode in algorithm~\ref{algo:sortEI}. 
+%
+\begin{algorithm}[htp]
+    \caption{Comparator function for sorting by energy $E$ and moment of inertia eigenvalues $I_1\leq I_2\leq I_3$.}
+    \label{algo:sortEI}
+    \begin{algorithmic}[1]
+        \Procedure{Compare}{structure $a$, structure $b$}
+            \If{$E^a < E^b$} \State \textbf{return} true
+            \ElsIf{$E^a = E^b$ \textbf{and} $I_1^a < I_1^b$} \State \textbf{return} true
+            \ElsIf{$E^a = E^b$ \textbf{and} $I_1^a = I_1^b$ \textbf{and} $I_2^a < I_2^b$} \State \textbf{return} true
+            \ElsIf{$E^a = E^b$ \textbf{and} $I_1^a = I_1^b$ \textbf{and} $I_2^a = I_2^b$ \textbf{and} $I_3^a < I_3^b$} \State \textbf{return} true
+            \Else \State \textbf{return} false
+            \EndIf
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+%
+The key is mapped to a value, which is simply the number of structures.
+The advantage of this method is its great scalability with respect to the number
+of input structures as values can be retrieved quickly based on the key.
 
 The second method uses the \ac{EDM} as the differentiation criterion. The
 \ac{EDM} is the matrix of all inter-particle distances $d_{ij}$ where
@@ -206,18 +223,19 @@ each entry is defined as the Euclidean norm $||\cdot||$ between to spheres.
     d_{ij}=||\mathbf{x}_i-\mathbf{x}_j||^2
 \end{align}
 %
-The \ac{EDM} represents a unique embedding of the cluster in space, however
-information about the absolute position and orientation are lost on creation.
-That means rigid transformations of clusters (translations, rotations,
-reflections) don't affect the \ac{EDM} as they don't change fixed distances
-between points in space.\autocite{Dokmanic_EuclideanDistanceMatrices_2015} If at
-least one inter-particle distance is different, the structures are said to be
-not equal. The algorithm is implemented such a way that a structure's distance
-matrix is compared to the distance matrix of all other already sorted structures
-and is added to the matching group if they are equal up to a set threshold. If
-not, the structure is added to the array as a new group. If the optimisation
-resulted in many unique structure, this method of sorting becomes slow, as each
-trial structure has to be compared to all other already sorted structure groups.
+Each unique embedding of the cluster in space can be represented by a \ac{EDM},
+however information about the absolute position and orientation is not contained
+in this representation. That means rigid transformations of clusters
+(translations, rotations, reflections) don't affect the \ac{EDM} as they don't
+change fixed distances between points in
+space.\autocite{Dokmanic_EuclideanDistanceMatrices_2015} If at least one
+inter-particle distance is different, the structures are said to be not equal.
+The algorithm is implemented such a way that a structure's distance matrix is
+compared to the distance matrix of all other already sorted structures and is
+added to the matching group if they are equal up to a set threshold. If not, the
+structure is added to the array as a new group. If the optimisation resulted in
+many unique structures, this method of sorting becomes slow, as each trial
+structure has to be compared to all other already sorted structure groups.
 
 \subsection{Matching Structures}
 \label{sec:matchingstructures}
@@ -236,34 +254,39 @@ directory for further analysis.
 
 Graph theoretical analysis of cluster structures can be done with
 \verb|ico-subgraph|, which is a very specialised program designed to compare
-contact graphs of \ac{GN} clusters to the icosahedral graph. The input format
-for the structures remains unchanged. 
+contact graphs of \ac{GN} clusters\footnote{This part of the program was used in
+chapter~\ref{sec:thegregorynewtonclusters}. For a definition of contact graphs
+and \ac{GN} clusters refer to the introduction in that part of the thesis.} to
+the icosahedral graph. The input format for the structures remains unchanged.
 
-All graph objects are handled by the \textit{boost graph
-library}\autocite{Siek_BoostGraphLibrary_2002} and are implemented as
-undirected graphs as the direction of the connectivity in clusters is
-not meaningful. The graphs are automatically generated from three-dimensional
-coordinate input given by an object of type \verb|structure|. Two types of
-graphs can be generated from these: (1) the graph of the complete structure and
-(2) the contact graph containing all spheres but the central one (if it
-exists). The latter is the more important one as it was used to carry out the
-analyses in chapter~\ref{sec:thegregorynewtonclusters}. The decision whether
-two spheres are connected is based on two parameters, the equilibrium distance
-and a threshold value. The default values for these are $1$ and $10^{-10}$,
-respectively.
+All graph objects are handled by the \textit{Boost Graph
+Library}\autocite{Siek_BoostGraphLibrary_2002} and are implemented as undirected
+graphs as the direction of the connectivity in clusters is not meaningful. The
+graphs are automatically generated from three-dimensional coordinate input given
+by an object of type \verb|structure|. Two types of graphs can be generated from
+these: (1) the graph of the complete structure and (2) the contact graph
+containing all spheres but the central one (if it exists). The latter is the
+more important one as it was used to carry out the analyses in
+chapter~\ref{sec:thegregorynewtonclusters}. The decision whether two spheres are
+connected is based on two parameters: the equilibrium distance $r_e$ and a
+threshold value $\epsilon$. The default values for these are $r_e=1$ and
+$\epsilon=10^{-10}$, respectively.
 
-The icosahedral graph is generated from three-dimensional coordinate input and
-is compared to the input structures via their graphs and the \textit{VF2}
+\begin{align}
+    d_{ij}-r_e < \epsilon
+\end{align}
+
+The icosahedral graph is compared to the input structures via their graphs and
+the \textit{VF2} graph matching
 algorithm.\autocite{Cordella_ImprovedAlgorithmMatching_2001,Cordella_SubGraphIsomorphism_2004}
-The algorithm finds all mappings of the vertices of the icosahedral graph to
-the graph of the input structure. As the icosahedron represents the complete
-planar graph for 12 vertices, every graph that is a subgraph of the icosahedral
-graph can be represented by the number and type of edges removed from the
-icosahedral graph. For this application the mapping was chosen based on the
-\ac{RMS} value of the distances between the spheres formerly connected by edges
-in the icosahedral graph. From all the possible mappings of the investigated
-graphs to the icosahedral graph the one with the lowest \ac{RMS} value was
-chosen.
+The algorithm finds all mappings of the vertices of the icosahedral graph to the
+graph of the input structure. As the icosahedron represents the complete planar
+graph for 12 vertices, every graph that is a subgraph of the icosahedral graph
+can be represented by the number and type of edges removed from the icosahedral
+graph. For this application the mapping was chosen based on the \ac{RMS} value
+of the distances between the spheres corresponding to removed edges. From all
+the possible mappings of the investigated graphs to the icosahedral graph the
+one with the lowest \ac{RMS} value was chosen.
 
 The graphs of the input structures are analysed with respect to their vertex
 and face degrees. Vertex degrees are calculated directly by the library and can
@@ -281,22 +304,21 @@ from the icosahedral graph as shown in table~\ref{tab:icosubgraphs}
 (page~\pageref{tab:icosubgraphs}).
 
 
-\section{Additional Functions}
+\section{Additional Functionalities}
 \label{sec:AdditionalFunctions}
 
 Besides the main parts of the program, which have been described on the previous
-pages, some script-like executable programs are provided. These were used to
-calculate various different properties of the investigated clusters and will be
-briefly explained in the following.
+pages, a few script-like executable programs are provided. These were used to
+calculate various different properties of the investigated clusters.
 
 \paragraph{Analyse Bond Lengths}%app-bondvariance app-shortestbond (app-N14?)
 The bond variance in optimised structures can be calculated with
 \texttt{app-bondvariance}. The bond variance is simply defined as the difference
 between the shortest and longest bond of a cluster structure. In clusters
 optimised by soft potentials a bond is not as well defined as for \ac{SHS}
-clusters. Therefore, it has to be determined with respect to a user-provided
-threshold value and the variance of the bond lengths can not be larger than this
-threshold. This application has been used in
+clusters. Therefore, it has to be determined with respect to a threshold value
+and the variance of the bond lengths can not be larger than this threshold. This
+application has been used in
 chapter~\ref{sec:612LennardJonesClustersfromBasinHopping} to calculate the bond
 variance of the optimised $(6,12)$-\ac{LJ} structures. A more specialised
 version called \texttt{app-shortestbond} is also provided that can be used to
@@ -305,7 +327,7 @@ find the cluster with the shortest bond distance.
 \paragraph{Sort Structures by $N_c$}%app-GN and app-Nc
 
 Analysing the total contact numbers $N_c$ or specific kissing numbers can be
-done with the programs \texttt{app-Nc} and \texttt{app-GN}. The letter looks
+done with the programs \texttt{app-Nc} and \texttt{app-GN}. The latter looks
 for clusters with a central atom that has exactly 12 spheres arranged around
 it, so called Gregory-Newton clusters.
 
@@ -322,7 +344,7 @@ The main purpose of program \textsc{Spheres} was to optimise an input set of
 structures with given Cartesian coordinates and analyse the results of the
 optimisation based on properties of the resulting structures. The handling of
 those structures and respective properties was therefore crucial to the
-function of the program.
+functioning of the program.
 
 The Cartesian coordinates are read from a file and for each individual set of
 coordinates a \verb|structure| object is created. The \verb|structure| class,
@@ -349,8 +371,8 @@ As the clusters investigated in this thesis are only made up of one type of
 particle the mass term was set to unity. The inertia tensor $\mathbf{I}$ can
 then be calculated via the equations below.
 %
-\begin{align}
-    \begin{aligned}
+\begin{gather}
+    \begin{gathered}
     \mathbf{I}=
     \begin{pmatrix}
         I_{xx} & I_{xy} & I_{xz}\\
@@ -358,9 +380,9 @@ then be calculated via the equations below.
         I_{zx} & I_{zy} & I_{zz}
     \end{pmatrix}\\
     I_{xx}=\sum_i(y_i^2+z_i^2) \quad I_{yy}=\sum_i(x_i^2+z_i^2) \quad I_{xx}=\sum_i(y_i^2+x_i^2)\\
-    I_{xy} = I_{yx} = -\sum_ix_iy_i \quad I_{xz} = I_{zx} = -\sum_ix_iz_i \quad I_{yz} = I_{zy} = -\sum_iy_iz_i\\
-    \end{aligned}
-\end{align}
+    I_{xy} = I_{yx} = -\sum_ix_iy_i \quad I_{xz} = I_{zx} = -\sum_ix_iz_i \quad I_{yz} = I_{zy} = -\sum_iy_iz_i
+    \end{gathered}
+\end{gather}
 %
 Here, $x_i$, $y_i$ and $z_i$ denote the respective coordinate of sphere $i$.
 Diagonalising the inertia tensor yields a set of eigenvalues and eigenvectors,
