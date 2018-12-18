@@ -2066,7 +2066,7 @@ The same procedure can be applied to the second derivative to calculate a
 Hessian matrix. Again, the important part is to separate the scalar energy
 function from vector parts. This leads to the following equations.
 %
-\begin{align}
+\begin{gather}
     \pdv{E(\mathbf{X})}{x_m}{x_n}=\sum_{j>i}^N\left[  
     \begin{array}{ll}
     \pdv[2]{\varepsilon(r_{ij})}{{r_{ij}}}\  
@@ -2081,7 +2081,7 @@ function from vector parts. This leads to the following equations.
     \pdv{\mathbf{r}_{ij}}{x_n} 
     \end{array}
     \right]\\
-    \begin{aligned}
+    \begin{gathered}
     \nabla^2 E(\mathbf{X})=\\
     \begin{pmatrix}
         \pdv*[2]{E(\mathbf{X})}{{x_1}} & \pdv*{E(\mathbf{X})}{x_1}{x_2} & \ldots & \pdv*{E(\mathbf{X})}{x_1}{x_{3N}}\\
@@ -2089,8 +2089,8 @@ function from vector parts. This leads to the following equations.
         \vdots & \vdots & \ddots & \vdots\\
         \pdv*{E(\mathbf{X})}{x_{3N}}{x_1} & \pdv*{E(\mathbf{X})}{x_{3N}}{x_2} & \ldots & \pdv*[2]{E(\mathbf{X})}{{x_{3N}}}
     \end{pmatrix}
-    \end{aligned}
-\end{align}
+    \end{gathered}
+\end{gather}
 
 \section{Global Optimisation}
 \label{sec:GlobalOptimisation}
