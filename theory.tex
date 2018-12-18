@@ -2242,7 +2242,7 @@ first application it was shown that a genetic algorithm can lead to convergence
 towards the global minimum in far fewer steps then for example the simulated
 annealing method.\autocite{Hartke_Globalgeometryoptimization_1993}
 
-There are many other optimization algorithms for finding stationary points on a PES, for example the particle swarm algorithm to name just one, all with their advantages and disadvantages ... Hier fhlt noch ein Schlusssatz.
+There are many optimization algorithms for search for stationary points on a PES all with their advantages and disadvantages. Only few were mentioned here used in cluster optimizations.
 
 
 
@@ -2251,7 +2251,7 @@ There are many other optimization algorithms for finding stationary points on a 
 
 Systems of large numbers of atoms or complete scans of potential hypersurfaces
 are usually not treatable by accurate quantum chemical methods as introduced in
-chapter~\ref{sec:basicsofQC}. In those cases more simple potentials have to be
+chapter~\ref{sec:basicsofQC}. In those cases more simple interaction potentials have to be
 employed, without loosing crucial information about the system. In the following
 sections two potentials used in this thesis will be introduced. If not noted
 otherwise the following sections are based on a book by
@@ -2276,7 +2276,7 @@ polynomial to experimental data obtained from various gases. It is often
 sufficient to focus on the first three virial coefficients to obtain a useful
 equation of state. 
 
-This formulation cane be generalised in terms of Taylor expansion
+This formulation can be generalised in terms of Taylor expansion
 %
 \begin{align}
     \frac{pv}{RT}=1+\frac{B}{v}+\frac{C}{v^2}+\frac{D}{v^3}+\dots,\label{eqn:VirialEquationOfState}
@@ -2290,7 +2290,8 @@ coefficients are 0, equation~\eqref{eqn:VirialEquationOfState} is equal to the
 ideal gas equation, which means that the virial coefficients are connected to
 the interactions between gas molecules not included in the ideal gas law.
 Analytic expressions for the virial coefficients can be derived as explained in
-the following section.
+the following section. It is clear that convergence of this expansion is realized
+if the  virial coefficients are small compared to the volume $v$.
 
 \subsection{Equation of State from the Partition Function}
 \label{sec:equationofstatefromthepartitionfunction}
@@ -2479,7 +2480,7 @@ $m$ and $n$ set to 1 and 2, respectively. The general idea behind these two
 potential forms was already discussed earlier in the beginning of the 20th
 century by
 \citeauthor{Mie_ZurkinetischenTheorie_1903}\autocite{Mie_ZurkinetischenTheorie_1903}.
-In all those potentials attractive and repulsive distance dependant terms are
+In all those potentials attractive and repulsive distance dependent terms are
 combined such that the resulting potential energy function has a minimum value
 at some equilibrium distance. For distances larger than the equilibrium distance
 the potentials approach zero asymptotically from below, while they diverge
@@ -2524,7 +2525,7 @@ force constants for various gases showing the same long-range behaviour from
 studying their equation of
 state.\autocite{Jones_DeterminationMolecularFields_1924,Jones_atomicfieldshelium_1925,Lennard-Jones_theoreticalcalculationsphysical_1925,Lennard-Jones_molecularfieldshydrogen_1926,Lennard-Jones_equationstategaseous_1927}
 
-The repulsive part is more complicated, as it can not be derived directly form
+The repulsive part is more complicated, as it can not be derived directly from
 the equation of state. Lennard-Jones used lattice parameters and heats of
 sublimation from experiments to fit his potential. He found $n=12$ and $m=6$ to
 fit the data well, giving rise to the most commonly used form of the \ac{LJ}
@@ -2563,7 +2564,8 @@ $i=18$ and also some odd numbered
 ones.\autocite{Jerabek_relativisticcoupledclusterinteraction_2017} In both cases
 the coefficients $c_i$ are determined by a fitting procedure to very accurate
 dissociation curves of the respective dimer molecules calculated by
-coupled-cluster theory.
+coupled-cluster theory. Such a potential has the advantage that for the solid state
+the cohesive energy can be expressed analytically in terms of lattice sums.\autocite{Schwerdtfeger_ExtensionLennardJonespotential_2006}
 
 \subsection{Lennard-Jones Clusters}
 \label{sec:LJClusters}
@@ -2571,11 +2573,11 @@ coupled-cluster theory.
 The \ac{LJ} potential has been used extensively to study nucleation of clusters
 and as a benchmark for global optimisation methods
 (section~\ref{sec:GlobalOptimisation}). From the derivation of the \ac{LJ}
-potential as a interaction potential to get analytical solutions for the second
-virial coefficient it should be clear, that it is a rather crude approximation
+potential as a interaction potential to obtain analytical solutions for the second
+virial coefficient, it should be clear that it is a rather crude approximation
 for the forces between atoms in a cluster of the size of a few atoms.
 Nevertheless, the \ac{LJ} potential is capable of making verifiable predictions
-especially in the case of rare gas
+especially in the case of the rare gas
 clusters.\autocite{Wales_Energylandscapes_2003} For example, the most stable
 arrangement is often predicted to be a Mackay icosahedron in agreement with
 experimental results.\autocite{Kakar_SizedependentKedgeEXAFS_1997} The reason
@@ -2697,7 +2699,7 @@ presented in equation~\eqref{eqn:SHSpotential}.
 Similar to the \ac{LJ} clusters, the \ac{SHS} clusters can be found by
 investigating combinations of spheres that minimise the potential in
 equation~\eqref{eqn:SHSpotential}. As the \ac{SHS} potential is not a continuous
-function, optimisation methods can not be used to investigate the potential
+function, common optimisation algorithms can not be used to investigate the potential
 energy landscape. However, the nature of the \ac{SHS} potential results in a
 neat property that allows the clusters to be defined in terms of graph theory.
 Only pairs of spheres that have the right distance of $r=r_s$ contribute to the
@@ -2718,11 +2720,11 @@ of a cluster will be symmetric, which means there are $2^{N(N- 1)/2}$ different
 combinations that could all potentially represent a cluster structure. To find
 all possible packings, all adjacency matrices have to be analysed with respect
 to their suitability for a stable cluster structure, a method called
-\textit{exact enumeration}. A lot of the possible adjacency matrices can be
+\textit{exact enumeration}. A large number of possible adjacency matrices can be
 rejected immediately, because they represent an already found structure with a
 different particle labelling. This particle labelling degeneracy is due to the
 fact that the spheres are all equal and therefore swapping two rows or columns
-in the adjacency matrix won't change the underlying cluster structure. If two
+in the adjacency matrix will not change the underlying cluster structure. If two
 adjacency matrices correspond to the same structure they are said to be
 \textit{isomorphic} (see chapter~\ref{sec:DefinitionGraph}).
 
@@ -2751,7 +2753,7 @@ from the adjacency information.
 %
 If two spheres are fixed at the origin and along one of the, axis the system
 consists of $3N-6$ variable coordinates and is therefore completely defined by
-the equations above. In case the structure has more contacts than $3N-6$ the
+the equations above (???). In case the structure has more contacts than $3N-6$ the
 system is overdefined, but still solvable. Deriving an efficient method for
 mapping the adjacency matrix into the distance matrix is the crucial step to
 examine clusters bound by the \ac{SHS} potential.
@@ -2779,6 +2781,6 @@ have been published. The results by
 \citeauthor{Holmes-Cerfon_EnumeratingRigidSphere_2016}\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}
 also showed evidence of so called hypostatic clusters with less than $3N-6$
 contacts. This is due to the fact that in this study a modification of the exact
-enumeration method was used, which follows on-dimensional transition paths
+enumeration method was used, which follows one-dimensional transition paths
 created from breaking a random contact in an already found cluster. An overview
 of these results can be found in table~\ref{tab:comp} (page~\pageref{tab:comp}).
