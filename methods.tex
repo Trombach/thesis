@@ -408,7 +408,8 @@ between the properties and the coordinates they refer to.
 
 For the geometry optimisation of the cluster structures, methods to calculate
 energy and gradient need to be provided to the optimisation library. As shown in
-section~\ref{sec:PracticalImplementationForPotentialsDependingOnPairDistances} the gradient can be expressed as in equation~\eqref{eqn:gradient}.
+section~\ref{sec:PracticalImplementationForPotentialsDependingOnPairDistances}
+the gradient can be expressed as in equation~\eqref{eqn:gradient}.
 %
 \begin{align}
     \pdv{E(\mathbf{X})}{x_m}=\sum_{j>i}^N\pdv{\varepsilon(r_{ij})}{r_{ij}}\ \pdv{r_{ij}}{\mathbf{r}_{ij}}\ \pdv{\mathbf{r}_{ij}}{x_m}\label{eqn:gradient}
@@ -432,19 +433,18 @@ the constructor and the user-accessible functions for calculating energy,
 gradient vector and Hessian matrix as well as the optimiser.
 
 As and example, the \Cpp implementation for the member function that calculates
-the redundant part of equation~\eqref{eqn:gradient} is shown in
-listing~\ref{code:energy}.
+the energy of the system is shown in listing~\ref{code:energy}.
 %
 \begin{lstlisting}[caption={Implementation of the redundant part of the energy calculation.},label=code:energy,float=htb]
-  double pairPotential::calcEnergy (structure &S) {
-    double f(0);
-    for (int i = 0; i < S.nAtoms(); i++) {
-      for (int j = i + 1; j < S.nAtoms(); j++) {
-        f += this->E (coord3d::dist (S[i],S[j]));
-      }
+double pairPotential::calcEnergy (structure &S) {
+  double f(0);
+  for (int i = 0; i < S.nAtoms(); i++) {
+    for (int j = i + 1; j < S.nAtoms(); j++) {
+      f += this->E (coord3d::dist (S[i],S[j]));
     }
-  return f;
   }
+return f;
+}
 \end{lstlisting}
 %
 The method takes a \verb|structure| object as input and uses the virtual energy
@@ -481,15 +481,19 @@ class LJ : public pairPotential {
 \end{lstlisting}
 %
 A different potential can be implemented in the same way. A new derived class
-has to be defined, containing the methods to calculate energy, gradient and
-Hessian values. Additionally, a function that reads parameters that define the
+has to be defined, containing the methods to calculate energy, first and second
+derivative. Additionally, a function that reads parameters that define the
 respective potential form has to be provided. By design, the function needs to
-return a pointer to an instantiation of the class on heap memory. In case of the
+return a pointer to an instance of the class on heap memory. In case of the
 \ac{LJ} potential this can be achieved by the following code.
 %
 \begin{lstlisting}
-LJ *potential = new LJ(epsilon, rm, exp1, exp2);
-return potential;
+LJ *LJ::readPotential () {
+  //instructions to read parameters from file go here
+
+  LJ *potential = new LJ(epsilon, rm, exp1, exp2);
+  return potential;
+}
 \end{lstlisting}
 %
 Because memory on heap has to be managed by the user, the pointer should be used
@@ -497,12 +501,11 @@ in conjunction with \verb|unique_ptr| to ensure destruction of the object upon
 exiting the scope. An example for this is given below.
 %
 \begin{lstlisting}
+//read potentialName from settings file
+
 std::unique_ptr< pairPotential > potential;
-switch (status) {
-  case 1: //case 1 is the LJ potential
-    potential.reset( LJ::readPotential() );
-    break;
-  //other cases
+if (potentialName = "LJ") {
+  potential.reset( LJ::readPotential() );
 }
 \end{lstlisting}
 
