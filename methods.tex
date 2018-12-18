@@ -346,30 +346,37 @@ optimisation based on properties of the resulting structures. The handling of
 those structures and respective properties was therefore crucial to the
 functioning of the program.
 
-The Cartesian coordinates are read from a file and for each individual set of
-coordinates a \verb|structure| object is created. The \verb|structure| class,
-however, holds much more functionality than storing 3D coordinates. In fact, it
-serves as a complex data type storing properties besides coordinates as well as
-functions to calculate those properties. Those properties are stored in
-variables defined in the private block, such that they can only be manipulated
-by functions owned by the \verb|structure| class. Alongside Cartesian
-coordinates the \verb|structure| class is designed to hold values for energy
-(depending on the chosen potential), an integer number for labelling, moment of
-inertia, the \ac{EDM} and adjacency matrix representations and an
-\verb|undirectedGraph| that contains the connectivity information.
+The Cartesian coordinates are read from a file with blank lines separating
+different starting geometries. For each of these individual sets of coordinates
+a \verb|structure| object is created. The \verb|structure| class, however, has
+much more functionality than storing 3D coordinates. In fact, it serves as a
+complex data type storing properties besides coordinates as well as member
+functions to calculate those properties. They are stored in data members defined
+in private fields, such that they can only be manipulated by functions owned by
+the \verb|structure| class. The \verb|structure| class is designed to store
+values for:
+\begin{itemize}
+    \item Cartesian coordinates
+    \item energy (depending on the chosen potential), 
+    \item an integer number for labelling, 
+    \item moment of inertia, 
+    \item the \ac{EDM} and adjacency matrix representations and
+    \item an \verb|undirectedGraph| that contains the connectivity information.
+\end{itemize}
 
-The Cartesian coordinates are stored in a \verb|std::vector| container, while
-each individual sphere is represented by a \verb|coord3d| object. The latter is
-a modified version of the \verb|coord3d| implementation used in program
-FULLERENE.\autocite{Schwerdtfeger_Programfullerenesoftware_2013} 
+The Cartesian coordinates of each individual sphere are stored in an object of
+type \texttt{coord3d}, which is a modified version of the \verb|coord3d|
+implementation used in program
+\textsc{Fullerene}.\autocite{Schwerdtfeger_Programfullerenesoftware_2013} 
 
 The moment of inertia tensor determines the force needed to accelerate a rigid
-body to spin around a rotational axis. It is therefore equivalent to mass in
-case of linear, translational acceleration. For cluster structures the tensor
-is equal to the sum over the moments of inertia of all constituent particles.
-As the clusters investigated in this thesis are only made up of one type of
-particle the mass term was set to unity. The inertia tensor $\mathbf{I}$ can
-then be calculated via the equations below.
+body to spin around a rotational axis through the origin of the coordinate
+system. It is therefore analogous to mass in case of linear, translational
+acceleration. For cluster structures the tensor is equal to the sum over the
+moments of inertia of all constituent particles. As the clusters investigated in
+this thesis are only made up of one type of particle the mass term was set to
+unity. The inertia tensor $\mathbf{I}$ can then be calculated via the equations
+below.
 %
 \begin{gather}
     \begin{gathered}
@@ -391,91 +398,113 @@ with the latter representing the principal axis system. Upon creation of a
 coordinate origin lies at the centre of mass and the structures principal axis
 are aligned with the basis vectors of the Cartesian coordinate system.
 
-The class is designed to ensure the stored coordinates always match the stored
-properties.
+The class is designed to ensure that when any of the particles coordinates
+changes all properties are recalculated such that there is never a mismatch
+between the properties and the coordinates they refer to.
 
 
 \subsection{Treating Two-Body Potentials}
 \label{sec:thepairpotentialclass}
 
-As shown in
-section~\ref{sec:PracticalImplementationForPotentialsDependingOnPairDistances}
-the scalar energy part can be completely separated from the vector part. This
-was used to implement energy, gradient and Hessian calculations in a generic
-way such that the energy function can be exchanged easily. 
+For the geometry optimisation of the cluster structures, methods to calculate
+energy and gradient need to be provided to the optimisation library. As shown in
+section~\ref{sec:PracticalImplementationForPotentialsDependingOnPairDistances} the gradient can be expressed as in equation~\eqref{eqn:gradient}.
+%
+\begin{align}
+    \pdv{E(\mathbf{X})}{x_m}=\sum_{j>i}^N\pdv{\varepsilon(r_{ij})}{r_{ij}}\ \pdv{r_{ij}}{\mathbf{r}_{ij}}\ \pdv{\mathbf{r}_{ij}}{x_m}\label{eqn:gradient}
+\end{align}
+%
+The last two terms of the sum will be the same independent of the choice for the
+potential function $\varepsilon(r_{ij})$. The implementation therefore was
+focused on reducing redundancies by making use of class inheritance features. As
+explained in the following paragraphs, this makes exchanging the type of
+two-body potential trivial.
 
-For this, a base class called \verb|pairPotential| was defined. Its private
-block holds virtual definitions of the functions that calculate energy $E(r)$,
-first derivative $\dv*{E}{r}$ and second derivative $\dv*[2]{E}{r}$ based on
-particle distance $r$. They are declared virtual, because they will be
-overridden with the respective functions in the derived classes of the actual
-potentials. In the bare \verb|pairPotential| class those functions are not
-returning a meaningful energy. The public block contains the class constructor
-as well as the user accessible functions for calculating energy, gradient
-vector and Hessian matrix as well as the optimiser.
+For this, a base class called \verb|pairPotential| was defined. It is an
+abstract class and therefore can not be instantiated. Its private fields hold
+declarations of virtual methods for calculating energy $E(r)$, first derivative
+$\dv*{E}{r}$ and second derivative $\dv*[2]{E}{r}$ based on particle distance
+$r$. They are declared virtual, because they will be overwritten with the
+respective functions in the derived classes of the actual potentials. In the
+bare \verb|pairPotential| class those functions are only declared but never
+defined and cannot be used for calculations. The public members of the class are
+the constructor and the user-accessible functions for calculating energy,
+gradient vector and Hessian matrix as well as the optimiser.
 
-As an example, the calculation of the energy of a structure as implemented in
-the base class is shown in algorithm~\ref{algo:EnergyCalculation}.
+As and example, the \Cpp implementation for the member function that calculates
+the redundant part of equation~\eqref{eqn:gradient} is shown in
+listing~\ref{code:energy}.
 %
-\begin{algorithm}
-    \caption{Energy calculation.}
-    \label{algo:EnergyCalculation}
-    \begin{algorithmic}[1]
-        \Procedure{calculateEnergy}{Structure}
-        \ForAll{Unique Pairs of Spheres in Structure}
-                \State $E\gets E +$ Energy(Sphere1, Sphere2);\label{algo:virtualEnergy}
-        \EndFor
-        \State \textbf{return} $E$;
-        \EndProcedure
-    \end{algorithmic}
-\end{algorithm}
+\begin{lstlisting}[caption={Implementation of the redundant part of the energy calculation.},label=code:energy,float=htb]
+  double pairPotential::calcEnergy (structure &S) {
+    double f(0);
+    for (int i = 0; i < S.nAtoms(); i++) {
+      for (int j = i + 1; j < S.nAtoms(); j++) {
+        f += this->E (coord3d::dist (S[i],S[j]));
+      }
+    }
+  return f;
+  }
+\end{lstlisting}
 %
-The procedure takes a \verb|structure| object as input and uses the virtual
-energy function to calculate the energy contributions of all pairs of spheres
-without double counting in line~\ref{algo:virtualEnergy}.
+The method takes a \verb|structure| object as input and uses the virtual energy
+function to calculate the energy contributions of all unique pairs of spheres.
+The method \texttt{nAtoms()} returns the number of spheres in the
+\texttt{structure} and \texttt{dist} calculates the Euclidean distance between
+two spheres \texttt{i} and \texttt{j}.
 
-To define a potential a derived class that overrides the virtual function
-definitions needs to be provided. The private block re-defines the previously
-declared virtual functions to be non-virtual and a proper definition has to be
-given for the potential to work. Additionally, any parameters, that the
-potential form depends on, are declared in the private block. In the
-public section, constructor functions for the respective potential as well as a
-function that reads the potential parameters from a user provided file need to
-be declared. The last function is important as it also creates the potential
-object on heap memory, which is necessary, because the exact nature of the
-potential is not known at compile time. A pseudo-code example for the \ac{LJ}
-potential in reduced units with arbitrary exponents $a$ and $b$ is given in
-algorithm~\ref{algo:LJEnergyFunction}.
+To define a potential, a derived class that overwrites the virtual function
+declarations is required. The virtual member functions of the base class are
+overwritten in the private field of the derived class by providing properly
+defined methods. Additionally, any parameters, that the potential form depends
+on, are declared in the private fields. In the public fields, constructors for
+the respective potential as well as a function that reads the potential
+parameters from a user provided file need to be declared. The last function is
+important as it also creates a pointer to the potential object on heap memory,
+which is necessary, because the exact nature of the potential is not known at
+compile time. For the \ac{LJ} potential the energy function can be defined as
+shown in listing~\ref{code:LJenergy}. The variables starting with an underscore
+are data members defined on object creation and refer to the two exponents
+\texttt{\_exp1} and \texttt{\_exp2} the equilibrium distance \texttt{\_rm} and the
+depth of the potential energy well \texttt{\_epsilon}.
 %
-\begin{algorithm}
-    \caption{Lennard-Jones energy function.}
-    \label{algo:LJEnergyFunction}
-    \begin{algorithmic}[1]
-        \Procedure{Energy}{Sphere1, Sphere2}
-            \State $r \gets$ Distance(Sphere1, Sphere2);
-            \State $E \gets \frac{1}{b-a}\left[ar^{-b}-br^{-a}\right]$;
-            \State \textbf{return} $E$;
-        \EndProcedure
-    \end{algorithmic}
-\end{algorithm}
+\begin{lstlisting}[caption={Implementation of the distance dependant energy for the Lennard-Jones potential.},label=code:LJenergy,float=htb]
+class LJ : public pairPotential {
+  private:
+    double E (double distance) {
+      return (_epsilon / (_exp1/_exp2 - 1)) 
+             * ( (pow (_rm / distance, _exp1)) - (_exp1/_exp2) 
+             * (pow (_rm / distance, _exp2)) );
+    }
+    //methods for first and second derivatives go here
+};
+\end{lstlisting}
 %
-To define a new potential the only line that has to be changed is the third
-line containing the evaluation of the \ac{LJ} energy and a method for reading
-the parameters for the new potential from an external file has to be
-implemented. The function that reads the parameters has to be written such
-that its return value is a pointer to an instantiation of that class on the
-heap memory. An example for the \ac{LJ} potential is given below.
+A different potential can be implemented in the same way. A new derived class
+has to be defined, containing the methods to calculate energy, gradient and
+Hessian values. Additionally, a function that reads parameters that define the
+respective potential form has to be provided. By design, the function needs to
+return a pointer to an instantiation of the class on heap memory. In case of the
+\ac{LJ} potential this can be achieved by the following code.
 %
-\begin{verbatim}
-    LJ *potential = new LJ(epsilon, rm, exp1, exp2);
-\end{verbatim}
+\begin{lstlisting}
+LJ *potential = new LJ(epsilon, rm, exp1, exp2);
+return potential;
+\end{lstlisting}
 %
-The first line declares the pointer \verb|potential| to be an instantiation of
-the \verb|LJ| class and is created by the previously defined constructor
-\verb|LJ(epsilon, rm, exp1, exp2)| and the \verb|new| keyword, that ensures the
-creation of the pointer on heap memory. Because memory on heap has to be
-managed by the user, the pointer is used in conjunction with \verb|unique_ptr|
-to ensure destruction of the object upon exiting the scope.
+Because memory on heap has to be managed by the user, the pointer should be used
+in conjunction with \verb|unique_ptr| to ensure destruction of the object upon
+exiting the scope. An example for this is given below.
+%
+\begin{lstlisting}
+std::unique_ptr< pairPotential > potential;
+switch (status) {
+  case 1: //case 1 is the LJ potential
+    potential.reset( LJ::readPotential() );
+    break;
+  //other cases
+}
+\end{lstlisting}
 
 \chapter{Computational Details}
 \label{sec:ComputationalDetails}
