@@ -2098,14 +2098,14 @@ function from vector parts. This leads to the following equations.
 In the most simple case, the objective function possesses only one (global)
 minimum. However, in a real scenario, like in a cluster or molecule bound by a
 physical interaction potential, there can be many local minima connected by
-higher order stationary points. Knowledge about the nature and location of these
-stationary points is crucial for a thorough understanding of the underlying
+first order stationary points. Knowledge about the nature and location of first- and higher-order
+stationary points is crucial for a thorough understanding of the topology of the underlying
 system. The global minimum is an important information as it represents the most
 likely configuration of the system and efforts are usually focussed on locating
 this particular arrangement. As this requires the whole configuration space to
 be scanned, local minima will also be located with global optimisation methods
-as a side effect. Such global optimisation problems belong the the class of
-``NP-complete'' problems, meaning no algorithm is known that is guaranteed to
+as a side effect. Such global optimisation problems belong the the complexity class of
+``NP-complete'' problems, meaning no algorithm is currently known that is guaranteed to
 find a solution within a time scaling as a power of the system size. However, a
 multitude of heuristic global optimisation algorithms have been proposed and a
 few selected ones will be discussed briefly in the following sections.
@@ -2181,7 +2181,7 @@ iterative method, simulated annealing has the advantage of not getting stuck in
 local minima as it is always possible to transition out of a local minimum at
 non-zero temperature. To locate the global minimum with a simulated annealing
 method the temperature needs to decrease logarithmically with time, which makes
-this method rather computationally expensive. The rate at which the temperature
+this method computationally rather expensive. The rate at which the temperature
 decreases is called an annealing schedule and is usually chosen empirically.
 %
 \\\newline
@@ -2241,6 +2241,8 @@ parallel as multiple pairs of parents can be treated simultaneously. In its
 first application it was shown that a genetic algorithm can lead to convergence
 towards the global minimum in far fewer steps then for example the simulated
 annealing method.\autocite{Hartke_Globalgeometryoptimization_1993}
+
+There are many other optimization algorithms for finding stationary points on a PES, for example the particle swarm algorithm to name just one, all with their advantages and disadvantages ... Hier fhlt noch ein Schlusssatz.
 
 
 
