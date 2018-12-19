@@ -2098,15 +2098,16 @@ function from vector parts. This leads to the following equations.
 In the most simple case, the objective function possesses only one (global)
 minimum. However, in a real scenario, like in a cluster or molecule bound by a
 physical interaction potential, there can be many local minima connected by
-first order stationary points. Knowledge about the nature and location of first- and higher-order
-stationary points is crucial for a thorough understanding of the topology of the underlying
-system. The global minimum is an important information as it represents the most
-likely configuration of the system and efforts are usually focussed on locating
-this particular arrangement. As this requires the whole configuration space to
-be scanned, local minima will also be located with global optimisation methods
-as a side effect. Such global optimisation problems belong the the complexity class of
-``NP-complete'' problems, meaning no algorithm is currently known that is guaranteed to
-find a solution within a time scaling as a power of the system size. However, a
+first order stationary points. Knowledge about the nature and location of first-
+and higher-order stationary points is crucial for a thorough understanding of
+the topology of the underlying system. The global minimum is an important
+information as it represents the most likely configuration of the system and
+efforts are usually focussed on locating this particular arrangement. As this
+requires the whole configuration space to be scanned, local minima will also be
+located with global optimisation methods as a side effect. Such global
+optimisation problems belong the the complexity class of ``NP-complete''
+problems, meaning no algorithm is currently known that is guaranteed to find a
+solution within a time scaling as a power of the system size. However, a
 multitude of heuristic global optimisation algorithms have been proposed and a
 few selected ones will be discussed briefly in the following sections.
 
@@ -2242,8 +2243,10 @@ first application it was shown that a genetic algorithm can lead to convergence
 towards the global minimum in far fewer steps then for example the simulated
 annealing method.\autocite{Hartke_Globalgeometryoptimization_1993}
 
-There are many optimization algorithms for search for stationary points on a PES all with their advantages and disadvantages. Only few were mentioned here used in cluster optimizations.
-
+The algorithms mentioned in this section represent only a subset of all
+available global optimisation methods for the search of stationary points on a
+\ac{PES}. Other algorithms that can be used to solve the problem at hand are,
+for example, the particle swarm algorithm or the ant colony optimisation method.
 
 
 \chapter{Interaction Potentials}
@@ -2290,8 +2293,8 @@ coefficients are 0, equation~\eqref{eqn:VirialEquationOfState} is equal to the
 ideal gas equation, which means that the virial coefficients are connected to
 the interactions between gas molecules not included in the ideal gas law.
 Analytic expressions for the virial coefficients can be derived as explained in
-the following section. It is clear that convergence of this expansion is realized
-if the  virial coefficients are small compared to the volume $v$.
+the following section. It is clear that this expansion converges if the virial
+coefficients are small compared to the volume $v$.
 
 \subsection{Equation of State from the Partition Function}
 \label{sec:equationofstatefromthepartitionfunction}
@@ -2564,8 +2567,9 @@ $i=18$ and also some odd numbered
 ones.\autocite{Jerabek_relativisticcoupledclusterinteraction_2017} In both cases
 the coefficients $c_i$ are determined by a fitting procedure to very accurate
 dissociation curves of the respective dimer molecules calculated by
-coupled-cluster theory. Such a potential has the advantage that for the solid state
-the cohesive energy can be expressed analytically in terms of lattice sums.\autocite{Schwerdtfeger_ExtensionLennardJonespotential_2006}
+coupled-cluster theory. For such a potential the cohesive energy of the solid
+state can be expressed analytically in terms of lattice
+sums.\autocite{Schwerdtfeger_ExtensionLennardJonespotential_2006}
 
 \subsection{Lennard-Jones Clusters}
 \label{sec:LJClusters}
@@ -2751,12 +2755,13 @@ from the adjacency information.
     A_{ij}=0\rightarrow r_{ij}>2r
 \end{align}
 %
-If two spheres are fixed at the origin and along one of the, axis the system
-consists of $3N-6$ variable coordinates and is therefore completely defined by
-the equations above (???). In case the structure has more contacts than $3N-6$ the
-system is overdefined, but still solvable. Deriving an efficient method for
-mapping the adjacency matrix into the distance matrix is the crucial step to
-examine clusters bound by the \ac{SHS} potential.
+The system has $3N$ variable coordinates, but by fixing one sphere at the origin
+of the coordinate system and a second one along one of the coordinate axis, the
+number can be reduced to $3N-6$, and the system is completely defined by the
+equations above. In case the structure has more contacts than $3N-6$ the system
+is overdefined, but still solvable. Deriving an efficient method for mapping the
+adjacency matrix into the distance matrix is the crucial step to examine
+clusters bound by the \ac{SHS} potential.
 
 A set of geometric elimination rules and distance rules have been derived by
 \citeauthor{Arkus_DerivingFiniteSphere_2011}\autocite{Arkus_DerivingFiniteSphere_2011}.
