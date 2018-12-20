@@ -57,7 +57,7 @@ photoelectron spectra of small gold clusters.\autocite{Ji-2005,Bulusu_Evidenceho
 On the following pages the relationship between carbon and gold fullerene cages
 in terms of their topology is investigated. The similarities arise from the
 fact, that topological features known for carbon
-fullerenes\autocite{Cataldo-Ori-2011,Schwerdtfeger_topologyfullerenes_2015},
+fullerenes\autocite{Cataldo-Ori-2011,Schwerdtfeger_topologyfullerenes_2015,Fowler-atlas-2006},
 like the Goldberg-Coxeter
 transformation,\autocite{Goldberg_ClassMultiSymmetricPolyhedra_1937,Coxeter-1971}
 can also be applied to golden fullerenes to construct larger structures. A new
@@ -141,133 +141,227 @@ spectra.
 %Topological Aspects
 \section{\label{sec:TopAsp}Topological Aspects}
 
-Fullerenes show rich and mathematically interesting topological
-features\autocite{Cataldo-Ori-2011,Schwerdtfeger_topologyfullerenes_2015},
-which have been described for example in the works of Fowler and
-Manolopoulos\autocite{Fowler-atlas-2006}, and most recently by our research
-group in Auckland.\autocite{Schwerdtfeger_topologyfullerenes_2015} They can be
-thought of by wrapping a graphene sheet around a sphere (or more generally a
-genus 0 surface), but introducing 12 pentagons (no more and no less) to fulfil
-Euler's polyhedral formula, 
+The construction of carbon fullerenes can be explained by starting from a
+graphene sheet and wrapping it around a sphere\footnote{Or any surface with
+genus 0.}, which requires 12 of the hexagonal faces to be replaced by pentagons. This is a requirement imposed by Euler's polyhedral formula.
 %
-\begin{equation}
-  \label{eq:euler} 
-  N + F -E = \chi 
-\end{equation}
+\begin{align}
+    |N|-|E|+|F|=\chi
+\end{align}
 %
-where $N$ is the number of vertices (atoms), $F$ is the number of faces
-(rings), $E$ is the number of edges (bonds) and $\chi$ is called the Euler
-characteristic with $\chi=2$ for convex
-polyhedra.\autocite{Kotschick_TopologyCombinatoricsSoccer_2006} Euler's formula
-already shows the symmetry between the number of vertices $N$ and the number of
-faces $F$, as their role can be interchanged without violating Euler's theorem.
-Interchanging the roles of vertices and faces in a graphene sheet leads to a
-(111) sheet (surface) of an (for example) fcc structure adopted in bulk gold
-(both belonging to the hexagonal 2D lattice group \textit{p3m1}), where the
-dual vertex is in the center of the hexagon connected by edges to the
-neighboring dual vertices. Several smaller gold clusters found in the search
-for global minima are in fact cut-outs from this (111) fcc
-sheet,\autocite{Assadollahzadeh_systematicsearchminimum_2009} denoted as
-\textit{p3m1}-T in the following (see figure~\ref{fig:graphenedual}). To view
-it in a different way, the hexagons in the graphene sheets are exactly the
-Voronoi cells in the \textit{p3m1}-T sheet. As an interesting side aspect we
-mention the helical multi-shell (chiral) gold nanowires found experimentally by
-Kondo and Takayanagi,\autocite{Kondo-2000} which are duals of multi-shell
-(chiral) carbon nanotubes.\autocite{Johansson_Au3224CaratGolden_2004} These
-gold nanowires can be constructed exactly in the same way as carbon nanotubes
-using the chiral vector $C_h(n,m)$ on a hexagonal sheet as described in detail
-for example by Dresselhaus and co-workers.\autocite{Dresselhaus-1992} As an
-example we show the $D_\mathrm{6d}$ fullerene nanotube and its dual structure in
-figure~\ref{fig:nanotubedual}.
+Here, $|N|$ is the number of vertices (or atoms), $|E|$ the number of edges (or
+bonds), $|F|$ the number of faces and $\chi=2-2g$ the Euler characteristic,
+which is $2$ for genus $g=2$ surfaces as in convex polyhedra. As shown in
+section~\ref{sec:PlanarGraphs} the number of faces and vertices can be exchanged
+without changing the result of Euler's formula. This is also called a dual
+transformation and in case of the graphene sheet this transformation results in
+a (111) \ac{fcc} sheet of for example a gold bulk. Because the symmetry is
+preserved by this transformation both objects belong to the hexagonal 2D lattice
+group \textit{p3m1}. To distinguish the two sheets the graphene sheet will be
+denoted \textit{p3m1}-G and the gold sheet \textit{p3m1}-T (figure~\ref{fig:graphenedual}).
 
 \begin{figure}[htb]
-\begin{center}
-    \subfloat[\label{subfig:graphene-sheet}]{\includegraphics[width=.4\textwidth]{golddual/sheets/graphene.png}}\hspace{.05\textwidth}
-    \subfloat[\label{subfig:gold-sheet}]{\includegraphics[width=.4\textwidth]{golddual/sheets/gold.png}}
-    \caption{\protect\subref{subfig:graphene-sheet} \textit{p3m1}-G graphene and
-    \protect\subref{subfig:gold-sheet} its dual sheet \textit{p3m1}-T adopted in (111)
-    surface of fcc gold.}
-\label{fig:graphenedual}
-\end{center}
+    \begin{center}
+        \subfloat[\label{subfig:graphene-sheet}]{\includegraphics[width=.4\textwidth]{golddual/sheets/graphene.png}}\hspace{.05\textwidth}
+        \subfloat[\label{subfig:gold-sheet}]{\includegraphics[width=.4\textwidth]{golddual/sheets/gold.png}}
+        \caption{\protect\subref{subfig:graphene-sheet} \textit{p3m1}-G graphene and
+        \protect\subref{subfig:gold-sheet} its dual sheet \textit{p3m1}-T adopted in (111)
+        surface of fcc gold.}
+    \label{fig:graphenedual}
+    \end{center}
 \end{figure}
+
+Small cut-outs of the \textit{p3m1}-T sheet can be found as global minima for smaller
+gold clusters, indicating that this represents a very stable structural motif
+for gold structures.\autocite{Assadollahzadeh_systematicsearchminimum_2009}
+
+This concept can be extended to non-spherical structures like carbon nano-tubes
+to construct gold nanowires, and there has been expermimental evidence
+supporting the existence of such structures\autocite{Kondo-2000}. Because they
+are the duals of the carbon nano-tubes they can be constructed in the same
+way.\autocite{Dresselhaus-1992} Two examples of cylindrically shaped carbon and gold structures are shown in figure~\ref{fig:nanotubedual}.
 
 \begin{figure}[htb]
-\begin{center}
-    \subfloat[\label{subfig:nanotube}]{\includegraphics[width=.8\textwidth]{golddual/C144.png}} \\
-    \subfloat[\label{subfig:gold-nanotube}]{\includegraphics[width=.8\textwidth]{golddual/Au74.png}}
-    \caption{\protect\subref{subfig:nanotube} $D_\mathrm{6d}-$C$_{144}$ zig-zag
-    fullerene nanotube and \protect\subref{subfig:gold-nanotube} its dual
-    $D_\mathrm{6d}-$Au$_{74}$.}
-\label{fig:nanotubedual}
-\end{center}
+    \begin{center}
+        \subfloat[\label{subfig:nanotube}]{\includegraphics[width=.8\textwidth]{golddual/C144.png}} \\
+        \subfloat[\label{subfig:gold-nanotube}]{\includegraphics[width=.8\textwidth]{golddual/Au74.png}}
+        \caption{\protect\subref{subfig:nanotube} $D_\mathrm{6d}-$C$_{144}$ zig-zag
+        fullerene nanotube and \protect\subref{subfig:gold-nanotube} its dual
+        $D_\mathrm{6d}-$Au$_{74}$.}
+    \label{fig:nanotubedual}
+    \end{center}
 \end{figure}
 
-The requirement to have 12 pentagons in a fullerene graph with $F_h$ hexagons
-($F_h$=0 for C$_{20}$ and $F_h > 1$ for all other fullerenes) implies for a
-fullerene dual to have exactly 12 vertices of degree five and the remaining of
-degree six. In fact it is well known that C$_{22}$ cannot exist as a
-fullerene,\autocite{Grunbaum_numberhexagonssimplicity_1963} which implies that
-its hypothetical dual Au$_{13}$ does not exist either (the number of vertices
-$N_d$ in the dual is identical to the number of faces in a fullerene,
-$N_d=F_f=N_f/2+2$,\autocite{Schwerdtfeger_topologyfullerenes_2015} using
-symbols $f$ and $d$ for the fullerene and its dual respectively). Because there
-is a one-to-one correspondence between a fullerene and its dual graph, we have
-as many isomers (nonisomorphic graphs) for C$_{N_f}$ as we have for
-Au$_{N_f/2+2}$ and dualization preserves the point group symmetry. Here we
-mention that according to Thurston, the number of isomers increases
-polynomially in ninth leading order with the number of vertices, i.e.
-$\sim\mathcal{O}({N_f^9})$.\autocite{Thurston_Shapespolyhedratriangulations_1998} 
+As fullerenes need to have exactly 12 pentagons, a dual fullerene will have 12
+vertices of degree five instead. All other vertices will have degree six and
+there are exactly as many as there are hexagons in the corresponding carbon
+fullerene. The smallest carbon fullerene \ce{C20} has $|F_h|=0$ hexagons, and
+all larger ones at least $|F_h|>1$. The fullerene \ce{C22}, which would contain
+exactly one hexagon, is
+impossible,\autocite{Grunbaum_numberhexagonssimplicity_1963} thus, the
+hypothetical \ac{GDF} \ce{Au13}\footnote{The relation between the
+number of vertices in a fullerene $|N_f|$ and the number of vertices in the
+corresponding dual fullerene $|N_d|$ is
+$|N_d|=|F_f|=|N_f|/2+2$.\autocite{Schwerdtfeger_topologyfullerenes_2015}} also
+cannot exist. Fullerenes often have much more than one stable isomer
+(non-isomorphic graph)\autocite{Fowler-atlas-2006} and because of the dual
+relationship there should be as many isomers for the \acp{GDF}.
+Additionally, the growth of this isomer space should scale the same with respect
+to the number of vertices, which was found to be
+$\mathcal{O}\left({N_f}^9\right)$.\autocite{Thurston_Shapespolyhedratriangulations_1998}
 
-Au$_{32}$ was the first of such golden fullerenes postulated by Johansson et
-al. to be a rather stable hollow cluster, and they were the first ones
-mentioning that these golden dual fullerenes (GDF) are obtained from fullerene
-graphs.\autocite{Johansson_Au3224CaratGolden_2004} Au$_{32}$ is shown in
-figure~\ref{fig:C60dual} together with its dual, C$_{60}$ and the corresponding
-graph representation (twice the dual transformation leads back to the original
-polyhedron or graph). Now that we established an isomorphism between a
-fullerene graph and its dual, we can easily construct isomers of golden
-fullerenes by using standard algorithms for the construction of fullerenes,
-such as the generalized face-spiral
-algorithm,\autocite{Fowler-atlas-2006,Schwerdtfeger_Programfullerenesoftware_2013,Wirz-2014,Schwerdtfeger_topologyfullerenes_2015}
-embedding the graph on a genus 0 surface and finally transforming the cage to
-its dual.
-
+Both \ce{C60} and its dual \ce{Au32}, as well as their graph representation are
+depicted in figure~\ref{fig:C60dual}. This relationship was first noticed in
+conjunction with the prediction of
+\ce{Au32},\autocite{Johansson_Au3224CaratGolden_2004} and it allows the usage of
+the same algorithms used to construct fullerenes to create \acp{GDF}. For
+example, the generalised face-spiral
+algorithm\autocite{Fowler-atlas-2006,Schwerdtfeger_Programfullerenesoftware_2013,Wirz-2014,Schwerdtfeger_topologyfullerenes_2015}
+followed up by an embedding of the graph on a genus 0 surface and a dual
+transformation.
+%
 \begin{figure}[htb]
-\begin{center}
-    \subfloat[\label{subfig:c60graph}]{\includegraphics[width=.216\textwidth]{golddual/C60graph.png}}\hspace{0.05\textwidth}
-    \subfloat[\label{subfig:c60ih}]{\includegraphics[width=.25\textwidth]{golddual/C60Ih.png}}\hspace{0.034\textwidth}
-    \subfloat[\label{subfig:au32ih}]{\includegraphics[width=.25\textwidth]{golddual/Au32Ih.png}}
-    \caption{\protect\subref{subfig:c60graph} Schlegel diagram of C$_{60}$ (red
-    vertices) and its dual (blue vertices and dashed edges),
-    \protect\subref{subfig:c60ih} the C$_{60}$ structure and
-    \protect\subref{subfig:au32ih} its dual Au$_{32}$ structure.}
-\label{fig:C60dual}
-\end{center}
+    \begin{center}
+        \subfloat[\label{subfig:c60graph}]{\includegraphics[width=.216\textwidth]{golddual/C60graph.png}}\hspace{0.05\textwidth}
+        \subfloat[\label{subfig:c60ih}]{\includegraphics[width=.25\textwidth]{golddual/C60Ih.png}}\hspace{0.034\textwidth}
+        \subfloat[\label{subfig:au32ih}]{\includegraphics[width=.25\textwidth]{golddual/Au32Ih.png}}
+        \caption{\protect\subref{subfig:c60graph} Schlegel diagram of C$_{60}$ (red
+        vertices) and its dual (blue vertices and dashed edges),
+        \protect\subref{subfig:c60ih} the C$_{60}$ structure, and
+        \protect\subref{subfig:au32ih} its dual Au$_{32}$ structure.}
+    \label{fig:C60dual}
+    \end{center}
 \end{figure}
+%
+A recent investigation of photoelectron spectra of gold clusters considered the
+existence of a $T_\text{d}$-\ce{Au16^-} cluster to explain the experimental
+findings.\autocite{Bulusu_Evidencehollowgolden_2006} This cluster would be dual
+to \ce{C28}, which has exactly two isomers: $T_\text{d}$-\ce{Au16} and
+$D_2$-\ce{Au16}. In the above study, the $D_2$-symmetric isomer has not been
+considered to explain the observed spectra, which naturally raises the question
+whether this isomers photoelectron spectra is similar or even capable of
+explaining the observations better. 
 
-As an example we mention Au$_{16}$ as the dual of C$_{28}$. Checking the list
-of possible isomers\autocite{Brinkmann_HouseGraphsdatabase_2013} we see that
-there are two possible non-isomorphic structures, $D_2-$Au$_{16}$ and
-$T_\mathrm{d}-$Au$_{16}$. However, only the more symmetric $T_\mathrm{d}-$Au$_{16}^-$ has been
-considered as a possible candidate in recent photoelectron spectroscopy
-experiments.\autocite{Bulusu_Evidencehollowgolden_2006} The question naturally
-arises if the other negatively charged $D_\mathrm{2}$ isomer has a similar photoelectron
-spectrum and is more stable or not compared to the $T_\mathrm{d}$ isomer. In fact,
-Au$_{32}$ which is the dual of C$_{60}$ has 1812 different isomers with only
-one fulfilling the isolated pentagon rule (IPR) as proposed by
-Kroto.\autocite{Kroto_stabilityfullerenesCn_1987} For example, in a recent
-paper Fa and Dong reported on a hollow gold $D_\mathrm{6d}-$Au$_{26}$
-cluster.\autocite{Fa-Dong-2006,Fa-Luong-2008} Looking at the list of possible
-fullerenes we see that there are 199 possible isomers for dual fullerene
-structures, and in fact there are two possible isomers having $D_\mathrm{6d}$
-symmetry. This just highlights the rich topology of such dual fullerenes.
+The question of which structure is dominating the experimental spectrum is
+closely related to the question of which structure is more stable. For regular
+carbon fullerenes there exists an ``isolated pentagon rule'', that states that a
+carbon fullerene is more stable when none of the pentagons are in direct contact
+with each other.\autocite{Kroto_stabilityfullerenesCn_1987} It is hitherto unknown if there is and equivalent ``isolated
+vertex of degree five rule'' for dual fullerene structures.
 
-For the dual structures we do not know if a similar rule applies, that is an
-``isolated vertex rule'' of degree five (IVR5). In fullerenes the pentagons are
-responsible for the curvature of the carbon cage and for the overall symmetry
-and structure, with connected hexagons building planar sub-structures on the
-polyhedron. Here we mention that the Mackay icosahedron (discussed below) shows
-exactly that feature.
+As mentioned before, methods like Goldberg-Coxeter transformations can be used
+to construct larger dual fullerenes from smaller
+ones.\autocite{Goldberg_ClassMultiSymmetricPolyhedra_1937,Coxeter-1971,Dutour_GoldbergCoxeterConstructionvalent_2004}
+The original Goldberg-Coxeter transformation was carried out on the \ce{C20}
+fullerene\autocite{Goldberg_ClassMultiSymmetricPolyhedra_1937,Coxeter-1971}, but
+it can be shown that it can be applied to any fullerene
+graph.\autocite{Schwerdtfeger_topologyfullerenes_2015} The transformation
+$GC_{k,l}$ can be controlled by two integer parameters $k,l$, which describe the
+scaling and rotation of the mesh on which the transformation is carried out. The
+symmetry of the original fullerene is preserved if $k=l$ or $l=0$. The number of
+vertices increases by a factor of $(k^2+kl+l^2)$. Some important transformations
+are for example $GC_{1,1}$[$I_\mathrm{h}-$C$_{20}$]=$I_\mathrm{h}-$C$_{60}$
+(leapfrog transformation)\autocite{Fowler-atlas-2006} and
+$GC_{2,0}$[$I_\mathrm{h}-$C$_{20}$]=$I_\mathrm{h}-$C$_{80}$ (halma
+transformation), both preserving the initial point group.
+
+
+%Fullerenes show rich and mathematically interesting topological
+%features\autocite{Cataldo-Ori-2011,Schwerdtfeger_topologyfullerenes_2015},
+%which have been described for example in the works of Fowler and
+%Manolopoulos\autocite{Fowler-atlas-2006}, and most recently by our research
+%group in Auckland.\autocite{Schwerdtfeger_topologyfullerenes_2015} They can be
+%thought of by wrapping a graphene sheet around a sphere (or more generally a
+%genus 0 surface), but introducing 12 pentagons (no more and no less) to fulfil
+%Euler's polyhedral formula, 
+%%
+%\begin{equation}
+%  \label{eq:euler} 
+%  N + F -E = \chi 
+%\end{equation}
+%%
+%where $N$ is the number of vertices (atoms), $F$ is the number of faces
+%(rings), $E$ is the number of edges (bonds) and $\chi$ is called the Euler
+%characteristic with $\chi=2$ for convex
+%polyhedra.\autocite{Kotschick_TopologyCombinatoricsSoccer_2006} Euler's formula
+%already shows the symmetry between the number of vertices $N$ and the number of
+%faces $F$, as their role can be interchanged without violating Euler's theorem.
+%Interchanging the roles of vertices and faces in a graphene sheet leads to a
+%(111) sheet (surface) of an (for example) fcc structure adopted in bulk gold
+%(both belonging to the hexagonal 2D lattice group \textit{p3m1}), where the
+%dual vertex is in the center of the hexagon connected by edges to the
+%neighboring dual vertices. Several smaller gold clusters found in the search
+%for global minima are in fact cut-outs from this (111) fcc
+%sheet,\autocite{Assadollahzadeh_systematicsearchminimum_2009} denoted as
+%\textit{p3m1}-T in the following (see figure~\ref{fig:graphenedual}). 
+
+%To view
+%it in a different way, the hexagons in the graphene sheets are exactly the
+%Voronoi cells in the \textit{p3m1}-T sheet. As an interesting side aspect we
+%mention the helical multi-shell (chiral) gold nanowires found experimentally by
+%Kondo and Takayanagi,\autocite{Kondo-2000} which are duals of multi-shell
+%(chiral) carbon nanotubes.\autocite{Johansson_Au3224CaratGolden_2004} These
+%gold nanowires can be constructed exactly in the same way as carbon nanotubes
+%using the chiral vector $C_h(n,m)$ on a hexagonal sheet as described in detail
+%for example by Dresselhaus and co-workers.\autocite{Dresselhaus-1992} As an
+%example we show the $D_\mathrm{6d}$ fullerene nanotube and its dual structure in
+%figure~\ref{fig:nanotubedual}.
+
+%The requirement to have 12 pentagons in a fullerene graph with $F_h$ hexagons
+%($F_h$=0 for C$_{20}$ and $F_h > 1$ for all other fullerenes) implies for a
+%fullerene dual to have exactly 12 vertices of degree five and the remaining of
+%degree six. In fact it is well known that C$_{22}$ cannot exist as a
+%fullerene,\autocite{Grunbaum_numberhexagonssimplicity_1963} which implies that
+%its hypothetical dual Au$_{13}$ does not exist either (the number of vertices
+%$N_d$ in the dual is identical to the number of faces in a fullerene,
+%$N_d=F_f=N_f/2+2$,\autocite{Schwerdtfeger_topologyfullerenes_2015} using
+%symbols $f$ and $d$ for the fullerene and its dual respectively). Because there
+%is a one-to-one correspondence between a fullerene and its dual graph, we have
+%as many isomers (nonisomorphic graphs) for C$_{N_f}$ as we have for
+%Au$_{N_f/2+2}$ and dualization preserves the point group symmetry. Here we
+%mention that according to Thurston, the number of isomers increases
+%polynomially in ninth leading order with the number of vertices, i.e.
+%$\sim\mathcal{O}({N_f^9})$.\autocite{Thurston_Shapespolyhedratriangulations_1998} 
+
+%Au$_{32}$ was the first of such golden fullerenes postulated by Johansson et
+%al. to be a rather stable hollow cluster, and they were the first ones
+%mentioning that these golden dual fullerenes (GDF) are obtained from fullerene
+%graphs.\autocite{Johansson_Au3224CaratGolden_2004} Au$_{32}$ is shown in
+%figure~\ref{fig:C60dual} together with its dual, C$_{60}$ and the corresponding
+%graph representation (twice the dual transformation leads back to the original
+%polyhedron or graph). Now that we established an isomorphism between a
+%fullerene graph and its dual, we can easily construct isomers of golden
+%fullerenes by using standard algorithms for the construction of fullerenes,
+%such as the generalized face-spiral
+%algorithm,\autocite{Fowler-atlas-2006,Schwerdtfeger_Programfullerenesoftware_2013,%Wirz-2014,Schwerdtfeger_topologyfullerenes_2015}
+%embedding the graph on a genus 0 surface and finally transforming the cage to
+%its dual.
+
+
+
+%As an example we mention Au$_{16}$ as the dual of C$_{28}$. Checking the list
+%of possible isomers\autocite{Brinkmann_HouseGraphsdatabase_2013} we see that
+%there are two possible non-isomorphic structures, $D_2-$Au$_{16}$ and
+%$T_\mathrm{d}-$Au$_{16}$. However, only the more symmetric $T_\mathrm{d}-$Au$_{16}%^-$ has been
+%considered as a possible candidate in recent photoelectron spectroscopy
+%experiments.\autocite{Bulusu_Evidencehollowgolden_2006} The question naturally
+%arises if the other negatively charged $D_\mathrm{2}$ isomer has a similar %photoelectron
+%spectrum and is more stable or not compared to the $T_\mathrm{d}$ isomer. In fact,
+%Au$_{32}$ which is the dual of C$_{60}$ has 1812 different isomers with only
+%one fulfilling the isolated pentagon rule (IPR) as proposed by
+%Kroto.\autocite{Kroto_stabilityfullerenesCn_1987} For example, in a recent
+%paper Fa and Dong reported on a hollow gold $D_\mathrm{6d}-$Au$_{26}$
+%cluster.\autocite{Fa-Dong-2006,Fa-Luong-2008} Looking at the list of possible
+%fullerenes we see that there are 199 possible isomers for dual fullerene
+%structures, and in fact there are two possible isomers having $D_\mathrm{6d}$
+%symmetry. This just highlights the rich topology of such dual fullerenes.
+
+%For the dual structures we do not know if a similar rule applies, that is an
+%``isolated vertex rule'' of degree five (IVR5). In fullerenes the pentagons are
+%responsible for the curvature of the carbon cage and for the overall symmetry
+%and structure, with connected hexagons building planar sub-structures on the
+%polyhedron. Here we mention that the Mackay icosahedron (discussed below) shows
+%exactly that feature.
 
 \textit{p3m1}-G sheets have been considered by Goldberg and Coxeter for the
 construction of larger
@@ -1681,7 +1775,7 @@ subgraphs to the icosahedral graph, as shown in figure~\ref{fig:GN}. This would
 make sense as it is impossible to increase the degree of any vertex beyond 5 in
 the GN graph. Note that the icosahedral cluster is completely unjammed and its
 space of (infinitesimal) deformations has dimension 24 (for details see
-\citeauthor{Kusner_ConfigurationSpacesEqual_2016}\autocite{Kusner_ConfigurationSpacesEqual_2016}).
+\citeauthor{Kusner_ConfigurationSpacesEqual_2018}\autocite{Kusner_ConfigurationSpacesEqual_2018}).
 
 Employing the \textit{VF2} algorithm \autocite{Cordella_SubGraphIsomorphism_2004}
 as implemented in the \textit{boost graph library} \autocite{Siek_BoostGraphLibrary_2002} we find
@@ -1730,11 +1824,11 @@ triangles and rectangles only. The difference between the fcc and hcp clusters
 is in the way their square faces are connected; in the fcc case the square
 faces only connect via edges (cuboctahedron), while in hcp case the square
 faces come in pairs sharing one edge (triangular orthobicupola or Johnson solid
-$J_{27}$)\autocite{Kusner_ConfigurationSpacesEqual_2016}.
+$J_{27}$)\autocite{Kusner_ConfigurationSpacesEqual_2018}.
 
 The construction of hcp and fcc structures by a continuous deformation of an
 icosahedron has been described in detail by Kusner et al.
-\autocite{Kusner_ConfigurationSpacesEqual_2016} and goes back to Conway and Sloane
+\autocite{Kusner_ConfigurationSpacesEqual_2018} and goes back to Conway and Sloane
 in 1988 \autocite{Conway_SpherePackingsLattices_1999}. We note that hcp and fcc can both be obtained
 from a rearrangement of the spheres in an icosahedron by forming a (zig-zag)
 cycle (closed path) through six vertices, and arranging those spheres on the
@@ -1754,7 +1848,7 @@ structure. The hcp structure can be constructed by also rotating either the top
 or the bottom plane by the same amount in either direction parallel to the
 hexagonal plane. Kusner noted that a smooth deformation from the icosahedral
 configuration to hcp requires 9 moving spheres
-\autocite{Kusner_ConfigurationSpacesEqual_2016}. This interesting transition path
+\autocite{Kusner_ConfigurationSpacesEqual_2018}. This interesting transition path
 may be the key for the icosahedral to closed-packed rearrangements in larger
 clusters, which has previously been described in terms of catastrophe theory as
 a cusp catastrophe \autocite{Wales_MicroscopicBasisGlobal_2001}. 

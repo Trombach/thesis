@@ -76,7 +76,7 @@ question is no. It is clear that the landmasses would need to be connected by an
 even number of bridges for the desired traversal to exist.
 
 Mathematically, a \textit{graph} $G$ is a triple that contains a \textit{vertex
-set} $V(G)$ and an \textit{edge set} $E(G)$ that connects pairs of vertices via
+set} $N(G)$ and an \textit{edge set} $E(G)$ that connects pairs of vertices via
 their endpoints. Edges can form a \textit{loop} by having both endpoints at the
 same vertex and multiple edges can connect the same vertices. However,
 \textit{simple graphs} don't contain loops and multiple edges and are more
@@ -88,7 +88,7 @@ neighbouring or adjacent vertices are those that share an edge.
 Graphs are often just represented as a graph drawing such as
 figure~\ref{subfig:koenigsberg-graph}, however, sometimes it can be useful to
 introduce a matrix representation. A simple graph $G$ with vertex set
-$V(G)=\{v_1,v_2,\dots,v_n\}$ and edge set $E(G)=\{e_1,e_2,\dots,e_m\}$ can be
+$N(G)=\{v_1,v_2,\dots,v_n\}$ and edge set $E(G)=\{e_1,e_2,\dots,e_m\}$ can be
 defined by writing an \textit{adjacency matrix} $\mathbf{A}$ that encodes the
 edge-connectivity of the vertex set, i.e. $\mathbf{A}$ is a $n\times n$ matrix
 where each matrix element $A_{ij}$ represents the number of edges that connect
@@ -121,7 +121,7 @@ arbitrary and so is the ordering of the rows and columns in the adjacency
 matrix. It is clear that a different ordering still describes the same graph
 object and should therefore have no influence on the properties of the graph.
 Permutation of the vertex labelling for a given simple graph $G$ that turns the
-vertex set $V(G)$ into the vertex set $V(H)$ is called a \textit{bijection}. If
+vertex set $N(G)$ into the vertex set $N(H)$ is called a \textit{bijection}. If
 such a bijection exists the graphs $G$ and $H$ are isomorphic to each other.
 This property is important for the discussion of a specific type of cluster
 later on in this thesis (chapter~\ref{sec:SHSClusters}).
@@ -135,7 +135,7 @@ always yields a path. In many applications (e.g. road networks) it is not
 necessary for the whole graph to represent a path or a cycle, but it is only
 important whether the graph contains a path or a cycle. If the graph $G$
 contains the graph $H$, $H$ is called a sub-graph of $G$. This requires the
-vertex set of $H$ to be contained in $V(G)$ ($V(H)\subseteq V(G)$) as well as
+vertex set of $H$ to be contained in $N(G)$ ($N(H)\subseteq N(G)$) as well as
 the edge set $E(H)$ ($E(H)\subseteq E(G)$) as well as the assignment of the
 endpoints to be the same.
 
@@ -220,7 +220,7 @@ edge, paths require all vertex traversals to be distinct.
 
 The definition of a path can also be used to define whether a graph is
 connected. In simple terms a graph is connected if there is a path leading from
-each vertex to each other one, hence, for all $u,v\in V(G)$ there must be a
+each vertex to each other one, hence, for all $u,v\in N(G)$ there must be a
 $u,v$-path for $G$ to be connected. An example of a disconnected graph is shown
 in figure~\ref{fig:disconnectedgraph}.
 %
@@ -264,7 +264,7 @@ edge that increases the number of components upon deletion is also called a
 An important concept utilised in chapter~\ref{sec:thegregorynewtonclusters} of
 this thesis is that of induced sub-graphs. If we remove a list of vertices $T$
 from a graph $G$ the vertex-induced sub-graph $H$ with the vertex set
-$V(H)=V(G)-T$ is obtained. All edges incident to one of the removed edges need
+$N(H)=N(G)-T$ is obtained. All edges incident to one of the removed edges need
 to be removed as well. Removing the edge set $S$ results in the edge-induced
 sub-graph $I$ with the edge set $E(I)=E(G)-S$, which leaves the vertex set
 unchanged.
@@ -456,11 +456,11 @@ which is exterior while all others are interior. The exterior region is the only
 one that is not finite. A region is enclosed by a closed walk and its degree is
 equal to the number of edges contained in the walk. 
 
-A relation between the number of vertices $|V|$, regions $|F|$ and edges $|E|$ in a
+A relation between the number of vertices $|N|$, regions $|F|$ and edges $|E|$ in a
 planar graph is given by Euler's polyhedral formula.
 %
 \begin{align}
-    |V|-|E|+|F|=2\label{eqn:Euler}
+    |N|-|E|+|F|=2\label{eqn:Euler}
 \end{align}
 %
 There exist a large amount of proofs for this formula, one of which was
@@ -565,14 +565,14 @@ Even for disconnected graphs the formula can be modified and expressed in terms
 of the number of connected components $k$ of the graph.
 %
 \begin{align}
-    |V|- |E| + |F| = k + 1
+    |N|- |E| + |F| = k + 1
 \end{align}
 
 Euler's polyhedral formula is very simple, but nevertheless very powerful. For
 example, it shows a symmetry between the number of regions and the number of
-vertices in a graph, because exchanging $V$ and $F$ doesn't change its result.
+vertices in a graph, because exchanging $N$ and $F$ doesn't change its result.
 This property is known as \textit{duality}. The geometric dual of a graph $G'$
-has $|V|$ faces and $|F|$ vertices, while the edge count remains unchanged. It
+has $|N|$ faces and $|F|$ vertices, while the edge count remains unchanged. It
 can be constructed by considering the neighbouring regions of an edge $e$. If
 $e$ is between region $A$ and $B$, then the corresponding dual edge $e'$
 connects the vertices $a$ and $b$ of the dual graph $G'$. Repeating this
