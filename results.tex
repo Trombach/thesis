@@ -258,13 +258,67 @@ it can be shown that it can be applied to any fullerene
 graph.\autocite{Schwerdtfeger_topologyfullerenes_2015} The transformation
 $GC_{k,l}$ can be controlled by two integer parameters $k,l$, which describe the
 scaling and rotation of the mesh on which the transformation is carried out. The
-symmetry of the original fullerene is preserved if $k=l$ or $l=0$. The number of
-vertices increases by a factor of $(k^2+kl+l^2)$. Some important transformations
-are for example $GC_{1,1}$[$I_\mathrm{h}-$C$_{20}$]=$I_\mathrm{h}-$C$_{60}$
-(leapfrog transformation)\autocite{Fowler-atlas-2006} and
-$GC_{2,0}$[$I_\mathrm{h}-$C$_{20}$]=$I_\mathrm{h}-$C$_{80}$ (halma
-transformation), both preserving the initial point group.
+symmetry of the original fullerene is preserved if $k=l$ (leapfrog
+transformation) or $l=0$  (halma transformation). Some important transformations are for
+example
+$GC_{1,1}$[$I_\mathrm{h}-$C$_{20}$]=$I_\mathrm{h}-$C$_{60}$\autocite{Fowler-atlas-2006}
+and $GC_{2,0}$[$I_\mathrm{h}-$C$_{20}$]=$I_\mathrm{h}-$C$_{80}$, both preserving
+the initial point group. In case of the gold clusters the same transformations
+results in the respective dual representations, i.e.
+$GC_{1,1}$[$I_\mathrm{h}-$Au$_{12}$]=$I_\mathrm{h}-$Au$_{32}$ and
+$GC_{2,0}$[$I_\mathrm{h}-$Au$_{12}$]= $I_\mathrm{h}-$Au$_{42}$. Both of these
+structures have been proposed pverviously to be stable
+clusters.\autocite{Johansson_Au3224CaratGolden_2004} The new vertex count of $GC_{k,l}[\ce{Au_{|N_d|}}]$ is
+%
+\begin{align}
+    |N_\text{d}'| = (k^2+kl+l^2)(|N_\text{d}|-2) + 2.\label{eqn:dualvertex}
+\end{align}
 
+An often encountered structural motif in gold clusters is the Mackay
+icosahedron.\autocite{Nam2002,Wang-Wang-2011} Although this is not a hollow
+structure, it is related to dual fullerenes as it is made up of multiple
+icosahedral shells. Each individual shell $m$ is made up of
+%
+\begin{align}
+    |N_\text{shell}|=10m^2+2\label{eqn:MackayShells}
+\end{align}
+atoms, resulting in the magical cluster numbers 13, 55, 147, 309, and so
+on.\autocite{Mackay-1962,Kuo_MackayAntiMackayDoubleMackay_2002}
+Figure~\ref{fig:mackaylarge} shows one such icosahedral structure with $m=7$
+shells and 1415 atoms.
+%
+\begin{figure}[htb]
+    \begin{center}
+    \includegraphics[width=4.9cm]{golddual/ico.jpg}
+        \caption{Mackay icosahedron with 7 shells and 1415 atoms. The outer icosahedral shell is the dual of the halma transform $GC_{7,0}$[$I_\mathrm{h}-$C$_{20}$]=$I_\mathrm{h}-$C$_{980}$.}
+    \label{fig:mackaylarge}
+    \end{center}
+\end{figure}
+%
+The number of shells can be deduced from the number of spheres on one edge of
+the icosahedron including the spheres marked in red. There is exactly one sphere
+more on the edges than there are shells, thus $m=|N_\text{edge}|-1$. The halma
+pattern of a $GC_{k,0}$ transformation is clearly visible on the faces of the
+icosahedron, and it turns out the icosahedral shells are in fact related to the
+smallest fullerene \ce{C20} by such a transformation and a subsequent
+dualisation. For this process equation~\eqref{eqn:dualvertex} becomes
+%
+\begin{align}
+    |N_\text{d}'| = k^2(|N_\text{d}|-2) + 2,
+\end{align}
+%
+and with $|N_\text{d}|=12$ (as \ce{Au12} is the dual of \ce{C20}) this is equal
+to equation~\eqref{eqn:MackayShells}. The parameter $k$ of the transformation
+$GC_{k,0}[\ce{Au20}]$ therefore defines which shell of the icosahedron is
+created by the Goldberg-Coxeter transformation with subsequent dualisation.
+
+The relationship between carbon fullerenes and hollow gold clusters can be used
+to name the latter in the same way as the carbon fullerenes. For example, this
+can be achieved by using the canonical face spiral pentagon indices (FSPI) in
+combination with the numbering scheme introduced by
+Manolopoulos.\autocite{Fowler-atlas-2006} In the following sections the golden
+dual fullerenes from \ce{Au12} to \ce{Au20} (excluding\ce{Au13}) will be
+investigated by means of \ac{DFT} calculations.
 
 %Fullerenes show rich and mathematically interesting topological
 %features\autocite{Cataldo-Ori-2011,Schwerdtfeger_topologyfullerenes_2015},
@@ -363,95 +417,190 @@ transformation), both preserving the initial point group.
 %polyhedron. Here we mention that the Mackay icosahedron (discussed below) shows
 %exactly that feature.
 
-\textit{p3m1}-G sheets have been considered by Goldberg and Coxeter for the
-construction of larger
-fullerenes.\autocite{Goldberg_ClassMultiSymmetricPolyhedra_1937,Coxeter-1971,Dutour_GoldbergCoxeterConstructionvalent_2004}
-The original Goldberg-Coxeter transformation superimposes a hexagonal mesh on
-the surface of the C$_{20}$ dodecahedron forming a new polyhedron with leaving
-the number of pentagons at exactly
-12.\autocite{Goldberg_ClassMultiSymmetricPolyhedra_1937,Coxeter-1971} This
-transformation can be applied to any fullerene
-isomer.\autocite{Schwerdtfeger_topologyfullerenes_2015} The Goldberg-Coxeter
-transformation $GC_{k,l}$ increases the number of vertices for a fullerene by a
-factor of $(k^2+kl+l^2)$, where $k$ and $l$ are integers describing the scale
-and orientation of the
-mesh.\autocite{Dutour_GoldbergCoxeterConstructionvalent_2004,Schwerdtfeger_topologyfullerenes_2015}
-If $k=l$ or $l=0$ the point group symmetry is preserved. For example, we have
-$GC_{1,1}$[$I_\mathrm{h}-$C$_{20}$]=$I_\mathrm{h}-$C$_{60}$ (leapfrog
-transformation)\autocite{Fowler-atlas-2006} and
-$GC_{2,0}$[$I_\mathrm{h}-$C$_{20}$]=$I_\mathrm{h}-$C$_{80}$ (halma transformation), or in the
-dual case applying the same procedure to the \textit{p3m1}-T sheet for our gold
-fullerenes $GC_{1,1}$[$I_\mathrm{h}-$Au$_{12}$]=$I_\mathrm{h}-$Au$_{32}$ and
-$GC_{2,0}$[$I_\mathrm{h}-$Au$_{12}$]= $I_\mathrm{h}-$Au$_{42}$. Simple algebra shows that
-$GC_{k,l}$[Au$_{N_d}$] has a new vertex count of
+%\textit{p3m1}-G sheets have been considered by Goldberg and Coxeter for the
+%construction of larger
+%fullerenes.\autocite{Goldberg_ClassMultiSymmetricPolyhedra_1937,Coxeter-1971,%Dutour_GoldbergCoxeterConstructionvalent_2004}
+%The original Goldberg-Coxeter transformation superimposes a hexagonal mesh on
+%the surface of the C$_{20}$ dodecahedron forming a new polyhedron with leaving
+%the number of pentagons at exactly
+%12.\autocite{Goldberg_ClassMultiSymmetricPolyhedra_1937,Coxeter-1971} This
+%transformation can be applied to any fullerene
+%isomer.\autocite{Schwerdtfeger_topologyfullerenes_2015} The Goldberg-Coxeter
+%transformation $GC_{k,l}$ increases the number of vertices for a fullerene by a
+%factor of $(k^2+kl+l^2)$, where $k$ and $l$ are integers describing the scale
+%and orientation of the
+%mesh.\autocite{Dutour_GoldbergCoxeterConstructionvalent_2004,%Schwerdtfeger_topologyfullerenes_2015}
+%If $k=l$ or $l=0$ the point group symmetry is preserved. For example, we have
+%$GC_{1,1}$[$I_\mathrm{h}-$C$_{20}$]=$I_\mathrm{h}-$C$_{60}$ (leapfrog
+%transformation)\autocite{Fowler-atlas-2006} and
+%$GC_{2,0}$[$I_\mathrm{h}-$C$_{20}$]=$I_\mathrm{h}-$C$_{80}$ (halma transformation), or in the
+%dual case applying the same procedure to the \textit{p3m1}-T sheet for our gold
+%fullerenes $GC_{1,1}$[$I_\mathrm{h}-$Au$_{12}$]=$I_\mathrm{h}-$Au$_{32}$ and
+%$GC_{2,0}$[$I_\mathrm{h}-$Au$_{12}$]= $I_\mathrm{h}-$Au$_{42}$. Simple algebra shows that
+%$GC_{k,l}$[Au$_{N_d}$] has a new vertex count of
+%%
+%\begin{equation}
+%  \label{eq:dualvertex} 
+%N_d'=(k^2+kl+l^2)(N_d-2)+2 
+%\end{equation}
 %
-\begin{equation}
-  \label{eq:dualvertex} 
-N_d'=(k^2+kl+l^2)(N_d-2)+2 
+%Both $I_\mathrm{h}-$Au$_{32}$ and $I_\mathrm{h}-$Au$_{42}$ have been postulated as stable %golden
+%fullerenes before,\autocite{Johansson_Au3224CaratGolden_2004} and more recently
+%the chiral $I-$Au$_{72}$\autocite{Karttunen_IcosahedralAu72_2008} which is
+%nothing else as the dual of $GC_{2,1}$[$I_\mathrm{h}-$C$_{20}$] = $I-$C$_{140}$, which
+%is chiral as well as symmetry is conserved upon dualization.
+
+%Now it almost seems trivial to relate Mackay icosahedra\autocite{Mackay-1962}
+%well known for gold clusters\autocite{Nam2002,Wang-Wang-2011} to fullerenes. We
+%might call them "multi-walled halma-transformed icosahedral" dual fullerenes in
+%analogous way to the multi-walled gold nanowires. A Mackay icosahedron is a
+%closed packed multi-shell structure each shell being an icosahedron with
+%%
+%\begin{equation}
+%  \label{eq:mackay} 
+%N_\text{shell}=10k^2+2
+%\end{equation}
+%%
+%number of atoms in each shell with increasing $k$. This gives the well known
+%magic cluster numbers of (including the central atom) 13, 55, 147, 309, 561,
+%... derived from
+%%
+%\begin{equation}
+%  \label{eq:mackaytotal} 
+%N_\text{total}=1+2\sum_{k=1}^{m_\text{shell}}\left( 5k^2+1 \right)=(10m_\text{shell}^3%+15m_\text{shell}^2+11m_\text{shell}+3)/3
+%\end{equation}
+%
+%with $m_\text{shell} \ge 1$. One such Mackay icosahedron with $m_\text{shell}$=7 and
+%$N_\text{total}$=1415 is shown in figure~\ref{fig:mackaylarge}. The triangles
+%clearly show the halma pattern of a Goldberg-Coxeter $GC_{k,0}$ transformation.
+%Because each transformation brings a new vertex on the icosahedral edge, we can
+%just deduct the number of shells by counting the number of atoms at one edge of
+%a triangle $N_\text{edge}$, i.e. $m_\text{shell}=N_\text{edge}-1$, which gives 8 atoms and 7
+%icosahedral shells for the Mackay icosahedron shown in figure~\ref{fig:mackaylarge}.
+%%
+%
+%%
+%Mackay pointed out that the packing density (or atomic packing factor) for $N
+%\rightarrow \infty$ with $\rho$=0.68818 is not too different from a closed
+%packed structure such as fcc with
+%$\rho=\pi/\sqrt{18}=0.74048$,\autocite{Mackay-1962} one reason why icosahedral
+%cluster growth is often seen. The number of atoms in a shell $N_\text{shell}$
+%directly corresponds to the number of faces in a halma transformed C$_{20}$,
+%i.e. for $l=0$ in the Goldberg-Coxeter transformation and starting with
+%$N_d=12$ in equation~\eqref{eq:dualvertex} we have $N_d'=k^2(N_d-2)+2 = 10k^2+2$
+%identical with the formula given by Mackay. 
+
+%Finally we mention that we can name the different isomers of the golden dual
+%fullerenes exactly in the same way as we do for the fullerenes by using the
+%canonical face spiral pentagon indices (FSPI) and the numbering scheme
+%introduced by Fowler and Manolopoulos,\autocite{Fowler-atlas-2006} keeping in
+%mind that the face spiral for fullerenes now becomes a vertex spiral for the
+%dual triangulated surface. We are now turning to a detailed analysis of all
+%possible golden dual fullerenes from $I_\mathrm{h}-$Au$_{12}$, Au$_{14}$ to Au$_{20}$
+%and $I_\mathrm{h}-$Au$_{32}$ by quantum chemical calculations.
+
+\section{Computational Details}
+
+Program \textsc{Fullerene}\autocite{Schwerdtfeger_Programfullerenesoftware_2013}
+has been used to construct initial structures of all isomers of the golden dual
+fullerenes from Au$_{12}$ to Au$_{20}$ using a recently developed force-field
+for fullerenes\autocite{Wirz_smallfullerenesgraphene_2015} (excluding the
+non-existing golden dual fullerene Au$_{13}$). The following isomers need to be
+considered according to the isomer list for the fullerenes (number in
+parenthesis gives the number of different isomers of same
+symmetry):\autocite{Brinkmann_HouseGraphsdatabase_2013,Schwerdtfeger_Programfullerenesoftware_2013}
+$I_\mathrm{h}-$Au$_{12}$, $D_\mathrm{6d}-$Au$_{14}$, $D_\mathrm{3h}-$Au$_{15}$,
+$D_\mathrm{2}-$Au$_{16}$, $T_\mathrm{d}-$Au$_{16}$, $D_\mathrm{5h}-$Au$_{17}$,
+$C_\mathrm{2v}-$Au$_{17}$(2), $D_\mathrm{3h}-$Au$_{18}$,
+$D_\mathrm{3d}-$Au$_{18}$, $D_\mathrm{3}-$Au$_{18}$, $D_\mathrm{2}-$Au$_{18}$,
+$C_\mathrm{3}-$Au$_{18}$(2), $C_\mathrm{3v}-$Au$_{19}$,
+$C_\mathrm{2}-$Au$_{19}$(3), $C_\mathrm{s}-$Au$_{19}$(2),
+$D_\mathrm{6h}-$Au$_{20}$, $D_\mathrm{3h}-$Au$_{20}$,
+$D_\mathrm{2d}-$Au$_{20}$(2), $C_\mathrm{2v}-$Au$_{20}$,
+$D_\mathrm{2}-$Au$_{20}$(2), $C_\mathrm{2}-$Au$_{20}$(3),
+$C_\mathrm{2}-$Au$_{20}$(2), $C_\mathrm{1}-$Au$_{20}$(2) and
+$I_\mathrm{h}-$Au$_{32}$. The initial force-field optimised structures scaled to
+an approximate internuclear distance were then refined by using the
+Predew-Burke-Ernzerhof \ac{GGA}
+functional\autocite{Perdew_GeneralizedGradientApproximation_1996,Perdew_GeneralizedGradientApproximation_1997}
+corrected for dispersion interactions using Grimme's method
+(PBE-D3)\autocite{Grimme_consistentaccurateinitio_2010,Grimme_Effectdampingfunction_2011}
+together with a Los-Alamos scalar relativistic effective core potential for gold
+and the accompanying double-zeta basis sets.\autocite{Wadt1985} Note that the
+PBE functional was recently considered to perform well for gold
+clusters.\autocite{Mancera_alternativemethodologyassess_2015} For several
+selected clusters the geometries obtained were checked for accuracy by carrying
+out calculations using a small core scalar relativistic Stuttgart
+pseudopotential\autocite{Figgen_Energyconsistentpseudopotentialsgroup_2005}
+together with an augmented valence double-zeta basis set by Peterson and
+Puzzarini.\autocite{Peterson-2005} For comparison, the compact global minimum
+cluster structures recently published for the neutral
+compounds\autocite{Assadollahzadeh_systematicsearchminimum_2009} and for the
+negatively charged
+species\autocite{Schooss_Determiningsizedependentstructure_2010,Lechtken_Structuredeterminationgold_2009}
+were calculated.
+
+The simulation of the photoelectron spectra has been carried out by artificial
+broadening the spectrum of orbital energies with Gaussian functions. The
+standard deviation $\sigma$ for these functions was chosen to be 0.035~eV in
+qualitative agreement with the experimental spectra. The orbital energies were
+calculated using the PBE density functional with the
+def2-SVP\autocite{Weigend_Balancedbasissets_2005} double zeta basis implemented
+in \textsc{Turbomole} 7.0.\autocite{_TURBOMOLEV72015_} The core region was
+described using an effective core potential including scalar relativistic
+effects.  The calculated electron affinities were used as the onset value for
+simulating the photoelectron spectra. 
+
+
+For the calculation of the (111) fcc sheet and the fcc bulk structure of gold
+the program package VASP5\autocite{Kresse_Efficiencyabinitiototal_1996} was used,
+utilizing a plane-wave basis set (cutoff energy $E_c=350$~eV) and the standard
+projector-augmented wave (PAW) datasets for the elements to model the
+electron-ion
+interaction\autocite{Blochl_Projectoraugmentedwavemethod_1994,Kresse_ultrasoftpseudopotentialsprojector_1999}.
+The electron-electron interaction was modelled within the \ac{GGA} to the
+exchange-correlation energy functional as described above and dispersive
+effects were taken into account by employing Grimme's D3 dispersion correction
+with Becke-Johnson
+damping.\autocite{Grimme_consistentaccurateinitio_2010,Grimme_Effectdampingfunction_2011}
+Brillouin zone integrations were carried out on $\Gamma$-centred Monkhorst-Pack
+grids of $k$-points with a distance of 0.2~\AA$^{-1}$. The cohesive energy is
+defined as the atomisation energy per atom keeping in mind that one gold atom
+is negatively charged for the anionic clusters.
+
+In order to discuss how much the gold cages deviate from sphericity compared to
+the dual fullerene structure, the previously introduced definition of a \ac{MDS}
+was used,\autocite{Schwerdtfeger_Programfullerenesoftware_2013}
+%
+\begin{equation} 
+\min\limits_{c_\mathrm{MDS} \in \mathrm{CH}(S)} \frac{1}{N} \sum _{i} \left|R_\mathrm{MDS} -\| \mathbf{p}_{i}-\mathbf{c}_\mathrm{MDS} \| \right|  
+\end{equation}
+with the \ac{MDS} radius defined as
+\begin{equation} 
+	R_{\mathrm{MDS}} =\frac{1}{N} \sum _{i}\| \mathbf{p}_{i} -\mathbf{c}_{\mathrm{MDS}} \|. 
+	\label{eq:RMDS}
 \end{equation}
 %
-Both $I_\mathrm{h}-$Au$_{32}$ and $I_\mathrm{h}-$Au$_{42}$ have been postulated as stable golden
-fullerenes before,\autocite{Johansson_Au3224CaratGolden_2004} and more recently
-the chiral $I-$Au$_{72}$\autocite{Karttunen_IcosahedralAu72_2008} which is
-nothing else as the dual of $GC_{2,1}$[$I_\mathrm{h}-$C$_{20}$] = $I-$C$_{140}$, which
-is chiral as well as symmetry is conserved upon dualization.
-
-Now it almost seems trivial to relate Mackay icosahedra\autocite{Mackay-1962}
-well known for gold clusters\autocite{Nam2002,Wang-Wang-2011} to fullerenes. We
-might call them "multi-walled halma-transformed icosahedral" dual fullerenes in
-analogous way to the multi-walled gold nanowires. A Mackay icosahedron is a
-closed packed multi-shell structure each shell being an icosahedron with
+Here $S$ is the set of $n$ points $\mathbf{p}_i$ ($i=1,\ldots ,N$) in
+$3$-dimensional space, $\mathrm{CH}(S)$ its convex hull, $\|\cdot\| $ the
+Euclidean norm, and $\mathbf{c}_\mathrm{MDS}$ is the barycentre of the \ac{MDS}
+with radius $R_\mathrm{MDS}$. In other words, a sphere that approximates the
+position of the vertices best is looked for. A measure for distortion from
+spherical symmetry through the
+\ac{MDS} is defined as\autocite{Schwerdtfeger_Programfullerenesoftware_2013}
 %
 \begin{equation}
-  \label{eq:mackay} 
-N_\text{shell}=10k^2+2
+  \label{eq:DMDS}
+  D_{\mathrm{MDS}} = \frac{100}{N R_\mathrm{min}} \sum_{i=1}^N \left|R_{\mathrm{MDS}} - \|\mathbf{p}_i - \mathbf{c}_{\mathrm{MDS}}\| \right|,
 \end{equation}
-%
-number of atoms in each shell with increasing $k$. This gives the well known
-magic cluster numbers of (including the central atom) 13, 55, 147, 309, 561,
-... derived from
-%
+where $R_\mathrm{min}$ is the smallest bond distance found in the cluster. The pentagon index $N_p$ is defined as
 \begin{equation}
-  \label{eq:mackaytotal} 
-N_\text{total}=1+2\sum_{k=1}^{m_\text{shell}}\left( 5k^2+1 \right)=(10m_\text{shell}^3+15m_\text{shell}^2+11m_\text{shell}+3)/3
+  \label{pentindex}
+  N_p = \frac{1}{2}\sum_{k=1}^{5} kp_k \quad \text{ with } \quad  \sum_{k=0}^{5} p_k = 12
 \end{equation}
 %
-with $m_\text{shell} \ge 1$. One such Mackay icosahedron with $m_\text{shell}$=7 and
-$N_\text{total}$=1415 is shown in figure~\ref{fig:mackaylarge}. The triangles
-clearly show the halma pattern of a Goldberg-Coxeter $GC_{k,0}$ transformation.
-Because each transformation brings a new vertex on the icosahedral edge, we can
-just deduct the number of shells by counting the number of atoms at one edge of
-a triangle $N_\text{edge}$, i.e. $m_\text{shell}=N_\text{edge}-1$, which gives 8 atoms and 7
-icosahedral shells for the Mackay icosahedron shown in figure~\ref{fig:mackaylarge}.
-%
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[width=4.9cm]{golddual/ico.jpg}
-    \caption{Mackay icosahedron with 7 shells and 1415 atoms. The outer icosahedral shell is the dual of the halma transform $GC_{7,0}$[$I_\mathrm{h}-$C$_{20}$]=$I_\mathrm{h}-$C$_{980}$.}
-\label{fig:mackaylarge}
-\end{center}
-\end{figure}
-%
-Mackay pointed out that the packing density (or atomic packing factor) for $N
-\rightarrow \infty$ with $\rho$=0.68818 is not too different from a closed
-packed structure such as fcc with
-$\rho=\pi/\sqrt{18}=0.74048$,\autocite{Mackay-1962} one reason why icosahedral
-cluster growth is often seen. The number of atoms in a shell $N_\text{shell}$
-directly corresponds to the number of faces in a halma transformed C$_{20}$,
-i.e. for $l=0$ in the Goldberg-Coxeter transformation and starting with
-$N_d=12$ in equation~\eqref{eq:dualvertex} we have $N_d'=k^2(N_d-2)+2 = 10k^2+2$
-identical with the formula given by Mackay. 
-
-Finally we mention that we can name the different isomers of the golden dual
-fullerenes exactly in the same way as we do for the fullerenes by using the
-canonical face spiral pentagon indices (FSPI) and the numbering scheme
-introduced by Fowler and Manolopoulos,\autocite{Fowler-atlas-2006} keeping in
-mind that the face spiral for fullerenes now becomes a vertex spiral for the
-dual triangulated surface. We are now turning to a detailed analysis of all
-possible golden dual fullerenes from $I_\mathrm{h}-$Au$_{12}$, Au$_{14}$ to Au$_{20}$
-and $I_\mathrm{h}-$Au$_{32}$ by quantum chemical calculations.
-
-
+where the pentagon indices $(p_i | i=0, \dots , 5)$ define the number of
+pentagons attached to another pentagon.\autocite{Fowler-atlas-2006}
 
 \section{Structure and Stability}
 

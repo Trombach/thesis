@@ -20,3 +20,4 @@
 LT_thesis.pdf
 *.lo*
 build
+*.json
