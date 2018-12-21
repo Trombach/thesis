@@ -528,99 +528,23 @@ if (potentialName = "LJ") {
 
 
 
-\section[Computational Details for
-Chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters}]{Computational Details
-for Chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters}\footnote{This
-section has been published previously in
-\citetitle*{Trombach_stickyhardsphereLennardJonestypeclusters_2018}\autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018}
-and is reproduced with permission from the publisher \textcopyright 2018
-American Physical Society.} }
+%\section[Computational Details for
+%Chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters}]{Computational Details
+%for Chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters}\footnote{This
+%section has been published previously in
+%\citetitle*{Trombach_stickyhardsphereLennardJonestypeclusters_2018}\autocite%{Trombach_stickyhardsphereLennardJonestypeclusters_2018}
+%and is reproduced with permission from the publisher \textcopyright 2018
+%American Physical Society.} }
 
-The \textit{pele} program~\autocite{_pelePythonenergy_2017} was used to generate putatively
-complete sets of local minima for $(m,n)$-Lennard-Jones potentials 
-$V_{mn}^{\mathrm LJ}(r)$ as defined in equation~\eqref{eqn:nmpot}.
-This program  applies a basin-hopping algorithm that divides the potential energy
-surface into basins of attraction, effectively mapping each point in
-configuration space to a local minimum structure
-\autocite{Li_MonteCarlominimizationapproach_1987,waless99,Wales_GlobalOptimizationBasinHopping_1997}.  The results confirmed the
-number of local minima reported in previous work \autocite{Doye_Saddlepointsdynamics_2002}.
-Finite computer time limited our search to clusters of size $N \leq 13$.
 
-Starting from the sticky hard sphere packings up to $N=14$, with Cartesian
-coordinates given by the exact enumeration algorithm
-\autocite{Hoy_Structurefinitesphere_2012} including rigid hypostatic clusters
-($N_c<3N-6$) \autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016} geometry
-optimisations with $(m,n)$-Lennard-Jones potentials using the multidimensional
-function minimiser from the \Cpp library \textit{dlib}
-\autocite{King_DlibmlMachineLearning_2009} were carried out with the previously
-described program package \textsc{Spheres}
-(Chapter~\ref{sec:theprogramspheres}). The optimisation scheme was either the
-\ac{BFGS} or the conjugate gradient algorithm. The optimisations were terminated when the
-change in energy (in reduced units) over the course of one optimizsation cycle
-was smaller than $10^{-15}$. 
 
-Subsequently, the eigenvalues of the Hessian were checked
-for all stationary points. If negative eigenvalues were found, the affected
-structures were reoptimized following displacements in both directions along
-the corresponding eigenvectors to locate true local minima. This procedure assures
-that the floppy \ac{SHS} packings are successfully mapped into LJ minima.
-
-As the optimisations often result in many duplicates, especially for small
-values of $n$ and $m$ where $|\mathcal{M}_{(m,n)\mathrm{-LJ}}| \ll
-|\mathcal{M}_\mathrm{SHS}|$, the final structures were further analysed and
-sorted. Nonisomorphic \ac{SHS} clusters can be distinguished (apart from
-permutation of the particles) by their different adjacency matrices for $N \leq
-13$ \autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}.  This is not the case
-for soft potentials like the LJ potential since drawing edges (bonds) between
-the vertices (atoms) becomes a matter of defining the distance cutoff criterion
-for a bond to be drawn. Therefore, the clusters were compared based on the
-\ac{EDM} (the matrix of interparticle distances $\{r_{ij}\}$) as described
-previously: two clusters are isomorphic (structurally identical) if they have
-the same ordered set of inter-particle distances $\{r_{ij}\}$.  While
-enantiomers cannot be separated using this methodology, permutation-inversion
-isomers are usually lumped together, since the number of distinct minima is
-analytically related to the order of the corresponding point group
-\autocite{Wales_Energylandscapes_2003}.  To verify the number of distinct structures we introduced
-a second ordering scheme using the energy and moment of inertia tensor
-eigenvalues. 
-
-Two sets of structures are obtained from our optimization procedure: the first
-set contains all possible LJ minima $\mathcal{M}_\mathrm{LJ}$ from the
-basin-hopping algorithm, while the second set $\mathcal{M}_\mathrm{SHS\to LJ}$
-contains the LJ minima obtained using only the $\mathcal{M}_\mathrm{SHS}$
-sticky-hard-sphere cluster structures as starting points for the geometry
-optimization.  To compare and identify corresponding structures between the two
-sets, the $N(N-1)/2$ inter-particle distances $\{r_{ij}\}$ were again used as
-an identifying fingerprint.
-
-Two-body \ac{eLJ} potentials that accurately model
-two-body interactions in rare-gas clusters can be written as expansions of
-inverse-power-law terms
-\autocite{Schwerdtfeger_ExtensionLennardJonespotential_2006}:
-%
-\begin{equation} \label{eq:ELJ}
-V_{\mathrm ELJ}(r)=\sum_{n} c_nr^{-n},
-\end{equation}
-%
-where in reduced units the condition $\sum_{n} c_n=-1$ holds. For comparison
-to the simple (6,12)-\ac{LJ} potential, the \ac{eLJ} potential derived from
-relativistic coupled-cluster theory applied to the xenon dimer was used with the
-following coefficients (in reduced units):
-$c_6=-1.0760222355$; $c_8=-1.4078314494$; $c_9=-185.6149933139$;
-$c_{10}=+1951.8264493941$; $c_{11}=-8734.2286559729$;
-$c_{12}=+22273.3203327203$; $c_{13}=-35826.8689874832$;
-$c_{14}=+37676.9744744424$; $c_{15}=-25859.2842295062$;
-$c_{16}=+11157.4331408911$; $c_{17}=-2745.9740079192$; $c_{18}=+293.9003309498$
-\autocite{Jerabek_relativisticcoupledclusterinteraction_2017}. The \ac{eLJ}
-potential for xenon is shown in figure~\ref{fig:LJ} (dashed line).
-
-\section[Computational Details for
-Chapter~\ref{sec:thegregorynewtonclusters}]{Computational Details for
-Chapter~\ref{sec:thegregorynewtonclusters}\footnote{This section has been
-published previously in
-\citetitle*{Trombach_GregoryNewtonproblemkissing_2018}\autocite{Trombach_GregoryNewtonproblemkissing_2018}
-and is reproduced with permission from the publisher \textcopyright 2018
-American Physical Society.}}
+%\section[Computational Details for
+%Chapter~\ref{sec:thegregorynewtonclusters}]{Computational Details for
+%Chapter~\ref{sec:thegregorynewtonclusters}\footnote{This section has been
+%published previously in
+%\citetitle*{Trombach_GregoryNewtonproblemkissing_2018}\autocite%{Trombach_GregoryNewtonproblemkissing_2018}
+%and is reproduced with permission from the publisher \textcopyright 2018
+%American Physical Society.}}
 
 Coordinates for \ac{GNC} structures have been obtained by searching for
 adjacency matrices of the results for $N=13$ from
