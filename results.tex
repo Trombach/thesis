@@ -1091,8 +1091,8 @@ An interesting topological relationship between fullerenes and the cage-like
 gold clusters resulting in a triangulation of a sphere with vertices of degrees
 5 and 6 fulfilling Euler's polyhedral formula was found. Because of this
 isomorphism between the two types of structures by dualisation, there are as
-many golden fullerene isomers as there are fullerene isomers. Gold nanotubes and
-carbon nanotubes and halma transforms of C$_{20}$ to the shells of a Mackay
+many golden fullerene isomers as there are fullerene isomers. Gold nano-tubes and
+carbon nano-tubes and halma transforms of C$_{20}$ to the shells of a Mackay
 icosahedron are related in the same way. The stability of these golden
 fullerenes was investigated. While they perhaps may not compete in energy with
 the more compact gold clusters at larger cluster size, the smaller cage
@@ -1117,122 +1117,123 @@ attaching appropriate ligands to the outside of the cage.
 %Introduction
 \section{Introduction}
 
-The nucleation of atoms and molecules in the gas phase, or liquid, to the solid
-state is still an active research
-field\autocite{Stillinger_Packingstructurestransitions_1984,
+Nucleation is a phenomenon that is a part of many natural processes and
+surrounds all of us every day. Naturally, there is a large research interest in
+this field especially with respect to the nucleation of atoms and molecules to
+clusters, eventually leading to the solid
+state.\autocite{Stillinger_Packingstructurestransitions_1984,
 Martin-1996,Wales-1996, Vlieg_atomicscaleunderstandingcrystal_2007, Arkus-2010,
-Woodley-2010, Karthika-2016, Holmes-Cerfon_StickySphereClusters_2017}. Rowland
-noted in 1949 that ``The gap between theory and the experimental approaches to
-nucleation has been too wide'' and ``the subject [nucleation] is still in the
-alchemical stage'' \autocite{Rowland-1949}. More than half a century later,
-despite all the advancements made in cluster physics, ``there is still a large
-gap between experiment and theory'' as Unwin noted \autocite{Unwin-2007}.
+Woodley-2010, Karthika-2016, Holmes-Cerfon_StickySphereClusters_2017} In an
+early Faraday Discussion taking place in Bristol in 1949 Rowland concluded the
+meeting with the assessment ``that the gap between the theoretical and
+experimental approaches has been too wide''.\autocite{Rowland-1949} Here, he was
+referring to the subject of nucleation. In a Faraday discussion about half a
+century later \citeauthor{Vlieg_atomicscaleunderstandingcrystal_2007} stated
+that ``the gap between the quite detailed experimental information [...] and
+theoretical models, though getting smaller, is still large''.\autocite{Vlieg_atomicscaleunderstandingcrystal_2007}
 
-The underlying reason for this rather slow progress is that cluster formation
-is a dynamic process, and fully characterizing the corresponding
-high-dimensional potential energy landscape is typically an NP-hard problem,
-since there are (presumably) exponentially many local minima at any given
-temperature and pressure\autocite{Stillinger_Packingstructurestransitions_1984,
+One reason for this slow progress in the theoretical description of nucleation
+processes is that it is a global optimisation problem. Exploring the
+multi-dimensional potential energy surface belongs to the computational
+complexity class ``NP-complete'', as already mentioned in
+chapter~\ref{sec:GlobalOptimisation}. The number of local minima is expected to
+grow exponentially,\autocite{Stillinger_Packingstructurestransitions_1984,
 Oganov-2006, Massen_Powerlawdistributionsareas_2007, wales10, Oganov-2011,
-calvo12, Wales-2015}.  Moreover, phase transitions between different
-morphologies as a function of size $N$ usually occur where $N$ is too large for
-an accurate quantum-theoretical treatment \autocite{Waal89,
-Cleveland_energeticsstructurenickel_1991, vandewaal96a, Doye-1995,
-vandeWaalTd00}.  For example, Krainyukova experimentally studied the growth of
-argon clusters \autocite{Krainyukova-2012}, and found that small, initially
-icosahedral clusters transform into anti-Mackay clusters for $N>2000$, and
-finally into the \ac{fcc} or \ac{hcp} structures at $N>10^5$ atoms, in
-qualitative agreement with theoretical predictions using \ac{LJ} type
-potentials \autocite{Martin-1996,
-Schwerdtfeger_ExtensionLennardJonespotential_2006, Krainyukova-2007}.  The
-notorious \textit{rare gas problem} was solved only very recently by accurate
-relativistic quantum methods, correctly predicting a slight preference of the
-\ac{fcc} over the hcp phase due to phonon dispersion \autocite{Schwerdtfeger-2016}.
+calvo12, Wales-2015} which is problematic, because interesting phase transitions
+usually occur for larger cluster sizes $N$ that can not be treated by accurate
+quantum mechanical methods as introduced in chapter~\ref{sec:basicsofQC}. One
+such phase transition is the transformation of argon clusters from icosahedral
+clusters into anti-Mackay clusters for sizes of $N>2000$ and finally into
+\acf{fcc} or \acf{hcp} solid state structures for
+$N>10^5$.\autocite{Krainyukova-2012} Similar results can be predicted by the
+\acf{LJ} potential.\autocite{Martin-1996,
+Schwerdtfeger_ExtensionLennardJonespotential_2006, Krainyukova-2007}
 
-Simple models often have to be used to simulate cluster growth and nucleation
-\autocite{Johnston-1999, Shibuta_Homogeneousnucleationmicrostructure_2015,
-Leitold-2016, Sweatman-2016}.  The simplest model potentials that can be
-applied to theoretical studies of atomic cluster formation are ``HCR-SRA''
-potentials with isotropic hard-core-like repulsive and short-range-attractive
-interactions \autocite{baxter68}.  The simplest HCR-SRA potential is the
-\ac{SHS} potential \autocite{Yuste_Stickyhardspheres_1993}
+Because of the exponentially growing potential energy landscapes and the large
+cluster sizes required to model phase transitions, investigations of this type
+often have to rely on approximate interaction potentials. I this part of the
+thesis two interaction potentials introduced in
+chapter~\ref{sec:energylandscapes} are used. The first and maybe simpler one is
+the \acf{SHS} potential $V_\mathrm{SHS}$, originally introduced by
+\citeauthor{baxter68}\autocite{baxter68}.
+%
 \begin{align}
     V_\mathrm{SHS}(r)=\begin{cases}
-        \infty, & r < r_s,\\
-        -\varepsilon, & r = r_s,\\
-        0, & r > r_s,
+        \infty, & r < r_s\\
+        -\varepsilon, & r = r_s\\
+        0, & r > r_s
     \end{cases}
 \label{eqn:KS}
 \end{align}
-where $r_s$ and $\varepsilon$ can be arbitrarily set to 1 (unit sphere and
-reduced units, respectively). Equation~\eqref{eqn:KS} can be used as a perturbative
-basis for finite-ranged HCR-SRA potentials \autocite{cochran06,
-Holmes-Cerfon_geometricalapproachcomputing_2013}.  Since sticky hard spheres
-are impenetrable and their energy $E = -N_c\varepsilon$ ~is a function only of
-the number of interparticle contacts $N_c$, \ac{SHS} cluster structure and
-energetics can be uniquely mapped to their adjacency matrices $\bar{A}$, where
-$N_c=\sum_{i<j}^N A_{ij}$.  This mapping allows them to be exactly
-characterized via complete enumeration
-\autocite{Arkus_Minimalenergyclusters_2009, Arkus_DerivingFiniteSphere_2011,
-Hoy_Structurefinitesphere_2012}; recent studies have identified all
-mechanically stable \ac{SHS} clusters for $N \leq 14$, and putatively complete sets
-for $N \leq 19$ \autocite{Arkus_Minimalenergyclusters_2009,
-Arkus_DerivingFiniteSphere_2011, Hoy_Structurefinitesphere_2012,
-Hoy_Structuredynamicsmodel_2015, Holmes-Cerfon_StickySphereClusters_2017,
-Kallus_Freeenergysingular_2017}.  Note, however, that different \ac{SHS} structures
-can have the same adjacency matrix for $N \geq 14$
-\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}, and the mapping is
-therefore only surjective.
+%
+$\varepsilon$ and the equilibrium distance $r_s$ can be set to unity without
+changing the qualitative information contained in the \ac{PES}. 
 
-From the Gregory-Newton kissing-number argument proved in 1953 by Sch\"utte and
-van der Waerden \autocite{Schutte_ProblemdreizehnKugeln_1952}, no sphere can be
-surrounded by more than 12 spheres of equal radius \autocite{Conway_SpherePackingsLattices_1999}.  For
-small clusters, graph-theoretic arguments dictate $\mathrm{max}(N_c)\le
-N(N-1)/2$.  Thus a loose bound on the maximum contact number $N_c(N)$ is
+One of the defining properties for cluster bound by the \ac{SHS} potential is
+the contact number $N_c$, which is directly related to the energy of the cluster
+$E=-N_c\varepsilon$. How the number of contact points a cluster possesses grows
+with its size $N$ is still researched actively. From the Gregory-Newton
+argument,\footnote{For a more thorough discussion of this argument please refer
+to chapter~\ref{sec:thegregorynewtonclusters}.}, which was proven in 1953, it
+follows that each sphere can not be surrounded by more than 12 other spheres of
+the same size. For small clusters, the maximum number is governed by the total
+number of (unique) entries in the adjacency matrix, i.e. $\text{max}\leq
+N(N-1)/2$. Combining these two facts leads to a loose upper bound
 %
 \begin{equation}
-    N_c^\mathrm{max}(N) \le \mathrm{min}\{N(N-1)/2,f(N)\}
+    N_c^\mathrm{max}(N) \le \text{min}\{N(N-1)/2,f(N)\},
     \label{eqn:upperlimitNc}
 \end{equation}
 %
-with $f(N)=6N$.  This upper bound has been tightened several times, most
-recently by Bezdek and Reid \autocite{Bezdek-2013} to
+Using the Gregory-Newton argument results in $f(N)=6$, however, a better upper
+bound has been published more recently by
+\citeauthor{Bezdek-2013}\autocite{Bezdek-2013}.
 %
 \begin{equation}
     f(N)=6N-3(18)^{1/3}\pi^{-2/3}N^{2/3}.
     \label{eqn:upperlimitBR}
 \end{equation}
 %
-In
-references~\cite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016}
-it was shown that $N_c^\mathrm{max}(N) =
-\{6,9,12,15,18,21,25,29,33,36,40,44,48,52,56,60\}$ for $4 \leq N \leq 19$.
-While determining $N_c^\mathrm{max}(N)$ for arbitrary $N$ is equivalent to the
-still-unsolved Erd\"os unit distance problem \autocite{Erdos-1946}, it is clear
-that $N_c^\mathrm{max}(N) = 3N - 6 + m(N)$, where $m(N)$ grows slowly from zero
-to around $f(N) - (3N-6)$ with increasing $N$.
+Theoretical investigations of the cluster landscape by means of the exact
+enumeration method revealed that the contact numbers for clusters of size $4
+\leq N \leq 19$ are\autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016}
+%
+\begin{align}
+    N_c^\mathrm{max}(N) =\{6,9,12,15,18,21,25,29,33,36,40,44,48,52,56,60\}.
+\end{align}
+%
+The exact solution for $N_c^\mathrm{max}(N)$ for arbitrary $N$ is called the
+Erd\H{o}s unit distance problem, which remains unsolved.\autocite{Erdos-1946}
 
-While the maximum contact number increases (sub)linearly with $N$, the number
-of non-isomorphic cluster structures $|\mathcal{M}(N)|$ and transition states
-is assumed to increase exponentially
-\autocite{Stillinger_Exponentialmultiplicityinherent_1999,Oganov-2006,Forman_ModelingAggregationProcesses_2017}
-(here we denote $\mathcal{M}(N)$ as the set of all non-isomorphic cluster
-structures of size $N$, and $|\mathcal{M}(N)|$ as the number of structures in
-$\mathcal{M}(N)$).  Stillinger showed that under certain conditions
-$\lim_{N\to\infty} |\mathcal{M}(N)| \propto \exp(\alpha N)$
-\autocite{Stillinger_Exponentialmultiplicityinherent_1999}.  For \ac{SHS}
-clusters, the complete set $\mathcal{M}_\mathrm{SHS}(N,N_c)$ has been exactly
-determined for $N \leq 14$ and $3N - 6 \leq N_c \leq N_c^\mathrm{max}(N)$ via
-exact enumeration studies employing geometric rejection rules
-\autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016}.
-Unfortunately, such precise calculations are very difficult for finite-ranged
-potentials since exhaustive searches for energy minima are computationally
-intensive \autocite{Heiles_Globaloptimizationclusters_2013}.  Only a few such
-studies have been performed, e.g.\ recent studies of $N \leq 19$ clusters
-interacting via short-range Morse potentials
-\autocite{wales10,calvo12,C7CP03346J}.
+The number of non-isomorphic cluster structures
+$|\mathcal{M}(N)|$\footnote{$\mathcal{M}(N)$ refers to the set of all
+non-isomorphic cluster structures, while the size of the set is denoted
+$|\mathcal{M}(N)|$.} is expected to grow
+exponentially.\autocite{Stillinger_Exponentialmultiplicityinherent_1999,Oganov-2006,Forman_ModelingAggregationProcesses_2017}
+The exact numbers for $|\mathcal{M}(N)|$ have been determined via exact
+enumeration studies for clusters of size $N \leq
+14$.\autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016}
+Studies of this type are difficult to carry out, because they are
+computationally expensive.\autocite{Heiles_Globaloptimizationclusters_2013}
 
-\begin{figure}\centering
+Another interaction potential often used in cluster science is the \acf{LJ}
+potential, as introduced in section~\ref{sec:LennardJones}. It is most commonly
+used in the $(6,12)$ form, but in this section it will be employed with
+arbitrary integer exponents $(m,n)$.
+%
+\begin{equation}
+    V_{m,n}^\mathrm{LJ}(r)=\frac{\varepsilon}{n-m}\left[m\left(\frac{r_e}{r}\right)^{n}-n\left(\frac{r_e}{r}\right)^{m}\right] \ \ \ \ \ \ \ \ \ \  (\mathrm{with}\ n > m)
+\label{eqn:nmpot}
+\end{equation}
+%
+The two parameters $\varepsilon$ and $r_e$ are the depth of the potential energy
+well and the equilibrium distance, respectively. The values for $\varepsilon$
+and $r_e$ will be set to unity in the following for the same reasons as for the
+\ac{SHS} potential. As already mentioned in chapter~\ref{sec:energylandscapes},
+the \ac{SHS} potential emerges from the \ac{LJ} potential as the limit for large
+exponents $(m,n)$ (figure~\ref{fig:LJ}).
+%
+\begin{figure}[htb]\centering
     \includegraphics[width=0.8\columnwidth]{kslj/exampleLJ.pdf}
     \caption{Lennard-Jones potentials for different exponents $(m,n)$ with
     fixed $n=2m$. As the exponents grow larger the well of attraction becomes narrower 
@@ -1240,43 +1241,161 @@ interacting via short-range Morse potentials
     shows the extended LJ potential for the xenon dimer \autocite{Jerabek_relativisticcoupledclusterinteraction_2017}.}
     \label{fig:LJ}
 \end{figure}
+%
+It is therefore surprising that the absolute number of structures for a certain
+size $N$ differ substantially between the two potentials. For $N=13$ there are
+$|\mathcal{M}_\mathrm{SHS}|=97,221$ non-isomorphic \ac{SHS} clusters
+\autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016},
+but only $|\mathcal{M}_\mathrm{LJ}|=1,510$ $(m,n) = (6,12)$ \ac{LJ} clusters
+\autocite{Doye_Evolutionpotentialenergy_1999}. This is a known behaviour of
+energy landscapes of long-range (LJ) and short-range (SHS) potentials, with the
+latter generally supporting many more local minima compared to the
+former.\autocite{braier90,Wales_MicroscopicBasisGlobal_2001} Decreasing the
+exponents $(m,n)$ increases the range of the potential, which leads to increased
+second-nearest-neighbour interactions. Furthermore, fold
+catastrophes\autocite{Wales_MicroscopicBasisGlobal_2001,Wales_Energylandscapes_2003}
+lead to the collapse of several stable \ac{SHS} structure into a single \ac{LJ}
+minimum, leading to a decrease in the overall size of $|\mathcal{M}(N)|$.
 
-It remains unclear how the HCR-SRA models commonly
-used in cluster physics relate to more physically relevant, softer interaction potentials such
-as the $(m,n)$-Lennard-Jones (LJ) form:
-\begin{equation}
-    V_{m,n}^\mathrm{LJ}(r)=\frac{\varepsilon}{n-m}\left[m\left(\frac{r_e}{r}\right)^{n}-n\left(\frac{r_e}{r}\right)^{m}\right] \ \ \ \ \ \ \ \ \ \  (\mathrm{with}\ n > m).
-\label{eqn:nmpot}
-\end{equation}
-Here $\varepsilon>0$ is the dissociation energy and $r_e$ the equilibrium
-two-body interparticle distance. To simplify the presentation,
-we (without loss of generality) adopt reduced units ($\varepsilon=1$, $r_e=1$) below.
-For $m,n\rightarrow \infty$,
-$V_{m,n}^\mathrm{LJ}(r) \rightarrow V_\mathrm{SHS}(r)$ (figure~\ref{fig:LJ}); the
-energy landscapes of the two potentials converge in this limit.  However, real
-systems are not in this limit.  For example, for $N = 13$, there are $|\mathcal{M}_\mathrm{SHS}|=97,221$
-stable \ac{SHS} clusters \autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016},
-but only $|\mathcal{M}_\mathrm{LJ}|=1,510$ stable $(m,n) = (6,12)$ LJ clusters \autocite{Doye_Evolutionpotentialenergy_1999}.  
-This difference is understood qualitatively -- energy landscapes are well known to support more
-local minima
-as the range of the interaction potential decreases \autocite{braier90,Wales_MicroscopicBasisGlobal_2001}.
-There are several effects that will cause the set of
-stable LJ clusters to increasingly deviate from the set of stable \ac{SHS} clusters
-as interactions become longer ranged.  As $n$ and $m$ decrease,
-second-nearest-neighbor attractions become increasingly important,
-producing stable structures with $r_{ij} \leq 1$.  Fold catastrophes
-\autocite{Wales_MicroscopicBasisGlobal_2001,Wales_Energylandscapes_2003} progressively eliminate stable \ac{SHS} clusters, and several stable \ac{SHS}
-structures may collapse into a single stable LJ cluster.  However,
-detailed quantitative understanding of such effects remains rather limited.
+In the following sections the evolution of stable \ac{SHS} clusters is
+investigated for \ac{LJ} potentials with increasing range. 
 
-In this paper, we quantitatively examine how stable $N \leq 14$ LJ cluster
-structures evolve away from the \ac{SHS} limit as ($m, n$) decrease.  We focus on
-both the topography of the energy landscape (decreasing
-$|\mathcal{M}_{\mathrm LJ}(N)|$) and the evolving topologies of the stable cluster sets.
-We examine these changes in further detail for specific $N = 13-14$ clusters discussed by
-Gregory and Newton in the 1600s in the context of the kissing number problem
-\autocite{Schutte_ProblemdreizehnKugeln_1952}, and also for a more realistic two-body potential that has
-been shown to accurately model rare-gas clusters \autocite{Schwerdtfeger_ExtensionLennardJonespotential_2006}.
+%The nucleation of atoms and molecules in the gas phase, or liquid, to the solid
+%state is still an active research
+%field\autocite{Stillinger_Packingstructurestransitions_1984,
+%Martin-1996,Wales-1996, Vlieg_atomicscaleunderstandingcrystal_2007, Arkus-2010,
+%Woodley-2010, Karthika-2016, Holmes-Cerfon_StickySphereClusters_2017}. Rowland
+%noted in 1949 that ``The gap between theory and the experimental approaches to
+%nucleation has been too wide'' and ``the subject [nucleation] is still in the
+%alchemical stage'' \autocite{Rowland-1949}. More than half a century later,
+%despite all the advancements made in cluster physics, ``there is still a large
+%gap between experiment and theory'' as Unwin noted \autocite{Unwin-2007}.
+
+%The underlying reason for this rather slow progress is that cluster formation
+%is a dynamic process, and fully characterizing the corresponding
+%high-dimensional potential energy landscape is typically an NP-hard problem,
+%since there are (presumably) exponentially many local minima at any given
+%temperature and pressure\autocite{Stillinger_Packingstructurestransitions_1984,
+%Oganov-2006, Massen_Powerlawdistributionsareas_2007, wales10, Oganov-2011,
+%calvo12, Wales-2015}.  Moreover, phase transitions between different
+%morphologies as a function of size $N$ usually occur where $N$ is too large for
+%an accurate quantum-theoretical treatment \autocite{Waal89,
+%Cleveland_energeticsstructurenickel_1991, vandewaal96a, Doye-1995,
+%vandeWaalTd00}.  For example, Krainyukova experimentally studied the growth of
+%argon clusters \autocite{Krainyukova-2012}, and found that small, initially
+%icosahedral clusters transform into anti-Mackay clusters for $N>2000$, and
+%finally into the \acf{fcc} or \acf{hcp} structures at $N>10^5$ atoms, in
+%qualitative agreement with theoretical predictions using \ac{LJ} type
+%potentials \autocite{Martin-1996,
+%Schwerdtfeger_ExtensionLennardJonespotential_2006, Krainyukova-2007}.  The
+%notorious \textit{rare gas problem} was solved only very recently by accurate
+%relativistic quantum methods, correctly predicting a slight preference of the
+%\ac{fcc} over the hcp phase due to phonon dispersion \autocite{Schwerdtfeger-2016}.
+
+%Simple models often have to be used to simulate cluster growth and nucleation
+%\autocite{Johnston-1999, Shibuta_Homogeneousnucleationmicrostructure_2015,
+%Leitold-2016, Sweatman-2016}.  The simplest model potentials that can be
+%applied to theoretical studies of atomic cluster formation are ``HCR-SRA''
+%potentials with isotropic hard-core-like repulsive and short-range-attractive
+%interactions \autocite{baxter68}.  The simplest HCR-SRA potential is the
+%\ac{SHS} potential \autocite{Yuste_Stickyhardspheres_1993}
+
+%where $r_s$ and $\varepsilon$ can be arbitrarily set to 1 (unit sphere and
+%reduced units, respectively). Equation~\eqref{eqn:KS} can be used as a perturbative
+%basis for finite-ranged HCR-SRA potentials \autocite{cochran06,
+%Holmes-Cerfon_geometricalapproachcomputing_2013}.  Since sticky hard spheres
+%are impenetrable and their energy $E = -N_c\varepsilon$ ~is a function only of
+%the number of interparticle contacts $N_c$, \ac{SHS} cluster structure and
+%energetics can be uniquely mapped to their adjacency matrices $\bar{A}$, where
+%$N_c=\sum_{i<j}^N A_{ij}$.  This mapping allows them to be exactly
+%characterized via complete enumeration
+%\autocite{Arkus_Minimalenergyclusters_2009, Arkus_DerivingFiniteSphere_2011,
+%Hoy_Structurefinitesphere_2012}; recent studies have identified all
+%mechanically stable \ac{SHS} clusters for $N \leq 14$, and putatively complete sets
+%for $N \leq 19$ \autocite{Arkus_Minimalenergyclusters_2009,
+%Arkus_DerivingFiniteSphere_2011, Hoy_Structurefinitesphere_2012,
+%Hoy_Structuredynamicsmodel_2015, Holmes-Cerfon_StickySphereClusters_2017,
+%Kallus_Freeenergysingular_2017}.  Note, however, that different \ac{SHS} structures
+%can have the same adjacency matrix for $N \geq 14$
+%\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}, and the mapping is
+%therefore only surjective.
+
+%From the Gregory-Newton kissing-number argument proved in 1953 by Sch\"utte and
+%van der Waerden \autocite{Schutte_ProblemdreizehnKugeln_1952}, no sphere can be
+%surrounded by more than 12 spheres of equal radius \autocite%{Conway_SpherePackingsLattices_1999}.  For
+%small clusters, graph-theoretic arguments dictate $\mathrm{max}(N_c)\le
+%N(N-1)/2$.  Thus a loose bound on the maximum contact number $N_c(N)$ is
+%%
+%%
+%with $f(N)=6N$.  This upper bound has been tightened several times, most
+%recently by Bezdek and Reid \autocite{Bezdek-2013} to
+%
+
+%
+%In
+%references~\cite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016}
+%it was shown that $N_c^\mathrm{max}(N) =
+%\{6,9,12,15,18,21,25,29,33,36,40,44,48,52,56,60\}$ for $4 \leq N \leq 19$.
+%While determining $N_c^\mathrm{max}(N)$ for arbitrary $N$ is equivalent to the
+%still-unsolved Erd\"os unit distance problem \autocite{Erdos-1946}, it is clear
+%that $N_c^\mathrm{max}(N) = 3N - 6 + m(N)$, where $m(N)$ grows slowly from zero
+%to around $f(N) - (3N-6)$ with increasing $N$.
+
+%While the maximum contact number increases (sub)linearly with $N$, the number
+%of non-isomorphic cluster structures $|\mathcal{M}(N)|$ and transition states
+%is assumed to increase exponentially
+%\autocite{Stillinger_Exponentialmultiplicityinherent_1999,Oganov-2006,%Forman_ModelingAggregationProcesses_2017}
+%(here we denote $\mathcal{M}(N)$ as the set of all non-isomorphic cluster
+%structures of size $N$, and $|\mathcal{M}(N)|$ as the number of structures in
+%$\mathcal{M}(N)$).  Stillinger showed that under certain conditions
+%$\lim_{N\to\infty} |\mathcal{M}(N)| \propto \exp(\alpha N)$
+%\autocite{Stillinger_Exponentialmultiplicityinherent_1999}.  For \ac{SHS}
+%clusters, the complete set $\mathcal{M}_\mathrm{SHS}(N,N_c)$ has been exactly
+%determined for $N \leq 14$ and $3N - 6 \leq N_c \leq N_c^\mathrm{max}(N)$ via
+%exact enumeration studies employing geometric rejection rules
+%\autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016}.
+%Unfortunately, such precise calculations are very difficult for finite-ranged
+%potentials since exhaustive searches for energy minima are computationally
+%intensive \autocite{Heiles_Globaloptimizationclusters_2013}.  Only a few such
+%studies have been performed, e.g.\ recent studies of $N \leq 19$ clusters
+%interacting via short-range Morse potentials
+%\autocite{wales10,calvo12,C7CP03346J}.
+
+
+%
+%It remains unclear how the HCR-SRA models commonly
+%used in cluster physics relate to more physically relevant, softer interaction potentials %such
+%as the $(m,n)$-Lennard-Jones (LJ) form:
+%
+%Here $\varepsilon>0$ is the dissociation energy and $r_e$ the equilibrium
+%two-body interparticle distance. To simplify the presentation,
+%we (without loss of generality) adopt reduced units ($\varepsilon=1$, $r_e=1$) below.
+%For $m,n\rightarrow \infty$,
+%$V_{m,n}^\mathrm{LJ}(r) \rightarrow V_\mathrm{SHS}(r)$ (figure~\ref{fig:LJ}); the
+%energy landscapes of the two potentials converge in this limit.  However, real
+%systems are not in this limit.  For example, for $N = 13$, there are $|\mathcal{M}_\mathrm%{SHS}|=97,221$
+%stable \ac{SHS} clusters \autocite{Hoy_Structuredynamicsmodel_2015,%Holmes-Cerfon_EnumeratingRigidSphere_2016},
+%but only $|\mathcal{M}_\mathrm{LJ}|=1,510$ stable $(m,n) = (6,12)$ LJ clusters \autocite%{Doye_Evolutionpotentialenergy_1999}.  
+%This difference is understood qualitatively -- energy landscapes are well known to support %more
+%local minima
+%as the range of the interaction potential decreases \autocite{braier90,%Wales_MicroscopicBasisGlobal_2001}.
+%There are several effects that will cause the set of
+%stable LJ clusters to increasingly deviate from the set of stable \ac{SHS} clusters
+%as interactions become longer ranged.  As $n$ and $m$ decrease,
+%second-nearest-neighbor attractions become increasingly important,
+%producing stable structures with $r_{ij} \leq 1$.  Fold catastrophes
+%\autocite{Wales_MicroscopicBasisGlobal_2001,Wales_Energylandscapes_2003} progressively %eliminate stable \ac{SHS} clusters, and several stable \ac{SHS}
+%structures may collapse into a single stable LJ cluster.  However,
+%detailed quantitative understanding of such effects remains rather limited.
+
+%In this paper, we quantitatively examine how stable $N \leq 14$ LJ cluster
+%structures evolve away from the \ac{SHS} limit as ($m, n$) decrease.  We focus on
+%both the topography of the energy landscape (decreasing
+%$|\mathcal{M}_{\mathrm LJ}(N)|$) and the evolving topologies of the stable cluster sets.
+%We examine these changes in further detail for specific $N = 13-14$ clusters discussed by
+%Gregory and Newton in the 1600s in the context of the kissing number problem
+%\autocite{Schutte_ProblemdreizehnKugeln_1952}, and also for a more realistic two-body %potential that has
+%been shown to accurately model rare-gas clusters \autocite{Schwerdtfeger_ExtensionLennardJonespotential_2006}.
 
 
 \section{Computational Details}
