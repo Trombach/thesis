@@ -1174,7 +1174,7 @@ the contact number $N_c$, which is directly related to the energy of the cluster
 $E=-N_c\varepsilon$. How the number of contact points a cluster possesses grows
 with its size $N$ is still researched actively. From the Gregory-Newton
 argument,\footnote{For a more thorough discussion of this argument please refer
-to chapter~\ref{sec:thegregorynewtonclusters}.}, which was proven in 1953, it
+to chapter~\ref{sec:thegregorynewtonclusters}.} which was proven in 1953, it
 follows that each sphere can not be surrounded by more than 12 other spheres of
 the same size. For small clusters, the maximum number is governed by the total
 number of (unique) entries in the adjacency matrix, i.e. $\text{max}\leq
@@ -1913,56 +1913,91 @@ capping some of the triangular faces. This procedure effectively sorts almost
 all unmatched structures into six seeds for clusters up to $N=13$.
 
 
-\chapter[The Gregory-Newton Clusters]{
-    The Gregory-Newton Clusters\footnote{This chapter is partly composed of
-    sections previously published in the articles
+\chapter[The Gregory-Newton Clusters]{The Gregory-Newton Clusters\footnote{This
+    chapter is composed of sections previously published in the articles
     \citetitle*{Trombach_stickyhardsphereLennardJonestypeclusters_2018}\autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018}
     and
     \citetitle*{Trombach_GregoryNewtonproblemkissing_2018}\autocite{Trombach_GregoryNewtonproblemkissing_2018}
-    and is reproduced with kind permission from the authors and APS
-    (\textcopyright 2018 American Physical Society).}
-}
+    and is reproduced with permission from the publisher \textcopyright 2018
+    American Physical Society. Some sections have been modified to fit the style
+    of this thesis.}}
 \label{sec:thegregorynewtonclusters}
 
 \section{Introduction}
 \label{sec:introductiongregorynewton}
 
-The arrangement of $N$ points on the surface of a sphere corresponding to the
-placement of $N$ identical spheres around a central sphere is called a
-spherical packing. To achieve optimal packings for spheres is known as the
-Tammes problem, originally posed in 1930 to study the distribution of pores on
-pollen grains \autocite{Tammes_originnumberarrangement_1930}: It is to
-determine the largest diameter and distribution that $N$ equal spheres may have
-when packed onto the surface of a sphere of radius 1 (unit sphere), without
-allowing for any overlap of these spheres. Alternatively, if the centre of each
-sphere is considered as the vertex of a polyhedron, the graph theoretical
-problem is to find the polyhedron that maximizes the shortest edge lengths with
-fixed distance to the central vertex.
+In 1930, Tammes studied the distribution of pores on pollen grains, which
+required him to find a solution to the problem of packing a number of circles
+(or spheres) on the surface of a sphere, maximising their
+distance.\autocite{Tammes_originnumberarrangement_1930} In graph theoretical
+terms, in which the centers of all the circles correspond to the vertices of a
+convex polyhedron, one tries to find the graph representing to the polyhedron
+that maximises the shortest edge lengths, while keeping the distance to the
+center of the polyhedron fixed. Exact solutions to this problem are available
+for $3 \leq N \leq 14$ and
+$N=24$.\autocite{Robinson_Arrangement24points_1961,Musin_TammesProblem14_2015}
 
-Newton and Gregory argued about the maximum possible number $N_k(d)$ (the
-\textit{maximum kissing number} or \textit{Newton number}) of three-dimensional
-unit spheres ($d$=3) that could be brought into contact with a central sphere
-\autocite{Pfender_KissingNumbersSphere_2004}. Sch\"utte and van der Waerden
-provided the first proof in 1953 that max$\{N_k(3)\}=12$
-\autocite{Schutte_ProblemdreizehnKugeln_1952}. Such a cluster of 12 unit
-spheres kissing a central unit sphere is called a \ac{GNC}, and is shown in its
-most symmetric icosahedral form in figure~\ref{fig:GN}. Exact Newton numbers
-for unit spheres in lattice packings are known for dimensions $d=1$ to 9 and
-$d=24$, and for non-lattice packings for $d=1-3$, 8 and 24
-\autocite{Conway_SpherePackingsLattices_1999,Musin_proof24cellconjecture_2018}.  Lower and upper
-bounds for max$\{N_k(d)\}$ are also available
-\autocite{Mittelmann_Highaccuracysemidefiniteprogramming_2010,Conway_SpherePackingsLattices_1999}. 
+A related problem goes back to an argument between Newton and one of his
+apprentices Gregory about what is called the the \emph{maximum kissing number}
+or \emph{Newton number} $N_k(d)$ of three-dimensional unit spheres ($d=3$) that
+can simultaneously touch a central sphere of the same
+size.\autocite{Pfender_KissingNumbersSphere_2004} While Newton believed
+$N_k(3)=12$, Gregory thought a 13th sphere could be brought into contact with
+the central sphere. It turns out that Newton was right, which was first proven
+in 1953 by
+\citeauthor{Schutte_ProblemdreizehnKugeln_1952}\autocite{Schutte_ProblemdreizehnKugeln_1952}
+In the following a cluster with $N\geq 13$ and at least 12 spheres in contact
+with a central sphere will be referred to as a \acf{GNC}. Figure~\ref{fig:GN}
+shows the most symmetric icosahedral solution to the Gregory-Newton problem.
+%
 \begin{figure}[htb]
     \centering
     \includegraphics[width=.4\textwidth]{gregory-newton/Kissing-3d.png} \quad
-    \includegraphics[width=.45\textwidth]{gregory-newton/ico.pdf}
+    \includegraphics[width=.5\textwidth]{gregory-newton/ico.pdf}
     \caption{Left: Symmetric realization of $N_k(3)=12$ for unit hard spheres
-    (icosahedral symmetry, $I_h$).  The minimum distance between the outer
-    spheres is $r=$sin$^{-1}\left(\frac{2\pi}{5}\right)$=1.05146222$\dots$,
+    (icosahedral symmetry, $I_h$). The minimum distance between the outer
+    spheres is $r=\sin^{-1}\left(\frac{2\pi}{5}\right)$=1.05146222$\dots$,
     hence they do not touch. Right: The corresponding icosahedral graph.
     Numbering refers to the respective node index.}
     \label{fig:GN}
 \end{figure}
+%
+The Gregory-Newton problem has been solved for dimensions 1--9 and 24 in lattice
+packings and 1--4, 8 and 25 for non-lattice
+packings.\autocite{Musin_kissingnumberfour_2008,Conway_SpherePackingsLattices_1999,Musin_proof24cellconjecture_2018}
+Lower and upper bounds have also been
+published.\autocite{Mittelmann_Highaccuracysemidefiniteprogramming_2010,Conway_SpherePackingsLattices_1999}
+However, for the problem of cluster nucleation, the three-dimensional problem,
+as posed by Gregory and Newton, is more relevant and has recently been reviewed
+by
+\citeauthor{Kusner_ConfigurationSpacesEqual_2018}\autocite{Kusner_ConfigurationSpacesEqual_2018}
+
+%The arrangement of $N$ points on the surface of a sphere corresponding to the
+%placement of $N$ identical spheres around a central sphere is called a
+%spherical packing. To achieve optimal packings for spheres is known as the
+%Tammes problem, originally posed in 1930 to study the distribution of pores on
+%pollen grains \autocite{Tammes_originnumberarrangement_1930}: It is to
+%determine the largest diameter and distribution that $N$ equal spheres may have
+%when packed onto the surface of a sphere of radius 1 (unit sphere), without
+%allowing for any overlap of these spheres. Alternatively, if the centre of each
+%sphere is considered as the vertex of a polyhedron, the graph theoretical
+%problem is to find the polyhedron that maximizes the shortest edge lengths with
+%fixed distance to the central vertex.
+
+%Newton and Gregory argued about the maximum possible number $N_k(d)$ (the
+%\textit{maximum kissing number} or \textit{Newton number}) of three-dimensional
+%unit spheres ($d=3$) that could be brought into contact with a central sphere
+%\autocite{Pfender_KissingNumbersSphere_2004}. Sch\"utte and van der Waerden
+%provided the first proof in 1953 that max$\{N_k(3)\}=12$
+%\autocite{Schutte_ProblemdreizehnKugeln_1952}. Such a cluster of 12 unit
+%spheres kissing a central unit sphere is called a \ac{GNC}, and is shown in its
+%most symmetric icosahedral form in figure~\ref{fig:GN}. Exact Newton numbers
+%for unit spheres in lattice packings are known for dimensions $d=1$ to 9 and
+%$d=24$, and for non-lattice packings for $d=1-3$, 8 and 24
+%\autocite{Conway_SpherePackingsLattices_1999,Musin_proof24cellconjecture_2018}.  Lower and %upper
+%bounds for max$\{N_k(d)\}$ are also available
+%\autocite{Mittelmann_Highaccuracysemidefiniteprogramming_2010,%Conway_SpherePackingsLattices_1999}.
+
 
 The Tammes, Thomson  or related models employ repulsive forces between points
 or spheres \autocite{Wales_Structuredynamicsspherical_2006,Wales_Defectmotifsspherical_2009} and, for the
