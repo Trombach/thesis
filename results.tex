@@ -1257,8 +1257,11 @@ catastrophes\autocite{Wales_MicroscopicBasisGlobal_2001,Wales_Energylandscapes_2
 lead to the collapse of several stable \ac{SHS} structure into a single \ac{LJ}
 minimum, leading to a decrease in the overall size of $|\mathcal{M}(N)|$.
 
-In the following sections the evolution of stable \ac{SHS} clusters is
-investigated for \ac{LJ} potentials with increasing range. 
+In the following sections, the evolution of \ac{LJ} clusters towards \ac{SHS}
+clusters by gradually decreasing the range of the \ac{LJ} potential is explored.
+Additionally, the results from optimising with a \ac{LJ} potential starting from
+the \ac{SHS} cluster is compared to the traditional approach of global
+optimisation.
 
 %The nucleation of atoms and molecules in the gas phase, or liquid, to the solid
 %state is still an active research
@@ -1408,12 +1411,12 @@ surface into basins of attraction, effectively mapping each point in
 configuration space to a local minimum structure
 \autocite{Li_MonteCarlominimizationapproach_1987,waless99,Wales_GlobalOptimizationBasinHopping_1997}.  The results confirmed the
 number of local minima reported in previous work \autocite{Doye_Saddlepointsdynamics_2002}.
-Finite computer time limited our search to clusters of size $N \leq 13$.
+Finite computer time limited the search to clusters of size $N \leq 13$.
 
 Starting from the sticky hard sphere packings up to $N=14$, with Cartesian
 coordinates given by the exact enumeration algorithm
 \autocite{Hoy_Structurefinitesphere_2012} including rigid hypostatic clusters
-($N_c<3N-6$) \autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016} geometry
+($N_c<3N-6$) \autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}, geometry
 optimisations with $(m,n)$-Lennard-Jones potentials using the multidimensional
 function minimiser from the \Cpp library \textit{dlib}
 \autocite{King_DlibmlMachineLearning_2009} were carried out with the previously
@@ -1427,7 +1430,7 @@ Subsequently, the eigenvalues of the Hessian were checked
 for all stationary points. If negative eigenvalues were found, the affected
 structures were reoptimized following displacements in both directions along
 the corresponding eigenvectors to locate true local minima. This procedure assures
-that the floppy \ac{SHS} packings are successfully mapped into LJ minima.
+that the floppy \ac{SHS} packings are successfully mapped into \ac{LJ} minima.
 
 As the optimisations often result in many duplicates, especially for small
 values of $n$ and $m$ where $|\mathcal{M}_{(m,n)\mathrm{-LJ}}| \ll
@@ -1435,7 +1438,7 @@ values of $n$ and $m$ where $|\mathcal{M}_{(m,n)\mathrm{-LJ}}| \ll
 sorted. Nonisomorphic \ac{SHS} clusters can be distinguished (apart from
 permutation of the particles) by their different adjacency matrices for $N \leq
 13$ \autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}.  This is not the case
-for soft potentials like the LJ potential since drawing edges (bonds) between
+for soft potentials like the \ac{LJ} potential since drawing edges (bonds) between
 the vertices (atoms) becomes a matter of defining the distance cutoff criterion
 for a bond to be drawn. Therefore, the clusters were compared based on the
 \ac{EDM} (the matrix of interparticle distances $\{r_{ij}\}$) as described
@@ -1444,14 +1447,14 @@ the same ordered set of inter-particle distances $\{r_{ij}\}$.  While
 enantiomers cannot be separated using this methodology, permutation-inversion
 isomers are usually lumped together, since the number of distinct minima is
 analytically related to the order of the corresponding point group
-\autocite{Wales_Energylandscapes_2003}.  To verify the number of distinct structures we introduced
-a second ordering scheme using the energy and moment of inertia tensor
-eigenvalues. 
+\autocite{Wales_Energylandscapes_2003}.  To verify the number of distinct
+structures a second ordering scheme using the energy and moment of inertia
+tensor eigenvalues was introduced. 
 
-Two sets of structures are obtained from our optimization procedure: the first
-set contains all possible LJ minima $\mathcal{M}_\mathrm{LJ}$ from the
+Two sets of structures are obtained from the optimisation procedure: the first
+set contains all possible \ac{LJ} minima $\mathcal{M}_\mathrm{LJ}$ from the
 basin-hopping algorithm, while the second set $\mathcal{M}_\mathrm{SHS\to LJ}$
-contains the LJ minima obtained using only the $\mathcal{M}_\mathrm{SHS}$
+contains the \ac{LJ} minima obtained using only the $\mathcal{M}_\mathrm{SHS}$
 sticky-hard-sphere cluster structures as starting points for the geometry
 optimization.  To compare and identify corresponding structures between the two
 sets, the $N(N-1)/2$ inter-particle distances $\{r_{ij}\}$ were again used as
@@ -1482,72 +1485,155 @@ potential for xenon is shown in figure~\ref{fig:LJ} (dashed line).
 %Exploring the limits of Lennard-Jones
 \section{Exploring the Limits of Lennard-Jones}
 
-To study the convergence behaviour of the number of distinct (nonisomorphic) LJ minima in
-the \ac{SHS} limit, we performed geometry optimisations,
-starting from all nonisomorphic \ac{SHS} structures.  We will show later that the
-number of unique minima obtained in this procedure $|\mathcal{M}_\mathrm{\ac{SHS}\to
-LJ}|$ only misses out on a small portion of minima obtained from the more exhaustive
-basin-hopping approach, i.e.~$|\mathcal{M}_\mathrm{\ac{SHS}\to
-LJ}|\approx|\mathcal{M}_\mathrm{LJ}|$.  The results for a constant chosen ratio
-of LJ exponents $n/m=2$ are shown in figure~\ref{fig:expinfty} (top). 
-\begin{figure}
+\begin{table}[htbp]\centering
+    \resizebox{\linewidth}{!}{%
+        \begin{threeparttable}[para]
+        \caption{Number of distinct local minima $|\mathcal{M}_\mathrm{SHS}|$ for
+            cluster size $N$ (from
+            references~\cite{Holmes-Cerfon_EnumeratingRigidSphere_2016,Hoy_Structurefinitesphere_2012,Hoy_Structuredynamicsmodel_2015})
+            and contact number $N_c$ from the exact enumeration, compared to the
+            number of different structures obtained from a geometry optimisation
+            starting from the set $\mathcal{M}_{\mathrm{SHS\to LJ}}(N,N_c)$ for a
+            (6,12)-\acs{LJ} potential. The overall number of unique minima
+            $|\mathcal{M}_\mathrm{SHS\to LJ}|  = \sum_{N_c}
+            |\mathcal{M}_\mathrm{SHS\to LJ} (N_c)| - \text{(\# of duplicate
+            structures)}$ is shown in the following column.  This result can be
+            compared to the number of unique minima found using the basin-hopping
+            method ($|\mathcal{M}_\mathrm{LJ}|$). The difference
+            $\Delta\mathcal{M}=|\mathcal{M}_\mathrm{LJ}| -
+            |\mathcal{M}_\mathrm{SHS\to LJ}|$ is also listed.}
+        \label{tab:comp}
+        \begin{tabular}{clccccc}\toprule
+            $N$ & $N_c$ & $|\mathcal{M}_\mathrm{SHS} (N_c)|$ & $|\mathcal{M}_{\mathrm{SHS\to LJ}}(N_c)|$ & $|\mathcal{M}_\mathrm{SHS\to LJ}|$ & $|\mathcal{M}_\mathrm{LJ}|$     &  $\Delta\mathcal{M}$ \\ \midrule
+    8  & 18  & 13     				& 8    & 8                     & 8                     & 0                   \\  %\midrule
+    9  & 21  & 52     				& 20   & 20                    & 21                    & 1                   \\  \midrule
+    10 & 23  & 1      				& 1    &                       &                       &                     \\
+       & 24  & 259    				& 60   & 62                    & 64                    & 2                   \\
+       & 25  & 3      				& 3    &                       &                       &                     \\  \midrule
+    11 & 25  & 2      				& 2    & \multirow{5}{*}{165}  & \multirow{5}{*}{170}  & \multirow{5}{*}{5}  \\
+       & 26  & 18     				& 6    &                       &                       &                     \\
+            & 27  & 1620\tnote{a}	& 158  &                       &                       &                     \\
+       & 28  & 20     				& 12   &                       &                       &                     \\
+       & 29  & 1      				& 1    &                       &                       &                     \\  \midrule
+    12 & 28  & 11     				& 6    & \multirow{6}{*}{504}  & \multirow{6}{*}{515}  & \multirow{6}{*}{11} \\
+       & 29  & 148    				& 24   &                       &                       &                     \\
+       & 30  & 11638  				& 483  &                       &                       &                     \\
+       & 31  & 174    				& 69   &                       &                       &                     \\
+       & 32  & 8      				& 6    &                       &                       &                     \\
+       & 33  & 1      				& 1    &                       &                       &                     \\  \midrule
+    13 & 31  & 87     				& 23   & \multirow{6}{*}{1476} & \multirow{6}{*}{1510} & \multirow{6}{*}{34} \\
+       & 32  & 1221   				& 100  &                       &                       &                     \\
+            & 33  & 95810\tnote{a}& 1418 &                       &                       &                     \\
+            & 34  & 1318\tnote{a} & 293  &                       &                       &                     \\
+       & 35  & 96     				& 49   &                       &                       &                     \\
+       & 36  & 8      				& 6    &                       &                       &                     \\  \midrule
+            14 & 33  & 1      				& 1    & \multirow{8}{*}{4093} & \multirow{8}{*}{(4187)\tnote{b}}    & \multirow{8}{*}{(94)\tnote{b}}  \\
+       & 34  & 707    				& 101  &                       &                       &                     \\
+       & 35  & 10537  				& 410  &                       &                       &                     \\
+       & 36  & 872992 				& 3939 &                       &                       &                     \\
+       & 37  & 10280  				& 1002 &                       &                       &                     \\
+       & 38  & 878    				& 237  &                       &                       &                     \\
+       & 39  & 79     				& 42   &                       &                       &                     \\
+       & 40  & 4      				& 3    &                       &                       &                     \\\bottomrule
+        \end{tabular}
+            \begin{tablenotes}
+            \item[a]{Largest value for $|\mathcal{M}_\mathrm{SHS}|$ taken from references~\cite{Holmes-Cerfon_EnumeratingRigidSphere_2016,Hoy_Structurefinitesphere_2012,Hoy_Structuredynamicsmodel_2015}.} \item[b]{Estimated.}
+            \end{tablenotes}
+        \end{threeparttable}}
+    \end{table}%
+%
+To study the convergence behaviour of the number of distinct (nonisomorphic) LJ
+minima in the \ac{SHS} limit, geometry optimisations were carried out, starting
+from all non-isomorphic \ac{SHS} structures. It will be shown later that the
+number of unique minima obtained in this procedure
+$|\mathcal{M}_\mathrm{\ac{SHS}\to LJ}|$ only misses out on a small portion of
+minima obtained from the more exhaustive basin-hopping approach,
+i.e.~$|\mathcal{M}_\mathrm{\ac{SHS}\to LJ}|\approx|\mathcal{M}_\mathrm{LJ}|$.
+The results for a constant chosen ratio of \ac{LJ} exponents $n/m=2$ are shown in
+figure~\ref{fig:expinfty} (top).
+%
+\begin{figure}[htbp]
     \centering
     \subfloat{\includegraphics[width=0.8\columnwidth]{kslj/expinfty.pdf}}\\
     \subfloat{\includegraphics[width=0.8\columnwidth]{kslj/repulsive.pdf}}
-    \caption{
-    Convergence of the number of distinct LJ local minima
-    $|\mathcal{M}_\mathrm{SHS\to LJ}|$ obtained through geometry
-    optimisations starting from the nonisomorphic \acs{SHS} structures with
-    increasing LJ exponent $n$.  Permutation-inversion isomers and enantiomers
-    are not distinguished.     The dashed line gives the exact \acs{SHS} limit
-    $|\mathcal{M}_\mathrm{SHS}|$.  Top panel: $m=n/2$. Bottom panel: fixed
+    \caption{Convergence of the number of distinct \acs{LJ} local minima
+    $|\mathcal{M}_\mathrm{SHS\to LJ}|$ obtained through geometry optimisations
+    starting from the non-isomorphic \acs{SHS} structures with increasing
+    \acs{LJ} exponent $n$. Permutation-inversion isomers and enantiomers are not
+    distinguished. The dashed line gives the exact \acs{SHS} limit
+    $|\mathcal{M}_\mathrm{SHS}|$. Top panel: $m=n/2$. Bottom panel: fixed
     $m=6$.}
     \label{fig:expinfty}
 \end{figure}
+%
+$|\mathcal{M}_\mathrm{SHS\to LJ}|$ smoothly converges towards the \ac{SHS} limit
+(dashed line, values in table~\ref{tab:comp}) from below, thus demonstrating
+that for \ac{LJ} systems the number of distinct minima does not grow faster than
+exponentially. The (48,96)-\ac{LJ} potential has $\Delta\mathcal{M} \equiv
+|\mathcal{M}_\mathrm{LJ}| - |\mathcal{M}_\mathrm{SHS\to LJ}| =
+\{1,1,7,91,1019,14890,209938\}$ fewer stable minima than the \ac{SHS} potential.
+The fractions of missing minima $\Delta\mathcal{M}/|\mathcal{M}_\mathrm{SHS}|$
+for this potential grow with increasing $N$ and are, respectively,
+$\{7.69,1.92,2.67,5.46,8.62,15.32,23.44\}\%$.  Note that for $N \geq 10$ most of
+these missing minima correspond to high energy ($N_c < N_c^\mathrm{max}$)
+structures.
 
-$|\mathcal{M}_\mathrm{SHS\to LJ}|$ smoothly  converges towards the \ac{SHS} limit (dashed line, values in table~\ref{tab:comp}) from below, 
-thus demonstrating that for LJ systems the number of distinct minima does not grow faster than exponentially.  
-The (48,96)-LJ potential has $\Delta\mathcal{M} \equiv |\mathcal{M}_\mathrm{LJ}| - |\mathcal{M}_\mathrm{SHS\to LJ}| = \{1,1,7,91,1019,14890,209938\}$ fewer stable minima than the \ac{SHS} potential.
-The fractions of missing minima $\Delta\mathcal{M}/|\mathcal{M}_\mathrm{SHS}|$ for this potential grow with increasing $N$ and are respectively $\{7.69,1.92,2.67,5.46,8.62,15.32,23.44\}\%$.  Note that for $N \geq 10$ most of these missing minima correspond to high energy ($N_c < N_c^\mathrm{max}$) structures.
-
-
-If the exponent $n$ for the repulsive part of the LJ potential is increased
-with $m$ kept constant, the LJ potential becomes equivalent to the \ac{SHS}
+If the exponent $n$ for the repulsive part of the \ac{LJ} potential is increased with
+$m$ kept constant, the \ac{LJ} potential becomes equivalent to the \ac{SHS}
 potential in the repulsive range but remains attractive at long range.
-figure~\ref{fig:expinfty} (bottom) shows the convergence of the number of
-unique structures with respect to $n$ at set $m=6$ towards the \ac{SHS} limit. Here, the
-number of distinct minima converges towards a number that is much smaller
+figure~\ref{fig:expinfty} (bottom) shows the convergence of the number of unique
+structures with respect to $n$ at set $m=6$ towards the \ac{SHS} limit. Here,
+the number of distinct minima converges towards a number that is much smaller
 than the total number of \ac{SHS} packings demonstrating that (as expected) the
 attractive part of the potential contributes significantly to the decrease of
 the number of local minima compared to the rigid \ac{SHS} model.
 
-To see if the asymptotic increase in the number of distinct minima $|\mathcal{M}(N)| \sim e^{\alpha N}$ 
-is indeed exponential, we use Stillinger's expression for the asymptotic exponential rise rate parameter \autocite{Stillinger_Exponentialmultiplicityinherent_1999}
+To see if the asymptotic increase in the number of distinct minima
+$|\mathcal{M}(N)| \sim e^{\alpha N}$ is indeed exponential, an expression for
+the asymptotic exponential rise rate parameter developed by Stillinger was
+used:\autocite{Stillinger_Exponentialmultiplicityinherent_1999}
+%
 \begin{equation} \label{eq:Stil}
 \alpha = \lim_{N\rightarrow \infty} \left( N^{-1} \mathrm{ln} |\mathcal{M}(N)| \right).
 \end{equation}
-Figure~\ref{fig:asympt} shows the number of distinct minima for \ac{SHS} clusters
-obtained from the data shown in table~\ref{tab:comp}.  The $N \geq 12$ \ac{SHS} data
-gives $\alpha_\mathrm{SHS}\approx 2.21$. Figure~\ref{fig:asympt} also shows the
-(6,12)-LJ results obtained using basin-hopping; these yield
-$\alpha_\mathrm{LJ}\approx 1.10$, which is close to the $\alpha=0.8$ value
-estimated by Wallace \autocite{Wallace-1997} or to the recently given value of 1.04
-by Forman and Cameron \autocite{Forman_ModelingAggregationProcesses_2017}.  Note that the rapid increase of
-$|\mathcal{M}_\mathrm{SHS}|/|\mathcal{M}_\mathrm{LJ}|$ with $N$ is explained by
-the much larger values of $\alpha$ for the \ac{SHS} compared to the LJ clusters.
-
-\begin{figure}
+%
+Figure~\ref{fig:asympt} shows the number of distinct minima for \ac{SHS}
+clusters obtained from the data shown in table~\ref{tab:comp}. 
+%
+\begin{figure}[htb]
     \centering
     \includegraphics[width=0.8\columnwidth]{kslj/growth.pdf}
-    \caption{Growth behaviour of $|\mathcal{M}(N)|$ of \acs{SHS} and (6,12)-LJ
+    \caption{Growth behaviour of $|\mathcal{M}(N)|$ of \acs{SHS} and (6,12)-\acs{LJ}
     clusters and corresponding asymptotic exponential rise rate parameter
-    $\alpha$ for $N \geq 12$ as defined in equation~\eqref{eq:Stil}.  The intercepts
-    ln$|\mathcal{M}(N=0)|$ are $-17.19$ and $-6.94$ for the \acs{SHS} and
-    (6,12)-LJ cases respectively.}
+    $\alpha$ for $N \geq 12$ as defined in equation~\eqref{eq:Stil}.  The
+    intercepts ln$|\mathcal{M}(N=0)|$ are $-17.19$ and $-6.94$ for the \acs{SHS}
+    and (6,12)-\acs{LJ} cases respectively.}
     \label{fig:asympt}
 \end{figure}
+%
+The $N \geq 12$ \ac{SHS} data gives $\alpha_\mathrm{SHS}\approx 2.21$.
+Figure~\ref{fig:asympt} also shows the (6,12)-\ac{LJ} results obtained using
+basin-hopping; these yield $\alpha_\mathrm{LJ}\approx 1.10$, which is close to
+the $\alpha=0.8$ value estimated by Wallace \autocite{Wallace-1997} or to the
+recently given value of 1.04 by Forman and Cameron
+\autocite{Forman_ModelingAggregationProcesses_2017}. Note that the rapid
+increase of $|\mathcal{M}_\mathrm{SHS}|/|\mathcal{M}_\mathrm{LJ}|$ with $N$ is
+explained by the much larger values of $\alpha$ for the \ac{SHS} compared to the
+\ac{LJ} clusters.
 
-\begin{figure}
+Using the results for $N \geq 13$ depicted in figure~\ref{fig:expinfty}, the
+dependence of $\alpha$ on the \ac{LJ} range parameter $n$ can be calculated. As
+shown in figure~\ref{fig:repulsive13-14}, a general function of the form
+%
+\begin{align}
+\label{expgrowth}
+    \alpha(n)=\alpha_\text{max}+\frac{a}{(n-n_0)^{p}}
+\end{align}
+%
+fits the results nicely, allowing the prediction of growth behaviour for
+different \ac{LJ} potentials. 
+%
+\begin{figure}[htb]
     \centering
     \includegraphics[width=0.8\columnwidth]{kslj/repulsive13-14.pdf}
     \caption{Convergence behaviour of the asymptotic exponential rise rate
@@ -1557,171 +1643,107 @@ the much larger values of $\alpha$ for the \ac{SHS} compared to the LJ clusters.
     / \alpha(|\mathcal{M}_{\text{SHS}\to (6,n)-\text{LJ}}(N)|)$.}
     \label{fig:repulsive13-14}
 \end{figure}
-
-
-Using the results for $N \geq 13$ from figure~\ref{fig:expinfty}, we can
-calculate how $\alpha$ depends on the LJ range parameter $n$.  As shown in
-figure~\ref{fig:repulsive13-14}, a general function of the form
-\begin{align}
-\label{expgrowth}
-    \alpha(n)=\alpha_\text{max}+\frac{a}{(n-n_0)^{p}}
-\end{align}
-fits the results nicely, allowing the prediction of growth behaviour for different
-LJ potentials. For $|\mathcal{M}_{(n/2,n)-\text{LJ}}|$, $\alpha_\text{max}$ is
-equivalent to $\alpha_\text{SHS}=2.207$. The other adjusted parameters are
-$a=-66.588$, $n_0=-3.386$ and $p=1.473$ (figure~\ref{fig:repulsive13-14}).
-We also show the ratio $\alpha(|\mathcal{M}_{\text{SHS}\to (n/2,n)-\text{LJ}}|) /
-	\alpha(|\mathcal{M}_{\text{SHS}\to (6,n)-\text{LJ}}|)$ between the two 
-	different LJ asymptotic exponential rise rate parameters, which shows that larger
-	cluster sizes need to be studied to correctly describe the asymptotic limit. 
-
+%
+For $|\mathcal{M}_{(n/2,n)-\text{LJ}}|$, $\alpha_\text{max}$ is equivalent to
+$\alpha_\text{SHS}=2.207$. The other adjusted parameters are $a=-66.588$,
+$n_0=-3.386$ and $p=1.473$ (figure~\ref{fig:repulsive13-14}). We also show the
+ratio $\alpha(|\mathcal{M}_{\text{SHS}\to (n/2,n)-\text{LJ}}|) /
+\alpha(|\mathcal{M}_{\text{SHS}\to (6,n)-\text{LJ}}|)$ between the two different
+\ac{LJ} asymptotic exponential rise rate parameters, which shows that larger cluster
+sizes need to be studied to correctly describe the asymptotic limit. 
 
 The distribution of minima as a function of (free) energy was suggested to be
 Gaussian \autocite{Sciortino-1999}. Figure~\ref{fig:N13-steps} shows the energy
-distribution of minima for different LJ $(n/2,n)$ potentials derived from \ac{SHS}
-initial structures. We do not see a Gaussian type of distribution; this 
-result does not change if we take the free energy at finite temperatures. 
-The results indicate a ``phase transition'' in the potential energy landscape away from low-energy to
-high energy minima as $n$ increases.
-The transition occurs at fairly small $n$. 
-Results for the $(9,18)$-LJ potential indicate two HCR-SCA-like maxima that are not present for the $(6,12)$-LJ potential; these are associated with the $N_c = 34$ and $N_c = 35$ \ac{SHS} clusters,
-respectively.
-It is also clear that (as expected) the distributions narrow with increasing $n$.
-
-\begin{figure}
+distribution of minima for different $(n/2,n)$-\ac{LJ} potentials derived from
+\ac{SHS} initial structures.
+%
+\begin{figure}[htb]
     \centering
     \includegraphics[width=0.8\columnwidth]{kslj/N13-steps.pdf}
     \caption{Histogram of the energies (bin size $\Delta\varepsilon=0.1$) of
     minima $\mathcal{M}_{\text{SHS}\to (n/2,n)-\text{LJ}}(N)$ for $N=13$ and
-    different exponents $n$ up to the \acs{SHS} limit. For better visibility, the
-    height of the bars are set to $\Delta|\mathcal{M}|/|\mathcal{M}|$ in the
+    different exponents $n$ up to the \acs{SHS} limit. For better visibility,
+    the height of the bars are set to $\Delta|\mathcal{M}|/|\mathcal{M}|$ in the
     interval $\Delta(E/\epsilon)$. The inlet shows the same data in logarithmic
     scale.}
     \label{fig:N13-steps}
 \end{figure}
-
-
-
-\begin{table}[htbp]\centering
-\resizebox{\linewidth}{!}{%
-    \begin{threeparttable}[para]
-    \caption{Number of distinct local minima $|\mathcal{M}_\mathrm{SHS}|$ for
-        cluster size $N$ (from
-        references~\cite{Holmes-Cerfon_EnumeratingRigidSphere_2016,Hoy_Structurefinitesphere_2012,Hoy_Structuredynamicsmodel_2015})
-        and contact number $N_c$ from the exact enumeration, compared to the
-        number of different structures obtained from a geometry optimisation
-        starting from the set $\mathcal{M}_{\mathrm{SHS\to LJ}}(N,N_c)$ for a
-        (6,12)-LJ potential. The overall number of unique minima
-        $|\mathcal{M}_\mathrm{SHS\to LJ}|  = \sum_{N_c}
-        |\mathcal{M}_\mathrm{SHS\to LJ} (N_c)| - \text{(\# of duplicate
-        structures)}$    is shown in the following column.  This result can be
-        compared to the number of unique minima found using the basin-hopping
-        method ($|\mathcal{M}_\mathrm{LJ}|$). The difference
-        $\Delta\mathcal{M}=|\mathcal{M}_\mathrm{LJ}| -
-        |\mathcal{M}_\mathrm{SHS\to LJ}|$ is also listed.}
-    \label{tab:comp}
-    \begin{tabular}{clccccc}\toprule
-        $N$ & $N_c$ & $|\mathcal{M}_\mathrm{SHS} (N_c)|$ & $|\mathcal{M}_{\mathrm{SHS\to LJ}}(N_c)|$ & $|\mathcal{M}_\mathrm{SHS\to LJ}|$ & $|\mathcal{M}_\mathrm{LJ}|$     &  $\Delta\mathcal{M}$ \\ \midrule
-8  & 18  & 13     				& 8    & 8                     & 8                     & 0                   \\  %\midrule
-9  & 21  & 52     				& 20   & 20                    & 21                    & 1                   \\  \midrule
-10 & 23  & 1      				& 1    &                       &                       &                     \\
-   & 24  & 259    				& 60   & 62                    & 64                    & 2                   \\
-   & 25  & 3      				& 3    &                       &                       &                     \\  \midrule
-11 & 25  & 2      				& 2    & \multirow{5}{*}{165}  & \multirow{5}{*}{170}  & \multirow{5}{*}{5}  \\
-   & 26  & 18     				& 6    &                       &                       &                     \\
-        & 27  & 1620\tnote{a}	& 158  &                       &                       &                     \\
-   & 28  & 20     				& 12   &                       &                       &                     \\
-   & 29  & 1      				& 1    &                       &                       &                     \\  \midrule
-12 & 28  & 11     				& 6    & \multirow{6}{*}{504}  & \multirow{6}{*}{515}  & \multirow{6}{*}{11} \\
-   & 29  & 148    				& 24   &                       &                       &                     \\
-   & 30  & 11638  				& 483  &                       &                       &                     \\
-   & 31  & 174    				& 69   &                       &                       &                     \\
-   & 32  & 8      				& 6    &                       &                       &                     \\
-   & 33  & 1      				& 1    &                       &                       &                     \\  \midrule
-13 & 31  & 87     				& 23   & \multirow{6}{*}{1476} & \multirow{6}{*}{1510} & \multirow{6}{*}{34} \\
-   & 32  & 1221   				& 100  &                       &                       &                     \\
-        & 33  & 95810\tnote{a}& 1418 &                       &                       &                     \\
-        & 34  & 1318\tnote{a} & 293  &                       &                       &                     \\
-   & 35  & 96     				& 49   &                       &                       &                     \\
-   & 36  & 8      				& 6    &                       &                       &                     \\  \midrule
-        14 & 33  & 1      				& 1    & \multirow{8}{*}{4093} & \multirow{8}{*}{(4187)\tnote{b}}    & \multirow{8}{*}{(94)\tnote{b}}  \\
-   & 34  & 707    				& 101  &                       &                       &                     \\
-   & 35  & 10537  				& 410  &                       &                       &                     \\
-   & 36  & 872992 				& 3939 &                       &                       &                     \\
-   & 37  & 10280  				& 1002 &                       &                       &                     \\
-   & 38  & 878    				& 237  &                       &                       &                     \\
-   & 39  & 79     				& 42   &                       &                       &                     \\
-   & 40  & 4      				& 3    &                       &                       &                     \\\bottomrule
-    \end{tabular}
-        \begin{tablenotes}
-        \item[a]{Largest value for $|\mathcal{M}_\mathrm{SHS}|$ taken from references~\cite{Holmes-Cerfon_EnumeratingRigidSphere_2016,Hoy_Structurefinitesphere_2012,Hoy_Structuredynamicsmodel_2015}.} \item[b]{Estimated.}
-        \end{tablenotes}
-    \end{threeparttable}}
-\end{table}%
+%
+A Gaussian type distribution was not observed; this result does not change if
+the free energy at finite temperatures is used instead. The results indicate a
+``phase transition'' in the potential energy landscape away from low-energy to
+high energy minima as $n$ increases. The transition occurs at fairly small $n$.
+Results for the $(9,18)$-\ac{LJ} potential indicate two HCR-SCA-like maxima that are
+not present for the $(6,12)$-\ac{LJ} potential; these are associated with the $N_c =
+34$ and $N_c = 35$ \ac{SHS} clusters, respectively. It is also clear that (as
+expected) the distributions narrow with increasing $n$.
 
 It is well known that the global minimum for rare gas clusters with 13 atoms is
-the ideal Mackay icosahedron \autocite{Hoare_Physicalclustermechanics_1975,Hoare_Statisticalmechanicsmorphology_1976,Hoare_StructureDynamicsSimple_2007}. Simple
-geometric considerations imply that such a symmetric cluster is not possible
-for sticky hard spheres; all vertices of a regular icosahedron with unit edge length
-lie on a circumscribing sphere with radius $r_c\approx 0.951$, making it
-impossible to insert a sphere of the same radius into the centre of the
-polyhedron.  Therefore, there must be well-defined LJ exponents $(m,n)$ at
-which the icosahedral $N = 13$ LJ cluster breaks symmetry to form a rigid cluster.  
-For the $n = 2m$ case considered above, this symmetry-breaking occurs at $m \simeq 15$.
+the ideal Mackay icosahedron
+\autocite{Hoare_Physicalclustermechanics_1975,Hoare_Statisticalmechanicsmorphology_1976,Hoare_StructureDynamicsSimple_2007}.
+Simple geometric considerations imply that such a symmetric cluster is not
+possible for sticky hard spheres; all vertices of a regular icosahedron with
+unit edge length lie on a circumscribing sphere with radius $r_c\approx 0.951$,
+making it impossible to insert a sphere of the same radius into the centre of
+the polyhedron. Therefore, there must be well-defined \ac{LJ} exponents $(m,n)$ at
+which the icosahedral $N = 13$ \ac{LJ} cluster breaks symmetry to form a rigid
+cluster. For the $n = 2m$ case considered above, this symmetry-breaking occurs
+at $m \simeq 15$.
 
-We also explored a more realistic extended LJ potential (equation~\eqref{eq:ELJ}; figure~\ref{fig:LJ})
-for one of the rare gas dimers (xenon) 
-in comparison with other LJ potentials. We see that the repulsive part agrees
-nicely with the conventional (6,12)-LJ potential, while for $r > 1$
-the extended LJ potential is slightly less attractive. 
-This change should lead to an increase in the number of local minima compared to the conventional
-(6,12)-LJ potential. We find that this is indeed the case, i.e.
-$|\mathcal{M}_\mathrm{SHS\to ELJ}|=\{8,21,74,205,685,2179,6863\}$ for
-$N=\{8,9,10,11,12,13,14\}$.  For $N=13$ the number of distinct minima is 44\% larger than it is for the simple (6,12)-LJ potential,
-which shows that $|\mathcal{M}(N)|$ is rather sensitive to the potential chosen.
-Hence, to correctly describe the topology of real systems, one has to take care
-of the correct form of the 2-body contribution (as well as higher $n$-body
+We also explored a more realistic extended \ac{LJ} potential
+(equation~\eqref{eq:ELJ}; figure~\ref{fig:LJ}) for one of the rare gas dimers
+(xenon) in comparison with other \ac{LJ} potentials. It can be seen that the
+repulsive part agrees nicely with the conventional (6,12)-\ac{LJ} potential,
+while for $r > 1$ the extended \ac{LJ} potential is slightly less attractive.
+This change should lead to an increase in the number of local minima compared to
+the conventional (6,12)-\ac{LJ} potential. This prediction could be confirmed,
+i.e. $|\mathcal{M}_\mathrm{SHS\to ELJ}|=\{8,21,74,205,685,2179,6863\}$ for
+$N=\{8,9,10,11,12,13,14\}$. For $N=13$ the number of distinct minima is 44\%
+larger than it is for the simple (6,12)-\ac{LJ} potential, which shows that
+$|\mathcal{M}(N)|$ is rather sensitive to the potential chosen. Hence, to
+correctly describe the topology of real systems, one has to take care of the
+correct form of the 2-body contribution (as well as higher $n$-body
 contributions) \autocite{Schwerdtfeger-2016}.
-
 
 
 %\subsection{(6,12)-Lennard-Jones cluster from basin-hopping}
 \section{(6,12)-Lennard-Jones Clusters from Basin-Hopping} 
 \label{sec:612LennardJonesClustersfromBasinHopping}
 
-Table~\ref{tab:comp} shows the number of distinct minima found by our cluster
-geometry optimisation procedure using the (6,12)-LJ potential compared to
-results from exact enumeration for \ac{SHS}s and from basin-hopping for the (6,12)-LJ
-potential.  As the \ac{SHS} clusters for a specific $N$ value can be grouped by
-their contact number $N_c$, the geometry optimisations were carried out
-separately for each group of $\mathcal{M}_\mathrm{SHS}(N_c)$. \citeauthor{Hoy_Structurefinitesphere_2012}
-\autocite{Hoy_Structurefinitesphere_2012,Hoy_Structuredynamicsmodel_2015} and \citeauthor{Holmes-Cerfon_EnumeratingRigidSphere_2016}\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}  reported
-slightly different results
-for $N=11$ and $N=13$; we find that upon geometry optimisation,
-their datasets yield the same final clusters
-$|\mathcal{M}_{\mathrm{SHS\to LJ}}(N_c)|$.  As identical LJ clusters appear in
-multiple groups with different contact numbers, we remove the duplicates to
-create the set $\mathcal{M}_\mathrm{SHS\to LJ}$ of distinct minima, which can
-be directly compared to the set of LJ minima $\mathcal{M}_\mathrm{LJ}$ obtained
-from the basin-hopping method. It should be noted that including the hypostatic
-clusters and the different $|\mathcal{M}_\mathrm{SHS}|$ for $N=11$ and $N=13$
-from \citeauthor{Holmes-Cerfon_EnumeratingRigidSphere_2016}\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016} did not change our results, implying that hypostatic
-clusters are not an important feature for the LJ energy landscape. 
+Table~\ref{tab:comp} shows the number of distinct minima found by the cluster
+geometry optimisation procedure employed in this work using the (6,12)-\ac{LJ}
+potential compared to results from exact enumeration for \ac{SHS}s and from
+basin-hopping for the (6,12)-\ac{LJ} potential. As the \ac{SHS} clusters for a
+specific $N$ value can be grouped by their contact number $N_c$, the geometry
+optimisations were carried out separately for each group of
+$\mathcal{M}_\mathrm{SHS}(N_c)$.
+\citeauthor{Hoy_Structurefinitesphere_2012}
+\autocite{Hoy_Structurefinitesphere_2012,Hoy_Structuredynamicsmodel_2015} and
+\citeauthor{Holmes-Cerfon_EnumeratingRigidSphere_2016}\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}
+reported slightly different results for $N=11$ and $N=13$; we find that upon
+geometry optimisation, their datasets yield the same final clusters
+$|\mathcal{M}_{\mathrm{SHS\to LJ}}(N_c)|$. As identical \ac{LJ} clusters appear
+in multiple groups with different contact numbers, we remove the duplicates to
+create the set $\mathcal{M}_\mathrm{SHS\to LJ}$ of distinct minima, which can be
+directly compared to the set of \ac{LJ} minima $\mathcal{M}_\mathrm{LJ}$
+obtained from the basin-hopping method. It should be noted that including the
+hypostatic clusters and the different $|\mathcal{M}_\mathrm{SHS}|$ for $N=11$
+and $N=13$ from
+\citeauthor{Holmes-Cerfon_EnumeratingRigidSphere_2016}\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}
+did not change our results, implying that hypostatic clusters are not an
+important feature for the \ac{LJ} energy landscape. 
 
 
-Interestingly, our gradient-based minimisation procedure starting from the \ac{SHS}
-packings does not in general lead to a complete set of LJ minima; the mapping
-from \ac{SHS} minima to LJ minima is non-injective and non-surjective.  Clearly,
-some structural motifs found in LJ clusters are not found in \ac{SHS} clusters and
-vice versa, and the topology of the hypersurface changes in a non-trivial
-fashion from \ac{SHS} to LJ.  However, it is surprising that the fraction of
+Interestingly, the gradient-based minimisation procedure employed here does not
+in general lead to a complete set of \ac{LJ} minima; the mapping from \ac{SHS}
+minima to \ac{LJ} minima is non-injective and non-surjective. Clearly, some
+structural motifs found in \ac{LJ} clusters are not found in \ac{SHS} clusters
+and vice versa, and the topology of the hypersurface changes in a non-trivial
+fashion from \ac{SHS} to \ac{LJ}. However, it is surprising that the fraction of
 structures that are missed by this optimisation procedure is so small (see
-table~\ref{tab:seeds}). To gain further insight, we analysed the energetics and
-structure of the unmatched clusters in more detail.
-
+table~\ref{tab:seeds}). 
 %
-%
-\begin{table}\centering
+\begin{table}[htb]\centering
     \begin{threeparttable}
     \caption{Number of missing structures after optimisation belonging to the
     same "seed" (figure~\ref{fig:seeds}). $N=8$ is excluded because all LJ minima were
@@ -1746,8 +1768,16 @@ structure of the unmatched clusters in more detail.
     \end{threeparttable}
 \end{table}%
 %
+To gain further insight, the energetics and structure of the unmatched clusters
+were investigated in more detail.
+
+Figure~\ref{fig:bondlength-variance} shows an analysis of the difference between
+the longest to the shortest bond lengths $d_\Delta=d_{\mathrm max}-d_{\mathrm
+min}$ obtained for the largest clusters in $\mathcal{M}_{\mathrm{LJ}}$ with
+$N=\{11,12,13\}$.\footnote{We define spheres that have a equilibrium distance
+between $0.9-1.1$ to be bound.}
 %
-\begin{figure}
+\begin{figure}[htb]
     \centering
     \subfloat[$N=11$]{\includegraphics[width=.5\textwidth]{kslj/lj11var.pdf}}
     \subfloat[$N=12$]{\includegraphics[width=.5\textwidth]{kslj/lj12var.pdf}}\\
@@ -1760,24 +1790,19 @@ structure of the unmatched clusters in more detail.
     \label{fig:bondlength-variance}
 \end{figure}%
 %
+The histograms show that the clusters most commonly have a $d_\Delta$ of about
+$0.03$.  In contrast, as shown by the orange bars, the unmatched structures have
+significantly larger $d_\Delta$ values of at least $0.05$, with most of them
+having $d_{\Delta} \simeq 0.06$. This is a first indication of why these
+structures are not found by starting from \ac{SHS} packings. The latter only
+form bonds of length one, and a large variation in bond length could imply that
+a \ac{SHS} packing similar to the \ac{LJ} structure does not exist as the
+\ac{SHS} boundary conditions are not satisfied. The data in
+table~\ref{tab:energies} shows that the unmatched (UM) structures for a specific
+$N$ value have much higher energies compared to the one of the global minimum
+(which is set to zero, i.e. $E_0=0$).
 %
-Figure~\ref{fig:bondlength-variance} shows an analysis of the difference
-between the longest to the shortest bond lengths $d_\Delta=d_{\mathrm max}-d_{\mathrm
-min}$ obtained for the largest clusters in $\mathcal{M}_{\mathrm{LJ}}$ with
-$N=\{11,12,13\}$ \footnote{We define spheres that have a equilibrium distance
-between $0.9-1.1$ to be bound.}.  The histograms show that the clusters most
-commonly have a $d_\Delta$ of about $0.03$.  In contrast, as shown by the
-orange bars, the unmatched structures have significantly larger $d_\Delta$
-values of at least $0.05$, with most of them having $d_{\Delta} \simeq 0.06$.
-This is a first indication of why these structures are not found by starting
-from \ac{SHS} packings. The latter only form bonds of length one, and a large
-variation in bond length could imply that a \ac{SHS} packing similar to the LJ
-structure does not exist as the \ac{SHS} boundary conditions are not satisfied.  The
-data in table~\ref{tab:energies} show that the unmatched (UM) structures for a
-specific $N$ value have much higher energies compared to the one of the global
-minimum (which is set to zero, i.e.  $E_0=0$). % 
-%
-\begin{table}\centering
+\begin{table}[htb]\centering
     \caption{Range $[E_0,E_\text{max}]$ of the energy spectrum of all LJ
     minima, position of the second lowest minimum structure $E_1$ and position
     of the first unmatched (UM) structure $E_0^\text{UM}$ relative to the
@@ -1794,11 +1819,18 @@ minimum (which is set to zero, i.e.  $E_0=0$). %
         \end{tabular}
 \end{table}%
 %
-They are always positioned in the upper half of the energy spectrum, making
-them energetically unfavourable.  However, we could not find any correlation
-between $d_\Delta$ and the energetic position of the LJ clusters.
+They are always positioned in the upper half of the energy spectrum, making them
+energetically unfavourable.  However, no correlation between $d_\Delta$ and the
+energetic position of the \ac{LJ} clusters was found.
 
-\begin{figure}
+Last, the geometries of the missing structures were investigated in more detail.
+As it turns out, almost all of the missing stable \ac{LJ} clusters can be
+created from a smaller set of missing clusters by capping some of their
+triangular faces. Therefore, these groups of clusters can be referred to as
+``seeds''.\autocite{Arkus_DerivingFiniteSphere_2011} The corresponding starting
+structures of each seed are shown in figure~\ref{fig:seeds}.
+%
+\begin{figure}[htb]
     \centering
     \subfloat[]{\includegraphics[width=0.26\columnwidth]{kslj/A.png}}
     \subfloat[]{\includegraphics[width=0.26\columnwidth]{kslj/B.png}}
@@ -1811,77 +1843,74 @@ between $d_\Delta$ and the energetic position of the LJ clusters.
     table~\ref{tab:seeds} and text for more details.}
     \label{fig:seeds}
 \end{figure}%
-
-Last, we checked the geometries of the missing structures in more detail.
-As it turns out, almost all of the missing stable LJ clusters can be created
-from a smaller set of missing clusters by capping some of their triangular
-faces. Therefore, these groups of clusters can be referred to as ``seeds''
-\autocite{Arkus_DerivingFiniteSphere_2011}. The corresponding starting structures of each seed
-are shown in figure~\ref{fig:seeds}. 
-None of these structures are stable \ac{SHS} packings. For
-example, structure (d) can be described as three octahedra connected via
-triangular faces sharing one edge. Geometric considerations \autocite{Arkus_DerivingFiniteSphere_2011,Hoy_Structurefinitesphere_2012} immediately show
-that this structure cannot be a stable \ac{SHS} packing;
-the dihedral angle in an octahedron is approximately $109.5^\circ$, which means three
-octahedra only fill $328.5^\circ$ of a full circle, leaving a gap between two
-faces. 
-
+%
+None of these structures are stable \ac{SHS} packings. For example, structure
+(d) can be described as three octahedra connected via triangular faces sharing
+one edge. Geometric
+considerations\autocite{Arkus_DerivingFiniteSphere_2011,Hoy_Structurefinitesphere_2012}
+immediately show that this structure cannot be a stable \ac{SHS} packing; the
+dihedral angle in an octahedron is approximately $109.5^\circ$, which means
+three octahedra only fill $328.5^\circ$ of a full circle, leaving a gap between
+two faces. 
 
 Table~\ref{tab:seeds} shows the number of missing minima belonging to each seed.
-Over 60~\% of the unmatched structures belong to seeds (a) and (b).  
-From a graph theoretical point of view \autocite{Arkus_Minimalenergyclusters_2009,Arkus_DerivingFiniteSphere_2011},
+Over 60~\% of the unmatched structures belong to seeds (a) and (b). From a graph
+theoretical point of
+view,\autocite{Arkus_Minimalenergyclusters_2009,Arkus_DerivingFiniteSphere_2011}
 grouping structures into seeds means that all structures belonging to the same
-seed contain the graph of the starting structures as a subgraph in their
-respective connectivity matrix.  This approach simplifies the analysis to a
-great extent, as the feature that prevents the structures from being found by
-geometry optimisation is the same for each of the structures arising from a
-specific seed.  
-The smallest unmatched structures that cannot be associated with any of seeds (a)-(f) have $N=13$;
-these could be the starting structures for two new seeds.
+seed contain the graph of the starting structures as a sub-graph in their
+respective connectivity matrix. This approach simplifies the analysis to a great
+extent, as the feature that prevents the structures from being found by geometry
+optimisation is the same for each of the structures arising from a specific
+seed. The smallest unmatched structures that cannot be associated with any of
+seeds (a)--(f) have $N=13$; these could be the starting structures for two new
+seeds.
 
+Finally, it should be noted that the starting \ac{SHS} minima in our
+optimisation procedure are not stationary points on the \ac{LJ} hypersurface,
+and the optimisations therefore lead to most but not all local and available
+\ac{LJ} minima. This observation explains why some high-energy structures were
+not found by the optimisation procedure. For a smooth change in the topology of
+the potential energy surface from \ac{SHS} to \ac{LJ} type clusters one has to
+continuously vary the exponents $(m,n)$ in real space, which is computationally
+too demanding.
 
-Finally, we note that the starting \ac{SHS} minima in our optimisation procedure are
-not stationary points on the LJ hypersurface, and we therefore optimise to most
-but not all local and available LJ minima. This observation explains why some high-energy
-structures were not found by our optimisation procedure. For a smooth change in the topology of the potential energy surface
-from \ac{SHS} to LJ type clusters one has to continuously vary the exponents $(m,n)$
-in real space, which is computationally too demanding.
+\section{Conclusion}
 
-\section{Conclusions and Outlook}
-
-We have characterized the sets of $(m,n)$-LJ-potential minima obtained using
+The sets of $(m,n)$-\ac{LJ}-potential minima obtained using
 complete sets of nonisomorphic \ac{SHS} packings with $8 \leq N \leq 14$
 \autocite{Arkus_Minimalenergyclusters_2009,Arkus_DerivingFiniteSphere_2011,Hoy_Structurefinitesphere_2012,Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016}
-as initial states for energy minimization.  The number of distinct minima
-(i.e.~excluding permutation-inversion isomers) is far smaller than the number
-of \ac{SHS} packings for the standard Lennard-Jones exponents $(m,n) = (6,12)$, but
-approaches the \ac{SHS} limit from below as ($m,n$) increase.  We characterized how
-the number of distinct minima $\mathcal{M}(N)$ increases with cluster size $N$
-by determining Stillinger's rise rate parameter $\alpha$ (equation~\eqref{eq:Stil})
-\autocite{Stillinger_Exponentialmultiplicityinherent_1999}.  The increase of
-$\alpha$ from $\approx 1.1$ for (6,12)-LJ clusters to $\approx 2.2$ for \ac{SHS}
-clusters is described by a simple functional form (equation~\eqref{expgrowth}).  All
-these results  can be understood in terms of a smooth progression of the
-$(m,n)$-LJ energy landscape towards the \ac{SHS} energy landscape as $(m,n)$
-increase.
+as initial states for energy minimization have been characterised. The number of
+distinct minima (i.e.~excluding permutation-inversion isomers) is far smaller
+than the number of \ac{SHS} packings for the standard Lennard-Jones exponents
+$(m,n) = (6,12)$, but approaches the \ac{SHS} limit from below as ($m,n$)
+increase. How the number of distinct minima $\mathcal{M}(N)$ increases with
+cluster size $N$ has been investigated by determining Stillinger's rise rate
+parameter $\alpha$ (equation~\eqref{eq:Stil})
+\autocite{Stillinger_Exponentialmultiplicityinherent_1999}. The increase of
+$\alpha$ from $\approx 1.1$ for (6,12)-\ac{LJ} clusters to $\approx 2.2$ for
+\ac{SHS} clusters is described by a simple functional form
+(equation~\eqref{expgrowth}). All these results  can be understood in terms of a
+smooth progression of the $(m,n)$-\ac{LJ} energy landscape towards the \ac{SHS}
+energy landscape as $(m,n)$ increase.
 
-Using a more realistic extended LJ potential obtained from coupled cluster
+Using a more realistic \ce{eLJ} potential obtained from coupled cluster
 calculations for the xenon dimer
 \autocite{Schwerdtfeger_ExtensionLennardJonespotential_2006,Jerabek_relativisticcoupledclusterinteraction_2017}
 leads to $\mathcal{M}$ values close to those obtained for the
-(6,12)-Lennard-Jones potential, but our results indicate the the topology of
+(6,12)-Lennard-Jones potential, but the results indicate that the topology of
 the energy hypersurface is very sensitive to the model potential applied.  
 
-Finally, we compared our optimisation results to the previously published
-results for the (6,12)-LJ potential. The mapping from $\mathcal{M}_\text{SHS}$
-to $\mathcal{M}_\mathrm{SHS\to LJ}$ is non-injective and non-surjective,
-however, the number of structures missed by the optimisation procedure is
-relatively small. The unmatched structures belong to the high energy region of
-the potential energy hypersurface and possess rather large variations in their
-bond lengths. An analysis of their geometries revealed that most of the larger
-structures can be constructed from a smaller cluster by capping some of the
-triangular faces. This procedure effectively sorts almost all unmatched
-structures into six seeds for clusters up to $N=13$.
+Finally, the optimisation results have been compared to the previously published
+results for the (6,12)-\ac{LJ} potential. The mapping from
+$\mathcal{M}_\text{SHS}$ to $\mathcal{M}_\mathrm{SHS\to LJ}$ is non-injective
+and non-surjective, however, the number of structures missed by the optimisation
+procedure is relatively small. The unmatched structures belong to the high
+energy region of the potential energy hypersurface and possess rather large
+variations in their bond lengths. An analysis of their geometries revealed that
+most of the larger structures can be constructed from a smaller cluster by
+capping some of the triangular faces. This procedure effectively sorts almost
+all unmatched structures into six seeds for clusters up to $N=13$.
 
 
 \chapter[The Gregory-Newton Clusters]{
