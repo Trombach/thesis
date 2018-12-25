@@ -1956,7 +1956,7 @@ shows the most symmetric icosahedral solution to the Gregory-Newton problem.
     \includegraphics[width=.5\textwidth]{gregory-newton/ico.pdf}
     \caption{Left: Symmetric realization of $N_k(3)=12$ for unit hard spheres
     (icosahedral symmetry, $I_h$). The minimum distance between the outer
-    spheres is $r=\sin^{-1}\left(\frac{2\pi}{5}\right)$=1.05146222$\dots$,
+    spheres is $r=\sin^{-1}\left(\frac{2\pi}{5}\right)=1.05146222\dots$,
     hence they do not touch. Right: The corresponding icosahedral graph.
     Numbering refers to the respective node index.}
     \label{fig:GN}
@@ -1971,6 +1971,62 @@ However, for the problem of cluster nucleation, the three-dimensional problem,
 as posed by Gregory and Newton, is more relevant and has recently been reviewed
 by
 \citeauthor{Kusner_ConfigurationSpacesEqual_2018}\autocite{Kusner_ConfigurationSpacesEqual_2018}
+
+There are other problems similar to the Tammes problem like the Thomson problem,
+that tries to find the optimal solution for charged particles (e.g. electrons)
+on the surface of a
+sphere.\autocite{Wales_Structuredynamicsspherical_2006,Wales_Defectmotifsspherical_2009}
+The solutions to these class of problems all show icosahedral symmetry for a
+size of 12 spheres. When thinking of these problems in terms of nucleation
+phenomena there is usually not a repulsive force between the surrounding
+spheres, but an attractive one. For example, such a system could be modelled in
+a gravitational potential $V_G=Gm_im_jr_{ij}^{-2}$, where $G$ is the gravitational
+constant, $m_i$ the mass of sphere $i$ and $r_{ij}$ the distance between spheres
+$i$ and $j$. For spheres $i$ and $j$ with radii $R_i$ and $R_j$ a geometry
+optimisation can be carried out under the constraint $r_{ij}\geq (R_i + R_j)$,
+which will remove the gaps between the spheres in the icosahedral arrangement.
+Such problems are often studied for crystallisation and sedimentation
+phenomena.\autocite{Levin_Crystallizationhardspheres_2000,Pusey_Hardspherescrystallization_2009}
+
+Two other potentials that enforce theses types of rigidity constraints on the
+system are the \acf{LJ} and \acf{SHS} potentials already introduced in
+chapters~\ref{sec:fromstickyhardspheretoLJtypeclusters} and
+\ref{sec:energylandscapes}. Contrary to
+chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters} the exponents $(a,b)$ are
+now any real positive number.
+%
+\begin{equation}
+    V_{a,b}^\mathrm{LJ}(r)=\frac{ar^{-b}-br^{-a}}{b-a} \quad (\mathrm{with} \ \ r,a,b \in \mathbb{R}^+ \ \ \mathrm{and} \ \ b>a).
+\label{eqn:abpot}
+\end{equation}
+%
+The \ac{SHS} potential is employed unchanged.
+%
+\begin{align}
+    \lim_{a,b\rightarrow \infty} V_{a,b}^\mathrm{LJ}(r) \rightarrow V_\mathrm{SHS}(r)=
+    \begin{cases}
+        \infty   & r < 1\\
+        -1  \quad \mathrm{for} & r = 1\\
+        0       & r > 1
+    \end{cases}
+\label{eqn:KS1}
+\end{align}
+%
+Note that for both potentials both the depth of the energy well and the
+equilibrium distance have already been set to 1.
+
+In the following sections these two potentials will be used to investigate the
+\acp{GNC}. Again, the investigation starts from the \ac{SHS} clusters derived
+from the exact enumeration
+method.\autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016,Holmes-Cerfon_StickySphereClusters_2017}
+This set of structures is searched for clusters fulfilling the requirements to
+be \acp{GNC}. \ac{LJ} clusters of this size have an icosahedral global minimum,
+however, this structure is impossible to realise in the \ac{SHS} potential. This
+is due to the fact that in a perfect icosahedron the distance between the
+vertices is always larger than the distance of all the vertices to the centre of
+mass of the cluster. Therefore, as increasing \ac{LJ} exponents make the
+potential more \ac{SHS}-like, there must be a point at which the icosahedral
+structure cannot be supported anymore by the \ac{LJ} potential energy surface.
 
 %The arrangement of $N$ points on the surface of a sphere corresponding to the
 %placement of $N$ identical spheres around a central sphere is called a
@@ -1998,82 +2054,88 @@ by
 %bounds for max$\{N_k(d)\}$ are also available
 %\autocite{Mittelmann_Highaccuracysemidefiniteprogramming_2010,%Conway_SpherePackingsLattices_1999}.
 
+%The Tammes, Thomson  or related models employ repulsive forces between points
+%or spheres \autocite{Wales_Structuredynamicsspherical_2006,Wales_Defectmotifsspherical_2009} %and, for the
+%three-dimensional problem with 12 kissing spheres, lead to ideal icosahedral
+%symmetry (figure~\ref{fig:GN}). We may however pose the question of what
+%happens if we let the outer kissing spheres of a \ac{GNC} touch each other to
+%enforce rigidity? We could try to find the global and all local minima for the
+%12 kissing hard spheres interacting through an attractive instead of a
+%repulsive potential. For example, we can place the central hard sphere in a
+%gravitational field of strength $F_G=Gm_im_jr_{ij}^{-2}$ and relax all
+%positions $r_{ij}\ge (R_i+R_j)$ between the kissing hard spheres $i$ and $j$,
+%in the most general case having sphere radii $R_i$ and masses $m_i$. It is
+%clear that such a procedure leads to a less flexible and more rigid sphere
+%packing. In Euclidian space, this problem is well known to
+%crystallization/sedimentation phenomena modelled by hard spheres in a
+%gravitational field \autocite{Levin_Crystallizationhardspheres_2000,%Pusey_Hardspherescrystallization_2009}.
 
-The Tammes, Thomson  or related models employ repulsive forces between points
-or spheres \autocite{Wales_Structuredynamicsspherical_2006,Wales_Defectmotifsspherical_2009} and, for the
-three-dimensional problem with 12 kissing spheres, lead to ideal icosahedral
-symmetry (figure~\ref{fig:GN}). We may however pose the question of what
-happens if we let the outer kissing spheres of a \ac{GNC} touch each other to
-enforce rigidity? We could try to find the global and all local minima for the
-12 kissing hard spheres interacting through an attractive instead of a
-repulsive potential. For example, we can place the central hard sphere in a
-gravitational field of strength $F_G=Gm_im_jr_{ij}^{-2}$ and relax all
-positions $r_{ij}\ge (R_i+R_j)$ between the kissing hard spheres $i$ and $j$,
-in the most general case having sphere radii $R_i$ and masses $m_i$. It is
-clear that such a procedure leads to a less flexible and more rigid sphere
-packing. In Euclidian space, this problem is well known to
-crystallization/sedimentation phenomena modelled by hard spheres in a
-gravitational field \autocite{Levin_Crystallizationhardspheres_2000,Pusey_Hardspherescrystallization_2009}.
-
-The most widely used interaction potential in chemical and physical sciences is
-the so-called Lennard-Jones (LJ) potential
-\autocite{Jones_DeterminationMolecularFields_1924,Lennard-Jones_Cohesion_1931},
-which is attractive in the long range and repulsive in the short range. In
-reduced units the LJ$(a,b)$ potential takes the form, 
+%The most widely used interaction potential in chemical and physical sciences is
+%the so-called Lennard-Jones (LJ) potential
+%\autocite{Jones_DeterminationMolecularFields_1924,Lennard-Jones_Cohesion_1931},
+%which is attractive in the long range and repulsive in the short range. In
+%reduced units the LJ$(a,b)$ potential takes the form, 
+%%
 %
-\begin{equation}
-    V_{a,b}^\mathrm{LJ}(r)=\frac{ar^{-b}-br^{-a}}{b-a} \quad (\mathrm{with} \ \ r,a,b \in \mathbb{R}^+ \ \ \mathrm{and} \ \ b>a).
-\label{eqn:abpot}
-\end{equation}
+%%
+%Such a potential maximizes the number of contacts between spheres, and for the
+%famous LJ(6,12) case leads to one and only one minimum for the \ac{GNC}
+%\autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018} -- the ideal icosahedron %(shown in figure~\ref{fig:GN}) as
+%in the case of the Tammes problem. The icosahedral motif originally proposed by
+%Mackay \autocite{Mackay-1962} plays a very important role in cluster physics and
+%chemistry
+%\autocite{Hoare_Physicalclustermechanics_1975,Klots90,Uppenbrink-1991,vandewaal93,%Wales_Whatcancalculations_1996,Wales_ChangesMorphologyCapping_1996,%Wales_Structuredynamicsspherical_2006}.
 %
-Such a potential maximizes the number of contacts between spheres, and for the
-famous LJ(6,12) case leads to one and only one minimum for the \ac{GNC}
-\autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018} -- the ideal icosahedron (shown in figure~\ref{fig:GN}) as
-in the case of the Tammes problem. The icosahedral motif originally proposed by
-Mackay \autocite{Mackay-1962} plays a very important role in cluster physics and
-chemistry
-\autocite{Hoare_Physicalclustermechanics_1975,Klots90,Uppenbrink-1991,vandewaal93,Wales_Whatcancalculations_1996,Wales_ChangesMorphologyCapping_1996,Wales_Structuredynamicsspherical_2006}.
+%For large exponents $(a,b)$ the LJ potential approaches the sticky hard-sphere
+%(SHS) limit originally introduced by Baxter \autocite{baxter68,%Gazzillo_AnalyticsolutionsBaxter_2004},
+%
+%SHS models have been used intensively in many areas, such as crystallization,
+%flocculation, colloidal suspensions, micelles, protein solutions, or in the
+%exact enumeration of rigid SHS clusters
+%\autocite{Stell_Stickyspheresrelated_1991,Jamnik_Spatialcorrelationssolvation_1996,%Santos_Radialdistributionfunctions_1998,Gazzillo_AnalyticsolutionsBaxter_2004,%Hoy_MinimalEnergyPackings_2010,Arkus_Minimalenergyclusters_2009,Arkus-2010,%Arkus_DerivingFiniteSphere_2011,Hoy_Structurefinitesphere_2012,%Hayes_ScienceStickySpheres_2012,Holmes-Cerfon_geometricalapproachcomputing_2013,%Holmes-Cerfon_EnumeratingRigidSphere_2016,Holmes-Cerfon_StickySphereClusters_2017,%Kallus_Freeenergysingular_2017}.
+%The SHS model has the advantage that an adjacency matrix $A$ can be introduced
+%with entries $A_{ij}=1$ if spheres $i$ and $j$ touch, and 0 otherwise. The
+%number of contacts between spheres then simply becomes $N_c=\sum_{i<j}^N
+%A_{ij}$. It also opens the way for graph-theoretical treatments of cluster
+%structures as we shall see.
 
-For large exponents $(a,b)$ the LJ potential approaches the sticky hard-sphere
-(SHS) limit originally introduced by Baxter \autocite{baxter68,Gazzillo_AnalyticsolutionsBaxter_2004},
-\begin{align}
-    \lim_{a,b\rightarrow \infty} V_{a,b}^\mathrm{LJ}(r) \rightarrow V_\mathrm{SHS}(r)=
-    \begin{cases}
-        \infty   & r < 1\\
-        -1  \quad \mathrm{for} & r = 1\\
-        0       & r > 1.
-    \end{cases}
-\label{eqn:KS1}
-\end{align}
-SHS models have been used intensively in many areas, such as crystallization,
-flocculation, colloidal suspensions, micelles, protein solutions, or in the
-exact enumeration of rigid SHS clusters
-\autocite{Stell_Stickyspheresrelated_1991,Jamnik_Spatialcorrelationssolvation_1996,Santos_Radialdistributionfunctions_1998,Gazzillo_AnalyticsolutionsBaxter_2004,Hoy_MinimalEnergyPackings_2010,Arkus_Minimalenergyclusters_2009,Arkus-2010,Arkus_DerivingFiniteSphere_2011,Hoy_Structurefinitesphere_2012,Hayes_ScienceStickySpheres_2012,Holmes-Cerfon_geometricalapproachcomputing_2013,Holmes-Cerfon_EnumeratingRigidSphere_2016,Holmes-Cerfon_StickySphereClusters_2017,Kallus_Freeenergysingular_2017}.
-The SHS model has the advantage that an adjacency matrix $A$ can be introduced
-with entries $A_{ij}=1$ if spheres $i$ and $j$ touch, and 0 otherwise. The
-number of contacts between spheres then simply becomes $N_c=\sum_{i<j}^N
-A_{ij}$. It also opens the way for graph-theoretical treatments of cluster
-structures as we shall see.
+%A complete set of non-isomorphic rigid SHS clusters has recently been
+%determined for cluster size $N \leq 14$ via exact enumeration studies employing
+%geometric rejection
+%\autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016}
+%and rigidity rules \autocite{Holmes-Cerfon_StickySphereClusters_2017}. These
+%include the rigid \acp{GNC} as a subset. Recently, Trombach et al. determined
+%that the number of non-isomorphic rigid \acp{GNC} $n_{\mathrm GNC}$ is
+%surprisingly large ($n_{\mathrm GNC}=737$)
+%\autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018}. An
+%explanation for this has not been given yet. Moreover, the condition
+%$\lim_{a,b\rightarrow \infty} V_{a,b}^\mathrm{LJ}(r) \rightarrow
+%V_\mathrm{SHS}(r)$ implies that at certain $a,b$ values symmetry broken
+%solutions away from the ideal icosahedral structure appear. Where exactly this
+%happens, and when the icosahedral structure does not survive anymore, is not
+%known. In order to close this gap, we decided to analyze the rigid \acp{GNC} and
+%corresponding symmetry breaking effects in more detail. This is much in the
+%spirit of Wales who already pointed out that the global characteristics of the
+%energy landscape can be quite sensitive to the nature of the interatomic
+%potential applied \autocite{Wales_MicroscopicBasisGlobal_2001}.
 
-A complete set of non-isomorphic rigid SHS clusters has recently been
-determined for cluster size $N \leq 14$ via exact enumeration studies employing
-geometric rejection
-\autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016}
-and rigidity rules \autocite{Holmes-Cerfon_StickySphereClusters_2017}. These
-include the rigid \acp{GNC} as a subset. Recently, Trombach et al. determined
-that the number of non-isomorphic rigid \acp{GNC} $n_{\mathrm GNC}$ is
-surprisingly large ($n_{\mathrm GNC}=737$) \autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018}. An explanation for
-this has not been given yet. Moreover, the condition $\lim_{a,b\rightarrow
-\infty} V_{a,b}^\mathrm{LJ}(r) \rightarrow V_\mathrm{SHS}(r)$ implies that at
-certain $a,b$ values symmetry broken solutions away from the ideal icosahedral
-structure appear. Where exactly this happens, and when the icosahedral
-structure does not survive anymore, is not known. In order to close this gap,
-we decided to analyze the rigid \acp{GNC} and corresponding symmetry breaking
-effects in more detail. This is much in the spirit of Wales who already pointed
-out that the global characteristics of the energy landscape can be quite
-sensitive to the nature of the interatomic potential applied
-\autocite{Wales_MicroscopicBasisGlobal_2001}.
+\section{Computational Details}
 
+Coordinates for \ac{GNC} structures have been obtained by searching for
+adjacency matrices of the results for $N=13$ from
+\citeauthor{Holmes-Cerfon_EnumeratingRigidSphere_2016}
+\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016} with one row or column
+containing twelve ``1'' entries. Sub-graph isomorphism was verified using the
+\textit{VF2} algorithm \autocite{Cordella_SubGraphIsomorphism_2004} as
+implemented in the \textit{boost graph library}
+\autocite{Siek_BoostGraphLibrary_2002} using the program package
+\textsc{Spheres}. Structural optimisations with \ac{LJ} potentials have been
+carried out using the multidimensional function minimiser from the \Cpp library
+\textit{dlib} \autocite{King_DlibmlMachineLearning_2009} and an energy
+convergence criterion of $10^{-15}$. Results from the optimisation procedure
+were analysed based on the \ac{EDM}, which is unique for non-isomorphic
+structures apart from permutation, translation, rotation and inversion. For this
+the distances were sorted lexicographically.
 
 
 \section{The Gregory-Newton Problem for Soft Potentials}
@@ -2084,22 +2146,33 @@ The question of the Newton number in three dimensions has been resolved almost
 for hard-sphere short-range potentials, but little is known about the behaviour
 of such clusters under long-range potentials such as the Kratzer
 potential\autocite{Kratzer_ultrarotenRotationsspektrenHalogenwasserstoffe_1920}.
-We used the optimisation procedures explained in
-chapter~\ref{sec:theprogramspheres} to minimise the energy of a starting
-structure consisting of 13 spheres surrounding a center sphere with a fixed
-distance of one. Generating such a starting structure where all surrounding
-spheres are evenly spaced is impossible since there exists no triangulation of
-a sphere with 13 vertices, where every vertex has degree five or
-six\autocite{Schwerdtfeger_topologyfullerenes_2015}. To generate an approximate
-distribution we used the Fibonacci sphere
+For unequally sized spheres, some simple results are known; for example, 13 hard
+spheres of radius $r_s$ can touch a central sphere of unit radius only if
+$r_s\leq 0.9165$.\autocite{phillips12} For clusters bound by the aforementioned
+long-range potentials the situation is far more complicated as it requires to
+minimise energy rather than distances between neighbouring particles.
+Nonetheless, it is important to expand our knowledge on these kind of systems as
+they are crucial to understand real systems such as coordination compounds,
+which have recently been shown to possess coordination numbers as high as
+17\autocite{Kaltsoyannis-2017} or 20.\autocite{Suresh-2016} 
+
+The optimisation procedures explained in chapter~\ref{sec:theprogramspheres} wer
+used to minimise the energy of a starting structure consisting of 13 spheres
+surrounding a center sphere with a fixed distance of one. Generating such a
+starting structure where all surrounding spheres are evenly spaced is impossible
+since there exists no triangulation of a sphere with 13 vertices, where every
+vertex has degree five or six\autocite{Schwerdtfeger_topologyfullerenes_2015}.
+To generate an approximate distribution we used the Fibonacci sphere
 algorithm\autocite{Gonzalez_MeasurementAreasSphere_2010,Keinert_SphericalFibonacciMapping_2015}
 and used this structure as a starting point for optimisations with \ac{LJ}
-potentials with small exponents. The difference between the largest and
-smallest \ac{COS} distance was used as a measure for whether the 13th sphere
-enters the first coordination shell. A value of zero would be expected for this
-to be true.
+potentials with small exponents. The difference between the largest and smallest
+\ac{COS} distance was used as a measure for whether the 13th sphere enters the
+first coordination shell. A value of zero would be expected for this to be true.
 
-\begin{figure}
+The results for all positive integer combinations of $m\leq11$ and $n\leq12$
+with $m<n$ are depicted in figure~\ref{fig:gregorynewton-N14}. 
+%
+\begin{figure}[htb]
     \centering
     \includegraphics[width=.8\textwidth]{gregory-newton/N14.pdf}
     \caption{Relation of \acs{LJ} exponents m and n to the difference of
@@ -2107,26 +2180,26 @@ to be true.
     all surrounding spheres are touching the center sphere.}
     \label{fig:gregorynewton-N14}
 \end{figure}
-
-The results for all positive integer combinations of $m\leq11$ and $n\leq12$
-with $m<n$ are depicted in figure~\ref{fig:gregorynewton-N14}. Even for the
-combination of smallest exponents (1,2)-\ac{LJ} it is clear that the \ac{COS}
-distances vary from sphere to sphere. For this potential the largest \ac{COS}
-distance is $r_\text{max}=0.882$, while the shortest one is
+%
+Even for the combination of smallest exponents (1,2) it is clear that the
+\ac{COS} distances vary from sphere to sphere. For this potential the largest
+\ac{COS} distance is $r_\text{max}=0.882$, while the shortest one is
 $r_\text{min}=0.804$. While the longest distance only shows up once, the
-shortest distance appears twice. All other 10 distances fall in the range
+shortest distance appears twice. All other ten distances fall in the range
 between $r = 0.845$ and $r = 0.861$. The $r_\text{max} /r_\text{min}$ ratio is
 $1.097$ and much shorter compared to $r_\text{max} /r_\text{min}= \sqrt{2}$ for
 the closed packed lattice, or the shortest distance possible for the \ac{SHS}
-system which is $r_{14}^\text{GN} = 1.347$ (see discussion below). Hence the
-13th sphere ``almost'' touches the center sphere.
+system which is $r_{14}^\text{GN} = 1.347$ (see
+section~\ref{sec:addinga14thsphere}). Hence, the 13th sphere ``almost'' touches
+the center sphere.
 
 Note that all \ac{COS} distances for the $N=14$ (1,2)-\ac{LJ} cluster are
 significantly shorter than $r=1$, due to the $N(N-1)/2$ attractive two-body
 interactions and the softness of the potential.  For infinite (e.g.
-body-centered cubic or close-packed) lattices of particles interacting via
+body-centred cubic or close-packed) lattices of particles interacting via
 $V^\mathrm{LJ}_{mn}(r)$ with $n> m >3$, one can prove
-\autocite{Schwerdtfeger_ExtensionLennardJonespotential_2006} that the nearest neighbor distance is
+\autocite{Schwerdtfeger_ExtensionLennardJonespotential_2006} that the nearest
+neighbour distance is
 %
 \begin{equation}
     r_\mathrm{NN}(m,n)=\left( L_n L_m^{-1}\right)^\frac{1}{n-m}. %{\color{red} < 1.}
@@ -2147,97 +2220,98 @@ cubic and close-packed lattices, respectively.  This result shows that stable
 clusters do not necessarily have longer bonds compared to the solid state,
 where we expect a maximum in interaction energy per atom.
 
+\section{Rigid Gregory-Newton Clusters and Corresponding Graphs}
 
-\section{The Smallest Gregory-Newton Clusters}
-\label{sec:themsmallestgregorynewtonclusters}
-
-
-\subsection{Rigid Gregory-Newton Clusters and Corresponding Graphs}
-
-The recent results by Holmes-Cerfon contain a putatively complete set of
-(semi)rigid {(\color{red} What do we mean by (semi)rigid)} SHS clusters of size $N=13$ and $N=14$
-\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}. The rigid GNCs can easily be
-identified as a subset of the set of all non-isomorphic rigid SHS clusters,
-i.e. $\{ S_\mathrm{GN}\}\subset \{ S_\mathrm{SHS}\}$; these have adjacency matrices
-$A$ with exactly one column and row containing twelve "1" entries due to 12
-spheres kissing the central sphere. A surprisingly large number of 737
+The recent results by Holmes-Cerfon contain a putatively complete set of rigid
+SHS clusters of size $N=13$ and $N=14$
+\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}. The rigid GNCs can easily
+be identified as a subset of the set of all non-isomorphic rigid SHS clusters,
+i.e. $\{ S_\mathrm{GN}\}\subset \{ S_\mathrm{SHS}\}$; these have adjacency
+matrices $A$ with exactly one column and row containing twelve "1" entries due
+to 12 spheres kissing the central sphere. A surprisingly large number of 737
 non-isomorphic $N = 13$ GNCs out of 98,540 rigid SHS clusters can be found
-\autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018}. There are four different possible contact numbers $N_c$
-with $\{724,10,1,2\}$ rigid GNCs corresponding to $N_c=\{33,34,35,36\}$
-\autocite{Robinson_Arrangement24points_1961}, therefore, non of those clusters are hypostatic.
+\autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018}. There are
+four different possible contact numbers $N_c$ with $\{724,10,1,2\}$ rigid GNCs
+corresponding to $N_c=\{33,34,35,36\}$
+\autocite{Robinson_Arrangement24points_1961}; therefore, none of those clusters
+are hypostatic.
 
-For further analysis and without loss of generality we delete the central
-sphere and analyse the remaining non-isomorphic shell of spheres (note that
-rigidity requires the presence of the central sphere), also called contact
-graphs according to Sch{\"u}tte, van der Waerden and Habicht
-\autocite{Schuette_AufwelcherKugel_1951}. This has the advantage that these shells are related to
-planar connected graphs. In the following we call the corresponding connected,
-planar graph of such a shell of spheres with the central sphere missing a
-\textit{GN graph}. The question arises if all 737 non-isomorphic GN graphs are
-subgraphs to the icosahedral graph, as shown in figure~\ref{fig:GN}. This would
-make sense as it is impossible to increase the degree of any vertex beyond 5 in
-the GN graph. Note that the icosahedral cluster is completely unjammed and its
-space of (infinitesimal) deformations has dimension 24 (for details see
-\citeauthor{Kusner_ConfigurationSpacesEqual_2018}\autocite{Kusner_ConfigurationSpacesEqual_2018}).
+For further analysis and without loss of generality the central sphere was
+removed the remaining non-isomorphic shell of spheres\footnote{Note that
+rigidity requires the presence of the central sphere.} was analysed, also called
+contact graphs according to
+\citeauthor{Schuette_AufwelcherKugel_1951}\autocite{Schuette_AufwelcherKugel_1951}
+This has the advantage that these shells are related to planar connected graphs.
+In the following the corresponding connected planar graph of such a shell of
+spheres with the central sphere missing will be referred to as a \textit{GN
+graph}. The question arises if all 737 non-isomorphic GN graphs are subgraphs to
+the icosahedral graph, as shown in figure~\ref{fig:GN}. This would make sense as
+it is impossible to increase the degree of any vertex beyond 5 in the GN graph.
+Note that the icosahedral cluster is completely unjammed and its space of
+(infinitesimal) deformations has dimension
+24.\autocite{Kusner_ConfigurationSpacesEqual_2018}.
 
-Employing the \textit{VF2} algorithm \autocite{Cordella_SubGraphIsomorphism_2004}
-as implemented in the \textit{boost graph library} \autocite{Siek_BoostGraphLibrary_2002} we find
-all 737 non-isomorphic GN graphs $G_\mathrm{GN}(V,E')$ (vertex count $|V|=12$,
-edge count $|E'|<30$) to be (edge-induced) subgraphs of the icosahedral graph
-$G_\mathrm{ico}(V,E)$ ($|V|=12$, $|E|=30$), which implies that their vertices can
-all be mapped to vertices of the icosahedral graph with certain edges deleted
-such that the subgraph remains connected ($V_\mathrm{GN} = V_\mathrm{ico}$ and
-$E_\mathrm{GN}\subset E_\mathrm{ico}$). An extensive list of all subgraphs is
-included in the Supporting Information (Tables S1 and S2). Note, not all GN
-graphs are 3-connected and therefore are not strictly polyhedral according to
-Steinitz's theorem \autocite{Steinitz_PolyederundRaumeinteilungen_1916}. These are the graphs which have
-vertices of degree 2, i.e. $|V_2|>0$, and there are 304 of them, Table~S1. As
-the many non-isomorphic graphs listed in the SI are obtained from a certain
-combination of edge deletions under the constraint of maintaining rigidity, it
-is not surprising at all that the number of non-isomorphic GN graphs is so
-large.
+Employing the \textit{VF2} algorithm
+\autocite{Cordella_SubGraphIsomorphism_2004} as implemented in the \textit{boost
+graph library} \autocite{Siek_BoostGraphLibrary_2002} all 737 non-isomorphic
+\ac{GN} graphs $G_\mathrm{GN}(V,E')$ (vertex count $|V|=12$, edge count
+$|E'|<30$) are found to be (edge-induced) sub-graphs of the icosahedral graph
+$G_\mathrm{ico}(V,E)$ ($|V|=12$, $|E|=30$), which implies that their vertices
+can all be mapped to vertices of the icosahedral graph with certain edges
+deleted such that the sub-graph remains connected ($V_\mathrm{GN} =
+V_\mathrm{ico}$ and $E_\mathrm{GN}\subset E_\mathrm{ico}$). An extensive list of
+all sub-graphs is included in the appendix (Tables~\ref{tab:icosubgraphs} and
+\ref{tab:verticesandfaces}). Note, not all GN graphs are 3-connected and
+therefore are not strictly polyhedral according to Steinitz's theorem
+\autocite{Steinitz_PolyederundRaumeinteilungen_1916}. These are the graphs which
+have vertices of degree 2, i.e. $|V_2|>0$, and there are 304 of them,
+table~\ref{tab:verticesandfaces}. As the many non-isomorphic graphs listed in
+the appendix are obtained from a certain combination of edge deletions under the
+constraint of maintaining rigidity, it is not surprising at all that the number
+of non-isomorphic \ac{GN} graphs is so large.
 
-The results show, that at least six and up to a maximum of nine edges have to
-be removed from the icosahedral graph to create a GN graph. Removing six edges
-from the icosahedral graph results in 24 edges, or $N_c=36$ if we include the
-central sphere. For $N=13$ this is exactly equal to $3N-3$ which is the maximum
-contact number observed for this cluster size
-\autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016}.
-Consequently, removing nine edges gives $N_c=33=3N-6$, meaning that rigid GNCs
-cannot be hypostatic (i.e. $N_c < 3N-6$). Interestingly, there are only two
-graphs with maximum edge count of $|E|=24$, which are exactly the fragments of
-the face-centered cubic (fcc, ABCABC... layers) and hexagonal closed packed
-(hcp, ABAB... layers) bulk structures, respectively. These are the result from
-removing 6 edges in such a way, that exactly one edge is removed from every
-vertex in the icosahedral graph (thus the degree of every vertex is 4), see
-figure~\ref{fig:GNshellgraphs}.
 \begin{figure}[htb]
     \centering
     \subfloat[hcp, $|E|=24, \omega =1$.\label{subfig:hcpgraph}]{\includegraphics[width=0.43\columnwidth]{gregory-newton/hcp-new.pdf}\hspace{0.03\textwidth}\includegraphics[width=.37\columnwidth]{gregory-newton/hcp.png}}\\
     \subfloat[fcc, $|E|=24, \omega =2$.\label{subfig:fccgraph}]{\includegraphics[width=0.43\columnwidth]{gregory-newton/fcc-new.pdf}\hspace{0.03\textwidth}\includegraphics[width=.37\columnwidth]{gregory-newton/fcc.png}}
     \caption{GN hcp (triangular orthobicupola) and fcc (cuboctahedron) graphs
     (central sphere removed) as subgraphs of the icosahedral graph and
-    corresponding rigid GNCs.  Red lines indicate the edges that were removed
-    to create the GN graph. The ordinal numbers $\omega$ refer to Table~S2 in
-    the SI.}
+    corresponding rigid GNCs.  Red lines indicate the edges that were removed to
+    create the GN graph. The ordinal numbers $\omega$ refer to
+    Table~\ref{tab:icosubgraphs} in the appendix.}
     \label{fig:GNshellgraphs}
 \end{figure}
-Removing edges in this way implies that the resulting two graphs consist of
-triangles and rectangles only. The difference between the fcc and hcp clusters
-is in the way their square faces are connected; in the fcc case the square
-faces only connect via edges (cuboctahedron), while in hcp case the square
-faces come in pairs sharing one edge (triangular orthobicupola or Johnson solid
+
+The results show, that at least six and up to a maximum of nine edges have to be
+removed from the icosahedral graph to create a GN graph. Removing six edges from
+the icosahedral graph results in 24 edges, or $N_c=36$ if the central sphere is
+included. For $N=13$ this is exactly equal to $3N-3$ which is the maximum
+contact number observed for this cluster size
+\autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016}.
+Consequently, removing nine edges gives $N_c=33=3N-6$, meaning that rigid GNCs
+cannot be hypostatic (i.e. $N_c < 3N-6$). Interestingly, there are only two
+graphs with maximum edge count of $|E|=24$, which are exactly the fragments of
+the \acf{fcc} and \acf{hcp} bulk structures, respectively. These are the result
+from removing 6 edges in such a way, that exactly one edge is removed from every
+vertex in the icosahedral graph (thus the degree of every vertex is 4), see
+figure~\ref{fig:GNshellgraphs}. Removing edges in this way implies that the
+resulting two graphs consist of triangles and rectangles only. The difference
+between the \ac{fcc} and \ac{hcp} clusters is in the way their square faces are
+connected; in the \ac{fcc} case the square faces only connect via edges
+(cuboctahedron), while in \ac{hcp} case the square faces come in pairs sharing
+one edge (triangular orthobicupola or Johnson solid
 $J_{27}$)\autocite{Kusner_ConfigurationSpacesEqual_2018}.
 
 The construction of hcp and fcc structures by a continuous deformation of an
 icosahedron has been described in detail by Kusner et al.
-\autocite{Kusner_ConfigurationSpacesEqual_2018} and goes back to Conway and Sloane
-in 1988 \autocite{Conway_SpherePackingsLattices_1999}. We note that hcp and fcc can both be obtained
-from a rearrangement of the spheres in an icosahedron by forming a (zig-zag)
-cycle (closed path) through six vertices, and arranging those spheres on the
-path such that they are in-plane with the central sphere, which becomes part of
-the hexagonal plane as in the bulk fcc and hcp packing
-(figure~\ref{fig:ico-fcc-trans}).
+\autocite{Kusner_ConfigurationSpacesEqual_2018} and goes back to Conway and
+Sloane in 1988 \autocite{Conway_SpherePackingsLattices_1999}. \ac{hcp} and
+\ac{fcc} can both be obtained from a rearrangement of the spheres in an
+icosahedron by forming a (zig-zag) cycle (closed path) through six vertices, and
+arranging those spheres on the path such that they are in-plane with the central
+sphere, which becomes part of the hexagonal plane as in the bulk \ac{fcc} and
+\ac{hcp} packing (figure~\ref{fig:ico-fcc-trans}).
+%
 \begin{figure}[htb]
     \centering
     \includegraphics[width=.8\columnwidth]{gregory-newton/plane.png}
@@ -2246,24 +2320,26 @@ the hexagonal plane as in the bulk fcc and hcp packing
     grey) of the fcc crystal.}
     \label{fig:ico-fcc-trans}
 \end{figure}
-Additionally, the plane has to be rotated by $\pi/6$ to create the fcc
-structure. The hcp structure can be constructed by also rotating either the top
-or the bottom plane by the same amount in either direction parallel to the
+%
+Additionally, the plane has to be rotated by $\pi/6$ to create the \ac{fcc}
+structure. The \ac{hcp} structure can be constructed by also rotating either the
+top or the bottom plane by the same amount in either direction parallel to the
 hexagonal plane. Kusner noted that a smooth deformation from the icosahedral
 configuration to hcp requires 9 moving spheres
-\autocite{Kusner_ConfigurationSpacesEqual_2018}. This interesting transition path
-may be the key for the icosahedral to closed-packed rearrangements in larger
-clusters, which has previously been described in terms of catastrophe theory as
-a cusp catastrophe \autocite{Wales_MicroscopicBasisGlobal_2001}. 
+\autocite{Kusner_ConfigurationSpacesEqual_2018}. This interesting transition
+path may be the key for the icosahedral to closed-packed rearrangements in
+larger clusters, which has previously been described in terms of catastrophe
+theory as a cusp catastrophe \autocite{Wales_MicroscopicBasisGlobal_2001}. 
 
-Even though the rearrangement from the icosahedral to either the fcc or hcp
-cluster structure can easily be realized for the GNC, there should be clusters
-where the icosahedral motif is still clearly visible, i.e. only small
-rearrangements of the spheres are necessary to break icosahedral symmetry and form
-a rigid cluster. These are, for example, the ones with maximum count of
-triangles, i.e. according to Table~S1 (SI) the GN graphs with $|F_3|=10$ with
-edge counts of $|E|=$ 22 or 21. Two of these are shown with their corresponding
-graphs in figure~\ref{fig:GNicographs}.
+Even though the rearrangement from the icosahedral to either the \ac{fcc} or
+\ac{hcp} cluster structure can easily be realised for the GNC, there should be
+clusters where the icosahedral motif is still clearly visible, i.e. only small
+rearrangements of the spheres are necessary to break icosahedral symmetry and
+form a rigid cluster. These are, for example, the ones with maximum count of
+triangles, i.e. according to table~\ref{tab:verticesandfaces} the GN graphs with
+$|F_3|=10$ with edge counts of $|E|=$ 22 or 21. Two of these are shown with
+their corresponding graphs in figure~\ref{fig:GNicographs}.
+%
 \begin{figure}[htb]
     \centering
     \subfloat[icosahedral motif, $|E|=22, \omega =4$.\label{subfig:ico4graph}]{\includegraphics[width=0.47\columnwidth]{gregory-newton/4-22-new.pdf}\hspace{0.03\textwidth}\includegraphics[width=.3\columnwidth]{gregory-newton/GNico4-22}}\\
@@ -2272,54 +2348,59 @@ graphs in figure~\ref{fig:GNicographs}.
     as subgraphs of the icosahedral graph and corresponding rigid GNCs. The
     icosahedral motif in the 3D embedding is clearly visible.  Red lines
     indicate the edges that were removed to create the GN graph. The ordinal
-    numbers $\omega$ refer to Table~S2 in the Supporting Information.}
+    numbers $\omega$ refer to Table~\ref{tab:icosubgraphs} in the appendix.}
     \label{fig:GNicographs}
 \end{figure}
 
-Figure~\ref{fig:GNJohnsongraph} shows the graph with the next highest edge
-count after the fcc and hcp packings. The motif of a distorted elongated
-pentagonal bipyramid (Johnson solid $J_{16}$) is clearly visible. Note that the
-Johnson solid can be obtained by deleting five edges and rotating the two
-opposite pentagonal pyramids by $2\pi /5$. One of the resulting square faces
-has to be stretched to obey the SHS conditions, which is achieved by removing
-two additional edges. In the graph this implies that a hexagonal face is
-formed. Note that this GNC is also the cluster with the largest distance
-$r_\mathrm{max}^\mathrm{RE}= 1.47823719$ that corresponds to a removed edge
-(RE) in the GN graph. Capping this cluster with one more sphere over the
-distorted square face with $r_\mathrm{max}^\mathrm{RE}$ leads to the structure
-with the shortest distance a sphere in the second coordination shell can have
-to the central sphere ($r^\mathrm{COS}=1.347150628$) out of all 895,478 GN
-clusters with $N=14$ \autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018}.
-
-If more edges are removed from the icosahedral graph we see the appearance of
-larger $n$-gonal faces with the largest face being a 12-gon.
+Figure~\ref{fig:GNJohnsongraph} shows the graph with the next highest edge count
+after the \ac{fcc} and \ac{hcp} packings. 
+%
 \begin{figure}[htb]
     \centering
     \subfloat[Distorted elongated pentagonal bipyramid (Johnson solid $J_{16}$), $|E|=23, \omega =3$.\label{subfig:johnsongraph}]{\includegraphics[width=0.47\columnwidth]{gregory-newton/johnson-new.pdf}\hspace{0.03\textwidth}\includegraphics[width=.3\columnwidth]{gregory-newton/johnson.png}}
-    \caption{GN graph (central sphere removed) as subgraphs of the icosahedral graph and corresponding 
-    GN Johnson-like solid (with edges removed). Red lines indicate the edges that were removed 
-    from the icosahedral graph to create the GN graph.
-    The ordinal number $\omega$ refers to Table~S2 in the Supporting Information.}
+    \caption{GN graph (central sphere removed) as subgraphs of the icosahedral
+    graph and corresponding GN Johnson-like solid (with edges removed). Red
+    lines indicate the edges that were removed from the icosahedral graph to
+    create the GN graph. The ordinal number $\omega$ refers to
+    Table~\ref{tab:icosubgraphs} in the appendix.}
     \label{fig:GNJohnsongraph}
 \end{figure}
+%
+The motif of a distorted elongated pentagonal bipyramid (Johnson solid $J_{16}$)
+is clearly visible. Note that the Johnson solid can be obtained by deleting five
+edges and rotating the two opposite pentagonal pyramids by $2\pi /5$. One of the
+resulting square faces has to be stretched to obey the SHS conditions, which is
+achieved by removing two additional edges. In the graph this implies that a
+hexagonal face is formed. Note that this \ac{GNC} is also the cluster with the
+largest distance $r_\mathrm{max}^\mathrm{RE}= 1.47823719$ that corresponds to a
+removed edge (RE) in the \ac{GN} graph.\footnote{This will be investigated in
+detail in section~\ref{sec:thegregorynewtonproblemforsoftpotentials}.} Capping
+this cluster with one more sphere over the distorted square face with
+$r_\mathrm{max}^\mathrm{RE}$ leads to the structure with the shortest distance a
+sphere in the second coordination shell can have to the central sphere
+($r^\mathrm{COS}=1.347150628$) out of all 895,478 \ac{GN} clusters with $N=14$
+\autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018}.
 
-\subsection{Symmetry-Broken Lennard-Jones Gregory-Newton Clusters}
+If more edges are removed from the icosahedral graph larger $n$-gonal faces
+appear, with the largest face being a 12-gon.
+%
+
+\section{Symmetry-Broken Lennard-Jones Gregory-Newton Clusters}
 
 All 737 non-isomorphic rigid GNCs optimise to the ideal icosahedral symmetry if
-a LJ(6,12) potential is applied
+a (6,12)-LJ potential is applied
 \autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018} (however, for
-larger sized icosahedral structures many more minima appear, see references
-\cite{Doye-1995,Wales_TheoreticalPredictionsStructure_1996,Doye_effectrangepotential_1996,Doye_Structuralconsequencesrange_1997}).
+larger sized icosahedral structures many more minima
+appear\autocite{Doye-1995,Wales_TheoreticalPredictionsStructure_1996,Doye_effectrangepotential_1996,Doye_Structuralconsequencesrange_1997}).
 As mentioned in the introduction, for equally sized hard spheres a cluster with
 icosahedral symmetry leaves gaps between the spheres on the outer shell, i.e.
 they do not touch, and is therefore not considered rigid under SHS conditions.
 Hence, at certain $(a,b)$ combinations a phase transition must occur in the
 LJ$(a,b)$ energy landscape where local minima appear, which do not have
-icosahedral symmetry anymore. In order to determine those $(a,b)$ combinations,
-we optimised all 3D cluster geometries with varying exponents $(6\leq a \leq
-34$ and $7\leq b\leq 35)$ with $(b>a)$ and analysed the number of resulting
-minimum structures. The results are shown schematically in
-figure~\ref{fig:ico-2d}.
+icosahedral symmetry. In order to determine those $(a,b)$ combinations, all 3D
+cluster geometries were optimised with varying exponents $(6\leq a \leq 34$ and
+$7\leq b\leq 35)$ with $(b>a)$ and the number of resulting minimum structures
+was analysed. The results are shown schematically in figure~\ref{fig:ico-2d}.
 %
 \begin{figure}[htb]\centering
     \includegraphics[width=.8\columnwidth]{gregory-newton/ico-2d.pdf}
@@ -2329,24 +2410,19 @@ figure~\ref{fig:ico-2d}.
     contour lines is 1.}
     \label{fig:ico-2d}
 \end{figure}
-%
-Figure~\ref{fig:no-ico} contains additional information showing three major
-phase transitions in the topology of the energy landscape going from low to
-high $(a,b)$ exponents. In the blue shaded area (1), the Mackay icosahedron is
-the sole minimum in the potential energy landscape. The first transition occurs
-when this symmetry can be broken, and other local minima are supported by the
-LJ$(a,b)$ potential besides the icosahedron. This is indicated in
-figure~\ref{fig:no-ico} by the smallest, orange region (2), which still
-contains the perfect icosahedron as the global minimum. At slightly higher
-exponents, other structures become energetically more favourable and replace
-the icosahedron as the global minimum, region (3). However, the icosahedron
-remains as a local minimum in the potential energy surface. The last transition
-occurs when the LJ potential becomes SHS-like, and the icosahedral cluster
-completely disappears from the potential energy surface, region (4). The three
-transition lines are generally smooth with the exception of line
-(3)$\rightarrow$(4) around $a=11$. Those variations are too large to be
-explained by the resolution of the data points. {\color{red} (Referee: Could the variations be explained, because somehow the optimisation method is missing certain minima? i.e., maybe this bum is an artifact of the minimisation method and not a property of the landscape.)}
 
+Another interesting limiting case of the \ac{LJ} potential with exponents $a\to
+0$ and $b\to \infty$, resembling a constant attractive potential with an
+infinite wall, should be mentioned. In such a potential the kissing spheres can
+move freely in the available space without change of energy. Ideed, in the
+region of low $a$ and high $b$ values and increasing number of unique structures
+is found. For example, values of $a=0.6$ and $b=120.0$ result in two distinct
+structures that are both derived from the icosahedral motif.
+
+Figure~\ref{fig:no-ico} contains additional information showing three major
+phase transitions in the topology of the energy landscape going from low to high
+$(a,b)$ exponents. 
+%
 \begin{figure}[htb]\centering
     \includegraphics[width=.8\columnwidth]{gregory-newton/no-ico.pdf}
     \caption{Different types of energy landscapes arising from combinations of
@@ -2358,16 +2434,23 @@ explained by the resolution of the data points. {\color{red} (Referee: Could the
     resolution for $a$ is 1.0 and for $b$ 0.25.}
     \label{fig:no-ico}
 \end{figure}
+%
+In the blue shaded area (1), the Mackay icosahedron is the sole minimum in the
+potential energy landscape. The first transition occurs when this symmetry can
+be broken, and other local minima are supported by the $(a,b)$-\ac{LJ} potential
+besides the icosahedron. This is indicated in figure~\ref{fig:no-ico} by the
+smallest, orange region (2), which still contains the perfect icosahedron as the
+global minimum. At slightly higher exponents, other structures become
+energetically more favourable and replace the icosahedron as the global minimum,
+region (3). However, the icosahedron remains as a local minimum in the potential
+energy surface. The last transition occurs when the LJ potential becomes
+SHS-like, and the icosahedral cluster completely disappears from the potential
+energy surface, region (4). The three transition lines are generally smooth.
 
 Figure~\ref{fig:compareLJ} shows representative LJ potentials for combinations
 of the $(a,b)$ exponents (with low and high $a$ values) on the phase transition
-lines drawn in figure~\ref{fig:no-ico}. At these phase transition lines, the
-corresponding LJ potentials show narrow and steep repulsive potentials compared
-to the LJ$(6,12)$ potential.  While in the short range ($r<1$) these all look
-very similar, they differ substantially in the long range ($r>1$).
-{\color{red} (Referee: I'm not convinced that Fig 8 is described properly here - the solid lines look pretty similar for all r, although they differ a little for $r<1$, which is the opposite of what is stated in the paragraph. Also, the authors may wish to point out how similar the solid-line potentials are to each other, but yet how different their landscapes are - why is it that such a small difference in the repulsive part of the potential, causes the icosahedron to appear or disappear from the landscape?)
-}
-{\color{blue}Lukas: I don't think he understood that section at all. We maybe have to explain a bit better.}
+lines drawn in figure~\ref{fig:no-ico}. 
+%
 \begin{figure}[htb]\centering
     \includegraphics[width=.8\columnwidth]{gregory-newton/compareLJ.pdf}
     \caption{Comparison of different shapes of LJ potentials at the phase
@@ -2378,26 +2461,23 @@ very similar, they differ substantially in the long range ($r>1$).
     figure~\ref{fig:no-ico}).}
     \label{fig:compareLJ}
 \end{figure}
+%
+At these phase transition lines, the corresponding \ac{LJ} potentials show
+narrow and steep repulsive potentials compared to the $(6,12)$-\ac{LJ}
+potential, which all look very similiar in the short range ($r<1$). However,
+they differ substantially in the long range ($r>1$).
 
-The $(a,b)$ parameters can be related to the so-called LJ hard-sphere radius $\sigma$ (given by the
-intersection with the abscissa) through equation~\eqref{eqn:nmpot}, 
+The $(a,b)$ parameters can be related to the so-called \ac{LJ} hard-sphere radius
+$\sigma$ (given by the intersection with the abscissa) through
+equation~\eqref{eqn:nmpot},
+%
 \begin{equation}
     \sigma=\left(\frac{b}{a}\right)^{\frac{1}{a-b}}.
 \end{equation}
-and we only have to consider the $(a,\sigma)$ combinations shown in  
-figure~\ref{fig:hardsphere} along the phase transition lines.
-
-The variation in $\sigma$ along the phase transitions lines for (2)$\rightarrow$(3)
-and (3)$\rightarrow$(4) are rather small. However, all three
-transitions clearly show different ranges for $\sigma$ and thus can be
-characterized by the LJ hard-sphere radius. These are also
-much larger compared to the LJ(6,12) hard-sphere radius of $\sigma=0.891$,
-and close to the ideal hard sphere radius of 1 within the SHS model. 
-This demonstrates that the shape of the LJ potential in the
-repulsive region has a significant influence on the position of the transition lines, 
-and therefore on the topology of the energy landscape. In contrast, these 
-transitions seem to be far less affected by the shape of the potential in the attractive region. 
-Only for the transition (1)$\rightarrow$(2) we see a larger variation in $\sigma$.
+%
+and only the $(a,\sigma)$ combinations shown in figure~\ref{fig:hardsphere}
+along the phase transition lines have to considered.
+%
 \begin{figure}[htb]\centering
     \includegraphics[width=.8\columnwidth]{gregory-newton/sigma.pdf}
     \caption{Hard-sphere radii $\sigma$ in reduced units for the LJ$(a,b)$
@@ -2405,35 +2485,53 @@ Only for the transition (1)$\rightarrow$(2) we see a larger variation in $\sigma
     \label{fig:hardsphere}
 \end{figure}
 
-Of course, symmetry breaking (such as Jahn-Teller distortions) in icosahedral
-clusters is well known in cluster chemistry and physics
-\autocite{deHeer_physicssimplemetal_1993}, which, however, requires the
-introduction of many-body forces beyond the usual two-body interaction, or a
-correct quantum theoretical treatment containing all many-body forces. 
+The variation in $\sigma$ along the phase transitions lines for
+(2)$\rightarrow$(3) and (3)$\rightarrow$(4) are rather small. However, all three
+transitions clearly show different ranges for $\sigma$ and thus can be
+characterized by the \ac{LJ} hard-sphere radius. These are also much larger
+compared to the (6,12)-\ac{LJ} hard-sphere radius of $\sigma=0.891$, and close
+to the ideal hard sphere radius of 1 in the \ac{SHS} model. This demonstrates
+that the shape of the \ac{LJ} potential in the repulsive region has a
+significant influence on the position of the transition lines, and therefore on
+the topology of the energy landscape. In contrast, these transitions seem to be
+far less affected by the shape of the potential in the attractive region. Only
+for the transition (1)$\rightarrow$(2) a larger variation in $\sigma$ is
+observed.
+
+Finally, the results show that long-range interactions stabilise the icosahedral
+cluster. Therefore, the assumption that second-nearest-neighbour interactions
+may be important seems to come naturally. However, first-nearest neighbour
+interactions are sufficient for stabilising this structure, i.e. if the \ac{GN}
+clusters are optimised with a truncated (6,12)-\ac{LJ} potential that ignores
+second-nearest-neighbour interactions by setting the range of interactions to
+distances below 1.5, it is observed, that the icosahedron is recovered.
 
 \section{Adding a 14th Sphere}
 \label{sec:addinga14thsphere}
 
-An even larger number of clusters exists for $N=14$ ($14529$), which is
-$\approx 0.016|\mathcal{M}_\mathrm{SHS}(14)|$. All of these structures optimise
-to just one of two possible (6,12)-LJ minima of \ac{GN} type. The first is the
-Mackay icosahedron capped at one of its triangular faces, and the second is an
+Finally, the set of \ac{SHS} clusters with $N=14$ has been investigated with
+respect to the existence of \acp{GNC}. The extra sphere in theses clusters is
+required to enter the second coordination shell because of the Newton number. In
+this case, an even larger number of clusters exists ($14529$), which is $\approx
+0.016|\mathcal{M}_\mathrm{SHS}(14)|$. All of these structures optimise to just
+one of two possible (6,12)-LJ minima of \ac{GN} type. The first is the Mackay
+icosahedron capped at one of its triangular faces, and the second is an
 elongated pentagonal bipyramid (belonging to the class of Johnson solids) with
 the 14th sphere capping a square face.
 
 Most of these $N=14$ clusters are minimally rigid ($N_c=3N-6=36$), while only a
-few are hyperstatic ($N_c > 3N-6$) and none are hypostatic ($N_c < 3N-6$).
-There are $\{14369,144,8,6,2\}$ such clusters with $N_c=\{36,37,38,39,40\}$ and
-$N=14$.  The clusters with $N_c=40$ are hcp and \ac{fcc} core-shell structures
-capped at a square face; these arrangements maximise $N_c$. Most of the
-clusters with $N_c=\{38,39\}$ are deformed versions of the elongated pentagonal
-bipyramid mentioned above, indicating that this arrangement is a favoured route
-to these intermediate-energy structures.  However, $N_c=39$ also contains hcp
-and \ac{fcc} structures capped at a triangular face.  The first example of a cluster
-derived from a perfect icosahedral symmetry shows up at lower value $N_c=37$
-(!).  Representative examples for clusters with high contact numbers are
-depicted in figure~\ref{fig:N14}.  
-
+few are hyperstatic ($N_c > 3N-6$) and none are hypostatic ($N_c < 3N-6$). There
+are $\{14369,144,8,6,2\}$ such clusters with $N_c=\{36,37,38,39,40\}$ and
+$N=14$.  The clusters with $N_c=40$ are \ac{hcp} and \ac{fcc} core-shell
+structures capped at a square face; these arrangements maximise $N_c$. Most of
+the clusters with $N_c=\{38,39\}$ are deformed versions of the elongated
+pentagonal bipyramid mentioned above, indicating that this arrangement is a
+favoured route to these intermediate-energy structures.  However, $N_c=39$ also
+contains \ac{hcp} and \ac{fcc} structures capped at a triangular face.  The
+first example of a cluster derived from a perfect icosahedral symmetry shows up
+at lower value $N_c=37$.  Representative examples for clusters with high
+contact numbers are depicted in figure~\ref{fig:N14}.  
+%
 \begin{figure}
     \centering
     \subfloat[$r_{14}^\text{GN}=1.34715$, $N_c=39$\label{subfig:short-greg-newton}]{\includegraphics[width=0.4\textwidth]{gregory-newton/short.png}}
@@ -2451,6 +2549,25 @@ depicted in figure~\ref{fig:N14}.
     \label{fig:N14}
 \end{figure}
 
+Surprisingly, the $N = 14$ cluster with the closest \ac{COS} distance
+$r_\text{min}^\text{COS}$ was not known. Here, this gap is closed by determining
+the \ac{COS} distance for all \ac{SHS} Gregory-Newton type clusters with $N=14$.
+One single cluster with $r_\text{min}^\text{COS}=1.3471506281091$ is found.  Its
+structure (figure~\ref{subfig:short-greg-newton}) is similar to the elongated
+pentagonal bipyramid (a Johnson solid) with one of the square faces stretched to
+form a regular rectangle. The 14th sphere caps this deformed face, becoming the
+vertex of a deformed octahedron and allowing the outer sphere to get closer to
+the central sphere.  The next-smallest-$r^\text{COS}$ cluster ($r^\text{COS} =
+1.37515$) is shown in figure~\ref{subfig:2ndshort-greg-newton}. It does not
+belong to the category of the clusters derived from the elongated pentagonal
+bipyramid, but instead can be described as being icosahedral-like.  The short
+distance is achieved by attaching the 14th sphere to 3 spheres that do not form
+a face of the cluster (because they are separated by a distance larger than
+$1$.)
+
+The distribution of $r^\text{COS}$ values for the full set of \ac{GN} clusters
+is shown in figure~\ref{fig:greg-newton}.
+%
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{gregory-newton/greg-newton.pdf}
@@ -2459,35 +2576,44 @@ depicted in figure~\ref{fig:N14}.
     from \citeauthor{Holmes-Cerfon_EnumeratingRigidSphere_2016}\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}. The width of the bars is $0.01$.}
     \label{fig:greg-newton}
 \end{figure}
-
-
-Surprisingly, the $N = 14$ cluster with the closest central-to-outer sphere
-(COS) distance $r_\text{min}^\text{COS}$ was not known. Here we close this gap by
-determining the COS distance for all Gregory-Newton type clusters.  We find one
-single cluster with $r_\text{min}^\text{COS}=1.3471506281091$.  Its structure
-(figure~\ref{subfig:short-greg-newton}) is similar to the elongated pentagonal bipyramid (a
-Johnson solid) with one of the square faces stretched to form a regular
-rectangle.  The 14th sphere caps this deformed face, becoming the vertex of a
-deformed octahedron and allowing the outer sphere to get closer to the central
-sphere.  The next-smallest-$r^\text{COS}$ cluster ($r^\text{COS} = 1.37515$) is
-shown in figure~\ref{subfig:2ndshort-greg-newton}.  It does not belong to the
-category of the clusters derived from the elongated pentagonal bipyramid, but
-instead can be described as being icosahedral-like.  The short distance is
-achieved by attaching the 14th sphere to 3 spheres that do not form a face of
-the cluster (because they are separated by a distance larger than $1$.)
-
-
-As shown in figure~\ref{fig:greg-newton}, the distribution of $r^\text{COS}$
-values for the full set of \ac{GN} clusters is shown in
-figure~\ref{fig:greg-newton}.  Motifs with larger $r^\text{COS}$ are far more
-prevalent.  For example, the peak at $r^\text{COS} = 1.41$ corresponds to
-structures where the 14th sphere is touching 4 other spheres that are part of a
-tetragonal pyramid, therefore forming a regular octahedron with a tip-to-tip
-distance of $\sqrt{2}$ (figure~\ref{subfig:sqrt2-greg-newton}).  The maximum
-$r^\text{COS}$ value ($1.63$) corresponds to capping triangular faces, so that
-the most distant sphere is part of a regular trigonal bipyramid with a height
-of $\sqrt{8/3}$ (figure~\ref{subfig:sqrt83-greg-newton}).  The structures in the
+%
+Motifs with larger $r^\text{COS}$ are far more prevalent. For example, the peak
+at $r^\text{COS} = 1.41$ corresponds to structures where the 14th sphere is
+touching 4 other spheres that are part of a tetragonal pyramid, therefore
+forming a regular octahedron with a tip-to-tip distance of $\sqrt{2}$
+(figure~\ref{subfig:sqrt2-greg-newton}).  The maximum $r^\text{COS}$ value
+($1.63$) corresponds to capping triangular faces, so that the most distant
+sphere is part of a regular trigonal bipyramid with a height of $\sqrt{8/3}$
+(figure~\ref{subfig:sqrt83-greg-newton}). The structures corresponding to the
 bars at $1.60,1.58$ and $1.55$ are derived from the regular trigonal bipyramid
-and result from breaking its axial bonds.  In these structures, the more bonds
+and result from breaking its axial bonds. In these structures, the more bonds
 are broken, or the further the axial spheres are separated, the shorter the
-centre-to-outer sphere distance becomes.
+\ac{COS} distance becomes.
+
+\section{Conclusion}
+
+Rigid \acp{GNC} have been analysed by graph theoretical means. All 737
+non-isomorphic \ac{GN} graphs are subgraphs of the icosahedral graph obtained by
+deleting a minimum of 6 and a maximum of 9 edges. There are only two structures
+with maximum edge count of 24 corresponding to the sphere packing of the
+\ac{fcc} and \ac{hcp} structures, which can be obtained from the icosahedral
+structure by a smooth rearrangement moving the six spheres along a closed
+zig-zag path into the (hexagonal) plane. The common (6,12)-\ac{LJ} potential has
+only one minimum structure corresponding to the ideal icosahedron where the 12
+outer spheres do not touch each other. Symmetry breaking requires a very
+repulsive short-range LJ potential. The $(a,b)$-line in the $(a,b)$-\ac{LJ}
+potential where the icosahedron completely disappears has also been determined.
+While the results shown here depend on the functional form chosen (the
+Lennard-Jones potential), similar results are expected for other well known
+potentials such as the Morse potential.
+
+It was also shown that for softer potentials, it is still unfavourable for a
+13th outer sphere to touch the center sphere. The Gregory-Newton argument still
+holds true for even the softest (1,2)-\ac{LJ} potential.
+
+The sphere kissing problem in higher dimensions is a well known
+problem\autocite{Conway_SpherePackingsLattices_1999} (in two dimensions there is
+only 1 non-isomorphic \ac{GNC}). How many non-isomorphic rigid GNCs there are in
+greater than three dimensions is currently unknown. Moreover, the rigid kissing
+sphere problem can be extended to other (convex or not) topologies instead of a
+central sphere, e.g. kissing spheres on an ellipsoid.
