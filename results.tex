@@ -1146,13 +1146,13 @@ quantum mechanical methods as introduced in chapter~\ref{sec:basicsofQC}. One
 such phase transition is the transformation of argon clusters from icosahedral
 clusters into anti-Mackay clusters for sizes of $N>2000$ and finally into
 \acf{fcc} or \acf{hcp} solid state structures for
-$N>10^5$.\autocite{Krainyukova-2012} Similar results can be predicted by the
+$N>10^5$.\autocite{Krainyukova-2012} Similar results are predicted by the
 \acf{LJ} potential.\autocite{Martin-1996,
 Schwerdtfeger_ExtensionLennardJonespotential_2006, Krainyukova-2007}
 
 Because of the exponentially growing potential energy landscapes and the large
 cluster sizes required to model phase transitions, investigations of this type
-often have to rely on approximate interaction potentials. I this part of the
+often have to rely on approximate interaction potentials. In this part of the
 thesis two interaction potentials introduced in
 chapter~\ref{sec:energylandscapes} are used. The first and maybe simpler one is
 the \acf{SHS} potential $V_\mathrm{SHS}$, originally introduced by
@@ -1170,7 +1170,7 @@ the \acf{SHS} potential $V_\mathrm{SHS}$, originally introduced by
 $\varepsilon$ and the equilibrium distance $r_s$ can be set to unity without
 changing the qualitative information contained in the \ac{PES}. 
 
-One of the defining properties for cluster bound by the \ac{SHS} potential is
+One of the defining properties for clusters bound by the \ac{SHS} potential is
 the contact number $N_c$, which is directly related to the energy of the cluster
 $E=-N_c\varepsilon$. How the number of contact points a cluster possesses grows
 with its size $N$ is still researched actively. From the Gregory-Newton
@@ -1182,11 +1182,11 @@ number of (unique) entries in the adjacency matrix, i.e. $\text{max}\leq
 N(N-1)/2$. Combining these two facts leads to a loose upper bound
 %
 \begin{equation}
-    N_c^\mathrm{max}(N) \le \text{min}\{N(N-1)/2,f(N)\},
+    N_c^\mathrm{max}(N) \le \text{min}\{N(N-1)/2,f(N)\}.
     \label{eqn:upperlimitNc}
 \end{equation}
 %
-Using the Gregory-Newton argument results in $f(N)=6$, however, a better upper
+Using the Gregory-Newton argument results in $f(N)=6$, however, a tighter upper
 bound has been published more recently by
 \citeauthor{Bezdek-2013}\autocite{Bezdek-2013}.
 %
@@ -1243,14 +1243,15 @@ exponents $(m,n)$ (figure~\ref{fig:LJ}).
     \label{fig:LJ}
 \end{figure}
 %
-It is therefore surprising that the absolute number of structures for a certain
-size $N$ differ substantially between the two potentials. For $N=13$ there are
-$|\mathcal{M}_\mathrm{SHS}|=97,221$ non-isomorphic \ac{SHS} clusters
+At first, it seems surprising that the absolute number of structures for a
+certain size $N$ differ substantially between the two potentials. For $N=13$
+there are $|\mathcal{M}_\mathrm{SHS}|=97,221$ non-isomorphic \ac{SHS} clusters
 \autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016},
 but only $|\mathcal{M}_\mathrm{LJ}|=1,510$ $(m,n) = (6,12)$ \ac{LJ} clusters
-\autocite{Doye_Evolutionpotentialenergy_1999}. This is a known behaviour of
-energy landscapes of long-range (LJ) and short-range (SHS) potentials, with the
-latter generally supporting many more local minima compared to the
+\autocite{Doye_Evolutionpotentialenergy_1999}. However, this is a known
+behaviour of energy landscapes of long-range (\ac{LJ}) and short-range
+(\ac{SHS}) potentials, with the latter generally supporting many more local
+minima compared to the
 former.\autocite{braier90,Wales_MicroscopicBasisGlobal_2001} Decreasing the
 exponents $(m,n)$ increases the range of the potential, which leads to increased
 second-nearest-neighbour interactions. Furthermore, fold
@@ -1404,15 +1405,16 @@ optimisation.
 
 \section{Computational Details}
 
-The \textit{pele} program~\autocite{_pelePythonenergy_2017} was used to generate putatively
-complete sets of local minima for $(m,n)$-Lennard-Jones potentials 
-$V_{mn}^{\mathrm LJ}(r)$ as defined in equation~\eqref{eqn:nmpot}.
-This program  applies a basin-hopping algorithm that divides the potential energy
-surface into basins of attraction, effectively mapping each point in
-configuration space to a local minimum structure
-\autocite{Li_MonteCarlominimizationapproach_1987,waless99,Wales_GlobalOptimizationBasinHopping_1997}.  The results confirmed the
-number of local minima reported in previous work \autocite{Doye_Saddlepointsdynamics_2002}.
-Finite computer time limited the search to clusters of size $N \leq 13$.
+The \textit{pele} program~\autocite{_pelePythonenergy_2017} was used to generate
+putatively complete sets of local minima for $(m,n)$-Lennard-Jones potentials
+$V_{mn}^{\mathrm LJ}(r)$ as defined in equation~\eqref{eqn:nmpot}. This program
+applies a basin-hopping algorithm that divides the potential energy surface into
+basins of attraction, effectively mapping each point in configuration space to a
+local minimum structure
+\autocite{Li_MonteCarlominimizationapproach_1987,waless99,Wales_GlobalOptimizationBasinHopping_1997}.
+The results confirmed the number of local minima reported in previous work
+\autocite{Doye_Saddlepointsdynamics_2002}. Finite computer time limited the
+search to clusters of size $N \leq 13$.
 
 Starting from the sticky hard sphere packings up to $N=14$, with Cartesian
 coordinates given by the exact enumeration algorithm
@@ -1423,32 +1425,32 @@ function minimiser from the \Cpp library \textit{dlib}
 \autocite{King_DlibmlMachineLearning_2009} were carried out with the previously
 described program package \textsc{Spheres}
 (Chapter~\ref{sec:theprogramspheres}). The optimisation scheme was either the
-\ac{BFGS} or the conjugate gradient algorithm. The optimisations were terminated when the
-change in energy (in reduced units) over the course of one optimizsation cycle
-was smaller than $10^{-15}$. 
+\acf{BFGS} or the conjugate gradient algorithm. The optimisations were terminated
+when the change in energy (in reduced units) over the course of one
+optimissation cycle was smaller than $10^{-15}$. 
 
-Subsequently, the eigenvalues of the Hessian were checked
-for all stationary points. If negative eigenvalues were found, the affected
-structures were reoptimized following displacements in both directions along
-the corresponding eigenvectors to locate true local minima. This procedure assures
-that the floppy \ac{SHS} packings are successfully mapped into \ac{LJ} minima.
+Subsequently, the eigenvalues of the Hessian were checked for all stationary
+points. If negative eigenvalues were found, the affected structures were
+re-optimised following displacements in both directions along the corresponding
+eigenvectors to locate true local minima. This procedure assures that the floppy
+\ac{SHS} packings are successfully mapped into \ac{LJ} minima.
 
 As the optimisations often result in many duplicates, especially for small
 values of $n$ and $m$ where $|\mathcal{M}_{(m,n)\mathrm{-LJ}}| \ll
 |\mathcal{M}_\mathrm{SHS}|$, the final structures were further analysed and
-sorted. Nonisomorphic \ac{SHS} clusters can be distinguished (apart from
+sorted. Non-isomorphic \ac{SHS} clusters can be distinguished (apart from
 permutation of the particles) by their different adjacency matrices for $N \leq
-13$ \autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}.  This is not the case
-for soft potentials like the \ac{LJ} potential since drawing edges (bonds) between
-the vertices (atoms) becomes a matter of defining the distance cutoff criterion
-for a bond to be drawn. Therefore, the clusters were compared based on the
-\ac{EDM} (the matrix of interparticle distances $\{r_{ij}\}$) as described
+13$ \autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016}. This is not the case
+for soft potentials like the \ac{LJ} potential since drawing edges (bonds)
+between the vertices (atoms) becomes a matter of defining the distance cut-off
+criterion for a bond to be drawn. Therefore, the clusters were compared based on
+the \ac{EDM} (the matrix of inter-particle distances $\{r_{ij}\}$) as described
 previously: two clusters are isomorphic (structurally identical) if they have
-the same ordered set of inter-particle distances $\{r_{ij}\}$.  While
-enantiomers cannot be separated using this methodology, permutation-inversion
-isomers are usually lumped together, since the number of distinct minima is
-analytically related to the order of the corresponding point group
-\autocite{Wales_Energylandscapes_2003}.  To verify the number of distinct
+the same ordered set of inter-particle distances $\{r_{ij}\}$. While enantiomers
+cannot be separated using this methodology, permutation-inversion isomers are
+usually lumped together, since the number of distinct minima is analytically
+related to the order of the corresponding point group
+\autocite{Wales_Energylandscapes_2003}. To verify the number of distinct
 structures a second ordering scheme using the energy and moment of inertia
 tensor eigenvalues was introduced. 
 
@@ -1457,13 +1459,12 @@ set contains all possible \ac{LJ} minima $\mathcal{M}_\mathrm{LJ}$ from the
 basin-hopping algorithm, while the second set $\mathcal{M}_\mathrm{SHS\to LJ}$
 contains the \ac{LJ} minima obtained using only the $\mathcal{M}_\mathrm{SHS}$
 sticky-hard-sphere cluster structures as starting points for the geometry
-optimization.  To compare and identify corresponding structures between the two
-sets, the $N(N-1)/2$ inter-particle distances $\{r_{ij}\}$ were again used as
-an identifying fingerprint.
+optimisation. To compare and identify corresponding structures between the two
+sets, the $N(N-1)/2$ inter-particle distances $\{r_{ij}\}$ were again used as an
+identifying fingerprint.
 
-Two-body \ac{eLJ} potentials that accurately model
-two-body interactions in rare-gas clusters can be written as expansions of
-inverse-power-law terms
+Two-body \acf{eLJ} potentials that accurately model two-body interactions in
+rare-gas clusters can be written as expansions of inverse-power-law terms
 \autocite{Schwerdtfeger_ExtensionLennardJonespotential_2006}:
 %
 \begin{equation} \label{eq:ELJ}
