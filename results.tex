@@ -1489,21 +1489,20 @@ potential for xenon is shown in figure~\ref{fig:LJ} (dashed line).
 
 \begin{table}[htbp]\centering
     \resizebox{\linewidth}{!}{%
-        \begin{threeparttable}[para]
-        \caption{Number of distinct local minima $|\mathcal{M}_\mathrm{SHS}|$ for
-            cluster size $N$ (from
-            references~\cite{Holmes-Cerfon_EnumeratingRigidSphere_2016,Hoy_Structurefinitesphere_2012,Hoy_Structuredynamicsmodel_2015})
-            and contact number $N_c$ from the exact enumeration, compared to the
-            number of different structures obtained from a geometry optimisation
-            starting from the set $\mathcal{M}_{\mathrm{SHS\to LJ}}(N,N_c)$ for a
-            (6,12)-\acs{LJ} potential. The overall number of unique minima
-            $|\mathcal{M}_\mathrm{SHS\to LJ}|  = \sum_{N_c}
-            |\mathcal{M}_\mathrm{SHS\to LJ} (N_c)| - \text{(\# of duplicate
-            structures)}$ is shown in the following column.  This result can be
-            compared to the number of unique minima found using the basin-hopping
-            method ($|\mathcal{M}_\mathrm{LJ}|$). The difference
-            $\Delta\mathcal{M}=|\mathcal{M}_\mathrm{LJ}| -
-            |\mathcal{M}_\mathrm{SHS\to LJ}|$ is also listed.}
+        \begin{threeparttable}[para] \caption{Number of distinct local minima
+        $|\mathcal{M}_\mathrm{SHS}|$ for cluster size $N$ (from
+        references~\cite{Holmes-Cerfon_EnumeratingRigidSphere_2016,Hoy_Structurefinitesphere_2012,Hoy_Structuredynamicsmodel_2015})
+        and contact number $N_c$ from the exact enumeration, compared to the
+        number of different structures obtained from a geometry optimisation
+        starting from the set $\mathcal{M}_{\mathrm{SHS\to LJ}}(N,N_c)$ for a
+        (6,12)-\acs{LJ} potential. The overall number of unique minima
+        $|\mathcal{M}_\mathrm{SHS\to LJ}|  = \sum_{N_c}
+        |\mathcal{M}_\mathrm{SHS\to LJ} (N_c)| - \text{(\# of duplicate
+        structures)}$ is shown in the following column.  This result can be
+        compared to the number of unique minima found using the basin-hopping
+        method ($|\mathcal{M}_\mathrm{LJ}|$). The difference
+        $\Delta\mathcal{M}=|\mathcal{M}_\mathrm{LJ}| -
+        |\mathcal{M}_\mathrm{SHS\to LJ}|$ is also listed.}
         \label{tab:comp}
         \begin{tabular}{clccccc}\toprule
             $N$ & $N_c$ & $|\mathcal{M}_\mathrm{SHS} (N_c)|$ & $|\mathcal{M}_{\mathrm{SHS\to LJ}}(N_c)|$ & $|\mathcal{M}_\mathrm{SHS\to LJ}|$ & $|\mathcal{M}_\mathrm{LJ}|$     &  $\Delta\mathcal{M}$ \\ \midrule
@@ -1544,15 +1543,15 @@ potential for xenon is shown in figure~\ref{fig:LJ} (dashed line).
         \end{threeparttable}}
     \end{table}%
 %
-To study the convergence behaviour of the number of distinct (nonisomorphic) LJ
-minima in the \ac{SHS} limit, geometry optimisations were carried out, starting
-from all non-isomorphic \ac{SHS} structures. It will be shown later that the
-number of unique minima obtained in this procedure
+To study the convergence behaviour of the number of distinct (non-isomorphic)
+\ac{LJ} minima in the \ac{SHS} limit, geometry optimisations were carried out,
+starting from all non-isomorphic \ac{SHS} structures. It will be shown later
+that the number of unique minima obtained in this procedure
 $|\mathcal{M}_\mathrm{\ac{SHS}\to LJ}|$ only misses out on a small portion of
 minima obtained from the more exhaustive basin-hopping approach,
 i.e.~$|\mathcal{M}_\mathrm{\ac{SHS}\to LJ}|\approx|\mathcal{M}_\mathrm{LJ}|$.
-The results for a constant chosen ratio of \ac{LJ} exponents $n/m=2$ are shown in
-figure~\ref{fig:expinfty} (top).
+The results for a constant chosen ratio of \ac{LJ} exponents $n/m=2$ are shown
+in figure~\ref{fig:expinfty} (top).
 %
 \begin{figure}[htbp]
     \centering
@@ -1580,15 +1579,16 @@ $\{7.69,1.92,2.67,5.46,8.62,15.32,23.44\}\%$.  Note that for $N \geq 10$ most of
 these missing minima correspond to high energy ($N_c < N_c^\mathrm{max}$)
 structures.
 
-If the exponent $n$ for the repulsive part of the \ac{LJ} potential is increased with
-$m$ kept constant, the \ac{LJ} potential becomes equivalent to the \ac{SHS}
-potential in the repulsive range but remains attractive at long range.
-figure~\ref{fig:expinfty} (bottom) shows the convergence of the number of unique
-structures with respect to $n$ at set $m=6$ towards the \ac{SHS} limit. Here,
-the number of distinct minima converges towards a number that is much smaller
-than the total number of \ac{SHS} packings demonstrating that (as expected) the
-attractive part of the potential contributes significantly to the decrease of
-the number of local minima compared to the rigid \ac{SHS} model.
+If the exponent $n$ for the repulsive part of the \ac{LJ} potential is increased
+with $m$ kept constant, the \ac{LJ} potential becomes equivalent to the \ac{SHS}
+potential in the repulsive range but remains attractive at long range. This
+limit is also called the Sutherland potential. Figure~\ref{fig:expinfty}
+(bottom) shows the convergence of the number of unique structures with respect
+to $n$ at set $m=6$ towards the \ac{SHS} limit. Here, the number of distinct
+minima converges towards a number that is much smaller than the total number of
+\ac{SHS} packings demonstrating that (as expected) the attractive part of the
+potential contributes significantly to the decrease of the number of local
+minima compared to the rigid \ac{SHS} model.
 
 To see if the asymptotic increase in the number of distinct minima
 $|\mathcal{M}(N)| \sim e^{\alpha N}$ is indeed exponential, an expression for
@@ -1608,8 +1608,8 @@ clusters obtained from the data shown in table~\ref{tab:comp}.
     \caption{Growth behaviour of $|\mathcal{M}(N)|$ of \acs{SHS} and (6,12)-\acs{LJ}
     clusters and corresponding asymptotic exponential rise rate parameter
     $\alpha$ for $N \geq 12$ as defined in equation~\eqref{eq:Stil}.  The
-    intercepts ln$|\mathcal{M}(N=0)|$ are $-17.19$ and $-6.94$ for the \acs{SHS}
-    and (6,12)-\acs{LJ} cases respectively.}
+    intercepts $\ln|\mathcal{M}(N=0)|$ are $-17.19$ and $-6.94$ for the \acs{SHS}
+    and (6,12)-\acs{LJ} cases, respectively.}
     \label{fig:asympt}
 \end{figure}
 %
@@ -1651,8 +1651,8 @@ $\alpha_\text{SHS}=2.207$. The other adjusted parameters are $a=-66.588$,
 $n_0=-3.386$ and $p=1.473$ (figure~\ref{fig:repulsive13-14}). We also show the
 ratio $\alpha(|\mathcal{M}_{\text{SHS}\to (n/2,n)-\text{LJ}}|) /
 \alpha(|\mathcal{M}_{\text{SHS}\to (6,n)-\text{LJ}}|)$ between the two different
-\ac{LJ} asymptotic exponential rise rate parameters, which shows that larger cluster
-sizes need to be studied to correctly describe the asymptotic limit. 
+\ac{LJ} asymptotic exponential rise rate parameters, which shows that larger
+cluster sizes need to be studied to correctly describe the asymptotic limit. 
 
 The distribution of minima as a function of (free) energy was suggested to be
 Gaussian \autocite{Sciortino-1999}. Figure~\ref{fig:N13-steps} shows the energy
@@ -1673,12 +1673,12 @@ distribution of minima for different $(n/2,n)$-\ac{LJ} potentials derived from
 %
 A Gaussian type distribution was not observed; this result does not change if
 the free energy at finite temperatures is used instead. The results indicate a
-``phase transition'' in the potential energy landscape away from low-energy to
+``phase transition'' in the potential energy landscape away from low energy to
 high energy minima as $n$ increases. The transition occurs at fairly small $n$.
-Results for the $(9,18)$-\ac{LJ} potential indicate two HCR-SCA-like maxima that are
-not present for the $(6,12)$-\ac{LJ} potential; these are associated with the $N_c =
-34$ and $N_c = 35$ \ac{SHS} clusters, respectively. It is also clear that (as
-expected) the distributions narrow with increasing $n$.
+Results for the $(9,18)$-\ac{LJ} potential indicate two \ac{SHS}-like maxima
+that are not present for the $(6,12)$-\ac{LJ} potential; these are associated
+with the $N_c = 34$ and $N_c = 35$ \ac{SHS} clusters, respectively. It is also
+clear that (as expected) the distributions narrow with increasing $n$.
 
 It is well known that the global minimum for rare gas clusters with 13 atoms is
 the ideal Mackay icosahedron
@@ -1687,21 +1687,21 @@ Simple geometric considerations imply that such a symmetric cluster is not
 possible for sticky hard spheres; all vertices of a regular icosahedron with
 unit edge length lie on a circumscribing sphere with radius $r_c\approx 0.951$,
 making it impossible to insert a sphere of the same radius into the centre of
-the polyhedron. Therefore, there must be well-defined \ac{LJ} exponents $(m,n)$ at
-which the icosahedral $N = 13$ \ac{LJ} cluster breaks symmetry to form a rigid
-cluster. For the $n = 2m$ case considered above, this symmetry-breaking occurs
-at $m \simeq 15$.
+the polyhedron. Therefore, there must be well-defined \ac{LJ} exponents $(m,n)$
+at which the icosahedral $N = 13$ \ac{LJ} cluster breaks symmetry to form a
+rigid cluster. For the $n = 2m$ case considered above, this symmetry-breaking
+occurs at $m \simeq 15$.
 
-We also explored a more realistic extended \ac{LJ} potential
-(equation~\eqref{eq:ELJ}; figure~\ref{fig:LJ}) for one of the rare gas dimers
-(xenon) in comparison with other \ac{LJ} potentials. It can be seen that the
-repulsive part agrees nicely with the conventional (6,12)-\ac{LJ} potential,
-while for $r > 1$ the extended \ac{LJ} potential is slightly less attractive.
-This change should lead to an increase in the number of local minima compared to
-the conventional (6,12)-\ac{LJ} potential. This prediction could be confirmed,
-i.e. $|\mathcal{M}_\mathrm{SHS\to ELJ}|=\{8,21,74,205,685,2179,6863\}$ for
+We also explored a more realistic \ac{eLJ} potential (equation~\eqref{eq:ELJ};
+figure~\ref{fig:LJ}) for one of the rare gas dimers (xenon) in comparison with
+other \ac{LJ} potentials. It can be seen that the repulsive part agrees nicely
+with the conventional (6,12)-\ac{LJ} potential, while for $r > 1$ the extended
+\ac{LJ} potential is slightly less attractive. This change should lead to an
+increase in the number of local minima compared to the conventional
+(6,12)-\ac{LJ} potential. This prediction could be confirmed, i.e.
+$|\mathcal{M}_\mathrm{SHS\to ELJ}|=\{8,21,74,205,685,2179,6863\}$ for
 $N=\{8,9,10,11,12,13,14\}$. For $N=13$ the number of distinct minima is 44\%
-larger than it is for the simple (6,12)-\ac{LJ} potential, which shows that
+larger than for the simple (6,12)-\ac{LJ} potential, which shows that
 $|\mathcal{M}(N)|$ is rather sensitive to the potential chosen. Hence, to
 correctly describe the topology of real systems, one has to take care of the
 correct form of the 2-body contribution (as well as higher $n$-body
