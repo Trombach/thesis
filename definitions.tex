@@ -85,7 +85,10 @@
 %ThreePartTable footnote settings
 \appto\TPTnoteSettings{\footnotesize}
 
-%\DeclareTOCStyleEntry[dynnumwidth]{tocline}{figure}
+\DeclareTOCStyleEntry[
+  beforeskip=.5em plus 1pt,% default is 1em plus 1pt
+  pagenumberformat=\textbf
+]{tocline}{chapter}
 
 %\pgfkeys{/pgf/plot/gnuplot call={cd build && gnuplot}}
 
