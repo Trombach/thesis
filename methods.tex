@@ -162,10 +162,10 @@ point number defines the corresponding coefficient.
 After each structural optimisation the program checks if the result is a true
 minimum by calculating the Hessian matrix eigenvalues. If this check fails the
 eigenvectors of the Hessian matrix are calculated and the non-minimum structure
-is displaced according to the eigenvector belonging to the first negative
-eigenvalue in the Hessian matrix {\bf in each of the two possible directions?}. The algorithm tries to re-optimise until there
-are no negative eigenvalues in the Hessian matrix or until a maximum number of
-five re-optimisations is reached.
+is displaced in both possible directions according to the eigenvector belonging
+to the first negative eigenvalue in the Hessian matrix. The algorithm tries to
+re-optimise until there are no negative eigenvalues in the Hessian matrix or
+until a maximum number of five re-optimisations is reached.
 
 The resulting structures are printed in the file \texttt{coord} in the same
 format as the input. To analyse the optimisation procedure the additional files
@@ -224,10 +224,10 @@ each entry is defined as the Euclidean norm $||\cdot||$ between to spheres.
 \end{align}
 %
 Each unique embedding of the cluster in space can be represented by a \ac{EDM},
-however information about the absolute position, orientation and chirality {\bf you cannot distinguish between left and right in a chiral structure} is not contained
-in this representation. That means rigid transformations of clusters
-(translations, rotations, reflections) don't affect the \ac{EDM} as they don't
-change fixed distances between points in
+however information about the absolute position, orientation and chirality is
+not contained in this representation. That means rigid transformations of
+clusters (translations, rotations, reflections) don't affect the \ac{EDM} as
+they don't change fixed distances between points in
 space.\autocite{Dokmanic_EuclideanDistanceMatrices_2015} If at least one
 inter-particle distance is different, the structures are said to be not equal.
 The algorithm is implemented such a way that a structure's distance matrix is
@@ -399,7 +399,7 @@ coordinate origin lies at the centre of mass and the structures principal axis
 are aligned with the basis vectors of the Cartesian coordinate system.
 
 The class is designed to ensure that when any of the particle coordinates
-changes, all properties are recalculated such that there is never a mismatch
+change, all properties are recalculated such that there is never a mismatch
 between the properties and the coordinates they refer to.
 
 
