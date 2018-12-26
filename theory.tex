@@ -122,9 +122,9 @@ matrix. It is clear that a different ordering still describes the same graph
 object and should therefore have no influence on the properties of the graph.
 Permutation of the vertex labelling for a given simple graph $G$ that turns the
 vertex set $N(G)$ into the vertex set $N(H)$ is called a \textit{bijection}. If
-such a bijection exists the graphs $G$ and $H$ are isomorphic to each other.
-This property is important for the discussion of a specific type of cluster
-later on in this thesis (chapter~\ref{sec:SHSClusters}).
+such a bijection exists the graphs $G$ and $H$ are \emph{isomorphic} to each
+other. This property is important for the discussion of a specific type of
+cluster later on in this thesis (chapter~\ref{sec:SHSClusters}).
 
 If it is possible to order the vertices of a simple graph in such a way that
 only two consecutively listed vertices are adjacent, the graph can be called a
@@ -141,15 +141,15 @@ endpoints to be the same.
 
 The K\"onigsberg Bridge Problem is not only concerned with the nature of the
 bridging network, but more so with how to traverse over it. In graph theoretical
-terms the desired solution is called a closed trail, which is a special case
+terms the desired solution is called a closed trail, which is a special case of
 a walk, where no edge can be repeated (i.e. no bridge can be crossed twice) and
 the endpoints have to be the same vertex.\footnote{A graph that contains such a
 closed tail traversing all edges is also called Eulerian in honour of of Euler's
 significant contribution to solve this long-standing problem.} A walk describes
 a way to traverse over a graph by defining a list of vertices and edges
 $v_0,e_1,v_1,\dots,e_k,v_k$ where the endpoints for each edge $e_i$ have to be
-$v_{i-1}$ and $v_i$ ($1\leq i\leq k$). One possible trail (excluding one
-bridge) is shown in figure~\ref{subfig:adtrail}. 
+$v_{i-1}$ and $v_i$ ($1\leq i\leq k$). One possible trail (excluding one bridge)
+is shown in figure~\ref{subfig:adtrail}. 
 %
 \begin{figure}[htb]
     \centering
@@ -219,10 +219,10 @@ trail could be laid out. While trails don't allow for repeated traversal of one
 edge, paths require all vertex traversals to be distinct. 
 
 The definition of a path can also be used to define whether a graph is
-connected. In simple terms a graph is connected if there is a path leading from
-each vertex to each other one, hence, for all $u,v\in N(G)$ there must be a
-$u,v$-path for $G$ to be connected. An example of a disconnected graph is shown
-in figure~\ref{fig:disconnectedgraph}.
+\emph{connected}. In simple terms a graph is connected if there is a path
+leading from each vertex to each other one, hence, for all $u,v\in N(G)$ there
+must be a $u,v$-path for $G$ to be connected. An example of a disconnected graph
+is shown in figure~\ref{fig:disconnectedgraph}.
 %
 \begin{figure}[htb]
     \centering
@@ -262,7 +262,7 @@ edge that increases the number of components upon deletion is also called a
 \textit{cut-edge}.
 
 An important concept utilised in chapter~\ref{sec:thegregorynewtonclusters} of
-this thesis is that of induced sub-graphs. If we remove a list of vertices $T$
+this thesis is that of induced sub-graphs. If a list of vertices $T$ is removed
 from a graph $G$ the vertex-induced sub-graph $H$ with the vertex set
 $N(H)=N(G)-T$ is obtained. All edges incident to one of the removed edges need
 to be removed as well. Removing the edge set $S$ results in the edge-induced
@@ -281,13 +281,17 @@ are incident. If a planar graph is drawn in that way it's called a
 be referred to as a \textit{planar embedding}.
 
 The importance of planar graphs in cluster sciences stems from the fact that
-they are related to convex polyhedra. Take a convex polyhedron like the
-icosahedron and remove one face (figure~\ref{subfig:icopoly}). Imagine the rest
-of the polyhedron being made of a rubber material such that it is deformable
-and stretchable. Take the area of the removed face and stretch it such that the
-rest of the polyhedron can sit inside the stretched face
-(figure~\ref{subfig:icostretch1}). After flattening the object we are left with
-what looks like a planar embedding of a graph.
+they are related to convex polyhedra. According to \emph{Steinitz's fundamental
+theorem on convex types} a graph $G$ is isomorphic to a graph $G(P)$ of a convex
+polyhedron $P$ if $G$ is planar and cubic. A cubic graph is a graph with every
+vertex having at least degree three. This relation can be illustrated by the
+following procedure. Take a convex polyhedron like the icosahedron and remove
+one face (figure~\ref{subfig:icopoly}). Imagine the rest of the polyhedron being
+made of a rubber material such that it is deformable and stretchable. Take the
+area of the removed face and stretch it such that the rest of the polyhedron can
+sit inside the stretched face (figure~\ref{subfig:icostretch1}). After
+flattening the object, what is left is what looks like a planar embedding of a
+graph.
 %
 \begin{figure}[htb]
     \centering
@@ -591,7 +595,7 @@ can be expressed by ordered pairs of vertices $(a,b)$.
     M=\{(a_1,b_1),(a_2,b_2)\dots\}
 \end{align}
 %
-Mappings have to created vertex by vertex, so initially all mappings start as
+Mappings have to be created vertex by vertex, so initially all mappings start as
 partial mappings that only contain a subset of the vertices of both graphs. This
 mapping can be found by simply computing all possible partial solutions, that
 satisfy the desired isomorphism type. However, this becomes increasingly
