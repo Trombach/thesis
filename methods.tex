@@ -163,7 +163,7 @@ After each structural optimisation the program checks if the result is a true
 minimum by calculating the Hessian matrix eigenvalues. If this check fails the
 eigenvectors of the Hessian matrix are calculated and the non-minimum structure
 is displaced according to the eigenvector belonging to the first negative
-eigenvalue in the Hessian matrix. The algorithm tries to re-optimise until there
+eigenvalue in the Hessian matrix {\bf in each of the two possible directions?}. The algorithm tries to re-optimise until there
 are no negative eigenvalues in the Hessian matrix or until a maximum number of
 five re-optimisations is reached.
 
@@ -224,7 +224,7 @@ each entry is defined as the Euclidean norm $||\cdot||$ between to spheres.
 \end{align}
 %
 Each unique embedding of the cluster in space can be represented by a \ac{EDM},
-however information about the absolute position and orientation is not contained
+however information about the absolute position, orientation and chirality {\bf you cannot distinguish between left and right in a chiral structure} is not contained
 in this representation. That means rigid transformations of clusters
 (translations, rotations, reflections) don't affect the \ac{EDM} as they don't
 change fixed distances between points in
@@ -398,15 +398,15 @@ with the latter representing the principal axis system. Upon creation of a
 coordinate origin lies at the centre of mass and the structures principal axis
 are aligned with the basis vectors of the Cartesian coordinate system.
 
-The class is designed to ensure that when any of the particles coordinates
-changes all properties are recalculated such that there is never a mismatch
+The class is designed to ensure that when any of the particle coordinates
+changes, all properties are recalculated such that there is never a mismatch
 between the properties and the coordinates they refer to.
 
 
 \subsection{Treating Two-Body Potentials}
 \label{sec:thepairpotentialclass}
 
-For the geometry optimisation of the cluster structures, methods to calculate
+For the geometry optimisation of the cluster structures, methods to calculate the
 energy and gradient need to be provided to the optimisation library. As shown in
 section~\ref{sec:PracticalImplementationForPotentialsDependingOnPairDistances}
 the gradient can be expressed as in equation~\eqref{eqn:gradient}.
@@ -416,13 +416,13 @@ the gradient can be expressed as in equation~\eqref{eqn:gradient}.
 \end{align}
 %
 The last two terms of the sum will be the same independent of the choice for the
-potential function $\varepsilon(r_{ij})$. The implementation therefore was
+potential function $\varepsilon(r_{ij})$. The implementation therefore 
 focused on reducing redundancies by making use of class inheritance features. As
 explained in the following paragraphs, this makes exchanging the type of
 two-body potential trivial.
 
 For this, a base class called \verb|pairPotential| was defined. It is an
-abstract class and therefore can not be instantiated. Its private fields hold
+abstract class and therefore cannot be instantiated. Its private fields hold
 declarations of virtual methods for calculating energy $E(r)$, first derivative
 $\dv*{E}{r}$ and second derivative $\dv*[2]{E}{r}$ based on particle distance
 $r$. They are declared virtual, because they will be overwritten with the
