@@ -6,6 +6,7 @@
 \chapter{Graph Theory}
 \label{sec:graphtheory}
 
+Graph theory is used intensively in this thesis and we therefore provide a small introduction into this field.
 Graph theory is a powerful mathematical tool to describe relations between pairs
 of objects. Its biggest advantage is the broad range of applicability in fields
 like computer science, biology, social sciences and of course physics and
@@ -76,10 +77,10 @@ question is no. It is clear that the landmasses would need to be connected by an
 even number of bridges for the desired traversal to exist.
 
 Mathematically, a \textit{graph} $G$ is a triple that contains a \textit{vertex
-set} $N(G)$ and an \textit{edge set} $E(G)$ that connects pairs of vertices via
+set} $N(G)$, an \textit{edge set} $E(G)$, and a relation that associates with each edge two vertices (not necessarily distinct, i.e. that connects pairs of vertices via
 their endpoints. Edges can form a \textit{loop} by having both endpoints at the
 same vertex and multiple edges can connect the same vertices. However,
-\textit{simple graphs} don't contain loops and multiple edges and are more
+\textit{simple graphs} do not contain loops and multiple edges and are more
 important for most practical applications. A simple graph can now be defined by
 a set of unordered pairs of vertices by defining each edge as $e=uv$ or $e=vu$
 with $u$ and $v$ being the endpoints (or vertices) of the edges. Then,
@@ -265,7 +266,7 @@ An important concept utilised in chapter~\ref{sec:thegregorynewtonclusters} of
 this thesis is that of induced sub-graphs. If a list of vertices $T$ is removed
 from a graph $G$ the vertex-induced sub-graph $H$ with the vertex set
 $N(H)=N(G)-T$ is obtained. All edges incident to one of the removed edges need
-to be removed as well. Removing the edge set $S$ results in the edge-induced
+to be removed as well {\bf Are you sure about this? I find the definition of a vertex induced subgraph by Wolfram far easier and somehow your definition does not fit}. Removing the edge set $S$ results in the edge-induced
 sub-graph $I$ with the edge set $E(I)=E(G)-S$, which leaves the vertex set
 unchanged.
 
@@ -275,16 +276,19 @@ unchanged.
 \textit{Planar graphs} are of particular importance in chemistry and physics,
 especially when studying clusters and complexes that are related to polyhedral
 arrangements.  A planar graph $G$ is defined as a graph that can be drawn such
-that none of its edges cross each other except at vertices to which both edges
-are incident. If a planar graph is drawn in that way it's called a
+that none of its edges cross each other (except at vertices to which both edges
+are incident {\bf I would not call this a crossing}). If a planar graph is drawn in that way it's called a
 \textit{plane graph}, while any way of drawing that graph in the 2D plane may
 be referred to as a \textit{planar embedding}.
 
 The importance of planar graphs in cluster sciences stems from the fact that
 they are related to convex polyhedra. According to \emph{Steinitz's fundamental
 theorem on convex types} a graph $G$ is isomorphic to a graph $G(P)$ of a convex
-polyhedron $P$ if $G$ is planar and cubic. A cubic graph is a graph with every
-vertex having at least degree three. This relation can be illustrated by the
+polyhedron $P$ if $G$ is planar and 3-connected. A connected graph $G$ is said to be 
+$k$-vertex-connected (or $k$-connected) if it has more than $k$ vertices and remains 
+connected whenever fewer than $k$ vertices are removed. A famous special case is a
+cubic graph with every vertex having degree three. Fullerenes are cubic graphs, and their duals are 
+triangulations of a sphere. Steinitz's theorem can be illustrated by the
 following procedure. Take a convex polyhedron like the icosahedron and remove
 one face (figure~\ref{subfig:icopoly}). Imagine the rest of the polyhedron being
 made of a rubber material such that it is deformable and stretchable. Take the
@@ -574,7 +578,7 @@ of the number of connected components $k$ of the graph.
 
 Euler's polyhedral formula is very simple, but nevertheless very powerful. For
 example, it shows a symmetry between the number of regions and the number of
-vertices in a graph, because exchanging $N$ and $F$ doesn't change its result.
+vertices in a graph, because exchanging $N$ and $F$ does not change its result.
 This property is known as \textit{duality}. The geometric dual of a graph $G'$
 has $|N|$ faces and $|F|$ vertices, while the edge count remains unchanged. It
 can be constructed by considering the neighbouring regions of an edge $e$. If
