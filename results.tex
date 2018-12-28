@@ -58,7 +58,7 @@ fact, that topological features known for carbon
 fullerenes\autocite{Cataldo-Ori-2011,Schwerdtfeger_topologyfullerenes_2015,Fowler-atlas-2006},
 like the Goldberg-Coxeter
 transformation,\autocite{Goldberg_ClassMultiSymmetricPolyhedra_1937,Coxeter-1971}
-can also be applied to golden fullerenes to construct larger structures. A new
+can also be applied to golden dual fullerenes (GDF) to construct larger structures. A new
 class of gold clusters emerges naturally from a one-to-one mapping of the isomer
 space of fullerenes to hollow gold clusters. In the following sections, the
 stability of such clusters is investigated as well as their photoelectron
@@ -249,14 +249,14 @@ with each other.\autocite{Kroto_stabilityfullerenesCn_1987} It is hitherto
 unknown if there is an equivalent ``isolated vertex of degree five rule'' for
 dual fullerene structures.
 
-As mentioned before, methods like Goldberg-Coxeter transformations can be used
+As mentioned before, methods like the Goldberg-Coxeter transformation can be used
 to construct larger dual fullerenes from smaller
 ones.\autocite{Goldberg_ClassMultiSymmetricPolyhedra_1937,Coxeter-1971,Dutour_GoldbergCoxeterConstructionvalent_2004}
-The original Goldberg-Coxeter transformation was carried out on the \ce{C20}
-fullerene\autocite{Goldberg_ClassMultiSymmetricPolyhedra_1937,Coxeter-1971}, but
+The original Goldberg-Coxeter transformation was carried out on the dodecahedron (\ce{C20}
+fullerene)\autocite{Goldberg_ClassMultiSymmetricPolyhedra_1937,Coxeter-1971}, but
 it can be shown that it can be applied to any fullerene
 graph.\autocite{Schwerdtfeger_topologyfullerenes_2015} The transformation
-$GC_{k,l}$ can be controlled by two integer parameters $k,l$, which describe the
+$GC_{k,l}$ can be controlled by two integer parameters $k,l$ describing the
 scaling and rotation of the mesh on which the transformation is carried out. The
 symmetry of the original fullerene is preserved if $k=l$ (leapfrog
 transformation) or $l=0$  (halma transformation). Some important transformations
@@ -267,8 +267,8 @@ the initial point group symmetry. In case of the gold clusters the same
 transformations results in the respective dual representations, i.e.
 $GC_{1,1}$[$I_\mathrm{h}-$Au$_{12}$]=$I_\mathrm{h}-$Au$_{32}$ and
 $GC_{2,0}$[$I_\mathrm{h}-$Au$_{12}$]= $I_\mathrm{h}-$Au$_{42}$. Both of these
-structures have been proposed pverviously to be stable
-clusters.\autocite{Johansson_Au3224CaratGolden_2004} The new vertex count of
+structures have been proposed previously to be stable
+hollow cages.\autocite{Johansson_Au3224CaratGolden_2004} The new vertex count of
 $GC_{k,l}[\ce{Au_{|N_d|}}]$ is
 %
 \begin{align}
@@ -283,7 +283,7 @@ icosahedral shells. Each individual shell $m$ consists of
 \begin{align}
     |N_\text{shell}|=10m^2+2\label{eqn:MackayShells}
 \end{align}
-atoms, resulting in the magical cluster numbers 13, 55, 147, 309, and so
+atoms, resulting when summing up in the magical cluster numbers 13, 55, 147, 309, and so
 on.\autocite{Mackay-1962,Kuo_MackayAntiMackayDoubleMackay_2002}
 Figure~\ref{fig:mackaylarge} shows one such icosahedral structure with $m=7$
 shells and 1415 atoms.
@@ -317,7 +317,9 @@ The relationship between carbon fullerenes and hollow gold clusters can be used
 to name the latter in the same way as the carbon fullerenes. For example, this
 can be achieved by using the canonical face spiral pentagon indices (FSPI) in
 combination with the numbering scheme introduced by
-Manolopoulos.\autocite{Fowler-atlas-2006} In the following sections the golden
+Manolopoulos.\autocite{Fowler-atlas-2006} We note that a complete
+and unique method for naming polyhedra extending the original
+Manolopoulos algorithm has only been recently developed.\autocite{Wirz_2018} In the following sections the golden
 dual fullerenes from \ce{Au12} to \ce{Au20} (excluding \ce{Au13}) will be
 investigated by means of \ac{DFT} calculations.
 
@@ -546,7 +548,7 @@ broadening the spectrum of orbital energies with Gaussian functions. The
 standard deviation $\sigma$ for these functions was chosen to be 0.035~eV in
 qualitative agreement with the experimental spectra. The orbital energies were
 calculated using the PBE density functional with the
-def2-SVP\autocite{Weigend_Balancedbasissets_2005} double zeta basis implemented
+def2-SVP\autocite{Weigend_Balancedbasissets_2005} double-zeta basis implemented
 in \textsc{Turbomole} 7.0.\autocite{_TURBOMOLEV72015_} The core region was
 described using an effective core potential including scalar relativistic
 effects.  The calculated electron affinities were used as the onset value for
@@ -677,7 +679,7 @@ which upon dualisation gives a triangulation of a sphere obeying the formula,
 \end{equation}
 %
 where $|N_m|$ denotes the number of $m$-valent vertices. Any deviation from
-$\Gamma=12$ implies that the polyhedron is not a triangulation of a sphere. For
+$\Gamma=12$ implies that the polyhedron is not a triangulation of a sphere. As mentioned before, for
 dual fullerenes only values of $N_5=12$ and $N_6=\{0,2,3,4,5,\dots\}$ are
 allowed. Hence, a true dual fullerene structure is obtained in case of a
 complete triangulation and 12 vertices of degree five.
@@ -951,9 +953,9 @@ their results in comparison with results from this work.
 For both neutral and anionic clusters, isomer 10 in their work turns out to be
 the most stable compact geometry and the icosahedral hollow structure 32:1082 is
 less stable in both the neutral and the anionic cases. The
-$C_\mathrm{3v}$-symmetric compact structure not investigated before was also
+$C_\mathrm{3v}$-symmetric compact structure not investigated before is also
 included in table~\ref{tab:Aun}. It is derived from the ideal Au$_{35}$
-tetrahedron by removing three of the corner atoms in the tetrahedron and it can
+tetrahedron by removing three of the corner atoms in the tetrahedron and can
 be viewed as a cut-out of the \ac{fcc} bulk structure. This cluster is also very
 stable compared to the other structures proposed by Jalbout et al. As reflected
 by the distortion parameter $D$ of the \ce{Au32} hollow cage
@@ -963,7 +965,7 @@ and can be seen as pseudo-spherical.
 \section{Convergence Towards the Infinite Structure}
 
 The neutral gold clusters and their property convergence towards the bulk has
-already been discussed in a previous
+already been discussed in previous
 papers.\autocite{Assadollahzadeh_systematicsearchminimum_2009} Increasing the
 size of non-hollow compact clusters lowers the cohesive energy until the
 clusters are large enough to be a valid representation of the bulk gold
@@ -982,7 +984,7 @@ sheet around a sphere while introducing 12 vertices of degree 5 to satisfy
 Euler's theorem. Therefore, an infinitely large 2D gold sheet represents a
 golden dual fullerene cage with an infinite sphere radius. As the cohesive
 energy of the compact structures converges towards the bulk cohesive energy, the
-cohesive energy of the 2D gold sheet should represent the infinite limit for the
+cohesive energy of the 2D triangulated gold sheet should represent the infinite limit for the
 dual golden fullerene structures. This is indeed the case and is depicted in
 figure~\ref{fig:cohesiveenergies2} using a $N^{-1}$ scaling law analogous to the
 one used for fullerenes.\autocite{Wirz_smallfullerenesgraphene_2015}
@@ -1016,7 +1018,7 @@ spectra of the three golden dual fullerene isomers of Au$_{17}^-$.
 	\label{fig:photoSOAu17}
 \end{figure}
 %
-The results clearly indicate that spin-orbit effects can be neglected in this
+The results clearly indicate that spin-orbit effects can be safely neglected in this
 energy range.
 
 Bulusu et al. considered only the $T_\text{d}$-\ce{Au16} structure. From the
@@ -1058,7 +1060,7 @@ dual fullerene isomers for Au$_{17}^-$. The spectra have been shifted according
 to the vertical ionization potential of the negatively charged clusters. The
 most stable structures are 17:2 (red) and 17:3 (green) of which 17:2 fits
 reasonably well for the first 4 peaks. The peak at 4.73~eV could be accounted
-to the 17:3 isomer which is identical to Bulusu et al.'s $C_\mathrm{2v}$
+to the 17:3 isomer identical to Bulusu et al.'s $C_\mathrm{2v}$
 symmetric structure.
 
 From the relative energies in figure~\ref{fig:AunMinus2} it is clear that
@@ -1075,7 +1077,7 @@ the only structure that shows a peak in that area, however, it is the least
 stable of the hollow structures.
 
 Finally, for future experiments a simulated photoelectron spectrum for
-Au$_{32}^-$ is shown in figure~\ref{fig:photo_Au32}. 
+Au$_{32}^-$ is shown in figure~\ref{fig:photo_Au32}.
 %
 \begin{figure}[htb]
 \begin{center}
@@ -1099,8 +1101,8 @@ the more compact gold clusters at larger cluster size, the smaller cage
 structures are stable as observed by photoelectron spectroscopy. Our simulated
 photoelectron spectra suggest that more than one golden fullerene isomer was
 observed. A natural step in the next direction would be to stabilize such hollow
-gold clusters by either endohedral enclosure of gold or other metal atoms or by
-attaching appropriate ligands to the outside of the cage.
+gold clusters by either endohedral enclosure of gold or other metal atoms, or by
+attaching appropriate ligands to the outside of the cage, or both.
 
 
 
