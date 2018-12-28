@@ -1136,7 +1136,7 @@ theoretical models, though getting smaller, is still
 large''.\autocite{Vlieg_atomicscaleunderstandingcrystal_2007}
 
 One reason for this slow progress in the theoretical description of nucleation
-processes is that is related to global optimisation problems. Exploring the
+processes is that it is related to global optimisation problems. Exploring the
 multi-dimensional potential energy surface belongs to the computational
 complexity class ``NP-complete'', as already mentioned in
 chapter~\ref{sec:GlobalOptimisation}. The number of local minima is expected to
@@ -1239,7 +1239,7 @@ exponents $(m,n)$ (figure~\ref{fig:LJ}).
 \begin{figure}[htb]\centering
     \includegraphics[width=0.8\columnwidth]{kslj/exampleLJ.pdf}
     \caption{Lennard-Jones potentials for different exponents $(m,n)$ with
-    fixed $n=2m$. As the exponents grow larger the well of attraction becomes narrower 
+    fixed $n=2m$. As the exponents grow larger, the well of attraction becomes narrower 
     and its shape approaches the \acs{SHS} potential. The dashed line
     shows the extended LJ potential for the xenon dimer \autocite{Jerabek_relativisticcoupledclusterinteraction_2017}.}
     \label{fig:LJ}
@@ -1250,6 +1250,7 @@ certain size $N$ differ substantially between the two potentials. For $N=13$
 there are $|\mathcal{M}_\mathrm{SHS}|=97,221$ non-isomorphic \ac{SHS} clusters
 \autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016},
 but only $|\mathcal{M}_\mathrm{LJ}|=1,510$ $(m,n) = (6,12)$ \ac{LJ} clusters
+{\bf I do not understand this equation}
 \autocite{Doye_Evolutionpotentialenergy_1999}. However, this is a known
 behaviour of energy landscapes of long-range (\ac{LJ}) and short-range
 (\ac{SHS}) potentials, with the latter generally supporting many more local
@@ -1429,7 +1430,7 @@ described program package \textsc{Spheres}
 (Chapter~\ref{sec:theprogramspheres}). The optimisation scheme was either the
 \acf{BFGS} or the conjugate gradient algorithm. The optimisations were terminated
 when the change in energy (in reduced units) over the course of one
-optimissation cycle was smaller than $10^{-15}$. 
+optimisation cycle was smaller than $10^{-15}$. 
 
 Subsequently, the eigenvalues of the Hessian were checked for all stationary
 points. If negative eigenvalues were found, the affected structures were
