@@ -58,7 +58,7 @@ fact, that topological features known for carbon
 fullerenes\autocite{Cataldo-Ori-2011,Schwerdtfeger_topologyfullerenes_2015,Fowler-atlas-2006},
 like the Goldberg-Coxeter
 transformation,\autocite{Goldberg_ClassMultiSymmetricPolyhedra_1937,Coxeter-1971}
-can also be applied to golden fullerenes to construct larger structures. A new
+can also be applied to golden dual fullerenes (GDF) to construct larger structures. A new
 class of gold clusters emerges naturally from a one-to-one mapping of the isomer
 space of fullerenes to hollow gold clusters. In the following sections, the
 stability of such clusters is investigated as well as their photoelectron
@@ -249,14 +249,14 @@ with each other.\autocite{Kroto_stabilityfullerenesCn_1987} It is hitherto
 unknown if there is an equivalent ``isolated vertex of degree five rule'' for
 dual fullerene structures.
 
-As mentioned before, methods like Goldberg-Coxeter transformations can be used
+As mentioned before, methods like the Goldberg-Coxeter transformation can be used
 to construct larger dual fullerenes from smaller
 ones.\autocite{Goldberg_ClassMultiSymmetricPolyhedra_1937,Coxeter-1971,Dutour_GoldbergCoxeterConstructionvalent_2004}
-The original Goldberg-Coxeter transformation was carried out on the \ce{C20}
-fullerene\autocite{Goldberg_ClassMultiSymmetricPolyhedra_1937,Coxeter-1971}, but
+The original Goldberg-Coxeter transformation was carried out on the dodecahedron (\ce{C20}
+fullerene)\autocite{Goldberg_ClassMultiSymmetricPolyhedra_1937,Coxeter-1971}, but
 it can be shown that it can be applied to any fullerene
 graph.\autocite{Schwerdtfeger_topologyfullerenes_2015} The transformation
-$GC_{k,l}$ can be controlled by two integer parameters $k,l$, which describe the
+$GC_{k,l}$ can be controlled by two integer parameters $k,l$ describing the
 scaling and rotation of the mesh on which the transformation is carried out. The
 symmetry of the original fullerene is preserved if $k=l$ (leapfrog
 transformation) or $l=0$  (halma transformation). Some important transformations
@@ -267,8 +267,8 @@ the initial point group symmetry. In case of the gold clusters the same
 transformations results in the respective dual representations, i.e.
 $GC_{1,1}$[$I_\mathrm{h}-$Au$_{12}$]=$I_\mathrm{h}-$Au$_{32}$ and
 $GC_{2,0}$[$I_\mathrm{h}-$Au$_{12}$]= $I_\mathrm{h}-$Au$_{42}$. Both of these
-structures have been proposed pverviously to be stable
-clusters.\autocite{Johansson_Au3224CaratGolden_2004} The new vertex count of
+structures have been proposed previously to be stable
+hollow cages.\autocite{Johansson_Au3224CaratGolden_2004} The new vertex count of
 $GC_{k,l}[\ce{Au_{|N_d|}}]$ is
 %
 \begin{align}
@@ -283,7 +283,7 @@ icosahedral shells. Each individual shell $m$ consists of
 \begin{align}
     |N_\text{shell}|=10m^2+2\label{eqn:MackayShells}
 \end{align}
-atoms, resulting in the magical cluster numbers 13, 55, 147, 309, and so
+atoms, resulting when summing up in the magical cluster numbers 13, 55, 147, 309, and so
 on.\autocite{Mackay-1962,Kuo_MackayAntiMackayDoubleMackay_2002}
 Figure~\ref{fig:mackaylarge} shows one such icosahedral structure with $m=7$
 shells and 1415 atoms.
@@ -317,7 +317,9 @@ The relationship between carbon fullerenes and hollow gold clusters can be used
 to name the latter in the same way as the carbon fullerenes. For example, this
 can be achieved by using the canonical face spiral pentagon indices (FSPI) in
 combination with the numbering scheme introduced by
-Manolopoulos.\autocite{Fowler-atlas-2006} In the following sections the golden
+Manolopoulos.\autocite{Fowler-atlas-2006} We note that a complete
+and unique method for naming polyhedra extending the original
+Manolopoulos algorithm has only been recently developed.\autocite{Wirz_2018} In the following sections the golden
 dual fullerenes from \ce{Au12} to \ce{Au20} (excluding \ce{Au13}) will be
 investigated by means of \ac{DFT} calculations.
 
@@ -546,7 +548,7 @@ broadening the spectrum of orbital energies with Gaussian functions. The
 standard deviation $\sigma$ for these functions was chosen to be 0.035~eV in
 qualitative agreement with the experimental spectra. The orbital energies were
 calculated using the PBE density functional with the
-def2-SVP\autocite{Weigend_Balancedbasissets_2005} double zeta basis implemented
+def2-SVP\autocite{Weigend_Balancedbasissets_2005} double-zeta basis implemented
 in \textsc{Turbomole} 7.0.\autocite{_TURBOMOLEV72015_} The core region was
 described using an effective core potential including scalar relativistic
 effects.  The calculated electron affinities were used as the onset value for
@@ -677,7 +679,7 @@ which upon dualisation gives a triangulation of a sphere obeying the formula,
 \end{equation}
 %
 where $|N_m|$ denotes the number of $m$-valent vertices. Any deviation from
-$\Gamma=12$ implies that the polyhedron is not a triangulation of a sphere. For
+$\Gamma=12$ implies that the polyhedron is not a triangulation of a sphere. As mentioned before, for
 dual fullerenes only values of $N_5=12$ and $N_6=\{0,2,3,4,5,\dots\}$ are
 allowed. Hence, a true dual fullerene structure is obtained in case of a
 complete triangulation and 12 vertices of degree five.
@@ -951,9 +953,9 @@ their results in comparison with results from this work.
 For both neutral and anionic clusters, isomer 10 in their work turns out to be
 the most stable compact geometry and the icosahedral hollow structure 32:1082 is
 less stable in both the neutral and the anionic cases. The
-$C_\mathrm{3v}$-symmetric compact structure not investigated before was also
+$C_\mathrm{3v}$-symmetric compact structure not investigated before is also
 included in table~\ref{tab:Aun}. It is derived from the ideal Au$_{35}$
-tetrahedron by removing three of the corner atoms in the tetrahedron and it can
+tetrahedron by removing three of the corner atoms in the tetrahedron and can
 be viewed as a cut-out of the \ac{fcc} bulk structure. This cluster is also very
 stable compared to the other structures proposed by Jalbout et al. As reflected
 by the distortion parameter $D$ of the \ce{Au32} hollow cage
@@ -963,7 +965,7 @@ and can be seen as pseudo-spherical.
 \section{Convergence Towards the Infinite Structure}
 
 The neutral gold clusters and their property convergence towards the bulk has
-already been discussed in a previous
+already been discussed in previous
 papers.\autocite{Assadollahzadeh_systematicsearchminimum_2009} Increasing the
 size of non-hollow compact clusters lowers the cohesive energy until the
 clusters are large enough to be a valid representation of the bulk gold
@@ -982,7 +984,7 @@ sheet around a sphere while introducing 12 vertices of degree 5 to satisfy
 Euler's theorem. Therefore, an infinitely large 2D gold sheet represents a
 golden dual fullerene cage with an infinite sphere radius. As the cohesive
 energy of the compact structures converges towards the bulk cohesive energy, the
-cohesive energy of the 2D gold sheet should represent the infinite limit for the
+cohesive energy of the 2D triangulated gold sheet should represent the infinite limit for the
 dual golden fullerene structures. This is indeed the case and is depicted in
 figure~\ref{fig:cohesiveenergies2} using a $N^{-1}$ scaling law analogous to the
 one used for fullerenes.\autocite{Wirz_smallfullerenesgraphene_2015}
@@ -1016,7 +1018,7 @@ spectra of the three golden dual fullerene isomers of Au$_{17}^-$.
 	\label{fig:photoSOAu17}
 \end{figure}
 %
-The results clearly indicate that spin-orbit effects can be neglected in this
+The results clearly indicate that spin-orbit effects can be safely neglected in this
 energy range.
 
 Bulusu et al. considered only the $T_\text{d}$-\ce{Au16} structure. From the
@@ -1058,7 +1060,7 @@ dual fullerene isomers for Au$_{17}^-$. The spectra have been shifted according
 to the vertical ionization potential of the negatively charged clusters. The
 most stable structures are 17:2 (red) and 17:3 (green) of which 17:2 fits
 reasonably well for the first 4 peaks. The peak at 4.73~eV could be accounted
-to the 17:3 isomer which is identical to Bulusu et al.'s $C_\mathrm{2v}$
+to the 17:3 isomer identical to Bulusu et al.'s $C_\mathrm{2v}$
 symmetric structure.
 
 From the relative energies in figure~\ref{fig:AunMinus2} it is clear that
@@ -1075,7 +1077,7 @@ the only structure that shows a peak in that area, however, it is the least
 stable of the hollow structures.
 
 Finally, for future experiments a simulated photoelectron spectrum for
-Au$_{32}^-$ is shown in figure~\ref{fig:photo_Au32}. 
+Au$_{32}^-$ is shown in figure~\ref{fig:photo_Au32}.
 %
 \begin{figure}[htb]
 \begin{center}
@@ -1099,8 +1101,8 @@ the more compact gold clusters at larger cluster size, the smaller cage
 structures are stable as observed by photoelectron spectroscopy. Our simulated
 photoelectron spectra suggest that more than one golden fullerene isomer was
 observed. A natural step in the next direction would be to stabilize such hollow
-gold clusters by either endohedral enclosure of gold or other metal atoms or by
-attaching appropriate ligands to the outside of the cage.
+gold clusters by either endohedral enclosure of gold or other metal atoms, or by
+attaching appropriate ligands to the outside of the cage, or both.
 
 
 
@@ -1134,7 +1136,7 @@ theoretical models, though getting smaller, is still
 large''.\autocite{Vlieg_atomicscaleunderstandingcrystal_2007}
 
 One reason for this slow progress in the theoretical description of nucleation
-processes is that is related to global optimisation problems. Exploring the
+processes is that it is related to global optimisation problems. Exploring the
 multi-dimensional potential energy surface belongs to the computational
 complexity class ``NP-complete'', as already mentioned in
 chapter~\ref{sec:GlobalOptimisation}. The number of local minima is expected to
@@ -1237,7 +1239,7 @@ exponents $(m,n)$ (figure~\ref{fig:LJ}).
 \begin{figure}[htb]\centering
     \includegraphics[width=0.8\columnwidth]{kslj/exampleLJ.pdf}
     \caption{Lennard-Jones potentials for different exponents $(m,n)$ with
-    fixed $n=2m$. As the exponents grow larger the well of attraction becomes narrower 
+    fixed $n=2m$. As the exponents grow larger, the well of attraction becomes narrower 
     and its shape approaches the \acs{SHS} potential. The dashed line
     shows the extended LJ potential for the xenon dimer \autocite{Jerabek_relativisticcoupledclusterinteraction_2017}.}
     \label{fig:LJ}
@@ -1248,6 +1250,7 @@ certain size $N$ differ substantially between the two potentials. For $N=13$
 there are $|\mathcal{M}_\mathrm{SHS}|=97,221$ non-isomorphic \ac{SHS} clusters
 \autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016},
 but only $|\mathcal{M}_\mathrm{LJ}|=1,510$ $(m,n) = (6,12)$ \ac{LJ} clusters
+{\bf I do not understand this equation}
 \autocite{Doye_Evolutionpotentialenergy_1999}. However, this is a known
 behaviour of energy landscapes of long-range (\ac{LJ}) and short-range
 (\ac{SHS}) potentials, with the latter generally supporting many more local
@@ -1414,7 +1417,7 @@ local minimum structure
 \autocite{Li_MonteCarlominimizationapproach_1987,waless99,Wales_GlobalOptimizationBasinHopping_1997}.
 The results confirmed the number of local minima reported in previous work
 \autocite{Doye_Saddlepointsdynamics_2002}. Finite computer time limited the
-search to clusters of size $N \leq 13$.
+search to clusters to the size $N \leq 13$.
 
 Starting from the sticky hard sphere packings up to $N=14$, with Cartesian
 coordinates given by the exact enumeration algorithm
@@ -1427,7 +1430,7 @@ described program package \textsc{Spheres}
 (Chapter~\ref{sec:theprogramspheres}). The optimisation scheme was either the
 \acf{BFGS} or the conjugate gradient algorithm. The optimisations were terminated
 when the change in energy (in reduced units) over the course of one
-optimissation cycle was smaller than $10^{-15}$. 
+optimisation cycle was smaller than $10^{-15}$. 
 
 Subsequently, the eigenvalues of the Hessian were checked for all stationary
 points. If negative eigenvalues were found, the affected structures were
@@ -1938,8 +1941,8 @@ the polyhedron fixed. Exact solutions to this problem are available for cluster
 sizes of $3 \leq N \leq 14$ and
 $N=24$.\autocite{Robinson_Arrangement24points_1961,Musin_TammesProblem14_2015}
 
-A related problem goes back to an argument between Newton and one of his
-apprentices Gregory about what is called the the \emph{maximum kissing number}
+A related problem that goes back to an argument between Newton and Gregory, one of his
+apprentices, is about the \emph{maximum kissing number}
 or \emph{Newton number} $N_k(d)$ of three-dimensional unit spheres ($d=3$) that
 can simultaneously touch a central sphere of the same
 size.\autocite{Pfender_KissingNumbersSphere_2004} While Newton believed
@@ -1977,7 +1980,7 @@ There are other problems similar to the Tammes problem like the Thomson problem,
 that tries to find the optimal solution for charged particles (e.g. electrons)
 on the surface of a
 sphere.\autocite{Wales_Structuredynamicsspherical_2006,Wales_Defectmotifsspherical_2009}
-The solutions to these class of problems all show icosahedral symmetry for a
+The solutions to this class of problems all show icosahedral symmetry for a
 size of 12 spheres. When thinking of these problems in terms of nucleation
 phenomena there is usually not a repulsive force between the surrounding
 spheres, but an attractive one. For example, such a system could be modelled in
@@ -2014,7 +2017,7 @@ The \ac{SHS} potential is employed unchanged.
 \end{align}
 %
 Note that for both potentials both the depth of the energy well and the
-equilibrium distance have already been set to 1.
+equilibrium distance have arbitrarily been set to 1.
 
 In the following sections these two potentials will be used to investigate the
 \acp{GNC}. Again, the investigation starts from the \ac{SHS} clusters derived
@@ -2026,7 +2029,7 @@ however, this structure is impossible to realise in the \ac{SHS} potential. This
 is due to the fact that in a perfect icosahedron the distance between the
 vertices is always larger than the distance of all the vertices to the centre of
 mass of the cluster. Therefore, as increasing \ac{LJ} exponents make the
-potential more \ac{SHS}-like, there must be a point at which the icosahedral
+potential more \ac{SHS}-like, there must be a point of symmetry breaking at which the icosahedral
 structure cannot be supported anymore by the \ac{LJ} potential energy surface.
 
 %The arrangement of $N$ points on the surface of a sphere corresponding to the
@@ -2155,7 +2158,7 @@ minimise energy rather than distances between neighbouring particles.
 Nonetheless, it is important to expand our knowledge on these kind of systems as
 they are crucial to understand real systems such as coordination compounds,
 which have recently been shown to possess coordination numbers as high as
-17\autocite{Kaltsoyannis-2017} or 20.\autocite{Suresh-2016} 
+17\autocite{Kaltsoyannis-2017} or even 20.\autocite{Suresh-2016} 
 
 The optimisation procedures explained in chapter~\ref{sec:theprogramspheres}
 were used to minimise the energy of a starting structure consisting of 13
@@ -2178,7 +2181,7 @@ with $m<n$ are depicted in figure~\ref{fig:gregorynewton-N14}.
 \begin{figure}[htb]
     \centering
     \includegraphics[width=.8\textwidth]{gregory-newton/N14.pdf}
-    \caption{Relation of \acs{LJ} exponents m and n to the difference of
+    \caption{Relation of \acs{LJ} exponents $m$ and $n$ to the difference of
     largest and smallest \acs{COS} distances.  A value of zero would imply that
     all surrounding spheres are touching the center sphere.}
     \label{fig:gregorynewton-N14}
@@ -2249,7 +2252,7 @@ spheres with the central sphere missing will be referred to as a \textit{GN
 graph}. The question arises if all 737 non-isomorphic GN graphs are sub-graphs
 of the icosahedral graph, as shown in figure~\ref{fig:GN}. This would make sense
 as it is impossible to increase the degree of any vertex beyond five in
-the\ac{GN} graph. Note that the icosahedral cluster is completely unjammed and
+the \ac{GN} graph. Note that the icosahedral cluster is completely unjammed and
 its space of (infinitesimal) deformations has dimension
 24.\autocite{Kusner_ConfigurationSpacesEqual_2018}
 
@@ -2518,7 +2521,7 @@ results\autocite{Holmes-Cerfon_EnumeratingRigidSphere_2016} has been
 investigated with respect to the existence of \acp{GNC}. The extra sphere in
 theses clusters is required to enter the second coordination shell because of
 the Newton number. In this case, an even larger number of clusters exists
-($14529$), which is $\approx 0.016|\mathcal{M}_\mathrm{SHS}(14)|$. All of these
+($14,529$), which is $\approx 0.016|\mathcal{M}_\mathrm{SHS}(14)|$. All of these
 structures optimise to just one of two possible (6,12)-LJ minima of \ac{GN}
 type. The first is the Mackay icosahedron capped at one of its triangular faces,
 and the second is an elongated pentagonal bipyramid (belonging to the class of
