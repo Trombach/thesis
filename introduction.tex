@@ -108,7 +108,14 @@ germanium.\autocite{Pacchioni_Silicongermaniumclusters_1986} If a cluster is not
 monoatomic and the difference in the electronegativity of the atoms is large
 enough the covalent bonding situation can change to ionic.
 
-In this thesis, two types of clusters are more important, monoatomic metal and
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.5\textwidth]{golddual/C60Ih.png}
+    \caption{Buckminsterfullerene \ce{C60}.}
+    \label{fig:C60example}
+\end{figure}
+
+For this thesis, two types of clusters are more relevant, monoatomic metal and
 rare gas clusters. The bonding situation in metal clusters is particularly
 interesting, because of the high degree of delocalisation and non-directional
 bonding. To describe this situation, several bonding models have been developed.
@@ -143,39 +150,115 @@ structure and energy with experimental results for rare gas clusters. The
 Lennard-Jones potential will be explained in more detail in
 chapter~\ref{sec:energylandscapes}.
 
-\section{Fundamental Questions in Cluster Science}
-\label{sec:FundamentalQuestionsinClusterScience}
+\section{The Potential Energy Surface}
+\label{sec:ThePotentialEnergySurface}
 
-%%%%%Topology
+A question that naturally arises when studying clusters bound by a certain
+potential is ``how many stable structures exist for a given number of atoms
+$N$'' and related to this ``what is the most stable structure''. For this, it is
+useful to investigate this problem from a mathematical point of view. If the
+movement of the atomic nuclei is decoupled from the electronic movement
+(Born-Oppenheimer approximation,
+section~\ref{sec:bornoppenheimerapproximation}), the nuclei can be said to move
+on a potential energy hypersurface. This \ac{PES} is a multi-dimensional
+function of all $3N$ atomic coordinates and it maps each point of configuration
+space to an energy value depending on the chosen potential. A stable structure
+on this hypersurface corresponds to a local minimum, with the most stable
+structure being represented by the global minimum. Thus, the question of how
+many stable structures are there is equivalent to the question of how many local
+minima are supported by the multi-dimensional potential energy surface. An example for such a hypersurface is given in figure~\ref{fig:PES-3D}.
+%
+\begin{figure}[htb]
+    \centering
+    \subfloat[\label{fig:PES-3D}]{\includegraphics[width=0.375\textwidth]{other-pics/PES-3D.png}}\hspace{0.05\textwidth}
+    \subfloat[\label{fig:PES-2D}]{\includegraphics[width=0.375\textwidth]{other-pics/PES-2D.png}}
+    \caption{\protect\subref{fig:PES-3D} Example of two-dimensional potential energy landscape and \protect\subref{fig:PES-2D} the same hypersurface represented with contour lines. Red lines mark the boundaries of the basins of attraction around the minima (blue dots) and transition states (green dots). Reprinted figures with permission from the American Physical Society: \citetitle{Massen_Powerlawdistributionsareas_2007}\autocite{Massen_Powerlawdistributionsareas_2007}, \textcopyright 2007 by the American Physical Society.}
+    \label{fig:PES}
+\end{figure}
+%
+The distribution of the minima on the hypersurface can be investigated by
+dividing the configuration space into basins of attraction as shown in
+figure~\ref{fig:PES-2D}. A basin of attraction marks an area (or hyper-area for
+multi-dimensional \acp{PES}) in which the enveloped minimum (blue dots) can be
+reached from any point of configuration within the basin of attraction by
+following a steepest-descent path. These basins of attraction therefore tile the
+energy landscape, and it was found that this tiling is very similar to that of
+Apollonian packings.\autocite{Massen_Powerlawdistributionsareas_2007} The
+results also suggested that this is a universal feature of \acp{PES} independent
+of the underlying potential. Furthermore, the area of the basins seems to
+correlate with the depth of the corresponding minimum, which makes finding the
+global minimum on a \ac{PES} a little bit easier as it should correspond to the
+largest basin of attraction by area.
 
-Another interesting question is how many stable structures exist for a given
-number of $N$ atoms. For this, it is useful to define the potential energy
-surface which is a function of all $3N$ atomic coordinates and maps them to
-their energy with respect to the employed interaction potential. This is only
-allowed if the motion of the nuclei is decoupled from the motion of the
-electrons (Born-Oppenheimer approximation,
-section~\ref{sec:bornoppenheimerapproximation}). In this case a stationary point
-on the potential energy surface corresponds to a stable cluster structure. Thus,
-it is equivalent to ask the question of how many local minima are supported by
-the multi-dimensional potential energy surface. There is no analytical solution
-to this and it very much depends on the type of interaction that is chosen to
-describe the cluster. However, observations
+The question of stable structures can also be tackled from a different point of
+view, namely that of graph theory. Under the assumption that the atoms in a
+cluster are connected, the question becomes ``how many non-isomorphic connected
+graphs exist for a specific number of vertices $N$''. This problem is also known
+as the Graph isomorphism problem and no analytic solution is known. However, it
+can be attempted to derive upper and lower bounds within which the solution must
+lie. As graphs can be represented by adjacency matrices
+(chapter~\ref{sec:DefinitionGraph}), the maximum number of such matrices can be
+used as a loose upper bound, i.e.
+$2^{N(N-1)/2}=\mathcal{O}\left(\exp{N^2}\right)$ different matrices
+exist.\autocite{Arkus_Minimalenergyclusters_2009} Some observations
 suggest\autocite{Tsai_Useeigenmodemethod_1993} that the growth is exponential,
 to be precise asymptotically
 exponential.\autocite{Stillinger_Packingstructurestransitions_1984,Stillinger_Exponentialmultiplicityinherent_1999}
+\\\newline
+Another interesting question with special importance for chemistry is the number
+of contacts or bonds a cluster can form. This question is fundamentally linked
+to the Gregory-Newton problem, which asks ``how many spheres can be arranged
+around a central sphere of the same size such that they all touch the central
+sphere''. As proven by
+\citeauthor{Schutte_ProblemdreizehnKugeln_1952}\autocite{Schutte_ProblemdreizehnKugeln_1952}
+there can be no more than 12 spheres satisfying those conditions simultaneously.
 
-%%%%Greg-Newton
+\section{Outline}
+\label{sec:Outline}
 
-%The reason why clusters are studied so extensively lies within their broad range
-%of properties due to the various different sizes. In smaller clusters,
-%interesting quantum effects can be observed, which gives rise to the whole field
-%of nano science. This field, which was most famously inspired by an article by
-%Richard Feynman,\autocite{Feynman_TherePlentyRoom_1960} is thriving today.
-%Because clusters are finite objects, they have a boundary that interfaces with
-%their environment. A similar situation can be found in bulk surfaces, as the
-%surface atoms (or atoms at the boundary in case of clusters) have lower
-%coordination numbers than bulk atoms. This under-coordination gives rise to
-%interesting chemical reactivity and in some case even catalytic activity.
+I this thesis, three projects, in which clusters are investigated with both mathematical and physical models, will be presented.
+
+In the first project (chapter~\ref{sec:goldendualfullerenes}), a special type of
+metal clusters is investigated. The gold clusters are hollow triangulations of
+spheres and can therefore be created by wrapping a cut-out from a (111)
+face-centred cubic sheet of gold around a sphere. Graph-theoretically, they are
+related to fullerenes as they represent their geometric duals. The structures
+and energies of the clusters are investigated with quantum mechanical methods
+and their growth behaviour is examined. Furthermore, photoelectron spectra are
+simulated and compared to previous experimental results.
+
+The second project (chapter~\ref{sec:fromstickyhardspheretoLJtypeclusters}) is
+concerned with the investigation of a relation between two interaction
+potentials employed in cluster science. The first one is the sticky hard sphere
+potential, which is not continuous and the stable clusters have to be searched
+by means of graph theoretical methods through the adjacency relation. The form
+of this potential represents the mathematical limit of the Lennard-Jones
+potential with respect to the exponents approaching infinity. Starting from the
+structures from the sticky hard sphere potential geometry optimisations are
+carried out with Lennard-Jones potentials with growing exponents and
+investigated with respect to the convergence of the total number of unique
+structures towards the sticky hard sphere limit and their asymptotic exponential
+growth behaviour.
+
+In the last project (chapter~\ref{sec:thegregorynewtonclusters}), the special
+case of the Gregory-Newton clusters is revisited. First, the question is posed
+if very soft (small exponents) Lennard-Jones potentials allow a 13th sphere to
+pack with equal distance around a central sphere. The set of sticky hard sphere
+clusters is again used as a starting point for the next part. It is searched for
+Gregory-Newton type clusters, which are then analysed by graph theoretic means.
+The aim was to understand if the graphs spanned by the 12 surrounding spheres
+are sub-graphs of the icosahedral graph. The reason for this investigation is
+linked to the fact that under the conditions of the sticky hard sphere potential
+icosahedral symmetry cannot be realised. However, this is known to be a very
+stable structural motif for Lennard-Jones systems. Therefore, the point at which
+the symmetry of the potential energy surface breaks and the Icosahedron is not
+supported by the potential energy surface is investigated. Finally, the set of
+sticky hard sphere clusters was analysed for Gregory-Newton clusters where one
+sphere enters the second coordination shell. Here, the focus was put on finding
+the shortest distance this sphere can have to the central sphere.
+
+
+
 %
 %As the clusters grow in size, their properties become more and more bulk-like,
 %because the electronic states are no longer quantised but quasi-continuous.
