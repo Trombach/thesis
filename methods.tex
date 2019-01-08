@@ -19,8 +19,6 @@ tested to compile in a Linux environment with the \texttt{clang++} compiler
 version 6.0. In the following sections, main features are explained and more
 important functionalities are outlined in more detail.
 
-A final version of the source code will be provided in combination with this
-thesis.
 
 \section{Structural Optimisation and Analysis}
 \label{sec:generalstructure}
@@ -453,6 +451,18 @@ The method \texttt{nAtoms()} returns the number of spheres in the
 \texttt{structure} and \texttt{dist} calculates the Euclidean distance between
 two spheres \texttt{i} and \texttt{j}.
 
+\begin{lstlisting}[caption={Implementation of the distance dependant energy for the Lennard-Jones potential.},label=code:LJenergy,float=htb]
+    class LJ : public pairPotential {
+      private:
+        double E (double distance) {
+          return (_epsilon / (_exp1/_exp2 - 1)) 
+                 * ( (pow (_rm / distance, _exp1)) - (_exp1/_exp2) 
+                 * (pow (_rm / distance, _exp2)) );
+        }
+        //methods for first and second derivatives go here
+    };
+\end{lstlisting}
+
 To define a potential, a derived class that overwrites the virtual function
 declarations is required. The virtual member functions of the base class are
 overwritten in the private field of the derived class by providing properly
@@ -465,29 +475,16 @@ which is necessary, because the exact nature of the potential is not known at
 compile time. For the \ac{LJ} potential the energy function can be defined as
 shown in listing~\ref{code:LJenergy}. The variables starting with an underscore
 are data members defined on object creation and refer to the two exponents
-\texttt{\_exp1} and \texttt{\_exp2} the equilibrium distance \texttt{\_rm} and the
-depth of the potential energy well \texttt{\_epsilon}.
+\texttt{\_exp1} and \texttt{\_exp2} the equilibrium distance \texttt{\_rm} and
+the depth of the potential energy well \texttt{\_epsilon}. A different potential
+can be implemented in the same way. A new derived class has to be defined,
+containing the methods to calculate energy, first and second derivative.
+Additionally, a function that reads parameters that define the respective
+potential form has to be provided. By design, the function needs to return a
+pointer to an instance of the class on heap memory. In case of the \ac{LJ}
+potential this can be achieved as shown in listing~\ref{code:readPotential}.
 %
-\begin{lstlisting}[caption={Implementation of the distance dependant energy for the Lennard-Jones potential.},label=code:LJenergy,float=htb]
-class LJ : public pairPotential {
-  private:
-    double E (double distance) {
-      return (_epsilon / (_exp1/_exp2 - 1)) 
-             * ( (pow (_rm / distance, _exp1)) - (_exp1/_exp2) 
-             * (pow (_rm / distance, _exp2)) );
-    }
-    //methods for first and second derivatives go here
-};
-\end{lstlisting}
-%
-A different potential can be implemented in the same way. A new derived class
-has to be defined, containing the methods to calculate energy, first and second
-derivative. Additionally, a function that reads parameters that define the
-respective potential form has to be provided. By design, the function needs to
-return a pointer to an instance of the class on heap memory. In case of the
-\ac{LJ} potential this can be achieved by the following code.
-%
-\begin{lstlisting}
+\begin{lstlisting}[caption={Minimal example for the method \texttt{readPotential()}.},label=code:readPotential,float=htb]
 LJ *LJ::readPotential () {
   //instructions to read parameters from file go here
 
