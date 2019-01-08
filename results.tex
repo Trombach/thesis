@@ -1,5 +1,7 @@
 %results
 
+\acresetall
+
 \part{Results}
 \label{sec:results}
 
@@ -1113,8 +1115,7 @@ electrons can stabilise otherwise instable hollow structures, like the
 icosahedral \ce{Au12},
 drastically.\autocite{Pyykko_IcosahedralWAu12Predicted_2002}
 
-
-
+\acresetall
 
 \chapter[From Sticky-Hard-Sphere to Lennard-Jones-Type Clusters]{From
     Sticky-Hard-Sphere to Lennard-Jones-Type clusters\footnote{This chapter is
@@ -1199,7 +1200,7 @@ N(N-1)/2$. Combining these two facts leads to a loose upper bound
 %
 Using the Gregory-Newton argument results in $f(N)=6$, however, a tighter upper
 bound has been published more recently by
-\citeauthor{Bezdek-2013}\autocite{Bezdek-2013}.
+\citeauthor{Bezdek-2013}\autocite{Bezdek-2013}
 %
 \begin{equation}
     f(N)=6N-3(18)^{1/3}\pi^{-2/3}N^{2/3}.
@@ -1247,10 +1248,11 @@ exponents $(m,n)$ (figure~\ref{fig:LJ}).
 %
 \begin{figure}[htb]\centering
     \includegraphics[width=0.8\columnwidth]{kslj/exampleLJ.pdf}
-    \caption{Lennard-Jones potentials for different exponents $(m,n)$ with
-    fixed $n=2m$. As the exponents grow larger, the well of attraction becomes narrower 
-    and its shape approaches the \acs{SHS} potential. The dashed line
-    shows the extended LJ potential for the xenon dimer \autocite{Jerabek_relativisticcoupledclusterinteraction_2017}.}
+    \caption{Lennard-Jones potentials for different exponents $(m,n)$ with fixed
+    $n=2m$. As the exponents grow larger, the well of attraction becomes
+    narrower and its shape approaches the \acs{SHS} potential. The dashed line
+    shows the extended Lennard-Jones potential for the xenon dimer
+    \autocite{Jerabek_relativisticcoupledclusterinteraction_2017}.}
     \label{fig:LJ}
 \end{figure}
 %
@@ -1758,8 +1760,8 @@ table~\ref{tab:seeds}).
 \begin{table}[htb]\centering
     \begin{threeparttable}
     \caption{Number of missing structures after optimisation belonging to the
-    same "seed" (figure~\ref{fig:seeds}). $N=8$ is excluded because all LJ minima were
-    found starting from the \acs{SHS} model.}
+    same "seed" (figure~\ref{fig:seeds}). $N=8$ is excluded because all \acs{LJ}
+    minima were found starting from the \acs{SHS} model.}
     \label{tab:seeds}
     \begin{tabular}{llllll}\toprule
         seed      & $N=9$   & $N=10$  & $N=11$  & $N=12$  & $N=13$  \\ \midrule
@@ -1796,8 +1798,8 @@ between $0.9-1.1$ to be bound.}
     \subfloat[$N=13$]{\includegraphics[width=.5\textwidth]{kslj/lj13var.pdf}}
     \caption{Histograms of the difference between the longest and shortest bond
     distances $d_\Delta=d_\text{max}-d_\text{min}$ for the complete set of
-    distinct LJ minima $\mathcal{M}_\text{LJ}(N)$ for $N=\{11,12,13\}$. Orange
-    bars give the number of distinct structures not contained in
+    distinct \acs{LJ} minima $\mathcal{M}_\text{LJ}(N)$ for $N=\{11,12,13\}$.
+    Orange bars give the number of distinct structures not contained in
     $\mathcal{M}_\mathrm{LJ}$ as obtained from the basin-hopping algorithm.}
     \label{fig:bondlength-variance}
 \end{figure}%
@@ -1812,10 +1814,13 @@ a \ac{SHS} packing similar to the \ac{LJ} structure does not exist as the
 \ac{SHS} boundary conditions are not satisfied. The data in
 table~\ref{tab:energies} shows that the unmatched (UM) structures for a specific
 $N$ value have much higher energies compared to the one of the global minimum
-(which is set to zero, i.e. $E_0=0$).
-%
+(which is set to zero, i.e. $E_0=0$). They are always positioned in the upper
+half of the energy spectrum, making them energetically unfavourable. However, no
+correlation between $d_\Delta$ and the energetic position of the \ac{LJ}
+clusters was found.
+
 \begin{table}[htb]\centering
-    \caption{Range $[E_0,E_\text{max}]$ of the energy spectrum of all LJ
+    \caption{Range $[E_0,E_\text{max}]$ of the energy spectrum of all \acs{LJ}
     minima, position of the second lowest minimum structure $E_1$ and position
     of the first unmatched (UM) structure $E_0^\text{UM}$ relative to the
     respective global minimum (in reduced units and $E_0=0$).}
@@ -1830,10 +1835,6 @@ $N$ value have much higher energies compared to the one of the global minimum
         13  & 9.26   & 2.85    & 6.14        \\\bottomrule
         \end{tabular}
 \end{table}%
-%
-They are always positioned in the upper half of the energy spectrum, making them
-energetically unfavourable. However, no correlation between $d_\Delta$ and the
-energetic position of the \ac{LJ} clusters was found.
 
 Last, the geometries of the missing structures were investigated in more detail.
 As it turns out, almost all of the missing stable \ac{LJ} clusters can be
@@ -1930,6 +1931,7 @@ also be interesting to see how three-body interactions would affect the results.
 However, that would require a considerable amount of programming as the current
 program was developed with only two-body forces in mind.
 
+\acresetall
 
 \chapter[The Gregory-Newton Clusters]{The Gregory-Newton Clusters\footnote{This
     chapter is composed of sections previously published in the articles
@@ -2293,11 +2295,11 @@ of non-isomorphic \ac{GN} graphs is so large.
     \centering
     \subfloat[hcp, $|E|=24, \omega =1$.\label{subfig:hcpgraph}]{\includegraphics[width=0.43\columnwidth]{gregory-newton/hcp-new.pdf}\hspace{0.03\textwidth}\includegraphics[width=.37\columnwidth]{gregory-newton/hcp.png}}\\
     \subfloat[fcc, $|E|=24, \omega =2$.\label{subfig:fccgraph}]{\includegraphics[width=0.43\columnwidth]{gregory-newton/fcc-new.pdf}\hspace{0.03\textwidth}\includegraphics[width=.37\columnwidth]{gregory-newton/fcc.png}}
-    \caption{GN hcp (triangular orthobicupola) and fcc (cuboctahedron) graphs
-    (central sphere removed) as sub-graphs of the icosahedral graph and
-    corresponding rigid \acs{GNC}s.  Red lines indicate the edges that were removed to
-    create the GN graph. The ordinal numbers $\omega$ refer to
-    Table~\ref{tab:icosubgraphs} in the appendix.}
+    \caption{\acs{GN} \acs{hcp} (triangular orthobicupola) and \acs{fcc}
+    (cuboctahedron) graphs (central sphere removed) as sub-graphs of the
+    icosahedral graph and corresponding rigid \acsp{GNC}.  Red lines indicate
+    the edges that were removed to create the \acs{GN} graph. The ordinal
+    numbers $\omega$ refer to Table~\ref{tab:icosubgraphs} in the appendix.}
     \label{fig:GNshellgraphs}
 \end{figure}
 
@@ -2334,9 +2336,9 @@ sphere, which becomes part of the hexagonal plane as in the bulk \ac{fcc} and
 \begin{figure}[htb]
     \centering
     \includegraphics[width=.8\columnwidth]{gregory-newton/plane.png}
-    \caption{Illustration of one zig-zag path (light blue spheres) that needs
-    to be deformed such that it aligns with the triangular plane (shown in
-    grey) of the fcc crystal.}
+    \caption{Illustration of one zig-zag path (light blue spheres) that needs to
+    be deformed such that it aligns with the triangular plane (shown in grey) of
+    the \acs{fcc} crystal.}
     \label{fig:ico-fcc-trans}
 \end{figure}
 %
@@ -2363,11 +2365,12 @@ their corresponding graphs in figure~\ref{fig:GNicographs}.
     \centering
     \subfloat[icosahedral motif, $|E|=22, \omega =4$.\label{subfig:ico4graph}]{\includegraphics[width=0.47\columnwidth]{gregory-newton/4-22-new.pdf}\hspace{0.03\textwidth}\includegraphics[width=.3\columnwidth]{gregory-newton/GNico4-22}}\\
     \subfloat[icosahedral motif, $|E|=22, \omega =7$.\label{subfig:ico7graph}]{\includegraphics[width=0.47\columnwidth]{gregory-newton/7-22-new.pdf}\hspace{0.03\textwidth}\includegraphics[width=.3\columnwidth]{gregory-newton/GNico7-22.png}}
-    \caption{Representative GN graphs (central sphere removed) with $|F_3|=10$
-    as sub-graphs of the icosahedral graph and corresponding rigid \acs{GNC}s. The
-    icosahedral motif in the 3D embedding is clearly visible.  Red lines
-    indicate the edges that were removed to create the GN graph. The ordinal
-    numbers $\omega$ refer to Table~\ref{tab:icosubgraphs} in the appendix.}
+    \caption{Representative \acs{GN} graphs (central sphere removed) with
+    $|F_3|=10$ as sub-graphs of the icosahedral graph and corresponding rigid
+    \acsp{GNC}. The icosahedral motif in the 3D embedding is clearly visible.
+    Red lines indicate the edges that were removed to create the \acs{GN} graph.
+    The ordinal numbers $\omega$ refer to Table~\ref{tab:icosubgraphs} in the
+    appendix.}
     \label{fig:GNicographs}
 \end{figure}
 
@@ -2377,11 +2380,11 @@ after the \ac{fcc} and \ac{hcp} packings.
 \begin{figure}[htb]
     \centering
     \subfloat[Distorted elongated pentagonal bipyramid (Johnson solid $J_{16}$), $|E|=23, \omega =3$.\label{subfig:johnsongraph}]{\includegraphics[width=0.47\columnwidth]{gregory-newton/johnson-new.pdf}\hspace{0.03\textwidth}\includegraphics[width=.3\columnwidth]{gregory-newton/johnson.png}}
-    \caption{GN graph (central sphere removed) as sub-graphs of the icosahedral
-    graph and corresponding GN Johnson-like solid (with edges removed). Red
-    lines indicate the edges that were removed from the icosahedral graph to
-    create the GN graph. The ordinal number $\omega$ refers to
-    Table~\ref{tab:icosubgraphs} in the appendix.}
+    \caption{\acs{GN} graph (central sphere removed) as sub-graphs of the
+    icosahedral graph and corresponding \acs{GN} Johnson-like solid (with edges
+    removed). Red lines indicate the edges that were removed from the
+    icosahedral graph to create the \acs{GN} graph. The ordinal number $\omega$
+    refers to Table~\ref{tab:icosubgraphs} in the appendix.}
     \label{fig:GNJohnsongraph}
 \end{figure}
 %
@@ -2425,7 +2428,7 @@ analysed. The results are shown schematically in figure~\ref{fig:ico-2d}.
 \begin{figure}[htb]\centering
     \includegraphics[width=.8\columnwidth]{gregory-newton/ico-2d.pdf}
     \caption{Number of unique structures resulting from an optimisation with a
-    LJ$(a,b)$ potential. The lowest contour line shows the point where more
+    $(a,b)$-\acs{LJ} potential. The lowest contour line shows the point where more
     than one structure results from the optimisation and the distance between
     contour lines is 1.}
     \label{fig:ico-2d}
@@ -2446,7 +2449,7 @@ $(a,b)$ exponents.
 \begin{figure}[htb]\centering
     \includegraphics[width=.8\columnwidth]{gregory-newton/no-ico.pdf}
     \caption{Different types of energy landscapes arising from combinations of
-    the LJ $(a,b)$ exponents. (1) One single (icosahedral) minimum, (2) more
+    the $(a,b)$-\acs{LJ}  exponents. (1) One single (icosahedral) minimum, (2) more
     than one minimum with the icosahedron as the global minimum, (3) more than
     one minimum with the icosahedron becoming a local (and not global) minimum,
     (4) the icosahedral motif disappears completely. The unshaded small area
@@ -2474,11 +2477,11 @@ phase transition lines drawn in figure~\ref{fig:no-ico}.
 %
 \begin{figure}[htb]\centering
     \includegraphics[width=.8\columnwidth]{gregory-newton/compareLJ.pdf}
-    \caption{Comparison of different shapes of LJ potentials at the phase
+    \caption{Comparison of different shapes of \acs{LJ} potentials at the phase
     transition lines shown in figure~\ref{fig:no-ico} with the traditional
-    LJ(6,12) potential (black solid line). Dashed lines refer to potentials
-    with low $a$ values (left side of figure~\ref{fig:no-ico}), while solid lines
-    refer to potentials with high $a$ values (right side of
+    (6,12)-\acs{LJ} potential (black solid line). Dashed lines refer to
+    potentials with low $a$ values (left side of figure~\ref{fig:no-ico}), while
+    solid lines refer to potentials with high $a$ values (right side of
     figure~\ref{fig:no-ico}).}
     \label{fig:compareLJ}
 \end{figure}
@@ -2501,7 +2504,7 @@ along the phase transition lines have to be considered.
 %
 \begin{figure}[htb]\centering
     \includegraphics[width=.8\columnwidth]{gregory-newton/sigma.pdf}
-    \caption{Hard-sphere radii $\sigma$ in reduced units for the LJ$(a,b)$
+    \caption{Hard-sphere radii $\sigma$ in reduced units for the $(a,b)$-\acs{LJ}
     potentials on the transition lines shown in figure~\ref{fig:no-ico}.}
     \label{fig:hardsphere}
 \end{figure}

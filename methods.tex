@@ -1,5 +1,7 @@
 %methods
 
+\acresetall
+
 \part{Methods}
 \label{sec:methods}
 
@@ -12,7 +14,7 @@ chapters~\ref{sec:fromstickyhardspheretoLJtypeclusters} and
 coordinates of cluster structures with respect to a two-body potential was
 required to be created. The optimisation routine needed to be flexible in the
 way that it would be easy to implement different two-body potentials like
-\ac{LJ} or \ac{eLJ}. Furthermore, the program needed to be able to analyse the
+\acf{LJ} or \acf{eLJ}. Furthermore, the program needed to be able to analyse the
 results regarding structure, energy and the matrix of second derivatives. The
 resulting program was written in \Cpp with standard library version 11 and was
 tested to compile in a Linux environment with the \texttt{clang++} compiler
@@ -110,7 +112,7 @@ the library
 \textit{libconfig}.\autocite{Lindner_libconfiglibraryprocessing_2018} For
 example, the optimisation can be controlled using the \texttt{opt} group. In
 this group, the optimisation model can be chosen with the \texttt{name} setting,
-which currently can be set to either \texttt{BFGS} for the \ac{BFGS} algorithm
+which currently can be set to either \texttt{BFGS} for the \acf{BFGS} algorithm
 or \texttt{CG} for the conjugate gradient method. The optimiser uses the machine
 learning library dlib\autocite{King_DlibmlMachineLearning_2009} as a back-end,
 which allows for the implementation of additional optimisation models with
