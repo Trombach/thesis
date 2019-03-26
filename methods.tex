@@ -230,7 +230,7 @@ clusters (translations, rotations, reflections) don't affect the \ac{EDM} as
 they don't change fixed distances between points in
 space.\autocite{Dokmanic_EuclideanDistanceMatrices_2015} If at least one
 inter-particle distance is different, the structures are said to be not equal.
-The algorithm is implemented such a way that a structure's distance matrix is
+The algorithm is implemented in such a way that a structure's distance matrix is
 compared to the distance matrix of all other already sorted structures and is
 added to the matching group if they are equal up to a set threshold. If not, the
 structure is added to the array as a new group. If the optimisation resulted in
@@ -369,7 +369,7 @@ type \texttt{coord3d}, which is a modified version of the \verb|coord3d|
 implementation used in program
 \textsc{Fullerene}.\autocite{Schwerdtfeger_Programfullerenesoftware_2013} 
 
-The moment of inertia tensor determines the force needed to accelerate a rigid
+The moment of inertia tensor determines the torque needed to accelerate a rigid
 body to spin around a rotational axis through the origin of the coordinate
 system. It is therefore analogous to mass in case of linear, translational
 acceleration. For cluster structures the tensor is equal to the sum over the

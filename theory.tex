@@ -75,8 +75,8 @@ answer is no and it was proven by Euler using a reduction of the problem as
 shown in figure~\ref{subfig:koenigsberg-graph}. Landmasses are reduced to
 circles and their connections via bridges is shown as lines between them. This
 simplification makes it easy to realise why the answer to the formerly posed
-question is no. It is clear that the landmasses would need to be connected by an
-even number of bridges for the desired traversal to exist.
+question is no. It is clear that each the landmasses would need to be connected
+by an even number of bridges for the desired traversal to exist.
 
 Mathematically, a \textit{graph} $G$ is a triple that contains a \textit{vertex
 set} $N(G)$, an \textit{edge set} $E(G)$, and a relation that associates two
@@ -698,21 +698,22 @@ operator in atomic units has the form
 %
 \begin{align}
 \begin{aligned}
-    \mathbf{H}&=\mathbf{T}_\text{e} + \mathbf{V}_\text{ee} + \mathbf{T}_\text{n} + \mathbf{V}_\text{nn} + \mathbf{V}_\text{en} \\
-    &=-\frac{1}{2}\sum_{i=1}^N\nabla_i^2
+    \mathbf{H}=&\mathbf{T}_\text{e} + \mathbf{V}_\text{ee} + \mathbf{T}_\text{n} + \mathbf{V}_\text{nn} + \mathbf{V}_\text{en} \\
+    =&-\frac{1}{2}\sum_{i=1}^N\nabla_i^2
     + \sum_{i=1}^N\sum_{j>i}^Nr_{ij}^{-1}
-    -\frac{1}{2} \sum_{A=1}^M\frac{\nabla_A^2}{m_A}
-    + \sum_{A=1}^M\sum_{B>A}^Mr_{AB}^{-1}
-    + \sum_{i=1}^N\sum_{A=1}^Mr_{iA}^{-1}.\label{eqn:hamiltonoperator}
+    -\frac{1}{2} \sum_{A=1}^M\frac{\nabla_A^2}{m_A}\\
+    &+ \sum_{A=1}^M\sum_{B>A}^M\frac{Z_AZ_B}{r_{AB}}
+    + \sum_{i=1}^N\sum_{A=1}^M\frac{Z_A}{r_{iA}}.\label{eqn:hamiltonoperator}
 \end{aligned}
 \end{align}
 %
-$r_{iA}$ denotes the distance between particles $i$ (electron) and $A$ (nucleus), and $m_A$ is the mass of nucleus $A$. 
-The operator contains the kinetic energy of the electrons
-$\mathbf{T}_\text{e}$, the electron repulsion $\mathbf{V}_\text{ee}$, the
-kinetic energy of the nuclei $\mathbf{T}_\text{n}$, the nucleon repulsion
-$\mathbf{V}_\text{nn}$ and the electron-nucleus attraction
-$\mathbf{V}_\text{en}$. Additional operators may be added for external field perturbations.
+$r_{iA}$ denotes the distance between particles $i$ (electron) and $A$
+(nucleus), $m_A$ is the mass of nucleus $A$ and $Z_A$ is its charge. The
+operator contains the kinetic energy of the electrons $\mathbf{T}_\text{e}$, the
+electron repulsion $\mathbf{V}_\text{ee}$, the kinetic energy of the nuclei
+$\mathbf{T}_\text{n}$, the nucleon repulsion $\mathbf{V}_\text{nn}$ and the
+electron-nucleus attraction $\mathbf{V}_\text{en}$. Additional operators may be
+added for external field perturbations.
 
 \section{The Born-Oppenheimer Approximation}
 \label{sec:bornoppenheimerapproximation}
@@ -785,12 +786,11 @@ can be rewritten in terms of one-electron operators $\mathbf{h}_i$.
 \end{aligned}
 \end{align}
 %
-Here, $Z_A$ denotes the charge of nucleus $A$. $\mathbf{h}_i$ depends only on
-the kinetic energy of electron $i$ and its potential energy in the field of all
-$M$ nuclei. When $\mathbf{h}_i$ acts on a Slater determinant the result is the
-respective matrix element $h_i$. Only parts of the Slater determinant without
-permutation of electron coordinates can give a non-zero contribution to the
-eigenvalue.
+$\mathbf{h}_i$ depends only on the kinetic energy of electron $i$ and its
+potential energy in the field of all $M$ nuclei. When $\mathbf{h}_i$ acts on a
+Slater determinant the result is the respective matrix element $h_i$. Only parts
+of the Slater determinant without permutation of electron coordinates can give a
+non-zero contribution to the eigenvalue.
 %
 \begin{align}
     \begin{aligned}
@@ -1326,7 +1326,7 @@ activity the valence regions are of far greater importance than the core
 regions. It is therefore beneficial to use split-valence basis sets that use
 more basis functions to describe the valence region and basis set contractions
 in the core regions. This usually leads to a smaller computational cost without
-loosing much in accuracy. 
+losing much in accuracy. 
 
 \subsection{Plane Wave Basis Functions}
 \label{sec:PlaneWaveBasisFunctions}
@@ -1599,7 +1599,7 @@ convergence ($p=2$). An algorithm is generally desired to convergence
 quadratically towards $\mathbf{x^*}$, however, linear convergence can be
 acceptable in case the rate constant is low.
 
-An optimisation algorithm is usually based on a model, that approximates the
+An optimisation algorithm is usually based on a model that approximates the
 objective function and allows for the prediction of the location of
 $\mathbf{x^*}$. The methods used in this work belong to the group of quadratic
 models and use a line search approach to locate the local minimiser. Focus will
@@ -1893,8 +1893,9 @@ internal redundant coordinates.
 \end{align}
 %
 The first derivative of the Wilson matrix $\mathbf{W}'$ is calculated
-analytically. It could be shown that this approach can reduce the
-number of steps needed to optimise various organic molecules significantly.\autocite{Peng_Usingredundantinternal_1996}
+analytically. It was shown that this approach can reduce the number of steps
+needed to optimise various organic molecules
+significantly.\autocite{Peng_Usingredundantinternal_1996}
 
 \subsection{Conjugate Gradient Methods}
 \label{sec:ConjugateGradientMethods}
@@ -2017,7 +2018,7 @@ but it can be rewritten in terms of an energy function $\varepsilon(r_{ij})$ tha
 distance between two spheres. %
 %
 \begin{align}
-    E(\mathbf{X})=\sum_{j>i}^N\varepsilon(r_{ij})
+    E(\mathbf{X})=\sum_{i}^N\sum_{j>i}^N\varepsilon(r_{ij})
 \end{align}%
 %
 The gradient of the system is a vector of $3N$ scalars, where each component
@@ -2026,7 +2027,7 @@ respect to the $m$th coordinate $x_m$ can be expressed as in
 equation~\eqref{eqn:gradientcomponent} by using the chain rule for derivatives.
 %
 \begin{align}
-    \pdv{E(\mathbf{X})}{x_m}=\sum_{j>i}^N\pdv{\varepsilon(r_{ij})}{r_{ij}}\ \pdv{r_{ij}}{\mathbf{r}_{ij}}\ \pdv{\mathbf{r}_{ij}}{x_m}\label{eqn:gradientcomponent}
+    \pdv{E(\mathbf{X})}{x_m}=\sum_i^N\sum_{j>i}^N\pdv{\varepsilon(r_{ij})}{r_{ij}}\ \pdv{r_{ij}}{\mathbf{r}_{ij}}\ \pdv{\mathbf{r}_{ij}}{x_m}\label{eqn:gradientcomponent}
 \end{align}%
 %
 It is clear, that the terms that contain vectors are separated from the energy
@@ -2081,7 +2082,7 @@ Hessian matrix. Again, the important part is to separate the scalar energy
 function from vector parts. This leads to the following equations.
 %
 \begin{gather}
-    \pdv{E(\mathbf{X})}{x_m}{x_n}=\sum_{j>i}^N\left[  
+    \pdv{E(\mathbf{X})}{x_m}{x_n}=\sum_i^N\sum_{j>i}^N\left[  
     \begin{array}{ll}
     \pdv[2]{\varepsilon(r_{ij})}{{r_{ij}}}\  
     \pdv{r_{ij}}{\mathbf{r}_{ij}}\ 
@@ -2119,7 +2120,7 @@ information as it represents the most likely configuration of the system and
 efforts are usually focussed on locating this particular arrangement. As this
 requires the whole configuration space to be scanned, local minima will also be
 located with global optimisation methods as a side effect. Such global
-optimisation problems belong the complexity class of ``NP-complete''
+optimisation problems belong to the complexity class of ``NP-complete''
 problems, meaning no algorithm is currently known that is guaranteed to find a
 solution within a time scaling as a power of the system size. However, a
 multitude of heuristic global optimisation algorithms have been proposed and a
@@ -2254,7 +2255,7 @@ algorithm as well. After the next generation is created the parent generation is
 discarded to leave the population size constant. The algorithm is inherently
 parallel as multiple pairs of parents can be treated simultaneously. In its
 first application to clusters it was shown that a genetic algorithm can lead to
-convergence towards the global minimum in far fewer steps then for example the
+convergence towards the global minimum in far fewer steps than for example the
 simulated annealing method.\autocite{Hartke_Globalgeometryoptimization_1993}
 
 The algorithms mentioned in this section represent only a subset of all
