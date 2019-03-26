@@ -1310,7 +1310,7 @@ to combine multiple \acp{GTO} in a linear combination to approximate the shape
 of the \ac{STO}.
 %
 \begin{align}
-    \chi^\text{STO} = \sum_ia_i\chi_i^\text{GTO}
+    \chi^\text{STO} \approx \sum_ia_i\chi_i^\text{GTO}
 \end{align}
 %
 In addition to this expansion it is typical to use more than one
@@ -1366,7 +1366,7 @@ describe them properly. To reduce computational cost, the effect of the inner
 electrons is often modelled in terms of an effective potential. This also comes
 with the advantage that scalar relativistic effects can be included as part of
 the interaction potential. The advantages of these potentials is especially
-pronounced for heavier elements, because of their shear amount of core
+pronounced for heavier elements, because of their sheer amount of core
 electrons and the increasing importance of relativistic effects. 
 
 \subsection{Effective Core Potentials}
@@ -2253,9 +2253,9 @@ Additionally, a low probability for random mutations is incorporated into the
 algorithm as well. After the next generation is created the parent generation is
 discarded to leave the population size constant. The algorithm is inherently
 parallel as multiple pairs of parents can be treated simultaneously. In its
-first application it was shown that a genetic algorithm can lead to convergence
-towards the global minimum in far fewer steps then for example the simulated
-annealing method.\autocite{Hartke_Globalgeometryoptimization_1993}
+first application to clusters it was shown that a genetic algorithm can lead to
+convergence towards the global minimum in far fewer steps then for example the
+simulated annealing method.\autocite{Hartke_Globalgeometryoptimization_1993}
 
 The algorithms mentioned in this section represent only a subset of all
 available global optimisation methods for the search of stationary points on a
@@ -2489,9 +2489,8 @@ Lennard-Jones depending on the distance $r$ between two objects was of the form
 \end{align}
 %
 with $m$ and $n$ not being set at that time. However, even though this general
-potential form is nowadays known as the Lennard-Jones potential, there have
-been other attempts at defining similar interaction
-potentials earlier. In 1920,
+potential form is nowadays known as the Lennard-Jones potential, there had been
+other attempts at defining similar interaction potentials earlier. In 1920,
 \citeauthor{Kratzer_ultrarotenRotationsspektrenHalogenwasserstoffe_1920}\autocite{Kratzer_ultrarotenRotationsspektrenHalogenwasserstoffe_1920}
 already published a less general potential of the same form with the exponents
 $m$ and $n$ set to 1 and 2, respectively. The general idea behind these two
