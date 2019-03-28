@@ -8,7 +8,7 @@
 \chapter{Program Package \textsc{Spheres}}
 \label{sec:theprogramspheres}
 
-In the projects outlined in
+For the projects outlined in
 chapters~\ref{sec:fromstickyhardspheretoLJtypeclusters} and
 \ref{sec:thegregorynewtonclusters} a program to optimise 3-dimensional
 coordinates of cluster structures with respect to a two-body potential was
@@ -154,7 +154,7 @@ potential. The values shown in the example are the default values, which the
 program will fall back to if no values are provided by the user. The \ac{eLJ}
 potential can be chosen by setting the \texttt{name} setting to \texttt{ELJ} and
 a range cut-off value can be chosen with the \texttt{RangeLJ} potential. For the
-\ac{eLJ}potential the $c_n$ coefficients have to be provided in a separate file
+\ac{eLJ} potential the $c_n$ coefficients have to be provided in a separate file
 located in the working directory and named \texttt{ext}, where each line
 contains two numbers. The first integer represents $n$ and the second floating
 point number defines the corresponding coefficient.
@@ -223,7 +223,7 @@ each entry is defined as the Euclidean norm $||\cdot||$ between two spheres.
     d_{ij}=||\mathbf{x}_i-\mathbf{x}_j||^2
 \end{align}
 %
-Each unique embedding of the cluster in space can be represented by a \ac{EDM},
+Each unique embedding of the cluster in space can be represented by an \ac{EDM},
 however information about the absolute position, orientation and chirality is
 not contained in this representation. That means rigid transformations of
 clusters (translations, rotations, reflections) don't affect the \ac{EDM} as
@@ -233,7 +233,7 @@ inter-particle distance is different, the structures are said to be not equal.
 The algorithm is implemented in such a way that a structure's distance matrix is
 compared to the distance matrix of all other already sorted structures and is
 added to the matching group if they are equal up to a set threshold. If not, the
-structure is added to the array as a new group. If the optimisation resulted in
+structure is added to the array as a new group. If the optimisation results in
 many unique structures, this method of sorting becomes slow, as each trial
 structure has to be compared to all other already sorted structure groups.
 
@@ -242,7 +242,7 @@ structure has to be compared to all other already sorted structure groups.
 
 To compare the results from the optimisations procedures to previously
 published sets of clusters the program \verb|match| can be used. It takes two
-files as input that each contain a set of structures of equal of different size
+files as input that each contain a set of structures of equal or different size
 and compares them based on the \ac{EDM}. The number of atoms in each set must
 be equal, otherwise the program will be terminated. If both sets are found to
 be identical no output files are created. In case there are unmatched
@@ -254,10 +254,11 @@ directory for further analysis.
 
 Graph theoretical analysis of cluster structures can be done with
 \verb|ico-subgraph|, which is a very specialised program designed to compare
-contact graphs of \ac{GN} clusters\footnote{This part of the program was used in
-chapter~\ref{sec:thegregorynewtonclusters}. For a definition of contact graphs
-and \ac{GN} clusters refer to the introduction in that part of the thesis.} to
-the icosahedral graph. The input format for the structures remains unchanged.
+contact graphs of \ac{GN} clusters to the icosahedral graph. The input format
+for the structures remains unchanged.\footnote{This part of the program was used
+in chapter~\ref{sec:thegregorynewtonclusters}. For a definition of contact
+graphs and \ac{GN} clusters refer to the introduction in that part of the
+thesis.}
 
 All graph objects are handled by the \textit{Boost Graph
 Library}\autocite{Siek_BoostGraphLibrary_2002} and are implemented as undirected
@@ -432,7 +433,7 @@ defined and cannot be used for calculations. The public members of the class are
 the constructor and the user-accessible functions for calculating energy,
 gradient vector and Hessian matrix as well as the optimiser.
 
-As and example, the \Cpp implementation for the member function that calculates
+As an example, the \Cpp implementation for the member function that calculates
 the energy of the system is shown in listing~\ref{code:energy}.
 %
 \begin{lstlisting}[caption={Implementation of the redundant part of the energy calculation.},label=code:energy,float=htb]
@@ -454,15 +455,15 @@ The method \texttt{nAtoms()} returns the number of spheres in the
 two spheres \texttt{i} and \texttt{j}.
 
 \begin{lstlisting}[caption={Implementation of the distance dependant energy for the Lennard-Jones potential.},label=code:LJenergy,float=htb]
-    class LJ : public pairPotential {
-      private:
-        double E (double distance) {
-          return (_epsilon / (_exp1/_exp2 - 1)) 
-                 * ( (pow (_rm / distance, _exp1)) - (_exp1/_exp2) 
-                 * (pow (_rm / distance, _exp2)) );
-        }
-        //methods for first and second derivatives go here
-    };
+class LJ : public pairPotential {
+  private:
+    double E (double distance) {
+      return (_epsilon / (_exp1/_exp2 - 1)) 
+             * ( (pow (_rm / distance, _exp1)) - (_exp1/_exp2) 
+             * (pow (_rm / distance, _exp2)) );
+    }
+    //methods for first and second derivatives go here
+};
 \end{lstlisting}
 
 To define a potential, a derived class that overwrites the virtual function

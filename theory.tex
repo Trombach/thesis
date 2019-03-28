@@ -75,15 +75,15 @@ answer is no and it was proven by Euler using a reduction of the problem as
 shown in figure~\ref{subfig:koenigsberg-graph}. Landmasses are reduced to
 circles and their connections via bridges is shown as lines between them. This
 simplification makes it easy to realise why the answer to the formerly posed
-question is no. It is clear that each the landmasses would need to be connected
-by an even number of bridges for the desired traversal to exist.
+question is no. It is clear that each landmass would need to be connected by an
+even number of bridges for the desired traversal to exist.
 
 Mathematically, a \textit{graph} $G$ is a triple that contains a \textit{vertex
 set} $N(G)$, an \textit{edge set} $E(G)$, and a relation that associates two
-vertices (not necessarily distinct) with each edge, i.e. that connects pairs of
+vertices (not necessarily distinct) with each edge, i.e. it connects pairs of
 vertices via their endpoints. Edges can form a \textit{loop} by having both
 endpoints at the same vertex and multiple edges can connect the same vertices.
-However, \textit{simple graphs} do not contain loops and multiple edges and are
+However, \textit{simple graphs} do not contain loops or multiple edges and are
 more important for most practical applications. A simple graph can now be
 defined by a set of unordered pairs of vertices by defining each edge as $e=uv$
 or $e=vu$ with $u$ and $v$ being the endpoints (or vertices) of the edges. Then,
@@ -115,10 +115,10 @@ the \textit{vertex degree}, that is the number of edges connected to a
 particular vertex, by calculating the sum over all entries in the corresponding
 row or column. 
 
-Alternatively, the \textit{incidence matrix} $M$ is an $n \cross m$ matrix where
-each matrix element $m_{ij}$ is either $1$ or $0$ depending on whether $v_i$ is
-an endpoint of $e_j$. If the matrix element $m_{ij}$ is $1$ the vertex $v_i$ and
-edge $e_j$ are incident.
+Alternatively, the \textit{incidence matrix} $\mathbf{M}$ is an $n \cross m$
+matrix where each matrix element $M_{ij}$ is either $1$ or $0$ depending on
+whether $v_i$ is an endpoint of $e_j$. If the matrix element $M_{ij}$ is $1$ the
+vertex $v_i$ and edge $e_j$ are incident.
 
 The labelling of the vertices in figure~\ref{subfig:koenigsberg-graph} is
 arbitrary and so is the ordering of the rows and columns in the adjacency
@@ -557,7 +557,7 @@ region becomes a triangle. This procedure increases both $E$ and $F$, therefore
 not affecting the result of equation~\eqref{eqn:Euler}. In the final step of the
 proof, the triangles are removed one by one starting from the outside boundary
 of the graph. This can either be achieved by removing one edge and a face as
-shown in figure~\ref{subfig:EulerProofc} or two edges and one vertex and one
+shown in figure~\ref{subfig:EulerProofc} or two edges, one vertex and one
 face, again leaving equation~\eqref{eqn:Euler} unchanged. In the end, only one
 internal region will remain: a triangle. This triangle will always result from
 the procedure described above no matter which planar graph the procedure was
@@ -840,22 +840,22 @@ now given by the sum over all integrals described above.
 Defining operators $\mathbf{J}_i$ and $\mathbf{K}_i$ for Coulomb and exchange
 integral equation~\eqref{eqn:HFenergy} becomes
 %
-\begin{align}
+\begin{align}\label{eqn:HFenergyoperator}
     E=\sum_{i=1}^N\mel{\phi_i}{\mathbf{h}_i}{\phi_i} + \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N \left( \mel{\phi_i}{\mathbf{J}_j}{\phi_i} - \mel{\phi_i}{\mathbf{K}_j}{\phi_i} \right) + V_\text{nn}\\
     \begin{aligned}
         \mathbf{J}_i\ket{\phi_j(\mathbf{x}_j)}&=\mel{\phi_i(\mathbf{x}_i)}{\mathbf{g}_{ij}}{\phi_i(\mathbf{x}_i)}\ket{\phi_j(\mathbf{x}_j)}\\
         \mathbf{K}_i\ket{\phi_j(\mathbf{x}_j)}&=\mel{\phi_i(\mathbf{x}_i)}{\mathbf{g}_{ij}}{\phi_j(\mathbf{x}_i)}\ket{\phi_i(\mathbf{x}_j)}.
-    \end{aligned}\label{eqn:HFenergyoperator}
+    \end{aligned}
 \end{align}
 %
 For the purpose of quantum chemical calculations the energy of an arbitrary
 Slater determinant is usually not useful. More interesting, however, is to find
-the Slater determinant that minimises the energy under the boundary condition
-of keeping the orthonormality condition between spin orbitals. In other words,
-we try to find the derivative of equation~\eqref{eqn:HFenergyoperator}.
-Minimising the energy under external boundary conditions can be solved using
-Lagrange multipliers. With their help it is possible to define the Fock
-operator $\mathbf{f}_i$, which is an effective one-electron operator.
+the Slater determinant that minimises the energy under the boundary condition of
+keeping the orthonormality condition between spin orbitals. In other words, we
+try to find the derivative of equation~\eqref{eqn:HFenergyoperator}. Minimising
+the energy under external boundary conditions can be achieved using Lagrange
+multipliers. With their help it is possible to define the Fock operator
+$\mathbf{f}_i$, which is an effective one-electron operator.
 %
 \begin{align}
     \mathbf{f}_i=\mathbf{h}_i + \sum_j^N\left( \mathbf{J}_j - \mathbf{K}_j \right)
@@ -896,7 +896,7 @@ exponential functions centred at the nuclei. In this case the approximation is
 called \ac{LCAO}.  Technically, a basis set expansion is not an approximation,
 but as one is limited to a finite amount of basis functions $P$ the expansion
 does not give an exact expression for a molecular orbital $\phi_i$. For a set
-of $\alpha$ basis functions $\chi_\alpha$ the expansion can be expressed as
+of $P$ basis functions $\chi_\alpha$ the expansion can be expressed as
 follows.
 %
 \begin{align}
@@ -1002,12 +1002,12 @@ to the Hohenberg-Kohn functional $F_\text{HK}\left[ \rho_0(
     E_0\left[ \rho_0(\mathbf{r}) \right] = \int\dd\mathbf{r}\rho_0(\mathbf{r})V_\text{Ne}+ F_\text{HK}\left[ \rho_0(\mathbf{r})\right]\label{eqn:energyDFTHK}
 \end{align}
 %
-If the exact Hohenberg-Kohn functional would known,
-equation~\eqref{eqn:energyDFTHK} would be an exact solution to the
-Schr\"odinger equation. In practice, there are no exact expressions for
-$T\left[ \rho_0(\mathbf{r}) \right]$ or $E_\text{ee} \left[ \rho_0(
-\mathbf{r}) \right]$ known. However, the latter can be expressed in terms of a
-classical Coulomb term $J\left[\rho\right]$ and a non-classical energy contribution
+If the exact Hohenberg-Kohn functional would be known,
+equation~\eqref{eqn:energyDFTHK} would be an exact solution to the Schr\"odinger
+equation. In practice, there are no exact expressions for $T\left[
+\rho_0(\mathbf{r}) \right]$ or $E_\text{ee} \left[ \rho_0(\mathbf{r}) \right]$
+known. However, the latter can be expressed in terms of a classical Coulomb term
+$J\left[\rho\right]$ and a non-classical energy contribution
 $E_\text{nc}\left[\rho\right]$.
 %
 \begin{align}
@@ -1100,7 +1100,7 @@ which analytical functionals for exchange and correlation are known.
 \end{align}
 %
 The exchange-correlation energy functional $\varepsilon_{XC}\left[\rho(\mathbf{r})\right]$
-is weighted with the probability of finding and electron at this point in
+is weighted with the probability of finding an electron at this point in
 space. After separation of the exchange and correlation parts the exchange
 energy can be described by a term developed by Slater.
 %
@@ -1237,7 +1237,7 @@ primitive unit cell.
 \label{sec:BlochConditions}
 
 As the same structural motif is repeated periodically throughout the infinite
-system, the same must apply to the inter atomic potential $V$.
+system, the same must apply to the inter-atomic potential $V$.
 %
 \begin{align}
     V(\mathbf{r}+\mathbf{R}) \equiv V(\mathbf{r})
@@ -1679,14 +1679,14 @@ expressed as
     \nabla q^{(k)}(\bm{\delta})=\mathbf{G}^{(k)}\bm{\delta}+\mathbf{g}^{(k)},\label{eqn:QuadraticAprroximationDerivative}
 \end{align}
 %
-and is said to be $0$ at $\bm{\delta}=\bm{\delta}^{(k)}$. The last conditions
-results in $n\times n$ linear equations that can be solved programmatically,
-and the result can be used to construct the next iterate
+and it is said to be $0$ at $\bm{\delta}=\bm{\delta}^{(k)}$. The last condition
+results in $n\times n$ linear equations that can be solved programmatically, and
+the result can be used to construct the next iterate
 $\mathbf{x}^{(k+1)}=\mathbf{x}^{(k)}+\bm{\delta}^{(k)}$.
 
 In practice Newton's method is usually implemented in combination with a
 line-search algorithm. Because it is not guaranteed that the iterates
-$\left\{f^{(k)}\right\}$ decrease towards the minimum value it can be useful to
+$\left\{f^{(k)}\right\}$ decrease towards the minimum value, it can be useful to
 define the direction of search as
 %
 \begin{align}
@@ -1900,12 +1900,12 @@ significantly.\autocite{Peng_Usingredundantinternal_1996}
 \subsection{Conjugate Gradient Methods}
 \label{sec:ConjugateGradientMethods}
 
-The origin of the Newton-like and quasi-Newton methods being the quadratic
-model is conceptually obvious. There are however methods that belong to this
-group, but don't rely on calculating or approximating a matrix of second
-derivatives. One of those methods is the conjugate gradient method.  As the
-name suggests, they take advantage of the concept of conjugacy of the search
-vectors $\mathbf{s}^{(1)},\mathbf{s}^{(2)},\dots,\mathbf{s}^{(n)}$ the Hessian
+The origin of the Newton-like and quasi-Newton methods being the quadratic model
+is conceptually obvious. There are however methods that belong to this group,
+but don't rely on calculating or approximating a matrix of second derivatives.
+One of those methods is the conjugate gradient method.  As the name suggests,
+they take advantage of the concept of conjugacy of the search vectors
+$\mathbf{s}^{(1)},\mathbf{s}^{(2)},\dots,\mathbf{s}^{(n)}$ and the Hessian
 matrix $\mathbf{G}$, i.e.
 %
 \begin{align}
@@ -1939,12 +1939,11 @@ method.\autocite{Fletcher_Functionminimizationconjugate_1964} One advantage of
 the \ac{FR} method over the quasi-Newton methods is that it does not need any
 matrix calculation, which can be seen in
 equation~\eqref{eqn:FletcherReevesBeta}. However, the procedure is not
-guaranteed to terminate for non-quadratic functions. There are several ways
-that try to solve this disadvantage, one of which is a simple reset of the
-search direction to the steepest descent direction. If the iterates converge
-towards a region that is approximated well by a quadratic function, then a
-reset of the search direction may improve the overall convergence of the
-method.
+guaranteed to terminate for non-quadratic functions. There are several ways that
+try to resolve this disadvantage, one of which is a simple reset of the search
+direction to the steepest descent direction. If the iterates converge towards a
+region that is approximated well by a quadratic function, then a reset of the
+search direction may improve the overall convergence of the method.
 
 Another solution to the aforementioned problem is to use a different expression
 for $\beta^{(k)}$. One possible modification is
@@ -2035,7 +2034,7 @@ function. This means that the energy term can be exchanged easily without
 having to change all parts of the routine. The first term represents the
 derivative of the energy function with respect to the distance between two
 spheres. The second term can be rewritten in terms of the normalised form of
-the distance vector $\mathbf{r_{ij}}$, which follows directly from
+the distance vector $\mathbf{r}_{ij}$, which follows directly from
 equations~\eqref{eq:distancevector} and \eqref{eq:distance}.
 %
 \begin{align}
@@ -2044,7 +2043,7 @@ equations~\eqref{eq:distancevector} and \eqref{eq:distance}.
 %
 The last term is responsible for the right sign of the gradient component and
 is best explained by giving an example. Firstly, if $x_m$ is neither in sphere
-$i$ nor in $j$ its result is a zero vector making the whole expression vanish.
+$i$ nor in $j$ its result is a zero vector making the whole expression vanishes.
 Let's assume $m=3i+1$, then the last expression becomes:
 %
 \begin{align}
@@ -2240,14 +2239,14 @@ multiple almost degenerate low-lying minima.
 \\\newline
 In the \textit{genetic algorithm}
 approach\autocite{Goldberg_GeneticAlgorithmsSearch_1989} the hypersurface is
-explored by utilizing ideas from evolution theory, in particular natural
+explored by utilising ideas from evolution theory, in particular natural
 selection. A ``gene'' is represented by the coordinates of the particles,
 forming a ``chromosome''. The ``fitness'' of a structure is determined by the
 potential energy with respect to the objective function. The structural
 information is often encoded in a binary bit string, but it is also possible to
 just use coordinates directly. In the first step of the algorithm an initial
 population is generated randomly and their fitness is calculated. A pair of
-``parents'' is chosen, on of which is picked randomly while the other is
+``parents'' is chosen, one of which is picked randomly while the other is
 selected based on its fitness. The structures of the parents are combined to
 create two ``children'' with a fixed probability of a single bit to cross-over.
 Additionally, a low probability for random mutations is incorporated into the
@@ -2285,7 +2284,7 @@ relation was first found by
 \citeauthor{KamerlinghOnnes_Expressionequationstate_1902}.\autocite{KamerlinghOnnes_Expressionequationstate_1902}
 %
 \begin{align}
-    pv=A'+\frac{B'}{v}+\frac{C'}{v^2}+\frac{D'}{v^4}+\frac{E'}{v^6}+\frac{F'}{v^8}
+    pv=A'+\frac{B'}{v}+\frac{C'}{v^2}+\frac{D'}{v^4}+\frac{E'}{v^6}+\frac{F'}{v^8}\label{eqn:Kamerlingh}
 \end{align}
 %
 Here, $p$ represents the pressure of the gas, $v$ the molar volume of the
@@ -2303,7 +2302,7 @@ This formulation can be generalised in terms of Taylor expansion
 %
 which allows the virial coefficients\footnote{Note that the prime notation was
 dropped to emphasise that the virial coefficients in this equation are different
-to the ones originally proposed in equation~\eqref{eqn:VirialEquationOfState}.}
+to the ones originally proposed in equation~\eqref{eqn:Kamerlingh}.}
 to be expressed as functions of intermolecular potentials. If all virial
 coefficients are 0, equation~\eqref{eqn:VirialEquationOfState} is equal to the
 ideal gas equation, which means that the virial coefficients are connected to
@@ -2323,8 +2322,8 @@ quantities, for instance the pressure $p$.
 \end{align}
 %
 In this equation, $k$ is the Boltzmann constant, $T$ the temperature and $V$ the
-volume of the vessel. Using the expression of the classical partition function
-for a system of $N$ identical particles\footnote{See page 106 in reference
+volume of the vessel. Using the expression for the classical partition function
+of a system of $N$ identical particles\footnote{See page 106 in reference
 \cite{Hirschfelder_Moleculartheorygases_1964}.} the partition function can be
 re-formulated in terms of Boltzmann factors
 $W_N\left(\mathbf{r}^N\right)=e^{-\beta\Phi\left(\mathbf{r}^N\right)}$ and a
@@ -2592,11 +2591,11 @@ sums.\autocite{Schwerdtfeger_ExtensionLennardJonespotential_2006}
 The \ac{LJ} potential has been used extensively to study nucleation of clusters
 and as a benchmark for global optimisation methods
 (section~\ref{sec:GlobalOptimisation}). From the derivation of the \ac{LJ}
-potential as a interaction potential to obtain analytical solutions for the second
-virial coefficient, it should be clear that it is a rather crude approximation
-for the forces between atoms in a cluster of the size of a few atoms.
-Nevertheless, the \ac{LJ} potential is capable of making verifiable predictions
-especially in the case of the rare gas
+potential as an interaction potential to obtain analytical solutions for the
+second virial coefficient, it should be clear that it is a rather crude
+approximation for the forces between atoms in a cluster of the size of a few
+atoms. Nevertheless, the \ac{LJ} potential is capable of making verifiable
+predictions especially in the case of the rare gas
 clusters.\autocite{Wales_Energylandscapes_2003} For example, the most stable
 arrangement is often predicted to be a Mackay icosahedron in agreement with
 experimental results.\autocite{Kakar_SizedependentKedgeEXAFS_1997} The reason
@@ -2653,9 +2652,9 @@ A variation of the \acf{SHS} potential was originally introduced by
 interaction with surface adhesion. In the simpler rigid sphere model the
 interaction potential is 0 for distances larger than the equilibrium distance
 $r_s$ and goes to infinity when the particles ``touch''. The rigid sphere model
-with surface adhesion builds upon this by introducing a region of
-attraction of width $R(r_s-1)$ in which the potential is defined to be $-\varepsilon$.
-The potential can be defined as
+with surface adhesion builds upon this by introducing a region of attraction of
+width $R(r_s-1)$ in which the potential is defined to be $-\varepsilon$. The
+potential can be expressed as
 %
 \begin{align}
     V^\text{SW}(r) =
@@ -2779,7 +2778,7 @@ adjacency matrix into the distance matrix is the crucial step to examine
 clusters bound by the \ac{SHS} potential.
 
 A set of geometric elimination rules and distance rules have been derived by
-\citeauthor{Arkus_DerivingFiniteSphere_2011}\autocite{Arkus_DerivingFiniteSphere_2011}.
+\citeauthor{Arkus_DerivingFiniteSphere_2011}\autocite{Arkus_DerivingFiniteSphere_2011}
 An elimination rule sorts out unphysical adjacency matrices, while a distance
 rule solves for the mapping $A_{ij}\to D_{ij}$. These rules
 can be derived from geometric considerations about the neighbourhood of a
@@ -2787,7 +2786,7 @@ sphere. If another sphere touches a sphere of radius $r$, it must lie on the
 surface of a sphere with radius $R=2r$. For two spheres in contact, their
 surrounding spheres intersect and form an \textit{intersection circle} with
 radius $\frac{\sqrt{3}}{2}R$. Therefore, each matrix element $A_{ij}$
-can be related to and intersection circle between spheres $i$ and $j$. Several
+can be related to an intersection circle between spheres $i$ and $j$. Several
 rules can be derived from considering the intersection circles of the particles,
 for instance, the fact that more than one intersection circle can only intersect
 in 0, 1 or 2 points (and never more) implies that three connected spheres can

@@ -29,7 +29,7 @@ These effects are also responsible for an unusually high electronegativity,
 allowing gold to act as an electron acceptor in mixed-metal
 complexes.\autocite{Schwerdtfeger-2002HA} This property could be used for
 electronic fine-tuning of physical and chemical properties in gold containing
-nano-materials of certain size.\autocite{Schwerdtfeger_Goldgoesnano_2003} The
+nano-materials of a certain size.\autocite{Schwerdtfeger_Goldgoesnano_2003} The
 growth behaviour of such clusters is, however, still debated
 heavily\autocite{Zhao-2010,Barnard-2010,Tian-2011} and even the exact nature of
 the transition from planar structures to three-dimensional compact geometries in
@@ -42,7 +42,7 @@ adopting an $I_\text{h}$ symmetric structure that can be created via a dual
 transformation of $I_\text{h}$-\ce{C60}, effectively replacing every face in the
 carbon fullerene with a gold atom, resulting in a triangulated surface.
 \citeauthor{Karttunen_IcosahedralAu72_2008}\autocite{Karttunen_IcosahedralAu72_2008}
-have predicted another cage-like gold cluster $I$-\ce{Au72}, which they predict
+have predicted another cage-like gold cluster $I$-\ce{Au72}, which they expect
 to be spherically aromatic. For clusters of copper or silver such hollow
 structures are not very
 stable.\autocite{Johansson_Au3224CaratGolden_2004,FERNANDEZ_DENSITYFUNCTIONALSTUDIES_2006}
@@ -54,7 +54,8 @@ atom\autocite{Autschbach_PropertiesWAu12_2004,Zhai-2004,Gao-Bulusu-2005,Wang_Dop
 have been found. Most importantly, $I_\text{h}$-\ce{Au32^-},
 $T_\text{d}$-\ce{Au16^-}, $C_\text{2v}$-\ce{Au17^-} and
 $C_\text{2v}$-\ce{Au18^-} were found to sufficiently explain gas phase
-photoelectron spectra of small gold clusters.\autocite{Ji-2005,Bulusu_Evidencehollowgolden_2006}
+photoelectron spectra of small gold
+clusters.\autocite{Ji-2005,Bulusu_Evidencehollowgolden_2006}
 
 On the following pages the relationship between carbon and gold fullerene cages
 in terms of their topology is investigated. The similarities arise from the
@@ -65,8 +66,8 @@ transformation,\autocite{Goldberg_ClassMultiSymmetricPolyhedra_1937,Coxeter-1971
 can also be applied to golden dual fullerenes to construct larger structures. A
 new class of gold clusters emerges naturally from a one-to-one mapping of the
 isomer space of fullerenes to hollow gold clusters. In the following sections,
-the stability of such clusters is investigated as well as their photoelectron
-spectra. 
+the stability of such clusters as well as their photoelectron
+spectra are investigated. 
 
 
 %Ever since Haruta discovered that gold nano-clusters are catalytically
@@ -164,11 +165,11 @@ denoted \textit{p3m1}-G and the gold sheet \textit{p3m1}-T (figure~\ref{fig:grap
 
 \begin{figure}[htb]
     \begin{center}
-        \subfloat[\label{subfig:graphene-sheet}]{\includegraphics[width=.4\textwidth]{golddual/sheets/graphene.png}}\hspace{.05\textwidth}
-        \subfloat[\label{subfig:gold-sheet}]{\includegraphics[width=.4\textwidth]{golddual/sheets/gold.png}}
-        \caption{\protect\subref{subfig:graphene-sheet} \textit{p3m1}-G graphene and
-        \protect\subref{subfig:gold-sheet} its dual sheet \textit{p3m1}-T adopted in (111)
-        surface of fcc gold.}
+        \subfloat[\label{subfig:graphene-sheet}]{\includegraphics[width=.4\textwidth,frame]{golddual/sheets/graphene.png}}\hspace{.05\textwidth}
+        \subfloat[\label{subfig:gold-sheet}]{\includegraphics[width=.4\textwidth,frame]{golddual/sheets/gold.png}}
+        \caption{\protect\subref{subfig:graphene-sheet} \textit{p3m1}-G graphene
+        and \protect\subref{subfig:gold-sheet} its dual sheet \textit{p3m1}-T
+        adopted in the (111) surface of fcc gold.}
     \label{fig:graphenedual}
     \end{center}
 \end{figure}
@@ -212,12 +213,12 @@ Additionally, the growth of this isomer space for fullerenes should scale the sa
 to the number of vertices, which was found to be
 $\mathcal{O}\left({|N|}^9\right)$.\autocite{Thurston_Shapespolyhedratriangulations_1998}
 
-Both \ce{C60} and its dual \ce{Au32}, as well as their graph representation are
+Both \ce{C60} and its dual \ce{Au32}, as well as their graph representations are
 depicted in figure~\ref{fig:C60dual}. This relationship was first noticed in
 conjunction with the prediction of
 \ce{Au32},\autocite{Johansson_Au3224CaratGolden_2004} and it allows the usage of
 the same algorithms used to construct fullerenes to create \acp{GDF}. For
-example, the generalised face-spiral
+example, using the generalised face-spiral
 algorithm\autocite{Fowler-atlas-2006,Schwerdtfeger_Programfullerenesoftware_2013,Wirz-2014,Schwerdtfeger_topologyfullerenes_2015}
 followed up by an embedding of the graph on a genus 0 surface and a dual
 transformation.
@@ -315,7 +316,7 @@ dualisation. For this process equation~\eqref{eqn:dualvertex} becomes
 %
 and with $|N_\text{d}|=12$ (as \ce{Au12} is the dual of \ce{C20}) this is equal
 to equation~\eqref{eqn:MackayShells}. The parameter $k$ of the transformation
-$GC_{k,0}[\ce{Au20}]$ therefore defines which shell of the icosahedron is
+$GC_{k,0}[\ce{C20}]$ therefore defines which shell of the icosahedron is
 created by the Goldberg-Coxeter transformation with subsequent dualisation.
 
 The relationship between carbon fullerenes and hollow gold clusters can be used
@@ -674,16 +675,17 @@ structures are shown in figure~\ref{fig:AunMinus2}.
 \end{figure} 
 
 The optimised gold clusters can be sorted according to whether they can be
-derived from a dual fullerene structure or not, or more generally from a cubic
-polyhedral graph. In this case Euler's polyhedral formula can be simplified,
-which upon dualisation gives a triangulation of a sphere obeying the formula,
+derived from a dual fullerene structure, or more generally from a cubic
+polyhedral graph, or not. In this case Euler's polyhedral formula can be
+simplified, which upon dualisation gives a triangulation of a sphere obeying the
+formula
 %
 \begin{equation}
 \label{eq3valent} 
-\Gamma=\sum_{n=3}(6-n)|N_n| = 12
+\Gamma=\sum_{n=3}(6-n)|N_n| = 12,
 \end{equation}
 %
-where $|N_m|$ denotes the number of $m$-valent vertices. Any deviation from
+where $|N_n|$ denotes the number of $n$-valent vertices. Any deviation from
 $\Gamma=12$ implies that the polyhedron is not a triangulation of a sphere. As mentioned before, for
 dual fullerenes only values of $N_5=12$ and $N_6=\{0,2,3,4,5,\dots\}$ are
 allowed. Hence, a true dual fullerene structure is obtained in case of a
@@ -865,8 +867,9 @@ atom in the centre for both the anionic and the neutral cluster.
 		20:15   & \cellcolor{myorange}        & \cellcolor{mygreen}       \\
 		32:1082 & \cellcolor{mygreen}         & \cellcolor{mygreen}       \\ \bottomrule
 	\end{tabular}
-	\caption{Overview of PBE-D3 optimization results for the dual fullerene structures. 
-	Green: dual fullerene structure, orange: hollow structure, red: non-hollow structure.}
+	\caption{Overview of PBE-D3 optimisation results for the dual fullerene
+	structures. Green: dual fullerene structure, orange: hollow structure, red:
+	non-hollow structure.}
 	\label{fig:optOverview}
 \end{figure}
 
@@ -881,7 +884,7 @@ before, show a value of $\Gamma=12$. These structures can be rather similar to
 the initial dual fullerene structures obtained from a force-field optimization
 of the corresponding carbon cage, and are usually a result of a flattening
 towards a more oblate geometry.  Most of the clusters shown here preserve their
-hollow cage structure with only few clusters optimizing into more stable
+hollow cage structure with only few clusters optimising into more stable
 compact structures. These are marked as red in figure~\ref{fig:optOverview}.
 
 As illustrated by the distortion parameter $D$(F) in tables~\ref{tab:neutral}
@@ -910,7 +913,7 @@ clusters.
 It is immediately apparent, that the most stable dual fullerene structures can
 be found in the region of 14 to 18 atoms. Some clusters in this region even
 exceed the stability of formerly proposed global minimum structures. For
-example, for Au$_{16}^-$ the global minimum has been proposed previously to be
+example, for \ce{Au16^-} the global minimum has been proposed previously to be
 the tetrahedral hollow
 cluster,\autocite{Schooss_Determiningsizedependentstructure_2010,Lechtken_Structuredeterminationgold_2009}
 which is the dual of the tetrahedral C$_{28}$ isomer as observed experimentally
@@ -1013,13 +1016,13 @@ al.\autocite{Bulusu_Evidencehollowgolden_2006} Before the discussion of results
 produced in this work can commence, the spin-orbit effects from substantial
 5d-mixing into the 6s orbitals in gold need to be considered.
 Figure~\ref{fig:photoSOAu17} shows a comparison of simulated photoelectron
-spectra of the three golden dual fullerene isomers of Au$_{17}^-$.
+spectra of the three golden dual fullerene isomers of \ce{Au17^-}.
 %
 \begin{figure}[htb]\centering
 	\subfloat[]{\includegraphics[width=.49\textwidth]{golddual/photo/Au17/turbo/rel-nonrel/photo1.pdf}}\hfill
 	\subfloat[]{\includegraphics[width=.49\textwidth]{golddual/photo/Au17/turbo/rel-nonrel/photo2.pdf}}\\
 	\subfloat[]{\includegraphics[width=.49\textwidth]{golddual/photo/Au17/turbo/rel-nonrel/photo3.pdf}}
-	\caption{Comparison of simulated photoelectron spectra of the three dual fullerene isomers of Au$_{17}^-$ with (2c) and without spin-orbit coupling.} 
+	\caption{Comparison of simulated photoelectron spectra of the three dual fullerene isomers of \ce{Au17^-} with (2c) and without spin-orbit coupling.} 
 	\label{fig:photoSOAu17}
 \end{figure}
 %
@@ -1038,14 +1041,15 @@ the energy of both isomers is comparable.
         \subfloat[\label{subfig:photo1}]{\includegraphics[width=.49\textwidth]{golddual/photo/Au16/turbo/photo1.pdf}}\hfill
         \subfloat[\label{subfig:photo2}]{\includegraphics[width=.49\textwidth]{golddual/photo/Au17/turbo/compare/compare.pdf}}\\
         \subfloat[\label{subfig:photo3}]{\includegraphics[width=.49\textwidth]{golddual/photo/Au18/turbo/nonrel/compare.pdf}}
-    \caption{Simulated photoelectron spectra for the negatively charged hollow gold
-        clusters (shifted to the experimental threshold energy).
-        \protect\subref{subfig:photo1} The two possible dual fullerene isomers of
-        Au$_{16}^-$ . The green curve shows a combination of the $D_\mathrm{2}$ and
-        $T_\mathrm{d}$ spectra with a ratio of 1:1.; \protect\subref{subfig:photo2}
-        The three possible dual fullerene isomers of Au$_{17}^-$;
-        \protect\subref{subfig:photo3} The six possible dual fullerene isomers of
-        Au$_{18}^-$ (shifted to the experimental threshold energy).}
+    \caption{Simulated photoelectron spectra for the negatively charged hollow
+        gold clusters (shifted to the experimental threshold energy).
+        \protect\subref{subfig:photo1} The two possible dual fullerene isomers
+        of \ce{Au16^-}. The green curve shows a combination of the
+        $D_\mathrm{2}$ and $T_\mathrm{d}$ spectra with a ratio of 1:1.;
+        \protect\subref{subfig:photo2} The three possible dual fullerene isomers
+        of \ce{Au17^-}; \protect\subref{subfig:photo3} The six possible dual
+        fullerene isomers of
+        \ce{Au18^-} (shifted to the experimental threshold energy).}
       \label{fig:photo_Au16}
     \end{center}
     \end{figure}
@@ -1061,8 +1065,8 @@ shows a dip at this energy, while the $D_\mathrm{2}$ structure has a clear
 intensity maximum. 
 
 Figure~\ref{subfig:photo2} shows the simulated spectra for the three possible
-dual fullerene isomers for Au$_{17}^-$. The spectra have been shifted according
-to the vertical ionization potential of the negatively charged clusters. The
+dual fullerene isomers for \ce{Au17^-}. The spectra have been shifted according
+to the vertical ionisation potential of the negatively charged clusters. The
 most stable structures are 17:2 (red) and 17:3 (green) of which 17:2 fits
 reasonably well for the first 4 peaks. The peak at 4.73~eV could be accounted
 to the 17:3 isomer identical to Bulusu et al.'s $C_\mathrm{2v}$
@@ -1073,7 +1077,7 @@ anionic dual fullerene structures start to become rather unstable for $N=18$.
 Therefore, compact clusters might dominate the experimental spectrum.
 Figure~\ref{subfig:photo3} shows our calculated spectra in comparison with the
 experimental data. The calculated spectra have been shifted to the corresponding
-vertical ionization potential first and subsequently shifted by 0.25~eV to
+vertical ionisation potential first and subsequently shifted by 0.25~eV to
 better fit the experimental data. The most stable dual fullerene clusters are
 18:1, 18:4 and 18:5. 18:1 and 18:5 could be responsible for the second peak in
 the experimental data at 3.63~eV, while 18:4 agrees with the first peak. The
@@ -1107,7 +1111,7 @@ structures are stable as observed by photoelectron spectroscopy. The simulated
 photoelectron spectra suggest that more than one golden fullerene isomer was
 observed. 
 
-A natural step in the next direction would be to stabilize such hollow gold
+A natural step in the next direction would be to stabilise such hollow gold
 clusters by either endohedral enclosure of gold or other metal atoms, by
 attaching appropriate ligands to the outside of the cage, or both. Results have
 already shown that enclosing a transition metal with the right amount of valence
@@ -1198,7 +1202,7 @@ N(N-1)/2$. Combining these two facts leads to a loose upper bound
     \label{eqn:upperlimitNc}
 \end{equation}
 %
-Using the Gregory-Newton argument results in $f(N)=6$, however, a tighter upper
+Using the Gregory-Newton argument results in $f(N)=6N$, however, a tighter upper
 bound has been published more recently by
 \citeauthor{Bezdek-2013}\autocite{Bezdek-2013}
 %
@@ -1255,9 +1259,9 @@ exponents $(m,n)$ (figure~\ref{fig:LJ}).
     \autocite{Jerabek_relativisticcoupledclusterinteraction_2017}.}
     \label{fig:LJ}
 \end{figure}
-%
+
 At first, it seems surprising that the absolute number of structures for a
-certain size $N$ differ substantially between the two potentials. For $N=13$
+certain size $N$ differs substantially between the two potentials. For $N=13$
 there are $|\mathcal{M}_\mathrm{SHS}|=97,221$ non-isomorphic \ac{SHS} clusters
 \autocite{Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016},
 but only $|\mathcal{M}_\mathrm{LJ}|=1,510$ $(6,12)$-\ac{LJ}
@@ -1507,7 +1511,7 @@ potential for xenon is shown in figure~\ref{fig:LJ} (dashed line).
         references~\cite{Holmes-Cerfon_EnumeratingRigidSphere_2016,Hoy_Structurefinitesphere_2012,Hoy_Structuredynamicsmodel_2015})
         and contact number $N_c$ from the exact enumeration, compared to the
         number of different structures obtained from a geometry optimisation
-        starting from the set $\mathcal{M}_{\mathrm{SHS\to LJ}}(N,N_c)$ for a
+        starting from the set $\mathcal{M}_{\mathrm{SHS}}(N,N_c)$ for a
         (6,12)-\acs{LJ} potential. The overall number of unique minima
         $|\mathcal{M}_\mathrm{SHS\to LJ}|  = \sum_{N_c}
         |\mathcal{M}_\mathrm{SHS\to LJ} (N_c)| - \text{(\# of duplicate
@@ -1560,9 +1564,9 @@ To study the convergence behaviour of the number of distinct (non-isomorphic)
 \ac{LJ} minima in the \ac{SHS} limit, geometry optimisations were carried out,
 starting from all non-isomorphic \ac{SHS} structures. It will be shown later
 that the number of unique minima obtained in this procedure
-$|\mathcal{M}_\mathrm{\ac{SHS}\to LJ}|$ only misses out on a small portion of
+$|\mathcal{M}_\mathrm{SHS\to LJ}|$ only misses out on a small portion of
 minima obtained from the more exhaustive basin-hopping approach,
-i.e.~$|\mathcal{M}_\mathrm{\ac{SHS}\to LJ}|\approx|\mathcal{M}_\mathrm{LJ}|$.
+i.e.~$|\mathcal{M}_\mathrm{SHS\to LJ}|\approx|\mathcal{M}_\mathrm{LJ}|$.
 The results for a constant chosen ratio of \ac{LJ} exponents $n/m=2$ are shown
 in figure~\ref{fig:expinfty} (top).
 %
@@ -1630,7 +1634,7 @@ The $N \geq 12$ \ac{SHS} data gives $\alpha_\mathrm{SHS}\approx 2.21$.
 Figure~\ref{fig:asympt} also shows the (6,12)-\ac{LJ} results obtained using
 basin-hopping; these yield $\alpha_\mathrm{LJ}\approx 1.10$, which is close to
 the $\alpha=0.8$ value estimated by Wallace \autocite{Wallace-1997} or to the
-recently given value of 1.04 by Forman and Cameron
+recently given value of $\alpha=1.04$ by Forman and Cameron
 \autocite{Forman_ModelingAggregationProcesses_2017}. Note that the rapid
 increase of $|\mathcal{M}_\mathrm{SHS}|/|\mathcal{M}_\mathrm{LJ}|$ with $N$ is
 explained by the much larger values of $\alpha$ for the \ac{SHS} compared to the
@@ -1893,7 +1897,7 @@ too demanding.
 The sets of $(m,n)$-\ac{LJ}-potential minima obtained using
 complete sets of non-isomorphic \ac{SHS} packings with $8 \leq N \leq 14$
 \autocite{Arkus_Minimalenergyclusters_2009,Arkus_DerivingFiniteSphere_2011,Hoy_Structurefinitesphere_2012,Hoy_Structuredynamicsmodel_2015,Holmes-Cerfon_EnumeratingRigidSphere_2016}
-as initial states for energy minimization have been characterised. The number of
+as initial states for energy minimisation have been characterised. The number of
 distinct minima (i.e.~excluding permutation-inversion isomers) is far smaller
 than the number of \ac{SHS} packings for the standard Lennard-Jones exponents
 $(m,n) = (6,12)$, but approaches the \ac{SHS} limit from below as ($m,n$)
@@ -2033,7 +2037,7 @@ The \ac{SHS} potential is employed unchanged.
 \end{align}
 %
 Note that for both potentials both the depth of the energy well and the
-equilibrium distance have been arbitrarily been set to 1.
+equilibrium distance have been arbitrarily set to 1.
 
 In the following sections these two potentials will be used to investigate the
 \acp{GNC}. Again, the investigation starts from the \ac{SHS} clusters derived
@@ -2400,7 +2404,7 @@ sphere over the distorted square face with $r_\mathrm{max}^\mathrm{RE}$ leads to
 the structure with the shortest distance a sphere in the second coordination
 shell can have to the central sphere
 ($r^\mathrm{COS}=1.347150628$)\footnote{This will be investigated in detail in
-section~\ref{sec:thegregorynewtonproblemforsoftpotentials}.} out of all 895,478
+section~\ref{sec:addinga14thsphere}.} out of all 895,478
 \ac{GN} clusters with $N=14$
 \autocite{Trombach_stickyhardsphereLennardJonestypeclusters_2018}.
 
@@ -2621,7 +2625,7 @@ are broken, or the further the axial spheres are separated, the shorter the
 Rigid \acp{GNC} have been analysed by graph theoretical means. All 737
 non-isomorphic \ac{GN} graphs are sub-graphs of the icosahedral graph obtained by
 deleting a minimum of 6 and a maximum of 9 edges. There are only two structures
-with maximum edge count of 24 corresponding to the sphere packing of the
+with maximum edge count of 24 corresponding to the sphere packings of the
 \ac{fcc} and \ac{hcp} structures, which can be obtained from the icosahedral
 structure by a smooth rearrangement moving the six spheres along a closed
 zig-zag path into the (hexagonal) plane. The common (6,12)-\ac{LJ} potential has
