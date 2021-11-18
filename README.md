@@ -1,4 +1,4 @@
-# From Mathematical Models to Quantum Chemistry in Cluster Science
+# From Mathematical Models to Quantum Chemistry in Cluster Science [![Compile to pdf](https://github.com/Trombach/thesis/actions/workflows/compile.yml/badge.svg?branch=v1.1&event=release)](https://github.com/Trombach/thesis/actions/workflows/compile.yml)
 My PhD thesis written in LaTeX using [biblatex](https://ctan.org/pkg/biblatex?lang=en) and [biber](https://sourceforge.net/projects/biblatex-biber/) for bibliography generation. I used [Zotero]() to manage my library and generate `.bib` files.
 
 # Prerequisites
