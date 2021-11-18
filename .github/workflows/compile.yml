@@ -28,5 +28,5 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: LT_thesis
-          path: /build/LT_thesis.pdf
+          path: build/LT_thesis.pdf
 
